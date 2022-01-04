@@ -21,8 +21,8 @@
         </div>
     </div>
     <div class="list-group list-group-flush">
-        <ul>
-            <li>
+        <ul id="navigation">
+            <li >
                 <a href="../admin/admin.jsp" class="list-group-item list-group-item-action"> Trang chủ <i
                         class="menu-icon fa fa-laptop"></i></a>
             </li>
@@ -59,3 +59,5 @@
         </ul>
     </div>
 </div>
+
+

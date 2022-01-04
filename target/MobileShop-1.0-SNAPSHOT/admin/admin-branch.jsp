@@ -16,11 +16,8 @@
         <!--Nav-->
         <jsp:include page="/sub-component/menu-admin.jsp"/>
         <!--/Nav-->
-        <!-- /#sidebar-wrapper -->
 
-        <!-- Page Content -->
         <div id="page-content-wrapper">
-
             <jsp:include page="/sub-component/top-menu-admin.jsp"/>
 
             <div class="container-fluid">
@@ -52,7 +49,7 @@
                                                         <input id="myInput" type="text" class="input-form" placeholder="Tìm kiếm">
                                                       </div>
                                                 </div>
-                                                <table id="bootstrap-data-table" class="table table-hover table-text-center">
+                                                <table id="bootstrap-data-table" class="table table-hover table-text-center border">
                                                     <thead class="thead-light">
                                                         <tr>
                                                             <th>Mã thương hiệu</th>

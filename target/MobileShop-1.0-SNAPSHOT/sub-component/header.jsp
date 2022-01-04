@@ -39,7 +39,7 @@
 <script type="text/javascript" src="<c:url value="/assets/js/bootstrap.min.js"/>" ></script>
 <script type="text/javascript" src="<c:url value="/assets/js/menumaker.js"/>" ></script>
 <script type="text/javascript" src="<c:url value="/assets/js/jquery.sticky.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/assets/js/sticky-header.js"/>"></script>
+<%--<script type="text/javascript" src="<c:url value="/assets/js/sticky-header.js"/>"></script>--%>
 <script type="text/javascript" src="<c:url value="/assets/js/owl.carousel.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/assets/js/multiple-carousel.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/assets/js/scrolling-nav.js"/>"></script>

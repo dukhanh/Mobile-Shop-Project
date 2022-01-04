@@ -6,6 +6,7 @@
 
 <head>
     <jsp:include page="/sub-component/header-admin.jsp"/>
+    <title></title>
 </head>
 
 <body>
@@ -22,7 +23,6 @@
         <div class="container-fluid">
             <div class="mb-5 mt-3 ">
                 <h4 class=" mt-3 mb-3">Bảng tính tổng</h4>
-
                 <div class="summary-content">
                     <div class="summary-item">
                         <span class="name-description">Tổng doanh thu</span>
@@ -171,6 +171,13 @@
             $("#content-table tr").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
+        });
+    });
+
+    $(document).ready(function() {
+        $('.list-group-item').click(function (){
+            $('.list-group-item').removeClass('active');
+            $(this).addClass('active');
         });
     });
 </script>
