@@ -72,7 +72,7 @@
                     <div id="navigation">
                         <ul>
                             <li class="active"><a href="<c:url value="../customer/index.jsp"/>">Trang chủ</a></li>
-                            <li><a href="../customer/product-list.jsp">Điện thoại</a>
+                            <li><a href="${pageContext.request.contextPath}/ProductList">Điện thoại</a>
                             </li>
                             <li><a href="<c:url value="../customer/about.jsp"/>">Thông tin</a>
                             </li>

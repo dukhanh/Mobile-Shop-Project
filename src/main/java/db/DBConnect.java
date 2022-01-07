@@ -11,12 +11,20 @@ public class DBConnect {
 
     public static Statement connect() throws SQLException, ClassNotFoundException {
         if (connection == null || connection.isClosed()) {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             return connection.createStatement();
 
         } else {
             return connection.createStatement();
+        }
+    }
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        int sl = 10;
+        ResultSet rs = connect().executeQuery("SELECT * FROM SAN_PHAM LIMIT "+ sl);
+        while(rs.next()) {
+            System.out.println(rs.getString(2));
         }
     }
 }

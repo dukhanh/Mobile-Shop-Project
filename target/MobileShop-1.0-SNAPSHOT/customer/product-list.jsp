@@ -1,3 +1,7 @@
+<%@ page import="java.text.DecimalFormat" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.math.RoundingMode" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +9,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
+%>
+
+<% Locale locale = new Locale("vi", "VN");%>
+<% NumberFormat formatNum = NumberFormat.getCurrencyInstance(locale);%>
+<% formatNum.setRoundingMode(RoundingMode.HALF_UP);%>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
@@ -241,222 +255,61 @@
                 </div>
                 <div class="row">
                     <!-- product -->
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                        <a href="../customer/product-single.jsp">
-                            <div class="product-block">
-                                <div class="product-img"><img src="../assets/images/product_img_1.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Google Pixel <strong>(128GB,
-                                        Black)</strong></a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1100</a>
-                                        <a href="#" class="discounted-price">$1400</a>
-                                        <span class="offer-price">20%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- /.product -->
-                    <!-- product -->
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                        <a href="../customer/product-single.jsp">
-                            <div class="product-block">
-                                <div class="product-img"><img src="../assets/images/product_img_2.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">HTC U Ultra <strong>(64GB,
-                                        Blue)</strong></a>
-                                    </h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1200</a>
-                                        <a href="#" class="discounted-price">$1700</a>
-                                        <span class="offer-price">10%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- /.product -->
-                    <!-- product -->
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                        <a href="../customer/product-single.jsp">
-                            <div class="product-block">
-                                <div class="product-img"><img src="../assets/images/product_img_3.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Samsung Galaxy Note 8</a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                        <a href="#" class="discounted-price">$2000</a>
-                                        <span class="offer-price">40%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- /.product -->
-                    <!-- product -->
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                        <a href="../customer/product-single.jsp">
-                            <div class="product-block">
+                    <jsp:useBean id="products" scope="request" type="java.util.List"/>
+                    <c:forEach var="p" items="${products}">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
+                            <a href="#">
+                                <div class="product-block">
+                                    <div class="product-img"><img src="${p.imageUrl}" alt=""></div>
+                                    <div class="product-content">
+                                        <h5 class="product-title">${p.name}</h5>
+                                        <div class="product-meta">
+                                            <fmt:setLocale value="vi_VN"/>
+                                            <c:choose>
+                                                <c:when test="${p.price == p.priceSale}">
+                                                    <a href="#" class="product-price">
+                                                        <fmt:formatNumber value="${p.priceSale}"/> vnđ
+                                                    </a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="#" class="discounted-price">
+                                                        <fmt:formatNumber value="${p.price}"/> vnđ
+                                                    </a>
+                                                    <a href="#" class="product-price">
+                                                        <fmt:formatNumber value="${p.priceSale}"/> vnđ
+                                                    </a>
 
-                                <div class="product-img"><img src="../assets/images/product_img_3.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Samsung Galaxy Note 8</a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                        <a href="#" class="discounted-price">$2000</a>
-                                        <span class="offer-price">40%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
+                                                </c:otherwise>
+                                            </c:choose>
 
-                            </div>
-                        </a>
 
-                    </div>
-                    <!-- /.product -->
-                    <!-- product -->
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                        <a href="../customer/product-single.jsp">
-                            <div class="product-block">
-                                <div class="product-img"><img src="../assets/images/product_img_4.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Vivo V5 Plus <strong>(Matte
-                                        Black)</strong></a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                        <a href="#" class="discounted-price">$2000</a>
-                                        <span class="offer-price">15%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like">
-                                            <i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i
-                                                class="fa fa-shopping-cart"></i></a>
+                                                <%--                                            <span class="offer-price">20%off</span>--%>
+                                        </div>
+                                        <div class="shopping-btn">
+                                            <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
+                                            <a href="#" class="product-btn btn-cart"><i
+                                                    class="fa fa-shopping-cart"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    </c:forEach>
+
                     <!-- /.product -->
-                    <!-- product -->
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                        <a href="../customer/product-single.jsp">
-                            <div class="product-block">
-                                <div class="product-img"><img src="../assets/images/product_img_2.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">HTC U Ultra <strong>(64GB,
-                                        Blue)</strong></a>
-                                    </h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1200</a>
-                                        <a href="#" class="discounted-price">$1700</a>
-                                        <span class="offer-price">10%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- /.product -->
-                    <!-- product -->
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                        <a href="../customer/product-single.jsp">
-                            <div class="product-block">
-                                <div class="product-img"><img src="../assets/images/product_img_2.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">HTC U Ultra <strong>(64GB,
-                                        Blue)</strong></a>
-                                    </h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1200</a>
-                                        <a href="#" class="discounted-price">$1700</a>
-                                        <span class="offer-price">10%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- /.product -->
-                    <!-- product -->
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                        <a href="../customer/product-single.jsp">
-                            <div class="product-block">
-                                <div class="product-img"><img src="../assets/images/product_img_3.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Samsung Galaxy Note 8</a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                        <a href="#" class="discounted-price">$2000</a>
-                                        <span class="offer-price">40%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- /.product -->
-                    <!-- product -->
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                        <a href="../customer/product-single.jsp">
-                            <div class="product-block">
-                                <div class="product-img"><img src="../assets/images/product_img_2.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">HTC U Ultra <strong>(64GB,
-                                        Blue)</strong></a>
-                                    </h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1200</a>
-                                        <a href="#" class="discounted-price">$1700</a>
-                                        <span class="offer-price">10%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- /.product -->
+
                 </div>
                 <div class="row">
                     <!-- pagination start -->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="st-pagination">
                             <ul class="pagination">
-                                <li><a href="#" aria-label="previous"><i class="fa fa-angle-left"
-                                                                         style="font-size: 16px;"></i></a>
-                                </li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#" aria-label="Next"><i class="fa fa-angle-right"
-                                                                     style="font-size: 16px;"></i></li>
+                                <%--                                <jsp:useBean id="pages" scope="request" type="java.util.List"/>--%>
+                                <c:forEach begin="1" end="${pages}" var="i">
+                                    <li class=""><a
+                                            href="ProductList?page=${i}"${index==i?"style=\"background:rgb(234,113,39);\"":""}>${i}</a>
+                                    </li>
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>
