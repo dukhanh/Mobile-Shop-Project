@@ -16,9 +16,9 @@
     response.setCharacterEncoding("UTF-8");
 %>
 
-<% Locale locale = new Locale("vi", "VN");%>
-<% NumberFormat formatNum = NumberFormat.getCurrencyInstance(locale);%>
-<% formatNum.setRoundingMode(RoundingMode.HALF_UP);%>
+<% int beforePage = (int) request.getAttribute("index") - 1;%>
+<% int afterPage = (int) request.getAttribute("index") + 1;%>
+
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
@@ -147,11 +147,11 @@
                                         <span class="checkbox-list">Dưới 2 triệu</span>
                                     </label>
                                 </li>
-                                <li><span>
-                                            <label>
-                                                <input type="checkbox">
-                                                <span class="checkbox-list">Từ 2 - 5 triệu</span>
-                                            </label>
+                                <li>
+                                    <label>
+                                        <input type="checkbox">
+                                        <span class="checkbox-list">Từ 2 - 5 triệu</span>
+                                    </label>
                                 </li>
                                 <li>
                                     <label>
@@ -160,11 +160,11 @@
                                     </label>
                                 </li>
 
-                                <li><span>
-                                            <label>
-                                                <input type="checkbox">
-                                                <span class="checkbox-list">Từ 10 - 15 triệu</span>
-                                            </label>
+                                <li>
+                                    <label>
+                                        <input type="checkbox">
+                                        <span class="checkbox-list">Từ 10 - 15 triệu</span>
+                                    </label>
                                 </li>
                                 <li>
                                     <label>
@@ -266,7 +266,7 @@
                                         <div class="product-meta">
                                             <fmt:setLocale value="vi_VN"/>
                                             <c:choose>
-                                                <c:when test="${p.price == p.priceSale}">
+                                                <c:when test="${p.price > p.priceSale}">
                                                     <a href="#" class="product-price">
                                                         <fmt:formatNumber value="${p.priceSale}"/> vnđ
                                                     </a>
@@ -282,8 +282,6 @@
                                                 </c:otherwise>
                                             </c:choose>
 
-
-                                                <%--                                            <span class="offer-price">20%off</span>--%>
                                         </div>
                                         <div class="shopping-btn">
                                             <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
@@ -301,19 +299,82 @@
                 </div>
                 <div class="row">
                     <!-- pagination start -->
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="st-pagination">
-                            <ul class="pagination">
-                                <%--                                <jsp:useBean id="pages" scope="request" type="java.util.List"/>--%>
-                                <c:forEach begin="1" end="${pages}" var="i">
-                                    <li class=""><a
-                                            href="ProductList?page=${i}"${index==i?"style=\"background:rgb(234,113,39);\"":""}>${i}</a>
+                    <div class="pagination">
+                        <ul>
+
+                            <c:if test="${index > 1}">
+                                <a href="ProductList?page=${index-1}">
+                                    <li class="btn prev"><span><i class="fas fa-angle-left"></i>Prev</span>
                                     </li>
-                                </c:forEach>
-                            </ul>
-                        </div>
+                                </a>
+                            </c:if>
+                            <c:if test="${index > 2}">
+                                <a href="ProductList?page=${1}">
+                                    <li class="first numb"><span>1</span></li>
+                                </a>
+                                <c:if test="${index > 3}">
+                                    <li class="dots"><span>...</span></li>
+                                </c:if>
+                            </c:if>
+                            <c:choose>
+                                <c:when test="${index == pages}">
+                                    <% beforePage = beforePage - 2; %>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:choose>
+                                        <c:when test="${index == pages-1}">
+                                            <% beforePage = beforePage - 1; %>
+                                        </c:when>
+                                    </c:choose>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${index == 1}">
+                                    <% afterPage = afterPage + 2; %>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:choose>
+                                        <c:when test="${index == 2}">
+                                            <% afterPage = afterPage + 1; %>
+                                        </c:when>
+                                    </c:choose>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:forEach begin="<%=beforePage%>" end="<%=afterPage%>" var="p">
+                                <c:if test="${(p > 0)&&(p< pages+1)}">
+                                    <c:choose>
+                                        <c:when test="${p == index}">
+                                            <a href="ProductList?page=${p}">
+                                                <li class="numb active"><span>${p}</span></li>
+                                            </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="ProductList?page=${p}">
+                                                <li class="numb"><span>${p}</span></li>
+                                            </a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:if>
+                            </c:forEach>
+
+                            <c:if test="${index < pages-1}">
+                                <c:if test="${index < pages-1}">
+                                    <li class="dots"><span>...</span></li>
+                                </c:if>
+                                <a href="ProductList?page=${pages}">
+                                    <li class="last numb"><span>${pages}</span></li>
+                                </a>
+                            </c:if>
+                            <c:if test="${index < pages}">
+                                <a href="ProductList?page=${index+1}">
+                                    <li class="btn next"><span>Next<i
+                                            class="fas fa-angle-right"></i></span></li>
+                                </a>
+                            </c:if>
+
+                        </ul>
                     </div>
-                    <!-- pagination close -->
+
                 </div>
             </div>
         </div>
@@ -322,7 +383,6 @@
 <!-- /.product-list -->
 <!-- footer -->
 <jsp:include page="/sub-component/footer.jsp"/>
-
 <script type="text/javascript">
     (function ($) {
         $(document).ready(function () {
@@ -350,8 +410,5 @@
     })(jQuery);
 </script>
 </body>
-
-
-<!-- Mirrored from easetemplate.com/free-website-templates/mobistore/product-list.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:53 GMT -->
 
 </html>
