@@ -25,11 +25,11 @@ public class ProductDAO {
         return productDAO;
     }
 
-    public  List<Product> getProducts(int page, int products) {
+    public  List<Product> getProducts(int page, int products, String condition ) {
         Product product;
         List<Product> res = new LinkedList<>();
         try {
-            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement("SELECT * FROM SAN_PHAM LIMIT ?,?");
+            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement("SELECT * FROM SAN_PHAM "+condition+" LIMIT ?,?");
             psupdate.setInt(1, page);
             psupdate.setInt(2, products);
 
@@ -51,9 +51,10 @@ public class ProductDAO {
         return res;
     }
 
-    public  int getNumberOfProducts(){
+    public  int getNumberOfProducts( String condition ){
+
         try {
-            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement("SELECT COUNT(*) FROM SAN_PHAM");
+            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement("SELECT COUNT(*) FROM SAN_PHAM "+condition);
             ResultSet rs = psupdate.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);
@@ -63,10 +64,13 @@ public class ProductDAO {
         }
         return 0;
     }
-
+//
 //    public static void main(String[] args) {
-//        ListIterator<Product> iterator = Objects.requireNonNull(ProductDAO.getProducts()).listIterator();
-//        System.out.println(ProductDAO.getNumberOfProducts());
+//        ListIterator<Product> iterator = Objects.requireNonNull(ProductDAO.getProducts(1,10)).listIterator();
+//        while (iterator.hasNext()) {
+//            System.out.println(iterator.next().getName());
+//        }
+//
 //
 //    }
 

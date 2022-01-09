@@ -45,200 +45,31 @@
 <!-- /. header-section-->
 <!-- product-list -->
 <div class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                <!-- sidenav-section -->
+    <div class="container cont-product-list">
+        <div class="row div-content">
+            <div class="menu">
                 <div id='cssmenu'>
-                    <ul>
-                        <li class='has-sub'><a href='#'>Hệ điều hành</a>
-                            <ul>
-
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Tất cả</span></label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Android</span></label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">ISO</span>
-                                    </label>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class='has-sub'><a href='#'>Hãng sản xuất</a>
-                            <ul>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Tất cả </span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Samsung</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Apple</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Xiaomi</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Vsmart</span>
-                                    </label>
-                                    </span>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">OPPO</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Vivo</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Nokia</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Huawei</span>
-                                    </label>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class='has-sub'><a href='#'>Giá Bán</a>
-                            <ul>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Tất cả</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Dưới 2 triệu</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Từ 2 - 5 triệu</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Từ 5 - 10 triệu</span>
-                                    </label>
-                                </li>
-
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Từ 10 - 15 triệu</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Trên 15 triệu</span>
-                                    </label>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class='has-sub'><a href='#'>Màn hình</a>
-                            <ul>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Tất cả</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Dưới 5.0 inch</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Trên 6.0 inch</span>
-                                    </label>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class='has-sub'><a href='#'>Bộ nhớ trong</a>
-                            <ul>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Tất cả</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Dưới 32GB</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">64GB và 128GB</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">256GB và 512GB</span>
-                                    </label>
-                                </li>
-
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        <span class="checkbox-list">Trên 512GB</span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
+                    <table>
+                        <tr>
+                            <th>Category</th>
+                        </tr>
+                        <tr>
+                            <td><a href="category?id=1795">Điện thoại Smartphone</a> </td>
+                        </tr>
+                        <tr>
+                            <td><a href="category?id=1796">Điện thoại phổ thông</a> </td>
+                        </tr>
+                        <tr>
+                            <td><a href="category?id=8061">Điện thoại bàn</a> </td>
+                        </tr>
+                        <tr>
+                            <td><a href="category?id=1789">Khác</a> </td>
+                        </tr>
+                    </table>
                 </div>
                 <!-- /.sidenav-section -->
             </div>
-            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb10 alignright">
                         <form>
@@ -257,7 +88,7 @@
                     <!-- product -->
                     <jsp:useBean id="products" scope="request" type="java.util.List"/>
                     <c:forEach var="p" items="${products}">
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
+                        <div class="col-sm-3 m-0" style="padding: 2px;">
                             <a href="#">
                                 <div class="product-block">
                                     <div class="product-img"><img src="${p.imageUrl}" alt=""></div>
@@ -301,14 +132,13 @@
                     <!-- pagination start -->
                     <div class="pagination">
                         <ul>
-
                             <c:if test="${index > 1}">
                                 <a href="ProductList?page=${index-1}">
                                     <li class="btn prev"><span><i class="fas fa-angle-left"></i>Prev</span>
                                     </li>
                                 </a>
                             </c:if>
-                            <c:if test="${index > 2}">
+                            <c:if test="${(index > 2)&&(pages>3)}">
                                 <a href="ProductList?page=${1}">
                                     <li class="first numb"><span>1</span></li>
                                 </a>
@@ -357,7 +187,7 @@
                                 </c:if>
                             </c:forEach>
 
-                            <c:if test="${index < pages-1}">
+                            <c:if test="${(index < pages-1)&&(pages>3)}">
                                 <c:if test="${index < pages-1}">
                                     <li class="dots"><span>...</span></li>
                                 </c:if>
@@ -371,10 +201,8 @@
                                             class="fas fa-angle-right"></i></span></li>
                                 </a>
                             </c:if>
-
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -383,32 +211,6 @@
 <!-- /.product-list -->
 <!-- footer -->
 <jsp:include page="/sub-component/footer.jsp"/>
-<script type="text/javascript">
-    (function ($) {
-        $(document).ready(function () {
-            $('#cssmenu ul ul li:odd').addClass('odd');
-            $('#cssmenu ul ul li:even').addClass('even');
-            $('#cssmenu > ul > li > a').click(function () {
-                $('#cssmenu li').removeClass('active');
-                $(this).closest('li').addClass('active');
-                var checkElement = $(this).next();
-                if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
-                    $(this).closest('li').removeClass('active');
-                    checkElement.slideUp('normal');
-                }
-                if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
-                    $('#cssmenu ul ul:visible').slideUp('normal');
-                    checkElement.slideDown('normal');
-                }
-                if ($(this).closest('li').find('ul').children().length == 0) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-        });
-    })(jQuery);
-</script>
 </body>
 
 </html>

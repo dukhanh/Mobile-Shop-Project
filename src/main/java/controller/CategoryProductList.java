@@ -6,13 +6,21 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.Objects;
 
-@WebServlet(name = "ProductList", value = "/ProductList")
-public class ProductList extends HttpServlet {
+import static java.lang.Integer.parseInt;
+
+@WebServlet(name = "CategoryProductList", value = "/category")
+public class CategoryProductList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String condition = "";
+        String categoryId = request.getParameter("id)");
+        String condition ="";
+        if(Objects.equals(categoryId, "1789")) {
+            condition = "WHERE ID_LOAI_SP = 1789 OR ID_LOAI_SP = 2";
+        }else{
+            condition = "WHERE ID_LOAI_SP = "+ categoryId;
+        }
 
         int productsInPage = 24;
         int index = 1;
@@ -43,6 +51,6 @@ public class ProductList extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+
     }
 }
