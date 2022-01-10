@@ -294,15 +294,15 @@ div.aligncenter {
 }
 .alignright {
   float: right;
-  margin: 0px 0 20px 30px;
+  margin: 0;
 }
 .alignleft {
   float: left;
-  margin: 0px 20px 0px 0;
+  margin: 0 20px 0 0;
 }
 a img.alignright {
   float: right;
-  margin: 0px 0 30px 30px;
+  margin: 0 0 30px 30px;
 }
 a img.alignnone {
   margin: 5px 20px 20px 0;
@@ -547,13 +547,13 @@ a img.aligncenter {
    4.3 Padding space
 -------------------------*/
 .nopadding {
-  padding: 0px;
+  padding: 0;
 }
 .nopr {
-  padding-right: 0px;
+  padding-right: 0;
 }
 .nopl {
-  padding-left: 0px;
+  padding-left: 0;
 }
 .pinside10 {
   padding: 10px;
@@ -1639,7 +1639,7 @@ img {
 
 .div-content .menu{
   width: 200px;
-  margin-top: 78px;
+  margin-top: 65px;
 }
 .showcase-block {
   margin-bottom: 30px;
@@ -1753,9 +1753,7 @@ img {
 }
 .product-block:hover {
   background-color: #fff;
-  -webkit-box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 3px 1px #acacaccb;
   cursor: pointer;
   border: 1px solid #e6eaed;
 }
@@ -1849,76 +1847,7 @@ img {
 /*-------------------------
  9.2 Product Single
 /*---------------------------*!*/
-/*#cssmenu,*/
-/*#cssmenu ul,*/
-/*#cssmenu li,*/
-/*#cssmenu a {*/
-/*  margin: 0;*/
-/*  padding: 0;*/
-/*  border: 0;*/
-/*  list-style: none;*/
-/*  font-weight: normal;*/
-/*  text-decoration: none;*/
-/*  line-height: 1;*/
-/*  font-family: "Lato", sans-serif;*/
-/*  font-size: 14px;*/
-/*  position: relative;*/
-/*}*/
-/*#cssmenu a {*/
-/*  line-height: 1.3;*/
-/*  padding: 18px 28px;*/
-/*}*/
-/*#cssmenu {*/
-/*  margin-bottom: 30px;*/
-/*  margin-top: 73px;*/
-/*}*/
-/*#cssmenu > ul > li {*/
-/*  cursor: pointer;*/
-/*  background: #fff;*/
-/*  border-bottom: 1px solid #e8eaec;*/
-/*}*/
-/*#cssmenu > ul > li:last-child {*/
-/*  border-bottom: 1px solid #fff;*/
-/*}*/
-/*#cssmenu > ul > li > a {*/
-/*  font-size: 13px;*/
-/*  display: block;*/
-/*  color: #1c1e1e;*/
-/*  background: #fff;*/
-/*  font-weight: 400;*/
-/*  text-transform: uppercase;*/
-/*  letter-spacing: 1px;*/
-/*}*/
-/*#cssmenu > ul > li > a:hover {*/
-/*  text-decoration: none;*/
-/*  color: #ff3c2e;*/
-/*}*/
-/*#cssmenu > ul > li.active {*/
-/*  border-bottom: none;*/
-/*}*/
-/*#cssmenu > ul > li.active > a {*/
-/*  background: #fff;*/
-/*  border-bottom: #e8eaec 2px solid;*/
-/*  color: #1c1e1e;*/
-/*}*/
-/*#cssmenu > ul > li.has-sub > a:after {*/
-/*  content: "\f067";*/
-/*  position: absolute;*/
-/*  top: 18px;*/
-/*  right: 14px;*/
-/*  font-size: 12px;*/
-/*  color: #848687;*/
-/*}*/
-/*#cssmenu > ul > li.has-sub.active > a:after {*/
-/*  content: "\f068";*/
-/*  position: absolute;*/
-/*  right: 14px;*/
-/*  top: 18px;*/
-/*  color: #848687;*/
-/*  font-size: 12px;*/
-/*}*/
 
-/* Sub menu */
 
 #cssmenu table{
   border: 1px solid #d5d5d5;
@@ -1941,6 +1870,15 @@ img {
   padding: 5px 20px;
   text-align: left;
   background: white;
+}
+#cssmenu table td.active{
+  background: rgb(88,176,229);
+  color: white;
+}
+#cssmenu table td a{
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 #cssmenu{
@@ -3325,14 +3263,41 @@ Class----------------
 .search-form {
   position: relative;
 }
-.select-option .form-control {
-  border-bottom: 2px solid #e4eaed;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  background-color: transparent;
-  padding: 0px;
+
+.sort-list{
+
 }
+
+.sort-list ul{
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.sort-list ul li{
+  padding: 5px 10px;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+}
+
+.sort-list ul li a{
+  display: block;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  backface-visibility: hidden;
+}
+.sort-list ul li a:hover{
+  color: rgb(88,176,229);
+  border-bottom: 4px solid rgb(88,176,229);
+}
+
+.sort-list ul li a.active{
+  color: rgb(88,176,229);
+  border-bottom: 4px solid rgb(88,176,229);
+}
+
+
 
 /*-------------Template-features-------------*/
 .key-features {

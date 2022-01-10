@@ -1,109 +1,108 @@
 CREATE DATABASE databaseshop;
 USE databaseshop;
 
-
 CREATE TABLE THUONG_HIEU(
-	ID INT NOT NULL,
-	TENTH VARCHAR(20) NOT NULL,
-	SLUG VARCHAR(20) NOT NULL
+                            ID INT NOT NULL,
+                            TENTH VARCHAR(20) NOT NULL,
+                            SLUG VARCHAR(20) NOT NULL
 );
 ALTER TABLE THUONG_HIEU ADD CONSTRAINT PK_THUONG_HIEU PRIMARY KEY (ID);
 
 
 CREATE TABLE LOAI_SP(
-	ID INT NOT NULL, 
-	TEN VARCHAR(50)
+                        ID INT NOT NULL,
+                        TEN VARCHAR(50)
 );
 
 ALTER TABLE LOAI_SP ADD CONSTRAINT PK_LOAI PRIMARY KEY (ID);
 
 CREATE TABLE HINH_ANH(
-	ID_SANPHAM INT NOT NULL,
-	URL_ANH VARCHAR(300) NOT NULL
+                         ID_SANPHAM INT NOT NULL,
+                         URL_ANH VARCHAR(300) NOT NULL
 );
 
 ALTER TABLE HINH_ANH ADD CONSTRAINT PK_ANH PRIMARY KEY (ID_SANPHAM, URL_ANH);
 
 CREATE TABLE SL_SP(
-	ID_SANPHAM INT NOT NULL,
-	SO_LUONG INT NOT NULL,
-	SL_DABAN INT NOT NULL
+                      ID_SANPHAM INT NOT NULL,
+                      SO_LUONG INT NOT NULL,
+                      SL_DABAN INT NOT NULL
 );
 
 ALTER TABLE SL_SP ADD CONSTRAINT PK_SL_SP PRIMARY KEY (ID_SANPHAM, SO_LUONG);
 
 CREATE TABLE CAU_HINH(
-	ID_SANPHAM INT NOT NULL,
-	CODE VARCHAR(50) NOT NULL,
-	TEN_TT VARCHAR(200) NOT NULL,
-	GIA_TRI VARCHAR(500) NOT NULL
+                         ID_SANPHAM INT NOT NULL,
+                         CODE VARCHAR(50) NOT NULL,
+                         TEN_TT VARCHAR(200) NOT NULL,
+                         GIA_TRI VARCHAR(500) NOT NULL
 );
 
 ALTER TABLE CAU_HINH ADD CONSTRAINT PK_CAU_HINH PRIMARY KEY (ID_SANPHAM, CODE);
 
 CREATE TABLE SAN_PHAM(
-	ID_SANPHAM INT NOT NULL,
-	TEN_SP VARCHAR(500) NOT NULL,
-	GIA_SP INT NOT NULL,
-	GIA_KM INT NULL,
-	MOTA_SP VARCHAR(1000) NULL,
-	ID_THUONG_HIEU INT NOT NULL,
-	ID_LOAI_SP INT NULL,
-	NGAY_CAPNHAT DATE NOT NULL
+                         ID_SANPHAM INT NOT NULL,
+                         TEN_SP VARCHAR(500) NOT NULL,
+                         GIA_SP INT NOT NULL,
+                         GIA_KM INT NULL,
+                         MOTA_SP VARCHAR(1000) NULL,
+                         ID_THUONG_HIEU INT NOT NULL,
+                         ID_LOAI_SP INT NULL,
+                         NGAY_CAPNHAT DATE NOT NULL
 );
 
 ALTER TABLE SAN_PHAM ADD COLUMN ANH_CHINH VARCHAR(300) AFTER GIA_KM;
 ALTER TABLE SAN_PHAM ADD COLUMN MAU_SAC VARCHAR(100) AFTER MOTA_SP;
 
 CREATE TABLE GIO_HANG(
-	ID_USER INT NOT NULL,
-	ID_SP INT NOT NULL,
-	SL_SP INT NOT NULL
+                         ID_USER INT NOT NULL,
+                         ID_SP INT NOT NULL,
+                         SL_SP INT NOT NULL
 );
 
 CREATE TABLE DS_YEUTHICH(
-	ID_USER INT NOT NULL,
-	ID_SP INT NOT NULL
+                            ID_USER INT NOT NULL,
+                            ID_SP INT NOT NULL
 );
 
 CREATE TABLE DON_HANG(
-	ID_DH INT NOT NULL,
-	ID_USER INT NOT NULL,
-	STATUS TINYINT NULL,
-	CREATE_DATE DATETIME NOT NULL,
-	UPDATE_DATE DATETIME NOT NULL
+                         ID_DH INT NOT NULL,
+                         ID_USER INT NOT NULL,
+                         STATUS TINYINT NULL,
+                         CREATE_DATE DATETIME NOT NULL,
+                         UPDATE_DATE DATETIME NOT NULL
 );
 
 CREATE TABLE CHITIET_DH(
-	ID_DH INT NOT NULL,
-	ID_SP INT NOT NULL,
-	GIA INT NOT NULL,
-	SL_SP INT NOT NULL,
-	CREATE_DATE DATETIME NOT NULL,
-	UPDATE_DATE DATETIME NOT NULL
+                           ID_DH INT NOT NULL,
+                           ID_SP INT NOT NULL,
+                           GIA INT NOT NULL,
+                           SL_SP INT NOT NULL,
+                           CREATE_DATE DATETIME NOT NULL,
+                           UPDATE_DATE DATETIME NOT NULL
 );
 
 CREATE TABLE TAI_KHOAN(
-	ID_USER INT NOT NULL,
-	USER_NAME VARCHAR(50) NULL,
-	EMAIL VARCHAR(100) NOT NULL,
-	TEN_ND VARCHAR(100) NOT NULL,
-	MAT_KHAU VARCHAR(40) NOT NULL,
-	TRANG_THAI VARCHAR(30) NOT NULL,
-	QUYEN_HAN VARCHAR (50) NOT NULL,
-	SDT VARCHAR(12) NULL,
-	DIA_CHI VARCHAR(200) NULL,
-	CREATE_DATE DATETIME NOT NULL
-	
+                          ID_USER INT NOT NULL,
+                          USER_NAME VARCHAR(50) NULL,
+                          EMAIL VARCHAR(100) NOT NULL,
+                          TEN_ND VARCHAR(100) NOT NULL,
+                          MAT_KHAU VARCHAR(40) NOT NULL,
+                          TRANG_THAI VARCHAR(30) NOT NULL,
+                          QUYEN_HAN VARCHAR (50) NOT NULL,
+                          SDT VARCHAR(12) NULL,
+                          DIA_CHI VARCHAR(200) NULL,
+                          CREATE_DATE DATETIME NOT NULL
+
 );
 
 
 CREATE TABLE DANH_GIA_SP(
-	ID_SP INT NOT NULL,
-	ID_USER INT NOT NULL,
-	MUC_DANHGIA INT NOT NULL,
-	NOIDUNG_DG VARCHAR(200) NOT NULL,
-	NGAY_DG DATETIME NOT NULL
+                            ID_SP INT NOT NULL,
+                            ID_USER INT NOT NULL,
+                            MUC_DANHGIA INT NOT NULL,
+                            NOIDUNG_DG VARCHAR(200) NOT NULL,
+                            NGAY_DG DATETIME NOT NULL
 );
 
 ALTER TABLE DANH_GIA_SP ADD CONSTRAINT PK_DG_SP PRIMARY KEY (ID_SP, ID_USER);
@@ -147,16 +146,15 @@ ALTER TABLE DANH_GIA_SP ADD CONSTRAINT FK_TK_DG FOREIGN KEY (ID_USER) REFERENCES
 ALTER TABLE DANH_GIA_SP ADD CONSTRAINT FK_SP_DG FOREIGN KEY (ID_SP) REFERENCES SAN_PHAM(ID_SANPHAM);
 
 
--- Insert thuong_hieu TABLE 
+-- Insert thuong_hieu TABLE
+
 INSERT INTO THUONG_HIEU VALUES(17827, "Apple","apple");
 INSERT INTO THUONG_HIEU VALUES(18802, "Samsung","samsung");
 INSERT INTO THUONG_HIEU VALUES(25422, "Xiaomi","xiaomi");
 INSERT INTO THUONG_HIEU VALUES(25643, "OPPO","oppo");
 INSERT INTO THUONG_HIEU VALUES(52232, "Vivo","vivo");
 INSERT INTO THUONG_HIEU VALUES(162007, "Tecno","tecno");
-INSERT INTO THUONG_HIEU VALUES(147856, "Kindle","kindle");
 INSERT INTO THUONG_HIEU VALUES(27468, "OnePlus ","oneplus");
-INSERT INTO THUONG_HIEU VALUES(17856, "Amazon","amazon");
 INSERT INTO THUONG_HIEU VALUES(19673, "Nokia","nokia");
 INSERT INTO THUONG_HIEU VALUES(257333, "Vsmart","vsmart");
 INSERT INTO THUONG_HIEU VALUES(112638, "Masstel","masstel");
@@ -198,16 +196,17 @@ INSERT INTO THUONG_HIEU VALUES(18804, "Panasonic","panasonic");
 
 -- INSERT loai_sp TABLE
 INSERT INTO LOAI_SP VALUES(1795, "Điện thoại Smartphone");
-INSERT INTO LOAI_SP VALUES(2, "Root");
-INSERT INTO LOAI_SP VALUES(1789, "Điện Thoại - Máy Tính Bảng");
 INSERT INTO LOAI_SP VALUES(1796, "Điện thoại phổ thông");
 INSERT INTO LOAI_SP VALUES(8061, "Điện thoại bàn");
 
 
--- INSERT san_pham TABLE 
+-- INSERT san_pham TABLE
+
+
+
 INSERT INTO SAN_PHAM VALUES(123547395,"Điện Thoại iPhone 13 128GB  - Hàng  Chính Hãng", 22490000,22490000, "https://salt.tikicdn.com/cache/200x280/ts/product/ea/f0/31/53c13846f5ecb0fdccc671c40e893076.jpg", "Nội dung về tính năngiPhone 13 gói gọn nhiều tính năng cực đỉnh trong một thiết kế 6.1 inch.2 Mạng 5G giúp tải xuống các bộ phim một cách nhanh chóng và xem trực tuyến video chất lượng cao.1 Màn hình...", "Hồng", 17827, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(99376042,"Điện Thoại Samsung Galaxy M12 (4GB/64GB) - Hàng Chính Hãng", 3890000,3709000, "https://salt.tikicdn.com/cache/200x280/ts/product/38/0f/76/3377a65a5e426e395b9984e275886353.jpg", "Màn Hình Rộng, Trải Nghiệm Nhiều HơnĐiện Thoại Samsung Galaxy M12 (4GB/64GB) thoải mái trải nghiệm nhiều nội dung hơn với màn hình tràn viền vô cực Infinity-V 6,5 inch trên mãnh thú Galaxy M12.Công...", "Xanh", 18802, 2,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(104038451,"Điện Thoại Samsung Galaxy M62 (8GB/256GB) - Hàng Chính Hãng", 9990000,8649000, "https://salt.tikicdn.com/cache/200x280/ts/product/d5/84/6f/a2f678ed710744f27cedbf7e56a16b27.png", "Thiết Kế Hiện Đại Tinh TếĐiện Thoại Samsung Galaxy M62 có thiết kế tinh giản với vân sọc 3D hiện đại đầy lôi cuốn của Galaxy M62 với 3 gam màu độc đáo Đen, Xanh Ngọc và Xanh Dương. Thân máy được tinh...", "Black", 18802, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(99376042,"Điện Thoại Samsung Galaxy M12 (4GB/64GB) - Hàng Chính Hãng", 3890000,3709000, "https://salt.tikicdn.com/cache/200x280/ts/product/38/0f/76/3377a65a5e426e395b9984e275886353.jpg", "Màn Hình Rộng, Trải Nghiệm Nhiều HơnĐiện Thoại Samsung Galaxy M12 (4GB/64GB) thoải mái trải nghiệm nhiều nội dung hơn với màn hình tràn viền vô cực Infinity-V 6,5 inch trên mãnh thú Galaxy M12.Công...", "Xanh", 18802, 1795,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(104038451,"Điện Thoại Samsung Galaxy M62 (8GB/256GB) - Hàng Chính Hãng", 9990000,8649000, "https://salt.tikicdn.com/cache/200x280/ts/product/d5/84/6f/a2f678ed710744f27cedbf7e56a16b27.png", "Thiết Kế Hiện Đại Tinh TếĐiện Thoại Samsung Galaxy M62 có thiết kế tinh giản với vân sọc 3D hiện đại đầy lôi cuốn của Galaxy M62 với 3 gam màu độc đáo Đen, Xanh Ngọc và Xanh Dương. Thân máy được tinh...", "Black", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(123554518,"Điện Thoại iPhone 13 Pro Max 256GB  - Hàng  Chính Hãng", 33490000,33490000, "https://salt.tikicdn.com/cache/200x280/ts/product/4a/4b/86/47392b6ec552680cd7fa90a5b5f920bb.jpg", "Nội dung về tính năngiPhone 13 Pro Max gói gọn nhiều tính năng cực đỉnh trong một thiết kế 6.7 inch.2 Mạng 5G giúp tải xuống các bộ phim một cách nhanh chóng và xem trực tuyến video chất lượng cao.1 ...", "Vàng", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(123554528,"Điện Thoại iPhone 13 Pro Max 128GB  - Hàng  Chính Hãng", 31990000,31990000, "https://salt.tikicdn.com/cache/200x280/ts/product/dc/e8/5f/a5cfef7dd19655fc5b60ff214274a041.jpg", "Nội dung về tính năngiPhone 13 Pro Max gói gọn nhiều tính năng cực đỉnh trong một thiết kế 6.7 inch.2 Mạng 5G giúp tải xuống các bộ phim một cách nhanh chóng và xem trực tuyến video chất lượng cao.1 ...", "Bạc", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(123547396,"Điện Thoại iPhone 13 256GB  - Hàng  Chính Hãng", 24850000,24850000, "https://salt.tikicdn.com/cache/200x280/ts/product/6b/f1/44/894cfbc05096688061fb11ce3bf7e012.jpg", "Nội dung về tính năngiPhone 13 gói gọn nhiều tính năng cực đỉnh trong một thiết kế 6.1 inch.2 Mạng 5G giúp tải xuống các bộ phim một cách nhanh chóng và xem trực tuyến video chất lượng cao.1 Màn hình...", "Hồng", 17827, 1795,"2022/04/01");
@@ -218,11 +217,10 @@ INSERT INTO SAN_PHAM VALUES(87645053,"Điện thoại Xiaomi POCO X3 PRO - Hàng
 INSERT INTO SAN_PHAM VALUES(58616042,"Điện Thoại Samsung Galaxy Note 20 Ultra (8GB/256GB) - Hàng Chính Hãng", 29990000,24134100, "https://salt.tikicdn.com/cache/200x280/ts/product/64/20/d5/8505ae6ae987f1a78ff365bbfb32bf80.png", "Sự kết hợp của siêu phẩmĐã từ lâu, sự kết hợp giữa Note và S Pen thông minh định hình nên một thế hệ siêu phẩm, đầy quyền năng, ngay trong tay bạn. Với hiệu năng đáng kinh ngạc như máy tính, khả năng...", "Đồng", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(123345348,"Điện Thoại iPhone 12 64GB - Hàng  Chính Hãng", 18490000,18489000, "https://salt.tikicdn.com/cache/200x280/media/catalog/producttmp/07/86/d0/90c157112de46792d68cc970ef5fe397.jpg", "Điện Thoại iPhone 12iPhone 12 đẩy nhanh mọi tác vụ với mạng 5G siêu nhanh.1 A14 Bionic, chip nhanh nhất trên điện thoại thông minh. Hệ thống camera kép mới. Với màn hình Super Retina XDR tuyệt đẹp, ...", "Trắng", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(138914723,"Điện Thoại Samsung Galaxy M22 (6GB/128GB) - Hàng chính hãng", 5090000,5080000, "https://salt.tikicdn.com/cache/200x280/ts/product/74/58/59/17e2b2233717d5a82e7a17464f0947d1.jpg", "Samsung Galaxy M22 ra mắt xứng đáng là 1 chiến thần trong phân khúc điện thoại tầm trung với cấu hình mạnh mẽ ấn tượng, cải tiến nổi bật ở camera, cùng dung lượng pin khỏe đến 2 ngày sử dụng, hứa hẹn ...", "Trắng", 18802, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(103168071,"Máy tính bảng Samsung Galaxy Tab A7 Lite LTE SM-T225 - Hàng Chính Hãng", 4990000,4089000, "https://salt.tikicdn.com/cache/200x280/ts/product/db/6c/6d/656872c0e24cf16bb6dd85b3bf68c476.jpg", "Chính hãng, Nguyên seal, Mới 100%Đã kích hoạt bảo hành điện tử 6060, nguyên seal chưa khuiMiễn phí giao hàng toàn quốcSIM Nano-SIM, hỗ trợ 4GLoại Màn hình cảm ứng IPS LCDKích thước: 8.7 incheĐộ phân g...", "Bạc", 18802, 1789,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(123554520,"Điện Thoại iPhone 13 Pro 256GB  - Hàng  Chính Hãng", 30990000,30990000, "https://salt.tikicdn.com/cache/200x280/ts/product/f8/57/9c/e6e7f0bdc7411c356e2ee61159e9262c.jpg", "Nội dung về tính năngiPhone 13 Pro gói gọn nhiều tính năng cực đỉnh trong một thiết kế 6.1 inch.2 Mạng 5G giúp tải xuống các bộ phim một cách nhanh chóng và xem trực tuyến video chất lượng cao.1 Màn ...", "Bạc", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(121790468,"Điện Thoại iPhone 11 128GB - Hàng Chính Hãng", 15490000,15490000, "https://salt.tikicdn.com/cache/200x280/media/catalog/producttmp/3f/ae/c5/d86558e8a92410feed1194e72636c2ad.jpg", "Nội dung về tính năngQuay video 4K, chụp ảnh chân dung tuyệt đẹp và chụp phong cảnh rộng với hệ thống camera kép hoàn toàn mới. Chụp ảnh tối ưu trong điều kiện ánh sáng yếu với chế độ Ban Đêm. Xem ản...", "Trắng", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(132197119,"Điện thoại iPhone 13 - Hàng chính hãng", 22790000,22790000, "https://salt.tikicdn.com/cache/200x280/ts/product/80/89/8c/cb2bae5e3a53f278764c92d9378b426a.jpg", "iPhone 13 Hệ thống camera kép tiên tiến nhất từng có trên iPhone. Chip A15 Bionic thần tốc. Bước nhảy vọt về thời lượng pin. Thiết kế bền bỉ. Mạng 5G siêu nhanh. Cùng với màn hình Super Retina XDR sán...", "Blue", 17827, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(74932860,"Điện Thoại Samsung Galaxy A12 (4GB/128GB) - Hàng Chính Hãng", 4290000,3599000, "https://salt.tikicdn.com/cache/200x280/ts/product/f3/ee/36/5cff4a827b2f1e38dc06faa6f4ced6fe.jpg", "Thiết kế rắn chắc, quen thuộcSamsung Galaxy A12 mang diện mạo thân thuộc của những chiếc Samsung tiền nhiệm. Với thiết kế nguyên khối, lớp vỏ máy được đúc bao quanh thân máy cho cảm giác chắc chắn, b...", "Xanh Dương", 18802, 2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(74932860,"Điện Thoại Samsung Galaxy A12 (4GB/128GB) - Hàng Chính Hãng", 4290000,3599000, "https://salt.tikicdn.com/cache/200x280/ts/product/f3/ee/36/5cff4a827b2f1e38dc06faa6f4ced6fe.jpg", "Thiết kế rắn chắc, quen thuộcSamsung Galaxy A12 mang diện mạo thân thuộc của những chiếc Samsung tiền nhiệm. Với thiết kế nguyên khối, lớp vỏ máy được đúc bao quanh thân máy cho cảm giác chắc chắn, b...", "Xanh Dương", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(74492306,"Điện Thoại Oppo A15 (3GB/32G) - Hàng Chính Hãng", 3690000,3690000, "https://salt.tikicdn.com/cache/200x280/ts/product/22/2f/86/7addfcc1cc861387cc333e6d0a507324.jpg", "Gây ấn tượng với màn hình rộng OPPO A15 được thiết kế màn hình lớn 6.52 inch cho người dùng có góc nhìn cực kỳ thoải mái, tiện lợi cho công việc cũng như là các hoạt động giải trí đọc báo, xem phim,…...", "Trắng", 25643, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(123547404,"Điện Thoại iPhone 13 Mini 128GB  - Hàng  Chính Hãng", 19290000,19290000, "https://salt.tikicdn.com/cache/200x280/ts/product/6b/f1/44/317bdd7ae63337cb43378893ecd4bf98.jpg", "Nội dung về tính năngiPhone 13 mini gói gọn nhiều tính năng cực đỉnh trong một thiết kế 5.4 inch.2 Mạng 5G giúp tải xuống các bộ phim một cách nhanh chóng và xem trực tuyến video chất lượng cao.1 Màn...", "Trắng", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(81034656,"Điện Thoại Oppo A15s (4GB/64G) - Hàng Chính Hãng", 4290000,4290000, "https://salt.tikicdn.com/cache/200x280/ts/product/cd/0f/a8/9b0076cd8c1cae93afdc6fd58675e6d0.jpg", "Thiết kế thanh lịch, vẻ ngoài sang trọng OPPO A15s mang phong cách thiết kế dạng mặt lưng 3D với kiểu dáng mỏng được hoàn thiện từ chất liệu nhựa phủ bóng, nên rất dễ bị bám dính vân tay. Thế nhưng, ...", "Xanh", 25643, 1795,"2022/04/01");
@@ -232,27 +230,23 @@ INSERT INTO SAN_PHAM VALUES(132068858,"Điện Thoại Oppo A55 (4GB/64GB) - Hà
 INSERT INTO SAN_PHAM VALUES(132200969,"Điện thoại iPhone 13 Pro - Hàng chính hãng", 28690000,28690000, "https://salt.tikicdn.com/cache/200x280/ts/product/3e/9b/20/25f7ff2ff34531cfe9d53189be67b1b1.jpg", "iPhone 13 Pro Một nâng cấp hệ thống camera chuyên nghiệp hoành tráng chưa từng có của Apple. Màn hình Super Retina XDR với ProMotion cho cảm giác nhanh nhạy hơn. Chip A15 Bionic thần tốc. Mạng 5G siêu...", "Gold", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(123348908,"Điện Thoại iPhone 12 128GB - Hàng Chính Hãng", 19990000,19990000, "https://salt.tikicdn.com/cache/200x280/media/catalog/producttmp/07/86/d0/c9ab11052e6c660971a759bdef1b899a.jpg", "Nội dung về tính năngiPhone 12. Mạng 5G giúp tải xuống các bộ phim một cách nhanh chóng và xem trực tuyến video chất lượng cao.1 Màn hình Super Retina XDR 6.1 inch sáng đẹp ấn tượng.2 Ceramic Shield ...", "Xanh Dương", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(120450353,"Điện thoại Samsung Galaxy A03s (4GB/64GB) - Hàng chính hãng", 3690000,3690000, "https://salt.tikicdn.com/cache/200x280/ts/product/be/83/73/79ac456ddfc8f355556c5b752e611408.jpg", "Thiết kế hiện đại, trẻ trungA03s sỡ hữu thiết kế tương tự như thế hệ trước, trẻ trung và hiện đại. Các cạnh của máy được vát cong cho khả năng cầm nắm tốt hơn, mặt lưng được phủ mờ giúp hạn chế trầy ...", "Trắng", 18802, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(74935377,"Điện Thoại Samsung Galaxy A12 (4GB/128GB) - ĐÃ KÍCH HOẠT BẢO HÀNH ĐIỆN TỬ - Hàng Chính Hãng", 4290000,4290000, "https://salt.tikicdn.com/cache/200x280/ts/product/59/13/c9/e79452136e3e27bbca9860bee89b1515.jpg", "Thiết kế rắn chắc, quen thuộcSamsung Galaxy A12 mang diện mạo thân thuộc của những chiếc Samsung tiền nhiệm. Với thiết kế nguyên khối, lớp vỏ máy được đúc bao quanh thân máy cho cảm giác chắc chắn, b...", "Xanh Dương", 18802, 2,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(40639597,"Máy Đọc Sách Kindle Paperwhite Gen 10 - Hàng Nhập Khẩu", 2900000,2900000, "https://salt.tikicdn.com/cache/200x280/ts/product/09/43/67/0fad375f1bee9b1597256a326059e8bc.jpg", "Kindle Paperwhite Gen 10 vừa được ra mắt sau một chu kỳ dài hơn 3 năm và nó có màn hình phẳng, chống thấm nước và Bluetooth. Đây là Kindle Paperwhite đầu tiên có tích hợp Audiobook Audible, chúng...", "Đen", 147856, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(74935377,"Điện Thoại Samsung Galaxy A12 (4GB/128GB) - ĐÃ KÍCH HOẠT BẢO HÀNH ĐIỆN TỬ - Hàng Chính Hãng", 4290000,4290000, "https://salt.tikicdn.com/cache/200x280/ts/product/59/13/c9/e79452136e3e27bbca9860bee89b1515.jpg", "Thiết kế rắn chắc, quen thuộcSamsung Galaxy A12 mang diện mạo thân thuộc của những chiếc Samsung tiền nhiệm. Với thiết kế nguyên khối, lớp vỏ máy được đúc bao quanh thân máy cho cảm giác chắc chắn, b...", "Xanh Dương", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(115765556,"Điện Thoại Samsung Galaxy Z Flip 3 (128GB) - Hàng Chính Hãng", 24990000,24900600, "https://salt.tikicdn.com/cache/200x280/ts/product/24/75/08/e5894d550747f9acdd8ea10beb1af4fc.jpg", "Thiết kế màn hình gập độc đáoĐiện Thoại Samsung Galaxy Z Flip 3 sở hữu thiết kế siêu mới mẻ khi được Samsung thiết kế máy có 4 cạnh bo góc tròn và cơ chế có khớp linh hoạt có thể gập lại được theo ch...", "Trắng", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(130744724,"Điện Thoại Vivo Y15s (3GB/32GB) – Hàng Chính Hãng", 3690000,3690000, "https://salt.tikicdn.com/cache/200x280/ts/product/00/dc/ef/4193545f83610168c2126d57b2894b63.jpg", "Ngoại hình thanh lịch, đẹp mắtĐiện thoại di động Vivo Y15s được trang bị màn hình IPS LCD với thiết kế giọt nước tràn viền kích thước lớn 6.51 inch, kết hợp cùng mặt kính cong 2.5D cho trải nghiệm tu...", "Trắng Xanh", 52232, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(32033717,"Điện Thoại iPhone 11 64GB  - Hàng  Chính Hãng", 23000000,14800000, "https://salt.tikicdn.com/cache/200x280/ts/product/84/3d/55/7bb112f36cd07f712d461e386e74e3d5.jpg", "Thiết kế đậm chất phá cách nhưng cũng không kém sang trọngĐiện Thoại iPhone 11 là sản phẩm kế nhiệm cho chiếc iPhone Xr từng dành được sự chú ý của giới công nghệ. Lần này, Apple vẫn đi theo những t...", "Trắng", 17827, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(32033717,"Điện Thoại iPhone 11 64GB  - Hàng  Chính Hãng", 23000000,14800000, "https://salt.tikicdn.com/cache/200x280/ts/product/84/3d/55/7bb112f36cd07f712d461e386e74e3d5.jpg", "Thiết kế đậm chất phá cách nhưng cũng không kém sang trọngĐiện Thoại iPhone 11 là sản phẩm kế nhiệm cho chiếc iPhone Xr từng dành được sự chú ý của giới công nghệ. Lần này, Apple vẫn đi theo những t...", "Trắng", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(142545270,"Điện Thoại Oppo A16k (3GB/32G) - Hàng Chính Hãng", 3990000,3690000, "https://salt.tikicdn.com/cache/200x280/ts/product/63/7c/04/bd4065a80679723ad0a784bd8eaa578c.jpg", "Theo một số báo cáo trước đây cho biết, OPPO đang phát triển một chiếc điện thoại mới có tên là OPPO A16K. Hôm nay, theo một số nguồn tin, hình ảnh render sắc nét cũng như thông số kỹ thuật của điện t...", "Xanh Dương", 25643, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(6597807,"Máy đọc sách Kindle PaperWhite Gen 4 (10th) - Bản 8GB - Hàng chính hãng", 3009000,2859000, "https://salt.tikicdn.com/cache/200x280/ts/product/dc/39/ea/c1babbb53d968c38b0e5a528ea9548af.jpg", "Thiết kế mỏng nhẹMáy đọc sách Kindle PaperWhite gen 4 (10th) - Bản 8 GB - Hàng chính hãng được thiết kế cực kỳ mỏng, nhẹ và màn hình sáng hơn. Trọng lượng của máy là 182 gram và dày 8,18 mm, so ...", "Xanh", 147856, 1789,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(57809866,"Điện thoại Xiaomi Redmi 9A (2GB/32GB) - Hàng chính hãng", 2410000,2410000, "https://salt.tikicdn.com/cache/200x280/ts/product/d7/d3/86/92970c20cd8d10f281f079dba08b3d6b.jpg", "Màn hình giọt nước, viền máy mỏngDù thuộc phân khúc giá rẻ nhưng Điện thoại Xiaomi Redmi 9A lại sở hữu một màn hình tràn viền kích thước cực lớn 6.53 inch với thiết kế theo kiểu giọt nước quen thuộc,...", "Xanh Dương", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(128865871,"Điện Thoại Samsung Galaxy M32 (8GB/128GB) - Hàng Chính Hãng - Đã kích hoạt bảo hành điện tử", 5990000,5349000, "https://salt.tikicdn.com/cache/200x280/ts/product/ed/a7/32/b8d471e87038b109e208810e7ebe0382.jpg", "Tối ưu không gian hiển thịMặt trước của máy được bao phủ bởi màn hình Super AMOLED 6.4 inch với độ phân giải Full HD+ mang đến trải nghiệm giải trí bao phủ, rõ ràng, màu sắc bắt mắt sinh động vô cùng...", "Trắng", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(126957198,"Điện Thoại Samsung Galaxy M02 (32GB/2GB) - Hàng Chính Hãng", 2390000,2390000, "https://salt.tikicdn.com/cache/200x280/ts/product/b3/68/cb/8fc12cc8616ff5aaf12fa9d42ca6ca98.jpg", "Thiết kế bề ngoài đơn giản, thanh lịchĐiện Thoại Samsung Galaxy M02 khoác chiếc áo quen thuộc của dòng Samsung giá rẻ, điện thoại bền bỉ, rắn chắc hơn trong thiết kế nguyên khối, cạnh viền ôm trọn th...", "Xanh", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(70765398,"Điện Thoại Vivo Y20 (4GB/64GB) - Hàng Chính Hãng", 3490000,3490000, "https://salt.tikicdn.com/cache/200x280/ts/product/6a/17/c0/8db3ee8cbec1258c3cd682b089ce5c8c.jpg", "Màn hình tràn viền cùng mặt lưng bóng bẩyĐiện Thoại Vivo Y20 được trang bị màn hình tràn viền thiết kế giọt nước với tên gọi Halo Fullview, tỷ lệ khung hình 20:9 hiện đại, cho phép Y20 hiển thị nhiều...", "Trắng", 52232, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(88100602," Điện thoại Xiaomi Poco X3 Pro 6GB l 128GB - Hàng chính hãng", 6990000,5590000, "https://salt.tikicdn.com/cache/200x280/ts/product/b4/5e/dc/1815a83302f98a0921eec8913ac16051.png", "XIAOMI OFFICIAL STORE phân phối chính hãng điện thoại Poco X3 Pro.Điện thoại POCO X3 Pro có 2 phiên bản cấu hình để người dùng lựa chọn là RAM 6GB + ROM 128GBPOCO X3 Pro đi kèm màn hình LCD 6,67 inc...", "XANH DƯƠNG", 25422, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(74034401,"Máy Tính Bảng Samsung Galaxy Tab A7 (3GB/64GB) SM-T505 ĐÃ KÍCH HOẠT BẢO HÀNH ĐIỆN TỬ - Hàng Chính Hãng", 7990000,6690000, "https://salt.tikicdn.com/cache/200x280/ts/product/55/b9/7f/e1d1f2f2b1f3e0750ac3bf040d1807c7.jpg", "...", "Xám", 18802, 1789,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(142667084,"Điện thoại Vivo Y15A (4GB/64GB) – Hàng Chính Hãng", 3590000,3590000, "https://salt.tikicdn.com/cache/200x280/ts/product/ec/ac/9f/b709a5fc190243fb8cac5da0aeef9a3a.jpg", "Thiết kế sang trọng, viền màn hình siêu mỏng cùng màu sắc sang trọngĐiện thoại Vivo Y15a sở hữu một thiết kế không có quá nhiều khác biệt với các sản phẩm smartphone khác đã ra mắt trên thị trường. M...", "Trắng Xanh", 52232, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(123547339,"Điện Thoại iPhone 13 512GB  - Hàng  Chính Hãng", 26990000,26990000, "https://salt.tikicdn.com/cache/200x280/ts/product/6b/f1/44/7384870a9ad41f405c6caf2d7ad5b45f.jpg", "Nội dung về tính năngiPhone 13 gói gọn nhiều tính năng cực đỉnh trong một thiết kế 6.1 inch.2 Mạng 5G giúp tải xuống các bộ phim một cách nhanh chóng và xem trực tuyến video chất lượng cao.1 Màn hình...", "Đen", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(109516584,"Điện Thoại OnePlus  Nord CE 5G (12GB/256G) - Hàng Chính Hãng", 8250000,8250000, "https://salt.tikicdn.com/cache/200x280/media/catalog/producttmp/7f/9d/33/1c59622f95960307a548e119631b6a57.jpg", "Thách thức mọi tựa gameĐiện thoại OnePlus Nord CE 5G sử dụng CPU Snapdragon 750G, đây là con chip lý tưởng đối với những game thủ, khi cho phép chơi tất cả các trò di động hiện nay với đồ họa khá một...", "Xám đậm", 27468, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(115754593,"Điện Thoại Samsung Galaxy Z Fold 3 (256GB) - Hàng Chính Hãng", 41990000,40989000, "https://salt.tikicdn.com/cache/200x280/ts/product/f9/a7/58/abfe8cb307999b3cdc6bd4bc2cfc7dae.jpg", "Sẵn sàng mở ra tiềm năng công nghệ mớiKhông dừng lại ở một chiếc điện thoại thông minh cao cấp, mà nó còn bền bỉ và kết nối siêu tốc với 5G. Kế đến là màn hình tràn viền lớn với trải nghiệm gập mở độ...", "Bạc Phantom", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(121744434,"Điện Thoại Xiaomi Redmi 10 4GB/128GB - Hàng Chính Hãng", 4290000,4290000, "https://salt.tikicdn.com/cache/200x280/ts/product/2c/38/02/5f86d2e0af1b387445e2985190894fcc.jpg", "Xiaomi đã trình làng chiếc điện thoại mới với tên gọi là Redmi 10. Máy sở hữu sức mạnh và tốc độ ổn định, cụm 4 camera AI chất lượng cùng thời lượng pin bền bỉ đáng kinh ngạc, hứa hẹn mang đến cho ngư...", "Trắng Sỏi Đá", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(119461456,"Điện Thoại Vivo Y21 (4GB/64GB) - Hàng Chính Hãng", 3590000,3589000, "https://salt.tikicdn.com/cache/200x280/ts/product/c6/43/82/f475de2d5fc3aaafdedd442ad46cd7e9.jpg", "Thiết kế mặt lưng sang trọng với khung viền mỏngĐiện thoại Vivo Y21 sở hữu thiết kế mặt lưng với họa tiết vân kim cương độc đáo trên phiên bản màu trắng. Nhờ đó dưới góc nhìn khác nhau, mặt lưng sẽ c...", "Trắng", 52232, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(66773643,"Máy đọc sách All New Kindle Bản đặc biệt 8GB - Hàng nhập khẩu", 1969000,1969000, "https://salt.tikicdn.com/cache/200x280/ts/product/8b/d5/ff/8b8ab913d1f347396e5bfcb0fc336b74.jpg", "Màn hình cảm ứng điện dungMáy Đọc Sách New Kindle Gen 10 (2019) Phiên bản đặc biệt dung lượng bộ nhớ 8GB có màn hình cảm ứng điện dung E Ink Carta HD 6 inch với độ phân giải 1430 × 1080 và mật độ hiê...", "Trắng", 17856, 1789,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(34942696,"Điện Thoại Nokia 105 Single Sim - Hàng Chính Hãng", 410000,378000, "https://salt.tikicdn.com/cache/200x280/ts/product/a9/2c/c6/40228339d1640d0db7af7f4be95d4bde.jpg", "Thiết kế nhỏ gọn, đẹp mắtĐiện Thoại Nokia 105 Single Sim có thiết kế hiện đại với các đường bo tròn độc đáo cho bạn dễ dàng cầm giữ cũng như bỏ máy vào túi. Kiểu dáng thanh lịch, cá tính và năng động...", "Xanh", 19673, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(34942696,"Điện Thoại Nokia 105 Single Sim - Hàng Chính Hãng", 410000,378000, "https://salt.tikicdn.com/cache/200x280/ts/product/a9/2c/c6/40228339d1640d0db7af7f4be95d4bde.jpg", "Thiết kế nhỏ gọn, đẹp mắtĐiện Thoại Nokia 105 Single Sim có thiết kế hiện đại với các đường bo tròn độc đáo cho bạn dễ dàng cầm giữ cũng như bỏ máy vào túi. Kiểu dáng thanh lịch, cá tính và năng động...", "Xanh", 19673, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(120782084,"Điện Thoại Xiaomi Redmi 10 4GB/64GB - Hàng Chính Hãng", 3990000,3990000, "https://salt.tikicdn.com/cache/200x280/ts/product/2f/bc/2b/cf80131297dc2fbf6c6ccd0b579595cd.jpg", "Xiaomi chính thức trình làng Redmi 10 (4GB/64GB), chiếc điện thoại hài hòa giữa phong cách thiết kế sang trọng, hiệu năng mạnh mẽ với vi xử lý Helio G88, màn hình giải trí 90 Hz mượt mà cùng hệ thống ...", "Xám Carbon", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(142545264,"Điện Thoại Oppo A95 (8GB/128G) - Hàng Chính Hãng", 6990000,6990000, "https://salt.tikicdn.com/cache/200x280/ts/product/35/36/94/a4a6fd6b5e0984cc3d8f52084c77d18f.jpg", "Thiết kế hiện đại, mỏng nhẹ thời trangĐiện Thoại Oppo A95 (8GB/128G) có thiết kế trẻ trung hiện đại với công nghệ phủ màu độc quyền OPPO. Điện thoại mềm mại mượt mà, chống mài mòn và chống bám vân ta...", "Đen", 25643, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(98895393,"Điện Thoại Thông Minh Xiaomi Poco F3 6GB l 128GB - Hàng Chính Hãng ", 8990000,8290000, "https://salt.tikicdn.com/cache/200x280/ts/product/b4/75/2a/efd870b63ad2227a4b475acf366a6f90.png", "Sở hữu sức mạnh “vô đối” đến từ CPU của nhà Qualcomm, Xiaomi POCO F3 mang đến người dùng cơ hội trải nghiệm hiệu năng của flagship hàng đầu trong mức giá tầm trung, một “món hời” mà các tín đồ “hệ gam...", " Xanh băng giá", 25422, 1795,"2022/04/01");
@@ -260,30 +254,29 @@ INSERT INTO SAN_PHAM VALUES(99862142,"Điện Thoại Thông Minh Xiaomi Poco F3
 INSERT INTO SAN_PHAM VALUES(114092342,"Điện Thoại Oppo Reno 6 5G (8GB/128G) - Hàng Chính Hãng", 11590000,11589000, "https://salt.tikicdn.com/cache/200x280/ts/product/9d/22/87/94b9bfb35bc3975f81bd10f00f60c5e1.jpg", "Thiết kế thời trang, sang trọng đầy ấn tượngĐiện Thoại Oppo Reno 6 5G là sản phẩm của công nghệ thiết kế vô cùng hoàn hảo và ấn tượng. Các góc cạnh của máy được bo cong mềm mại, uyển chuyển mang đến ...", "Bạc", 25643, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(140184098,"Điện Thoại Vsmart Bee Lite 2GB/16GB - Hàng Chính Hãng", 1690000,1573000, "https://salt.tikicdn.com/cache/200x280/ts/product/91/c5/a8/283adc89669bc61d4ca1a62610ce8dec.jpg", "Điện Thoại Vsmart Bee Lite 2GB/16GB - Hàng Chính HãngBộ sản phẩm bao gồm: Thân máy, sạc, cáp USB, sách hướng dẫn sử dụng.       Thiết kế cơ bản, kiểu dáng tinh gọn, dễ dùng- Mặt lưng chất liệu nhựa...", "Xanh lá", 257333, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(129866890,"Điện Thoại Xiaomi 11 Lite 5G NE 6GB 1 128GB - Hàng Chính Hãng", 8990000,8290000, "https://salt.tikicdn.com/cache/200x280/ts/product/02/9d/a1/9430184172835caa145002822cacea92.png", "So sánh nhanh Xiaomi Mi 11 Lite 5G và phiên bản 4GMi 11 Lite 5G và 4G là bộ đôi vừa được Xiaomi trình làng. So sánh nhanh thì cả hai máy sở hữu cùng kích thước màn hình, thông số cụm camera sau và du...", "Màu Hồng", 25422, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(71198347,"Điện Thoại iPhone 12 128GB - Hàng Chính Hãng", 23000000,21500000, "https://salt.tikicdn.com/cache/200x280/ts/product/e1/66/c2/47859ea06eb4b00ad41bbe81636e4373.jpg", "Màn hình Super Retina OLED rộng 6.1 inch, thân máy nguyên khối cứng cáp & bền bỉApple đã quyết định giữ nguyên thiết kế notch 'tai thỏ' quen thuộc cho màn hình iPhone 12, nhưn...", "Xanh Dương", 17827, 1789,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(25730627,"Điện Thoại Nokia 105 Dual Sim (2019) - Hàng Chính Hãng", 395000,395000, "https://salt.tikicdn.com/cache/200x280/ts/product/c4/06/23/9991ec95117ea17f4c3174ff58747524.jpg", "Thiết kế nhỏ gọn, đẹp mắtĐiện Thoại Nokia 105 Dual Sim (2019) có thiết kế hiện đại với các đường bo tròn độc đáo cho bạn dễ dàng cầm giữ cũng như bỏ máy vào túi. Kiểu dáng thanh lịch, cá tính và năng...", "Hồng", 19673, 1789,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(70766415,"Điện Thoại iPhone 12 64GB - Hàng  Chính Hãng", 18490000,18490000, "https://salt.tikicdn.com/cache/200x280/ts/product/e1/66/c2/47859ea06eb4b00ad41bbe81636e4373.jpg", "Màn hình Super Retina OLED rộng 6.1 inch, thân máy nguyên khối cứng cáp & bền bỉApple đã quyết định giữ nguyên thiết kế notch 'tai thỏ' quen thuộc cho màn hình iPhone 12, nhưn...", "Đen", 17827, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(71198347,"Điện Thoại iPhone 12 128GB - Hàng Chính Hãng", 23000000,21500000, "https://salt.tikicdn.com/cache/200x280/ts/product/e1/66/c2/47859ea06eb4b00ad41bbe81636e4373.jpg", "Màn hình Super Retina OLED rộng 6.1 inch, thân máy nguyên khối cứng cáp & bền bỉApple đã quyết định giữ nguyên thiết kế notch 'tai thỏ' quen thuộc cho màn hình iPhone 12, nhưn...", "Xanh Dương", 17827, 1795,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(25730627,"Điện Thoại Nokia 105 Dual Sim (2019) - Hàng Chính Hãng", 395000,395000, "https://salt.tikicdn.com/cache/200x280/ts/product/c4/06/23/9991ec95117ea17f4c3174ff58747524.jpg", "Thiết kế nhỏ gọn, đẹp mắtĐiện Thoại Nokia 105 Dual Sim (2019) có thiết kế hiện đại với các đường bo tròn độc đáo cho bạn dễ dàng cầm giữ cũng như bỏ máy vào túi. Kiểu dáng thanh lịch, cá tính và năng...", "Hồng", 19673, 1796,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(70766415,"Điện Thoại iPhone 12 64GB - Hàng  Chính Hãng", 18490000,18490000, "https://salt.tikicdn.com/cache/200x280/ts/product/e1/66/c2/47859ea06eb4b00ad41bbe81636e4373.jpg", "Màn hình Super Retina OLED rộng 6.1 inch, thân máy nguyên khối cứng cáp & bền bỉApple đã quyết định giữ nguyên thiết kế notch 'tai thỏ' quen thuộc cho màn hình iPhone 12, nhưn...", "Đen", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(125600698,"Điện thoại Nokia C01 Plus - Hàng chính hãng", 1770000,1742300, "https://salt.tikicdn.com/cache/200x280/ts/product/12/dc/9e/ae8eabe0d37789bcdc448b488e9a96cf.jpg", "Các tính năng nổi bật:Chất lượng bền bỉ chuẩn Châu Âu, thiết kế đậm nét Phần Lan cùng màu sắc nổi bật.Bảo mật tối ưu với 2 năm cập nhật hàng quý và tính năng mở khóa khuôn mặt.Lướt web thỏa thích với...", "Xanh Thiên Hà", 19673, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(88100671,"Điện thoại Samsung Galaxy A32-Hàng Chính Hãng", 6490000,5629000, "https://salt.tikicdn.com/cache/200x280/ts/product/59/f2/9a/2a656011e0186581809e317dbe0de809.jpg", "samsung galaxy A32 4G  thuộc phân khúc tầm trung nhưng sở hữu nhiều ưu điểm vượt trội về màn hình lớn sắc nét, bộ bốn camera 64 MP cùng vi xử lý hiệu năng cao và được bán ra với mức giá vô ...", "tím", 18802, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(88100671,"Điện thoại Samsung Galaxy A32-Hàng Chính Hãng", 6490000,5629000, "https://salt.tikicdn.com/cache/200x280/ts/product/59/f2/9a/2a656011e0186581809e317dbe0de809.jpg", "samsung galaxy A32 4G  thuộc phân khúc tầm trung nhưng sở hữu nhiều ưu điểm vượt trội về màn hình lớn sắc nét, bộ bốn camera 64 MP cùng vi xử lý hiệu năng cao và được bán ra với mức giá vô ...", "tím", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(115765559,"Điện Thoại Samsung Galaxy Z Flip 3 (256GB) - Hàng Chính Hãng", 26990000,26369000, "https://salt.tikicdn.com/cache/200x280/ts/product/a4/b3/3a/e5a09ac17ebe7cbe015b798e2c4d17a9.jpg", "Thiết kế màn hình gập độc đáoĐiện Thoại Samsung Galaxy Z Flip 3 sở hữu thiết kế siêu mới mẻ khi được Samsung thiết kế máy có 4 cạnh bo góc tròn và cơ chế có khớp linh hoạt có thể gập lại được theo ch...", "Xanh", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(68165482,"Điện thoại Vsmart Aris Pro (8GB/128GB) - Hàng chính hãng", 8490000,5489000, "https://salt.tikicdn.com/cache/200x280/ts/product/be/d8/51/6277ddb5af76d22a8517a37e3f4bd45f.jpg", "TIÊN PHONG CÔNG NGHỆ VƯƠN TẦM THẾ GIỚISự ra đời của Vsmart Aris Pro đánh dấu thành công vị thế tiên phong thương hiệu Việt trên trường công nghệ quốc tế. Camera ẩn dưới màn hình và chip bảo mật lượng...", "Lục", 257333, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(69060449,"ĐIỆN THOẠI DI ĐỘNG NGƯỜI GIÀ MASSTEL FAMI 11,loa to, sóng khỏe,2 sim,bàn phím đọc số,FM không dây,dùng sim Viettel,Vinaphone,Mobifone hàng chính hãng", 350000,350000, "https://salt.tikicdn.com/cache/200x280/ts/product/0e/8d/5b/6331dc8b8ec9a5352b9df3006cb4b593.png", "*Điện thoại Masstel Fami 11 - Hàng chính hãng *Điện thoại Masstel Fami 11 là chiếc điện thoại dành cho người cao tuổi mới ra mắt mang lại sự trải nghiệm thuận tiện, dễ dàng và hiện đại hơn ...", "Xanh Navy", 112638, 1789,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(113569117,"Điện Thoại Oppo Reno 6Z 5G (8GB/128G) - Hàng Chính Hãng", 8590000,8589000, "https://salt.tikicdn.com/cache/200x280/ts/product/0d/f4/c6/ca9484b98ecce0a5c65273e4203a010c.jpg", "Thiết kế thời thượng, đẳng cấp vượt trộiĐiện thoại Reno6 Z 5G sở hữu thiết kế vô cùng thời thượng. Các đường nét, chi tiết trên máy được trau chuốt hoàn hảo và cực kỳ hấp dẫn. Các khung viền bo cong ...", "Bạc", 25643, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(133578350,"Điện thoại Tecno Spark 6 Go (4GB+64GB) - (K5EK) Pin 5000mAh | Camera kép AI 13MP | Mở khóa Khuôn mặt 2.0 | Cảm biến vân tay - Hàng Chính Hãng", 2990000,2875000, "https://salt.tikicdn.com/cache/200x280/ts/product/e6/40/b2/fb11bad36829c621195638eea3965238.png", "Hiển thị, Thiết kế, Bảo mật Spark Go 2021 có màn hình HD + 6,52 inch với độ phân giải 720x1600 pixel. Màn hình đi kèm với một notch hình giọt nước chứa camera. Thiết kế tỷ lệ khung hình 20: 9 có nghĩ...", "Galaxy Blue", 162007, 1795,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(133578350,"Điện thoại Tecno Spark 6 Go (4GB+64GB)", 2990000,2875000, "https://salt.tikicdn.com/cache/200x280/ts/product/e6/40/b2/fb11bad36829c621195638eea3965238.png", "Hiển thị, Thiết kế, Bảo mật Spark Go 2021 có màn hình HD + 6,52 inch với độ phân giải 720x1600 pixel. Màn hình đi kèm với một notch hình giọt nước chứa camera. Thiết kế tỷ lệ khung hình 20: 9 có nghĩ...", "Galaxy Blue", 162007, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(119222043,"Điện Thoại Samsung Galaxy S21 5G (8GB/128GB) - Hàng Chính Hãng", 20990000,13990000, "https://salt.tikicdn.com/cache/200x280/ts/product/fa/8d/9a/f5ada9d2ac2019d95823c8e74e03a0e4.jpg", "Galaxy S21 5G nằm trong series S21 đến từ Samsung nổi bật với thiết kế tràn viền, cụm camera ấn tượng cho đến hiệu năng mạnh mẽ hàng đầu. “Bộ cánh” mới nổi bật và sang trọng Nổi bật với cụm camera s...", "Tím", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(121253258,"Điện thoại Samsung Galaxy A12 (6GB/128GB) - Hàng Chính Hãng", 4690000,4290000, "https://salt.tikicdn.com/cache/200x280/ts/product/8c/bf/ec/1fd70d405d40ffab5f4bc7c02048095a.jpg", "Tăng cường RAM, đa nhiệm khỏe hơnPhiên bản Samsung Galaxy A12 mới vừa ra mắt có dung lượng RAM 6 GB. Mức RAM khá ổn để đa nhiệm có thể hoạt động tốt ở thời điểm hiện tại, giúp thiết bị vẫn giữ được s...", "Trắng", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(129167166,"Điện thoại ITEL A48 2GB/32GB , 6.1' HD+ , Camera kép - Hàng Chính Hãng", 2200000,2200000, "https://salt.tikicdn.com/cache/200x280/ts/product/e7/ec/23/dd6e74df1f34162f298959b8c009418f.jpg", "Đặc điểm nổi bậtItel A48 là một chiếc smartphone đa năng, sở hữu nhiều tính năng ấn tượng như: màn hình 6.1 inch HD+, pin 3.000 mAh, cảm biến vân tay, camera kép,… Đặc biệt, Itel A48 được bán với mứ...", "Xanh lá", 111684, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(142028538,"Điện thoại OPPO A95 8GB/128GB - Hàng chính hãng", 6990000,6990000, "https://salt.tikicdn.com/cache/200x280/ts/product/4a/93/0d/10c4a72688d0c7c0d3fe9f30548ac419.jpg", "   OPPO A95 (CPH2365)  Màu sắcĐen Mạnh Mẽ, Bạc Phá CáchKích thước160.3 x 73.8 x 7.95 mmTrọng lượngKhoảng 175g (Bao gồm pin)Kích thước màn hình 6.43 inch, màn hình c...", "Bạc phá cách", 25643, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(123554572,"Điện Thoại iPhone 13 Pro 512GB  - Hàng  Chính Hãng", 34990000,34990000, "https://salt.tikicdn.com/cache/200x280/ts/product/ff/09/e6/0310b3bfafed76da9d2f2c2ea03d4b22.jpg", "Nội dung về tính năngiPhone 13 Pro gói gọn nhiều tính năng cực đỉnh trong một thiết kế 6.1 inch.2 Mạng 5G giúp tải xuống các bộ phim một cách nhanh chóng và xem trực tuyến video chất lượng cao.1 Màn ...", "Vàng", 17827, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(72882726,"Điện Thoại Nokia 215 4G - Hàng Chính Hãng", 829000,749000, "https://salt.tikicdn.com/cache/200x280/ts/product/04/cc/e8/092c0abe802b93c10057c9ddd804df7b.jpg", "Thiết kế đơn giản, gọn nhẹĐiện Thoại Nokia 215 4G sử dụng chất liệu nhựa cho kiểu dáng bền bỉ, các nút cảm ứng mềm lớn, cạnh dễ cầm và mặt lưng cong được thiết kế để vừa vặn hoàn toàn trong tay b...", "Black", 19673, 2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(72882726,"Điện Thoại Nokia 215 4G - Hàng Chính Hãng", 829000,749000, "https://salt.tikicdn.com/cache/200x280/ts/product/04/cc/e8/092c0abe802b93c10057c9ddd804df7b.jpg", "Thiết kế đơn giản, gọn nhẹĐiện Thoại Nokia 215 4G sử dụng chất liệu nhựa cho kiểu dáng bền bỉ, các nút cảm ứng mềm lớn, cạnh dễ cầm và mặt lưng cong được thiết kế để vừa vặn hoàn toàn trong tay b...", "Black", 19673, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(88255880,"Điện Thoại Oppo A94 (8GB/128G) - Hàng Chính Hãng", 7690000,7690000, "https://salt.tikicdn.com/cache/200x280/ts/product/7d/6c/bb/8bf546c0d765354c8fd3d84801f94fec.jpg", "Mẫu smartphone tầm trung của OPPO - OPPO A94 đã được giới thiệu đến người dùng với nhiều cải tiến nổi trội về thiết kế, pin và camera cũng như kế thừa những điểm mạnh của OPPO A93. Thiết kế cao cấp v...", "Tím", 25643, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(84715674,"Điện Thoại Xiaomi Redmi Note 10 Pro (8GB/128GB) - Hàng Chính Hãng", 7490000,7490000, "https://salt.tikicdn.com/cache/200x280/ts/product/c2/12/09/62c6d654e34a9a895a26ff6c8e1086d9.jpg", "Xiaomi tung ra mẫu smartphone có tên Xiaomi Redmi Note 10 Pro, với nhiều ưu điểm nổi bật từ thiết kế cho đến cấu hình, hứa hẹn sẽ tạo ra làn sóng mạnh mẽ trong cộng đồng người hâm mộ công nghệ.Vẻ ngo...", "Xanh", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(119464777,"Điện Thoại Nokia C01 Plus 2GB/16GB - Hàng Chính Hãng", 1990000,1733000, "https://salt.tikicdn.com/cache/200x280/ts/product/49/35/95/3d232bf69edcb8725df0605436099ce4.jpg", "Điện Thoại Nokia C01 Plus 2GB/16GB - Hàng Chính HãngBộ sản phẩm bao gồm: Thân máy, cáp micro USB, sạc, tai nghe, ốp silicon, sách hướng dẫn sử dụng.Thiết Kế Bền Bỉ Theo Thời Gian- Nokia C01 Plus vớ...", "Blue/Xanh Da Trời", 19673, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(83368040,"Điện Thoại Samsung Galaxy A52 (8GB/128GB) - Hàng Chính Hãng", 9290000,7749000, "https://salt.tikicdn.com/cache/200x280/ts/product/1f/ae/e7/b120a1d179fcf99a13f4a35421525700.jpg", "Cuộn Lướt Mượt Mà Trên Màn Hình Tuyệt ĐỉnhĐiện Thoại Samsung Galaxy A52 (8GB/128GB) - Hàng Chính Hãng - Mãn nhãn với những hình ảnh chi tiết, rực rỡ trên màn hình Super AMOLED chuẩn FHD+ với độ sáng ...", "Tím", 18802, 2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(83368040,"Điện Thoại Samsung Galaxy A52 (8GB/128GB) - Hàng Chính Hãng", 9290000,7749000, "https://salt.tikicdn.com/cache/200x280/ts/product/1f/ae/e7/b120a1d179fcf99a13f4a35421525700.jpg", "Cuộn Lướt Mượt Mà Trên Màn Hình Tuyệt ĐỉnhĐiện Thoại Samsung Galaxy A52 (8GB/128GB) - Hàng Chính Hãng - Mãn nhãn với những hình ảnh chi tiết, rực rỡ trên màn hình Super AMOLED chuẩn FHD+ với độ sáng ...", "Tím", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(133599948,"Điện Thoại TECNO Spark 7T (KF6P) 4GB/64GB - Camera 48MP | 6000 mAh | Helio G35 | Hàng Chính Hãng - Hàng Chính Hãng", 3390000,3190000, "https://salt.tikicdn.com/cache/200x280/ts/product/19/b2/af/3d2509334f8551abd86da5d34bcf3f59.png", "     Để SPARK lãnh đạo thời trangKinh doanh ở phía trước, Tiệc tùng ở phía sau. SPARK 7T mang lại mẫu mã cân xứng hoàn hảo và các chức năng tốt nhất trong phân khúc dưới...", "JEWEL BLUE", 162007, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(109421292,"Điện thoại Samsung Galaxy A22 LTE (6GB/128GB) - Hàng Chính Hãng", 5890000,4899000, "https://salt.tikicdn.com/cache/200x280/ts/product/49/c9/a5/0317fdc0793c2174c7a36245901e1cbc.jpg", "Thao Tác Mượt Mà Trên Màn Hình Tuyệt Đỉnh- Sở hữu màn hình tràn viền vô cực Infinity-U 6,4 inch. Mãn nhãn với những hình ảnh sống động, sắc nét bất ngờ nhờ công nghệ HD+ tiên tiến. Kích thước màn hìn...", "Tím", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(133811136,"Điện Thoại Xiaomi Redmi 9C 4GB/128GB - Hàng Chính Hãng", 3389000,3389000, "https://salt.tikicdn.com/cache/200x280/ts/product/83/26/16/84f5b09b7533a4db7a6ea85b4364c522.jpg", "Điện Thoại Xiaomi Redmi 9C 4GB/128GB - Hàng Chính HãngBộ sản phẩm bao gồm: Pin, sạc, cáp USB, cây tháo sim, sách hướng dẫn.Thông số kỹ thuậtMàn hình: IPS LCD, 6.53', HD+Hệ điều hành:Android 10Cam...", "Tím", 25422, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(72888793,"Điện Thoại Nokia 6300 4G - Hàng Chính Hãng", 1050000,999000, "https://salt.tikicdn.com/cache/200x280/ts/product/6f/de/2f/aabb6ff44b1dc7901fcaa45c8901c46d.jpg", "Thân máy chất liệu polycarbonate cứng cáp, thiết kế gọn nhẹ dễ dàng bỏ túiNokia 6300 4G có lớp vỏ máy được chế tác hoàn toàn từ polycarbonate. Đây là một loại nhựa có khả...", "White", 19673, 2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(72888793,"Điện Thoại Nokia 6300 4G - Hàng Chính Hãng", 1050000,999000, "https://salt.tikicdn.com/cache/200x280/ts/product/6f/de/2f/aabb6ff44b1dc7901fcaa45c8901c46d.jpg", "Thân máy chất liệu polycarbonate cứng cáp, thiết kế gọn nhẹ dễ dàng bỏ túiNokia 6300 4G có lớp vỏ máy được chế tác hoàn toàn từ polycarbonate. Đây là một loại nhựa có khả...", "White", 19673, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(138305946,"Điện thoại Nokia C01 Plus - Hàng chính hãng - Tím Thạch Anh", 1770000,1770000, "https://salt.tikicdn.com/cache/200x280/ts/product/d3/0d/5b/a1cb7129b30632b49cc2d1ac0116efc5.jpg", "Các tính năng nổi bật:Chất lượng bền bỉ chuẩn Châu Âu, thiết kế đậm nét Phần Lan cùng màu sắc nổi bật.Bảo mật tối ưu với 2 năm cập nhật hàng quý và tính năng mở khóa khuôn mặt.Lướt web thỏa thích với...", "", 19673, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(124877310,"Điện thoại Samsung Galaxy A22 (6GB/128GB) - Hàng chính hãng- Đã kích hoạt bảo hành điện tử", 5990000,5290000, "https://salt.tikicdn.com/cache/200x280/ts/product/0c/d0/41/776d398f1e41c4fdf3cb6445a6bcff65.jpg", "Thiết kê trẻ trung, cứng cápKhông màu mè, không phức tạp,  được thiết kế theo phong cách tối giản nhưng vẫn rất bắt mắt và đem đến sự thoải mái cho người dùng khi cầm trên tay. Các góc cạnh được bo ...", "Xanh Lá", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(137442819,"Điện thoại Samsung Galaxy A12 6GB (2021)", 4690000,4290000, "https://salt.tikicdn.com/cache/200x280/ts/product/05/82/91/36a4af56e3e089ddf6f0111820ec412f.jpg", "Săn smartphone tốt giá rẻ, đương nhiên chẳng thể bỏ quên các sản phẩm của Samsung, trong đó có Galaxy A12 (6GB/128GB) 2021 một phiên bản có thiết kế đẹp cùng một cấu hình ổn định, cụm camera cực chất ...", "Trắng", 18802, 1795,"2022/04/01");
@@ -292,13 +285,13 @@ INSERT INTO SAN_PHAM VALUES(102565233,"Điện thoại Xiaomi Redmi Note 10S (8G
 INSERT INTO SAN_PHAM VALUES(118685873,"Điện Thoại SamsungGalaxy Z Fold2 5G (12GB/256GB) - ĐÃ KÍCH HOẠT BẢO HÀNH ĐIỆN TỬ - Hàng Chính Hãng", 50000000,32743000, "https://salt.tikicdn.com/cache/200x280/ts/product/4f/d2/68/f8a591b97543d522c046de89124e6684.jpg", "Hai màn hình, trải nghiệm trong cùng một thiết bịKhông chỉ là một chiếc điện thoại màn hình gập, Galaxy Z Fold 2 5G còn là chiếc điện thoại có tới 2 màn hình. Trong trạng thái gập, màn hình ngoài của...", "Đồng", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(135332196,"Điện Thoại Nokia C20 2GB/16GB - Hàng Chính Hãng", 2048000,2048000, "https://salt.tikicdn.com/cache/200x280/ts/product/5b/8c/f2/306a63ae7d296d1f70fa68d24ae77561.jpg", "Điện Thoại Nokia C20 2GB/16GB - Hàng Chính HãngBộ sản phẩm bao gồm: Thân máy, cáp micro USB, sạc, tai nghe, ốp silicon, sách hướng dẫn sử dụng. Thiết Kế Bền Bỉ Theo Thời Gian- Nokia C20 có thiết k...", "Blue/Xanh ThiênThạch", 19673, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(115754597,"Điện Thoại Samsung Galaxy Z Fold 3 (512GB) - Hàng Chính Hãng", 44990000,43979000, "https://salt.tikicdn.com/cache/200x280/ts/product/9d/25/98/4b607112fc6b046bf846a8ee03b12635.jpg", "Sẵn sàng mở ra tiềm năng công nghệ mớiKhông dừng lại ở một chiếc điện thoại thông minh cao cấp, mà nó còn bền bỉ và kết nối siêu tốc với 5G. Kế đến là màn hình tràn viền lớn với trải nghiệm gập mở đ...", "Bạc Phantom", 18802, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(73280676,"Điện thoại Masstel IZI 230", 400000,400000, "https://salt.tikicdn.com/cache/200x280/ts/product/c9/1a/3b/4441b25ab41424bc13bdf64471966a17.jpg", "Bàn phím số cực lớnMasstel IZI 230 trang bị bàn phím số T9 với các phím bấm có chữ số được in rất to và rõ ràng, có đèn nền dễ dàng quan sát khi trời tối, phù hợp cho ông bà, ba mẹ, người lớn tuổi tr...", "Black", 112638, 2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(73280676,"Điện thoại Masstel IZI 230", 400000,400000, "https://salt.tikicdn.com/cache/200x280/ts/product/c9/1a/3b/4441b25ab41424bc13bdf64471966a17.jpg", "Bàn phím số cực lớnMasstel IZI 230 trang bị bàn phím số T9 với các phím bấm có chữ số được in rất to và rõ ràng, có đèn nền dễ dàng quan sát khi trời tối, phù hợp cho ông bà, ba mẹ, người lớn tuổi tr...", "Black", 112638, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(120135792,"Điện thoại Samsung Galaxy A32 (6GB/128GB) - Hàng Chính Hãng", 6490000,6190000, "https://salt.tikicdn.com/cache/200x280/ts/product/b1/f7/0b/2e8ca40e762b97c8383c54638ab38429.png", "Thiết kế mới lạ, sang trọng nhưng không kém phần hấp dẫnSamsung Galaxy A32 có ngôn ngữ thiết kế cao cấp, sang trọng mặt lưng nổi bật cụm 4 camera cực chất không quá hào nhoáng nhưng vẫn đủ để giúp ng...", "Black", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(40348221,"Điện thoại di động GSM Vtel C1 - Hàng chính hãng", 199000,199000, "https://salt.tikicdn.com/cache/200x280/ts/product/e1/89/cc/e754fdf096529d32e5fc6c108aff3ee7.png", "Thiết kế nhỏ gọn, chắc chắn: Vtel C1 sở hữu thân hình nhỏ gọn giúp bạn dễ dàng cầm nắm máy trên tay và di chuyển một cách dễ dàng. Màn hình 1.77 inch: Màn hình của máy có kích thước 1.77 inch đ...", "Xanh", 573293, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(126050455,"Điện thoại Nokia C20 (2GB/16GB) - Hàng Chính Hãng", 2290000,1999000, "https://salt.tikicdn.com/cache/200x280/ts/product/64/8d/e8/3981280bfb0f2215004064f6ab8f93c6.jpg", "Nokia C20 sở hữu thiết kế và cấu hình được tối giản hết mức nhưng vẫn có đầy đủ tính năng giải trí đa phương tiện của smartphone thông thường. Với một mức giá siêu hấp dẫn là người dùng phổ thông đã c...", "Xanh Dương", 19673, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(97585263,"Điện Thoại Oppo Find X3 Pro 5G (12GB/256G) - Hàng Chính Hãng", 24990000,19990000, "https://salt.tikicdn.com/cache/200x280/media/catalog/producttmp/6f/b7/ec/77445691b8458c04c61b4bca3957fe8c.jpg", "Màn hình 1 tỷ màu, độ sâu màu 10-bitKhám phá màn hình smartphone sở hữu màu sắc phong phú và trung thực bậc nhất từ trước đến nay trên Điện Thoại Oppo Find X3 Pro 5G. Bạn sẽ được tận hưởng mọi hình ả...", "Xanh", 25643, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(97562656,"iPad Pro M1 12.9 inch (2021) 256GB Wifi - Hàng Chính Hãng", 29990000,29990000, "https://salt.tikicdn.com/cache/200x280/media/catalog/producttmp/e6/8f/09/44c02a69debb87e64dd867381cab50c9.jpg", "Nội dung về tính năngiPad Pro sở hữu chip Apple M1 mạnh mẽ, vươn tầm hiệu năng đẳng cấp mới cùng thời lượng pin bền bỉ cả ngày.3 Màn hình Liquid Retina XDR 12.9 inch sống động để xem, chỉnh sửa video...", "Bạc", 17827, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(73113762,"Điện thoại Vsmart Aris (8GB/128GB) - Hàng Chính Hãng", 4690000,4599000, "https://salt.tikicdn.com/cache/200x280/ts/product/8a/b2/43/8d2a3f146efaf7b0863b045ae88adc0d.jpg", "Thiết kế tinh tế, sang trọngĐiện thoại Vsmart Aris được thiết kế với phần khung viền kim loại và mặt lưng là một lớp kính phủ nhám tốt giúp chống bám mồ hôi, dấu vân tay hiệu quả. Các đường nét ở phầ...", "Xanh dương", 257333, 2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(73113762,"Điện thoại Vsmart Aris (8GB/128GB) - Hàng Chính Hãng", 4690000,4599000, "https://salt.tikicdn.com/cache/200x280/ts/product/8a/b2/43/8d2a3f146efaf7b0863b045ae88adc0d.jpg", "Thiết kế tinh tế, sang trọngĐiện thoại Vsmart Aris được thiết kế với phần khung viền kim loại và mặt lưng là một lớp kính phủ nhám tốt giúp chống bám mồ hôi, dấu vân tay hiệu quả. Các đường nét ở phầ...", "Xanh dương", 257333, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(129859652,"Điện Thoại Samsung Galaxy A52s 5G (8GB/128GB) - Hàng chính hãng - ĐÃ KÍCH HOẠT BẢO HÀNH ĐIỆN TỬ", 10990000,9290000, "https://salt.tikicdn.com/cache/200x280/ts/product/29/a6/ac/85ac616efdbfb37346b5adaa61a06b68.jpg", "Samsung Galaxy A52s 5G 8GB/128GBSamsung đã chính thức giới thiệu chiếc điện thoại Galaxy A52s 5G đến người dùng, đây phiên bản nâng cấp của Galaxy A52 5G ra mắt cách đây không lâu, với ngoại hình khô...", "Tím", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(126219116,"Điện Thoại Samsung Galaxy A52s 5G (8GB/128GB) - ĐÃ KÍCH HOẠT ĐIỆN TỬ - Hàng Chính Hãng", 10990000,8990000, "https://salt.tikicdn.com/cache/200x280/ts/product/1b/7f/fa/4bd79c4326fabdc1d1a90631a95d30ec.jpg", "Bộ sản phẩm khi khui hộp gồm có: Hộp, Sách hướng dẫn, Cây lấy sim, Cáp Type C, Củ sạc nhanh rời đầu Type ASamsung đã chính thức giới thiệu chiếc điện thoại Galaxy A52s 5G đến người dùng, đây phiên b...", "Trắng", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(124718488,"Điện Thoại POCO X3 GT 8GB l 128GB - Chip Mediatek Dimensity 1100 5G - Màn hình 6.67' FHD+ DotDisplay - Tốc độ làm tươi 120Hz - Pin 5,000mAH Sạc nhanh 67W - Hàng Chính Hãng", 7990000,7290000, "https://salt.tikicdn.com/cache/200x280/ts/product/38/60/6a/a6c71fc75caa70ca6975c345123e4802.png", "POCO – thương hiệu con của Xiaomi đã cho ra mắt một mẫu smartphone mới mang tên Xiaomi POCO X3 GT, được biết đây là phiên bản đổi tên của Redmi Note 10 Pro 5G máy có thiết kế nguyên khối, mặt lưng độc...", "Stargaze Black", 25422, 1795,"2022/04/01");
@@ -316,35 +309,33 @@ INSERT INTO SAN_PHAM VALUES(129855867,"Điện Thoại Xiaomi  11T 5G 8GB l 128G
 INSERT INTO SAN_PHAM VALUES(143358429,"Điện Thoại Thông Minh Tecno Pop 5 LTE 2/32GB - Màn hình 6.5' | Mở khóa khuôn mặt + vân tay | Pin 5000 mAh - Hàng Chính Hãng", 2390000,2328000, "https://salt.tikicdn.com/cache/200x280/ts/product/7f/6e/de/7727d24fb8d608680cf6041153980701.png", " ...", "Deep Sea", 162007, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(123565891,"Điện thoại di động Vivo Y21s (4GB/128GB) - Hàng chính hãng", 4690000,4690000, "https://salt.tikicdn.com/cache/200x280/ts/product/13/64/56/11c3a6a741717637f1791d4aa14c48b7.jpg", "Ngoại hình thanh lịch, đẹp mắtĐiện thoại di động Vivo Y21s được trang bị màn hình IPS LCD với thiết kế giọt nước tràn viền kích thước lớn 6.51 inch, kết hợp cùng mặt kính cong 2.5D cho trải nghiệm tu...", "Trắng", 52232, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(141122642,"Điện thoại Realme Narzo 50i (4GB/64GB) - Hàng chính hãng", 3990000,3290000, "https://salt.tikicdn.com/cache/200x280/ts/product/a6/d4/5e/7a35234723ed33e65fa70513acff891c.jpg", "Thiết kế vỏ sọc chéo phong cách đường phố sành điệuKiểu dáng gọn gàng, các họa tiết sọc chéo chiếm 2/3 mặt lưng điện thoại kết hợp với tông màu Mint Green hoặc Carbon Black tôn vinh vẻ đẹp thời trang...", "Xanh lá", 247549, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(6598039,"Máy đọc sách Kindle PaperWhite gen 4 (10th) - Bản 32 GB - Hàng chính hãng", 3600000,3600000, "https://salt.tikicdn.com/cache/200x280/ts/product/be/f2/ba/7c5e015111d8a91615f60b4d5194a9b1.jpg", "Thiết kế mỏng nhẹMáy đọc sách Kindle PaperWhite gen 4 (10th) - Bản 32 GB - Hàng chính hãng được thiết kế cực kỳ mỏng, nhẹ và màn hình sáng hơn. Trọng lượng của máy là 182g và dày 8,18 mm, so với phiê...", "Đen", 147856, 1789,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(74810915,"Điện Thoại Samsung Galaxy S21 Ultra 5G (12GB/128GB) - Hàng Chính Hãng", 30990000,21990000, "https://salt.tikicdn.com/cache/200x280/ts/product/7a/b7/0a/8a806c3e769a498d638606b07b231f7f.jpg", "Sự đẳng cấp được Samsung gửi gắm thông qua chiếc smartphone Galaxy S21 Ultra 5G với hàng loạt sự nâng cấp và cải tiến không chỉ ngoại hình bên ngoài mà còn sức mạnh bên trong, hứa hẹn đáp ứng trọn vẹn...", "Bạc", 18802, 2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(74810915,"Điện Thoại Samsung Galaxy S21 Ultra 5G (12GB/128GB) - Hàng Chính Hãng", 30990000,21990000, "https://salt.tikicdn.com/cache/200x280/ts/product/7a/b7/0a/8a806c3e769a498d638606b07b231f7f.jpg", "Sự đẳng cấp được Samsung gửi gắm thông qua chiếc smartphone Galaxy S21 Ultra 5G với hàng loạt sự nâng cấp và cải tiến không chỉ ngoại hình bên ngoài mà còn sức mạnh bên trong, hứa hẹn đáp ứng trọn vẹn...", "Bạc", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(145972424,"Điện thoại Oppo A16K (3GB/32GB) - Hàng chính hãng", 3690000,3690000, "https://salt.tikicdn.com/cache/200x280/ts/product/1e/c2/32/15b028f8010c369ca313524d88f74903.jpg", " Màn hình: IPS LCD 6.52', HD+ Hệ điều hành: Android 11 Camera sau: 13 MP Camera trước: 5 MP Chipset: MediaTek Helio G35 RAM: 3 GB Bộ nhớ trong: 32 GB Cổng kết nối/sạc: Micro USB Dung lượng pin: 4...", "Xanh thời thượng", 25643, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(143359355,"Điện Thoại Tecno Spark 6 Go 4GB/64GB - Hàng Chính Hãng", 2990000,2709000, "https://salt.tikicdn.com/cache/200x280/ts/product/2b/e2/f0/88f65a0e702ad0ab634b011357c1a064.jpg", "Điện Thoại Tecno Spark 6 Go 4GB/64GB - Hàng Chính HãngBộ sản phẩm bao gồm: Thân máy, adapter sạc, cáp sạc, tai nghe, ốp lưng, sách hướng dẫn sử dụng. Đột phá với ngoại hình thời thượng- Sở hữu màn...", "Aqua Blue/Xanh Nước Biển", 162007, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(129859725,"Điện Thoại Xiaomi 11T Pro 5G 12GB l 256GB - Hàng Chính Hãng", 14990000,14490000, "https://salt.tikicdn.com/cache/200x280/ts/product/81/e9/ee/2d08560a06e491e613fe1f6dbed1f6c0.png", "Đánh giá Xiaomi Mi 11T Pro – Hiệu năng mạnh, dung lượng pin lớnNếu bạn là người ưa thích săn lùng những chiếc điện thoại mới nhất với sức mạnh đi đầu thời đại, đừng bỏ qua Xiaomi 11T Pro vừa được Xia...", "Màu Xám", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(97562676,"iPad Pro M1 12.9 inch (2021) 128GB Wifi Cellular  - Hàng Chính Hãng", 31490000,31490000, "https://salt.tikicdn.com/cache/200x280/media/catalog/producttmp/5c/61/8f/6189b2f275b79f33a0a4db77f0c7db8b.jpg", "Nội dung về tính năngiPad Pro sở hữu chip Apple M1 mạnh mẽ, vươn tầm hiệu năng đẳng cấp mới cùng thời lượng pin bền bỉ cả ngày.3 Màn hình Liquid Retina XDR 12.9 inch sống động để xem, chỉnh sửa video...", "Bạc", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(101615454,"Điện Thoại Xiaomi Redmi Note 10S (8GB-128GB) - Hàng Chính Hãng", 6490000,6139000, "https://salt.tikicdn.com/cache/200x280/ts/product/1b/47/7f/d6a8d9730b8aeac7d4e33ac6063d4e2a.jpg", "Xiaomi công bố cho ra mắt Redmi Note 10S – dòng smartphone giá tầm trung đem lại chất lượng màn hình hiển thị cao, bộ bốn camera hỗ trợ chụp hình tối ưu, chipset Helio G95 và dung lượng pin lên đến 50...", "Xanh đại dương", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(144407249,"Điện Thoại Tecno Pop 5 Lite 2GB/32GB - Hàng Chính Hãng", 2390000,2106000, "https://salt.tikicdn.com/cache/200x280/ts/product/53/db/69/9403aad5ec026d0651ad28a2126fbb76.png", "Điện Thoại Tecno Pop 5 Lite 2GB/32GB - Hàng Chính HãngBộ sản phẩm bao gồm: Thân máy, adapter sạc, cáp sạc, sách hướng dẫn, phiếu bảo hành, miếng dán màn hình, que chọc simMàn hình 6.52 inch độ phân ...", "Deepsea Luster", 162007, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(71198812,"Điện Thoại iPhone 12 Pro 256GB - Hàng Chính Hãng", 29000000,27900000, "https://salt.tikicdn.com/cache/200x280/ts/product/86/dd/0c/0f266d0b4ad00973aaa4c34300b425c6.jpg", "Điện thoại iPhone 12 Pro - Đột phá về thiết kế, hiệu năng nâng cấpRa mắt vào cuối năm 2020, iPhone 12 series mang đến một luồng gió với trong phân khúc smartphone cao cấp. Với thiết kế đổi mới đột p...", "Bạc", 17827, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(71198812,"Điện Thoại iPhone 12 Pro 256GB - Hàng Chính Hãng", 29000000,27900000, "https://salt.tikicdn.com/cache/200x280/ts/product/86/dd/0c/0f266d0b4ad00973aaa4c34300b425c6.jpg", "Điện thoại iPhone 12 Pro - Đột phá về thiết kế, hiệu năng nâng cấpRa mắt vào cuối năm 2020, iPhone 12 series mang đến một luồng gió với trong phân khúc smartphone cao cấp. Với thiết kế đổi mới đột p...", "Bạc", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(105633275,"Điện thoại Nokia 105 Dual Sim 2019 - Hàng chính hãng", 420000,419000, "https://salt.tikicdn.com/cache/200x280/ts/product/4a/b5/0e/7c8ef4ba4a9d53914c70c649183a24d8.jpg", "Thiết kế nhỏ gọn, đẹp mắtĐiện Thoại Nokia 105 Dual Sim (2019) có thiết kế hiện đại với các đường bo tròn độc đáo cho bạn dễ dàng cầm giữ cũng như bỏ máy vào túi. Kiểu dáng thanh lịch, cá tính và năng...", "Hồng", 19673, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(125596208,"Điện thoại Nokia 105 Dual Sim - Hàng chính hãng", 379000,379000, "https://salt.tikicdn.com/cache/200x280/ts/product/dc/60/ea/5176bdc4bb7f0a29a4c63f647d9d81d4.jpg", "Nokia 105 Dual Sim - Giữ kết nối lâu hơnThông số kỹ thuật:Màn hình: 1.77inch Độ phân giải: QQVGASố sim: 2 simKết nối: Jack ta nghe 3.5mmPin: 800maAh , tháo rờiHệ điều hành: S30+Tính năng: Đài F...", "Đen", 19673, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(132234204,"Điện Thoại Samsung Galaxy Z Flip 3 (128GB) - Hàng Chính Hãng- Đã kích hoạt bảo hành", 22590000,20790000, "https://salt.tikicdn.com/cache/200x280/ts/product/2e/b6/0c/6dbdb5e99d365b87fbd4305b4c75a660.jpg", "rong sự kiện Galaxy Unpacked hồi 11/8, Samsung đã chính thức trình làng mẫu điện thoại màn hình gập thế hệ mới mang tên Galaxy Z Flip3 5G 128GB. Đây là một siêu phẩm với màn hình gập dạng vỏ sò cùng n...", "Green", 18802, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(71201117,"Điện Thoại iPhone 12 Mini 64GB - Hàng Chính Hãng", 17000000,17000000, "https://salt.tikicdn.com/cache/200x280/ts/product/e1/66/c2/a233de7dca2fbff7bbc6f8476e6ba7bf.jpg", "Viền máy vát phẳng cùng màn hình tai thỏ 5.4 inchĐiện thoại iPhone 12 Mini là một trong những phiên bản điện thoại siêu phẩm của Apple, ở dòng máy này viền máy không còn được thiết kế bo cong các cạn...", "Đen", 17827, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(71201117,"Điện Thoại iPhone 12 Mini 64GB - Hàng Chính Hãng", 17000000,17000000, "https://salt.tikicdn.com/cache/200x280/ts/product/e1/66/c2/a233de7dca2fbff7bbc6f8476e6ba7bf.jpg", "Viền máy vát phẳng cùng màn hình tai thỏ 5.4 inchĐiện thoại iPhone 12 Mini là một trong những phiên bản điện thoại siêu phẩm của Apple, ở dòng máy này viền máy không còn được thiết kế bo cong các cạn...", "Đen", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(87054916,"HUAWEI P40 Pro Plus 5G (8+512G)| Bộ 5 Camera Siêu Tầm Nhìn Leica | Cảm biến 1/1,28 inch | Ảnh chân dung AI | Hàng Chính Hãng", 24990000,24990000, "https://salt.tikicdn.com/cache/200x280/ts/product/22/2c/8a/e0dd3d4ac9a9f221a86ada2388d0879d.jpg", "*Hình ảnh sản phẩm và nội dung hiển thị trên các trang nêu trên chỉ nhằm mục đích tham khảo. Tính năng và thông số kỹ thuật của sản phẩm thực tế(bao gồm nhưng không giới hạn ở kiểu ...", "Trắng Gốm", 19788, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(21129624,"Điện Thoại Coolpad F110 - Hàng Chính Hãng", 180000,180000, "https://salt.tikicdn.com/cache/200x280/ts/product/32/6d/d8/1fe01cb788b24fa9de91c171cd39863c.jpg", "Nhỏ gọn xinh xắn là một lợi thếĐiện Thoại Coolpad F110 mang một dáng vóc nhỏ bé đem lại khả năng cầm nắm vô cùng thoải mái và thuận tiện di chuyển. Nhờ các góc cạnh được bo tròn, máy đem lại cảm giác...", "Xanh đen", 50609, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(127372598,"Điện Thoại Samsung Galaxy A03s (3GB/32GB) - Hàng Chính Hãng - Đã kích hoạt bảo hành điện tử", 3390000,3099000, "https://salt.tikicdn.com/cache/200x280/ts/product/9b/4f/0b/3b773e4815e5b3e87153a815e03a4f42.jpg", "Thiết kế quen thuộcĐiện thoại Galaxy A03s tiếp nối phong cách của Galaxy A02s trước đó, khi sở hữu một kiểu dáng xinh xắn với viền màn hình khá mỏng, mặt lưng được phủ một lớp nhám cao cấp giúp ...", "Xanh Dương", 18802, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(68693081,"Điện Thoại Samsung Galaxy S20 FE - Hàng Chính Hãng", 15490000,13490000, "https://salt.tikicdn.com/cache/200x280/ts/product/2f/84/9b/c5ab08ede2d93305d9e10c6264edb697.jpg", "Màn hình giải trí siêu mượt 120 HzSamsung Galaxy S20 FE được trang bị màn hình siêu tràn viền Infinity-O có kích thước 6.5 inch đi cùng tấm nền Super AMOLED, độ phân giải Full HD+ cho người dùng dễ d...", "Xanh Khí Chất", 18802, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(68693081,"Điện Thoại Samsung Galaxy S20 FE - Hàng Chính Hãng", 15490000,13490000, "https://salt.tikicdn.com/cache/200x280/ts/product/2f/84/9b/c5ab08ede2d93305d9e10c6264edb697.jpg", "Màn hình giải trí siêu mượt 120 HzSamsung Galaxy S20 FE được trang bị màn hình siêu tràn viền Infinity-O có kích thước 6.5 inch đi cùng tấm nền Super AMOLED, độ phân giải Full HD+ cho người dùng dễ d...", "Xanh Khí Chất", 18802, 1795,"2022/04/01");
 
-INSERT INTO SAN_PHAM VALUES(72290345,"Máy đọc sách Kobo Clara HD 8GB đen, 6 inch, có đèn cam - Hàng nhập khẩu", 3190000,3190000, "https://salt.tikicdn.com/cache/200x280/ts/product/f0/04/a4/8daf08244f9766c75ece956b9edcb0b9.png", "Kobo Clara HD có hỗ trợ đèn vàng giúp bảo vệ mắt. Máy siêu gọn nhẹ, phù hợp với những bạn có thói quen đọc đêm và yêu thích sự nhỏ gọn, cảm giác nhẹ nhàng khi cầm máy.Đây là chiếc máy đọc sách tầm t...", "", 183625, 1789,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(93502532,"Điện thoại Nokia C20 2GB/32GB - Hàng chính hãng", 2409000,2409000, "https://salt.tikicdn.com/cache/200x280/ts/product/97/8d/a7/96ff2d18e90b05e0ec655c2fd06de469.jpg", "Màn hìnhCông nghệ màn hình: IPS LCDĐộ phân giải: HD+Kích thước màn hình 6.5' Camera sauĐộ phân giải: 5 MPQuay phim HDĐèn Flash: cóTính năng HDRCamera trướcĐộ phân giải 5 MPTính năng: Quay V...", "Vàng phù sa", 19673, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(129167418,"Điện thoại itel Vision1 Pro (L6502) 3GB/32GB , 6.52' HD+ , Camera kép - Hàng Chính Hãng", 2490000,2299000, "https://salt.tikicdn.com/cache/200x280/ts/product/3d/46/39/e2d6f5db6f9afa3aae6570de41b16cc8.jpg", "Sở hữu một smartphone có ngoại hình đẹp với cấu hình tốt, giá rẻ không còn là điều không tưởng với Itel L6502, một phiên bản đẹp, giá tốt đến từ Itel đã sẵn sàng cho bạn trải nghiệm.Ngoại hình được c...", "Cosmic shine", 111684, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(101627815,"Điện thoại Samsung Galaxy A02 (3GB/32GB) - Hàng chính hãng - Đã kích hoạt bảo hành điện tử", 2990000,2650000, "https://salt.tikicdn.com/cache/200x280/ts/product/5f/38/c1/fcb0a14d92d6a7377152f2fc17618713.jpg", "ọn nhẹ với nhiều sắc màu thời trangGalaxy A02 dùng chất liệu nhựa đặc trưng với những gam màu trẻ trung bắt mắt, mang đến một thiết bị có trọng lượng nhẹ, thoải mái cho bạn cầm nắm hay mang đi, thuận...", "Xanh Dương", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(125755029,"Điện thoại Nokia 110 - Hàng chính hãng", 520000,520000, "https://salt.tikicdn.com/cache/200x280/ts/product/05/f9/af/71c6fd0e5df1aab4e70b02a2801a4462.jpg", "Điểm nhấn chính:Thế giới giải trí trong túi của bạn, chiếc máy nghe nhạc nhỏ gọn, hỗ trợ thẻ nhớ ngoài lên tới 32GB vì thế bạn có thể nghe những bài hát yêu thích của mình một cách dễ dàng. Hoặc gắn ...", "Hồng", 19673, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(91301434,"Điện thoại Masstel Play 50 pin siêu trâu, Loa to, giá siêu rẻ - Hàng chính hãng - Bảo hành 12 tháng", 499000,456000, "https://salt.tikicdn.com/cache/200x280/ts/product/53/6b/ae/a98332089d1966bc937bcbe4d91e950e.jpg", "       Thông số kỹ thuật   Màn hình 2.4', QVGA, QVGA, 240 x 320 Pixel   Camera sau 0.08 MP   RAM 32 MB   Bộ nhớ trong 32 MB   CPU Đang cập nhật   GPU Không   Dung lượng pin 3000 mAh   Thẻ ...", "Xanh biển", 112638, 1796,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(59519631,"Điện Thoại Xiaomi Redmi 9C - Hàng Chính Hãng", 3990000,3990000, "https://salt.tikicdn.com/cache/200x280/ts/product/16/75/dd/65cb93e9e792b114b8d1682f49c607e4.jpg", "Màn hình giọt nước mang tính thời thượngXiaomi Redmi 9C sở hữu trong mình thiết kế bo tròn mềm mại ở các cạnh mang lại cảm giác thoải mái khi cầm nắm, các nhà sản xuất hoàn thiện rất tỉ mỉ từ đó mang...", "3GB-64GB", 25422, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(59519631,"Điện Thoại Xiaomi Redmi 9C - Hàng Chính Hãng", 3990000,3990000, "https://salt.tikicdn.com/cache/200x280/ts/product/16/75/dd/65cb93e9e792b114b8d1682f49c607e4.jpg", "Màn hình giọt nước mang tính thời thượngXiaomi Redmi 9C sở hữu trong mình thiết kế bo tròn mềm mại ở các cạnh mang lại cảm giác thoải mái khi cầm nắm, các nhà sản xuất hoàn thiện rất tỉ mỉ từ đó mang...", "3GB-64GB", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(91301218,"Điện Thoại Masstel IZi 300 chữ to loa to, Pin trâu 2500 mah - Hàng chính hãng", 518700,353000, "https://salt.tikicdn.com/cache/200x280/ts/product/fa/06/ff/403c2fe5fbdac49ba652e74132f61ee6.jpg", "       Trong hộp có: Hộp, cáp, củ sạc, sách hướng dẫn   THẮNG THAO MOBILE cam kết:   Hàng mới nguyên seal 100% chính hãng   Thông số kỹ thuật   Màn hình: TFT, 2.4', 65.536 màu   Danh bạ: 300 ...", "Vàng", 112638, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(97562652,"iPad Pro M1 12.9 inch (2021) 512GB Wifi - Hàng Chính Hãng", 29990000,29990000, "https://salt.tikicdn.com/cache/200x280/media/catalog/producttmp/f1/13/0d/242e8abfa43977b3f69b74c258d4b7da.jpg", "iPad Pro M1 12.9 inch (2021) 512GB WifiiPad Pro. Chiếc iPad đỉnh cao với chip Apple M1 siêu mạnh, màn hình Liquid Retina XDR 12.9 inch sống động,1 kết nối không dây siêu nhanh.2 Thắt dây an toàn vào ...", "Bạc", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(127076431,"Điện thoại Xiaomi 11 Lite 5G NE (6GB/128GB) - Hàng chính hãng", 7990000,7990000, "https://salt.tikicdn.com/cache/200x280/ts/product/56/c3/ab/88edd87eb5d85f8a2cd49986ad6e7ea3.jpg", "Thiết kế mỏng nhẹ, mang đến sự nổi bật cho người dùngĐiện thoại Xiaomi 11 Lite 5G NE (6GB/128GB) được chế tác nguyên khối, sở hữu một thân hình siêu mỏng nhẹ chỉ có trọng lượng 158 g và mỏng 6.8 mm, ...", "Hồng", 25422, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(74750613,"Điện Thoại Samsung Galaxy S21 Plus 5G (8GB/128GB) - Hàng Chính Hãng", 25990000,16990000, "https://salt.tikicdn.com/cache/200x280/ts/product/1b/f5/5e/56dbf787c4e5e95e19c7e41260b09f5c.jpg", "Ẩn đằng sau thiết kế tuyệt tác của siêu phẩm Galaxy S21+ 5G là cả một kỳ quan công nghệ, mà ở đó bạn có thể trải nghiệm hiệu năng mạnh mẽ nhất, những công nghệ tiên phong, dẫn đầu trào lưu với cụm cam...", "Đen", 18802, 2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(74750613,"Điện Thoại Samsung Galaxy S21 Plus 5G (8GB/128GB) - Hàng Chính Hãng", 25990000,16990000, "https://salt.tikicdn.com/cache/200x280/ts/product/1b/f5/5e/56dbf787c4e5e95e19c7e41260b09f5c.jpg", "Ẩn đằng sau thiết kế tuyệt tác của siêu phẩm Galaxy S21+ 5G là cả một kỳ quan công nghệ, mà ở đó bạn có thể trải nghiệm hiệu năng mạnh mẽ nhất, những công nghệ tiên phong, dẫn đầu trào lưu với cụm cam...", "Đen", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(133816671,"Điện Thoại Xiaomi 11 Lite 5G NE 8GB/128GB - Hàng Chính Hãng ", 9490000,8446000, "https://salt.tikicdn.com/cache/200x280/ts/product/f1/45/75/8384b42ac1a3c5d135eb9ca54c05e41b.jpg", "Điện Thoại Xiaomi 11 Lite 5G NE 8GB/128GB - Hàng Chính HãngBộ sản phẩm bao gồm: Pin, sạc, cáp USB kiểu C, cây tháo sim, ốp lưng, cáp type C, sách hướng dẫn.Thanh lịch trong từng chi tiết thiết kế- ...", "Hồng Thanh Đào", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(146261771,"Điện Thoại Nokia G10 4GB/64GB - Hàng Chính Hãng", 3690000,3269000, "https://salt.tikicdn.com/cache/200x280/ts/product/74/fc/d8/f3c79e5d02f2974ffb635f19dfd30196.jpg", "Điện Thoại Nokia G10 4GB/64GB - Hàng Chính HãngBộ sản phẩm bao gồm: Thân máy, cáp USB TypeC, sạc, tai nghe, ốp lưng, sách hướng dẫn sử dụng.Màn hình rộng hiển thị tuyệt vời từ nhiều góc nhìn- Nokia...", "Blue/Xanh Thiên Hà", 19673, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(91301274,"Điện thoại Goly Base 25 Phím số to, Loa 3D siêu lớn , Pin khủng - Hàng chính hãng", 379000,345000, "https://salt.tikicdn.com/cache/200x280/ts/product/ef/30/cf/f2f9dd0e54147f0a2fce34b3c390dca5.jpg", "       Thiết kế thời trang, bền bỉ   Màu sắc sang trọng, thanh lịch   Máy được trang bị đầy đủ các tính năng cơ bản của một chiếc điện thoại phổ thông bao gồm chức năng nghe FM Radio, nghe nhạc ...", "Vàng ", 166193, 1796,"2022/04/01");
@@ -353,7 +344,6 @@ INSERT INTO SAN_PHAM VALUES(137440825,"Điện thoại Samsung Galaxy A12 4GB (2
 INSERT INTO SAN_PHAM VALUES(74240829,"Điện thoại Xiaomi POCO M3 - HÀNG CHÍNH HÃNG", 3690000,3690000, "https://salt.tikicdn.com/cache/200x280/ts/product/4c/e6/b1/68baa6d96f1a6cfe03276b4fdfa98489.png", "Tuy nằm ở phân khúc giá rẻ, nhưng Xiaomi POCO M3 được chăm chút kỹ lưỡng từ thiết kế trẻ trung, hiệu năng mạnh mẽ đáp ứng tốt nhu cầu giải trí hàng ngày cùng hệ thống camera đủ dùng khiến thiết bị trở...", "4GB+64GB", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(136980288,"Điện Thoại Vivo Y12s 3GB/32GB - Hàng Chính Hãng", 4100000,4100000, "https://salt.tikicdn.com/cache/200x280/ts/product/02/56/28/e9512a8a8cb51a781f396e621487978b.jpg", "Điện Thoại Vivo Y12s 3GB/32GB - Hàng Chính HãngBộ sản phẩm bao gồm: Thân máy, bộ sạc, cáp USB, dụng cụ lấy sim, sách hướng dẫn, ốp lưng điện thoại.Màn hình tràn viền, sắc nét- Vivo Y12s được trang ...", "Xanh Ánh Băng", 52232, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(141418024,"Điện Thoại Samsung Galaxy M12 (3GB/32GB) - Hàng Chính Hãng - ĐÃ KÍCH HOẠT BẢO HÀNH ĐIỆN TỬ", 3490000,3390000, "https://salt.tikicdn.com/cache/200x280/ts/product/d6/78/b2/89f7b4aab07e4fc969063e4d9b197055.jpg", "Tận hưởng ngày dài, không lo hết pinĐiểm ấn tượng nhất trên Samsung Galaxy M12 chính là được tích hợp viên pin 5000 mAh. Đây là mức dung lượng pin khủng đối với một smartphone thuộc phân khúc giá rẻ,...", "Đen", 18802, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(52675635,"iPad Pro 12.9 inch (2020) Wifi - Hàng Nhập Khẩu", 36990000,24500000, "https://salt.tikicdn.com/cache/200x280/ts/product/16/95/56/bedf64c760859ac6dccdf7ca929685e8.jpg", "Thiết kế tràn viền không nút homeiPad Pro 12.9 inch (2020) 128GB Wifi không có quá nhiều thay đối với thế hệ trước với điểm nhấn nổi bật là những đường nét vuông góc cùng với đó là thiết kế viền mỏng...", "Space Grey", 17827, 1789,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(144335825,"Điện thoại TECNO Pop 5 LTE (2GB/32GB) - Hàng chính hãng", 2390000,2199000, "https://salt.tikicdn.com/cache/200x280/ts/product/28/d5/eb/02c1b7b37fa01e4d205335b87dc546bf.jpg", " Màn hình: IPS LCD 6.5', HD+ (720 x 1600 pixels) Hệ điều hành: Android 11 (Go Edition) Camera sau: 8 MP + 8 MP Camera trước: 5 MP Chipset: Spreadtrum SC9863 RAM: 2 GB Bộ nhớ trong: 32 GB Cổng kết nối...", "Xanh băng tuyết", 162007, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(141595397,"Điện Thoại Xiaomi 11T 8GB/128GB - Hàng Chính Hãng", 10990000,9799000, "https://salt.tikicdn.com/cache/200x280/ts/product/48/59/99/553676263099724b6ddc9b75b9c79a28.png", "Điện Thoại Xiaomi 11T 8GB/128GB - Hàng Chính HãngBộ sản phẩm bao gồm: Pin, sạc, cáp USB kiểu C, cây tháo sim, ốp lưng, sách hướng dẫn.Thanh lịch trong từng chi tiết thiết kế- Màn hình AMOLED 6.67 i...", "Xám Thiên Thạch", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(73271125,"Điện thoại Masstel Play 50 - Hàng Chính Hãng", 495000,495000, "https://salt.tikicdn.com/cache/200x280/ts/product/79/ef/0d/58cb897d510ab341bf8c94082264f022.jpg", "Cứng cáp với khung viền kim loạiChỉ cần nhìn vào Masstel Play 50, bạn đã có thể hình dung được độ bền của máy với thiết kế vô cùng “hầm hố”. Kiểu dáng dày, nhiều góc cạnh cho khả năng chống va đập tố...", "Navy", 112638, 1796,"2022/04/01");
@@ -363,8 +353,8 @@ INSERT INTO SAN_PHAM VALUES(122171440,"Samsung Galaxy A03s - Hàng Chính Hãng"
 INSERT INTO SAN_PHAM VALUES(107153659,"[Hàng Chính Hãng Quốc tế] Điện Thoại Xiaomi Black Shark 4 (8GB/128GB)", 12300000,12300000, "https://salt.tikicdn.com/cache/200x280/ts/product/85/3f/31/db76beaf4ad9454a6b816c508be02511.jpg", "Điện thoại chơi game Xiaomi Black Shark 4THÔNG SỐ KỸ THUẬT...", "", 233903, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(127058588,"Điện thoại Xiaomi 11T Pro (12GB/256GB) - Hàng chính hãng", 13990000,13990000, "https://salt.tikicdn.com/cache/200x280/ts/product/94/4b/05/585aa4b56d3170a346760fabf33c0d1b.jpg", "Thiết kế hiện đại cao cấpĐiện thoại Xiaomi 11T Pro có vẻ ngoài mang nhiều điểm tương đồng so với những mẫu điện thoại Xiaomi Mi 11 với thiết kế sang trọng và cụm camera nổi bật dễ nhận biết từ xa.K...", "Xám", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(109709479,"Điện thoại di động E-UTRA FDD (4G) Philips Xenium E527 Black - Hàng Chính Hãng", 880000,871000, "https://salt.tikicdn.com/cache/200x280/ts/product/dc/ed/6b/11c5f0b305e21144bb334706df114529.png", "Xenium E527 là chiếc điện thoại cơ bản đến từ Philips xuất hiện vào thời điểm các nhà nhập khẩu điện thoại sẽ chỉ được nhập thiết bị hỗ trợ mạng 4G tại Việt Nam. Đây là bước tiếp theo cho việc chấm dứ...", "", 19018, 1796,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(11489374,"Điện thoại Cố định Nippon NP-1201-Hàng Chính Hãng", 180000,180000, "https://salt.tikicdn.com/cache/200x280/ts/product/8a/36/38/bc5c258ddb7d5094a2fc4a23eead8a2b.jpg", "                           Điện thoại bàn NIPPON NP-1201-        không màn hình hiệu NIPPON.-       Có 2 màu : đen, trắng-       Có phím Flash, Redial, pause.-    ...", "Trắng", 181955, 8061,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(4048043,"Điện Thoại Bàn Panasonic KX-TS500 - Hàng Chính Hãng", 499000,499000, "https://salt.tikicdn.com/cache/200x280/ts/product/aa/bf/4a/a2dfc52a68a96b29c7e5812030260dfa.jpg", "Thiết kế nổi bật, tiện íchĐiện Thoại Bàn Panasonic KX-TS500 được thiết kế đơn giản, thanh thoát nhưng rất sang trọng. Với màu sắc bắt mắt KX-TS500 làm cho căn phòng của bạn thêm nổi bật. Máy thích hợ...", "Đỏ", 18804, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(11489374,"Điện thoại Cố định Nippon NP-1201-Hàng Chính Hãng", 180000,180000, "https://salt.tikicdn.com/cache/200x280/ts/product/8a/36/38/bc5c258ddb7d5094a2fc4a23eead8a2b.jpg", "Điện thoại bàn NIPPON NP-1201-không màn hình hiệu NIPPON.-Có 2 màu : đen, trắng-       Có phím Flash, Redial, pause.-    ...", "Trắng", 181955, 8061,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(4048043,"Điện Thoại Bàn Panasonic KX-TS500 - Hàng Chính Hãng", 499000,499000, "https://salt.tikicdn.com/cache/200x280/ts/product/aa/bf/4a/a2dfc52a68a96b29c7e5812030260dfa.jpg", "Thiết kế nổi bật, tiện íchĐiện Thoại Bàn Panasonic KX-TS500 được thiết kế đơn giản, thanh thoát nhưng rất sang trọng. Với màu sắc bắt mắt KX-TS500 làm cho căn phòng của bạn thêm nổi bật. Máy thích hợ...", "Đỏ", 18804, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(143850131,"Điện thoại Vivo V23e (8GB/128GB) - Hàng chính hãng", 8490000,6849000, "https://salt.tikicdn.com/cache/200x280/ts/product/22/ca/6f/34c0da77d0ca01942da71c869e019099.jpg", "Vivo V23e chính thức lên sàn với khả năng chụp ảnh selfie tuyệt đỉnh từ camera 50MP và công nghệ Eye Autofocus. Thiết kế đột phá, thời trang, mỏng nhẹ và hàng loạt những tính năng cao cấp được tích hợ...", "Giai điệu bình minh", 52232, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(123565899,"Điện thoại di động Vivo Y21s (6GB/128GB) - Hàng chính hãng", 5290000,5290000, "https://salt.tikicdn.com/cache/200x280/ts/product/13/64/56/84f4b3fdd7e16161f5415b0fcbb3a3a0.jpg", "Ngoại hình thanh lịch, đẹp mắtĐiện thoại di động Vivo Y21s được trang bị màn hình IPS LCD với thiết kế giọt nước tràn viền kích thước lớn 6.51 inch, kết hợp cùng mặt kính cong 2.5D cho trải nghiệm tu...", "Trắng", 52232, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(125597548,"Điện thoại Nokia 105 Singel sim - Hàng chính hãng", 410000,410000, "https://salt.tikicdn.com/cache/200x280/ts/product/12/e5/a4/977a9b83b6fbfc17aa24ff2783e4a53a.jpg", "Nokia 105 Single Sim - Giữ kết nối lâu hơnThông số kỹ thuật:Màn hình: 1.77inch Độ phân giải: QQVGASố sim: 1 simKết nối: Jack ta nghe 3.5mmPin: 800maAh , tháo rờiHệ điều hành: S30+Tính năng: Đài...", "Xanh", 19673, 1796,"2022/04/01");
@@ -401,10 +391,10 @@ INSERT INTO SAN_PHAM VALUES(146568876,"Điện thoại Masstel IZI 280 chử to 
 INSERT INTO SAN_PHAM VALUES(143916192,"Điện Thoại Realme C11 2021 2GB/32GB - Hàng Chính Hãng", 2990000,2689000, "https://salt.tikicdn.com/cache/200x280/ts/product/70/a0/27/0931932c5c47423b2b36b380de2f59ec.png", "Điện Thoại Realme C11 2021 2GB/32GB - Hàng Chính HãngBộ sản phẩm bao gồm: Thân máy, sạc, cáp USB, dụng cụ lấy sim, sách hướng dẫn sử dụng nhanh, sách hướng dẫn sử dụng an toànThiết kế đẹp mắt, màu s...", "Xanh Biển ", 247549, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(65492829,"Điện thoại Oukitel WP5 Pro (Ram4GB,Rom 64Gb,pin 8.000mAh ,chống va đập,chống nước) - hàng chính hãng", 3990000,3990000, "https://salt.tikicdn.com/cache/200x280/ts/product/4d/b8/90/ad493060c6a221ce7fb8a2d5f310e072.jpg", " bền bỉ hơn, Khéo léo hơn WP5 Pro sử dụng cao su công nghiệp với các yếu tố chống va đập. Bốn góc máy được làm dày dặn độ bền cao cũng như lớp vỏ thép dày và bền cũng như thiết kế ma sát lưng và ph...", "", 112735, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(129558409,"Điện Thoại Samsung Galaxy A52s 5G (8GB/256GB) - ĐÃ KÍCH HOẠT ĐIỆN TỬ - Hàng Chính Hãng", 11990000,9890000, "https://salt.tikicdn.com/cache/200x280/ts/product/1b/7f/fa/e383841196ef370dec330333922fb652.jpg", "Samsung Galaxy A52s 5G 256GB là chiếc điện thoại dòng A thiết kế cao cấp, sức mạnh hiệu năng của chip Snapdragon 778G 5G 8 nhân.Thiết kế thời thượng với nhiều màu sắc bắt mắtSamsung Galaxy A5...", "Tím", 18802, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(58065346,"Điện Thoại Realme C11 (2GB/32GB) - Hàng Chính Hãng", 2990000,2659000, "https://salt.tikicdn.com/cache/200x280/ts/product/c5/a1/cd/b9f3e343440b02c54f95a9034990e0d5.jpg", "Tràn đầy năng lượng với pin “siêu khủng” 5000 mAhThời lượng pin sẽ là điều bạn không phải lo lắng trên Điện Thoại Realme C11 (2GB/32GB). Với viên pin dung lượng lên tới 5000 mAh, Realme C11 có thể c...", "Xanh Bạc Hà", 247549, 2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(58065346,"Điện Thoại Realme C11 (2GB/32GB) - Hàng Chính Hãng", 2990000,2659000, "https://salt.tikicdn.com/cache/200x280/ts/product/c5/a1/cd/b9f3e343440b02c54f95a9034990e0d5.jpg", "Tràn đầy năng lượng với pin “siêu khủng” 5000 mAhThời lượng pin sẽ là điều bạn không phải lo lắng trên Điện Thoại Realme C11 (2GB/32GB). Với viên pin dung lượng lên tới 5000 mAh, Realme C11 có thể c...", "Xanh Bạc Hà", 247549, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(34016501,"Điện Thoại iPhone 11 64GB  - Hàng Nhập Khẩu", 17000000,17000000, "https://salt.tikicdn.com/cache/200x280/ts/product/02/6d/a7/7c150c2b3704c0b57fca978d0f593090.png", "Thương hiệuPhụ kiện đi kèmĐang cập nhậtLoại / Công nghệ màn hìnhIPS LCD/ Liquid Retina HDKích thước màn hình6.1 inchĐộ phân giải màn hìnhHD (828 x 1792 pixels)Camera trước12 ...", "Trắng", 17827, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(73509365,"Điện thoại Vivo X50 - Hàng Chính Hãng", 12990000,12990000, "https://salt.tikicdn.com/cache/200x280/ts/product/ea/d5/22/2aa6c52e4d7b958eeb6f5582aa0a3e88.jpg", "Màn hình tràn viền chuẩn xu hướngThiết kế bắt xu thế với màn hình Infinity-O, nâng cao khả năng hiển thị với độ phân giải Full HD+, cho không gian sử dụng thoải mái, trải nghiệm hình ảnh sống động vớ...", "Xanh dương", 52232, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(89888994,"Điện Thoại Samsung Galaxy M12 (3GB/32GB) - Hàng Chính Hãng", 3490000,3129000, "https://salt.tikicdn.com/cache/200x280/ts/product/7c/ce/71/b8a93322bf9bcabf8b65c25c7e309bd3.jpg", "Cấu hình mạnh mẽ với vi xử lý 8 nhân tối ưu và tần số quét 90HzĐiện Thoại Samsung Galaxy M12 với tần số quét màn hình 90Hz, lớn bậc nhất phân khúc, hiển thị mượt mà mọi chuyển động dù là nhỏ nhất trê...", "Xanh", 18802, 2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(89888994,"Điện Thoại Samsung Galaxy M12 (3GB/32GB) - Hàng Chính Hãng", 3490000,3129000, "https://salt.tikicdn.com/cache/200x280/ts/product/7c/ce/71/b8a93322bf9bcabf8b65c25c7e309bd3.jpg", "Cấu hình mạnh mẽ với vi xử lý 8 nhân tối ưu và tần số quét 90HzĐiện Thoại Samsung Galaxy M12 với tần số quét màn hình 90Hz, lớn bậc nhất phân khúc, hiển thị mượt mà mọi chuyển động dù là nhỏ nhất trê...", "Xanh", 18802, 1795,"2022/04/01");
 
 
 
@@ -415,15 +405,15 @@ INSERT INTO SAN_PHAM VALUES(97562661,"iPad Pro M1 12.9 inch (2021) 256GB Wifi Ce
 INSERT INTO SAN_PHAM VALUES(81027831,"Điện Thoại Oppo Reno 5G (8GB/128G) - Hàng Chính Hãng", 10990000,9990000, "https://salt.tikicdn.com/cache/200x280/media/catalog/producttmp/62/29/e2/4fabafdb5e19e27317023dce57b87c00.jpg", "Từng đường nét lấp lánh, tỏa sángĐiện Thoại Oppo Reno 5G (8GB/128G) có cấu tạo các khung viền xung quanh hoàn toàn bằng kim loại cao cấp, mặt lưng làm từ kính. Chiếc điện thoại được thiết kế tổng thể...", "Đen", 25643, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(1985993,"Điện thoại trẻ em MKIDS - Hàng chính hãng của Viettel", 400000,400000, "https://salt.tikicdn.com/cache/200x280/ts/product/98/9d/6a/664ae40c42aa90c21512031f8da85fef.png", "...", "#1 Xanh", 25697, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(145762126,"Điện thoại Itel it9210 4G , WiFi - Hàng chính hãng", 690000,622000, "https://salt.tikicdn.com/cache/200x280/ts/product/37/6f/f7/df7c41cc06a84f935306031a75cbd188.jpg", "Itel it9210 4G - là chiếc điện thoại phổ thông được trang bị thêm khả năng quay phim chụp ảnh, nghe nhạc với cách thức sử dụng đơn giản. Khá bất ngờ khi máy hỗ trợ kết nối Wifi cùng mạng di động 4G, m...", "Xanh dương", 111684, 1796,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(67057190,"Điện thoại Xiaomi POCO X3 - Hàng Chính Hãng ", 6690000,6690000, "https://salt.tikicdn.com/cache/200x280/ts/product/c5/d2/59/b7d2cf850ff271af91df18e6b81688f2.jpg", "Tiếp nối sự thành công về thế mạnh là smartphone tầm trung với thiết kế hiện đại sang trọng, Xiaomi đã cho ra mắt XIAOMI POCO X3 mang theo nhiều tính năng như cụm camera chất lượng, hiệu năng mạnh mẽ,...", "Xanh Dương", 25422, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(67057190,"Điện thoại Xiaomi POCO X3 - Hàng Chính Hãng ", 6690000,6690000, "https://salt.tikicdn.com/cache/200x280/ts/product/c5/d2/59/b7d2cf850ff271af91df18e6b81688f2.jpg", "Tiếp nối sự thành công về thế mạnh là smartphone tầm trung với thiết kế hiện đại sang trọng, Xiaomi đã cho ra mắt XIAOMI POCO X3 mang theo nhiều tính năng như cụm camera chất lượng, hiệu năng mạnh mẽ,...", "Xanh Dương", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(73247867,"Điện Thoại Masstel IZI 125 - Hàng Chính Hãng", 255000,226000, "https://salt.tikicdn.com/cache/200x280/ts/product/11/0e/94/8782832a0ff31aaef59654ea854cd672.jpg", "Thiết kế izi 125 – đơn giản và chắc chắnĐiện Thoại Masstel IZI 125 có thiết kế chắc chắn, cứng cáp, nhỏ gọn tiện lợi. Thiết kế tối giản với vân da ở mặt lưng điện thoại vừa tăng cảm giác chắc tay, vừ...", "Black", 112638, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(122074560,"Vivo Y12s (2021) (3GB/32GB) - Hàng Chính Hãng", 3390000,3129000, "https://salt.tikicdn.com/cache/200x280/ts/product/0d/f8/f2/a1f1cdf1816a45431283f4d4643a5351.jpg", "Vivo Y12s (2021) (3GB/32GB)...", "Xanh Dương", 52232, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(103341894,"Điện Thoại Xiaomi Black Shark 4 (8GB/128GB) - [Hàng Chính Hãng Quốc tế]", 12300000,12300000, "https://salt.tikicdn.com/cache/200x280/ts/product/f1/c3/5a/70f542351510c4f64ad8f6cc769cd52e.png", "Black Shark 4 là điện thoại chơi game hàng đầu của Xiaomi trong năm 2021. Những điểm mạnh của Black Shark 4 là tương đối toàn diện. Thiết kế toàn màn hình cao cấp với tốc độ làm mới 144Hz/720Hz. Phần ...", "", 233903, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(139815601,"Điện thoại Nokia 6300 4G - Hàng chính hãng", 1290000,1119000, "https://salt.tikicdn.com/cache/200x280/ts/product/8a/5c/30/dc6c10968a11c3d2ed202d3aeefa1fdd.jpg", "Điện thoại Nokia 6300 4G là mẫu điện thoại cổ điển mới nhất vừa được HMD hồi sinh. So với phiên bản củ ra đời  2007 thì phiên bản 2020 được nâng cấp lên 4G. Bên cạnh đố, sẽ phóng to một chút màn hình ...", "Trắng", 19673, 1796,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(35527589,"Điện Thoại Masstel IZI 300 - Hàng Chính Hãng", 490000,490000, "https://salt.tikicdn.com/cache/200x280/ts/product/89/92/b9/1fc66ac4c27de36c3caae281e11dab23.jpg", "Thiết kế hiện đại, thanh lịch, trẻ trungĐiện Thoại Masstel IZI 300 có thiết kế nhỏ gọn vừa lòng bàn tay, trọng lượng nhẹ. Phần mặt lưng được làm trơn, chất liệu chống bám vân tay, phần loa được làm c...", "Black", 112638, 2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(35527589,"Điện Thoại Masstel IZI 300 - Hàng Chính Hãng", 490000,490000, "https://salt.tikicdn.com/cache/200x280/ts/product/89/92/b9/1fc66ac4c27de36c3caae281e11dab23.jpg", "Thiết kế hiện đại, thanh lịch, trẻ trungĐiện Thoại Masstel IZI 300 có thiết kế nhỏ gọn vừa lòng bàn tay, trọng lượng nhẹ. Phần mặt lưng được làm trơn, chất liệu chống bám vân tay, phần loa được làm c...", "Black", 112638, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(40343230,"Điện thoại di động GSM Vtel A1 - Hàng chính hãng", 199000,199000, "https://salt.tikicdn.com/cache/200x280/ts/product/2e/ee/50/b486a6130b5f333ec69a3748a5c38a2f.png", "Thiết kế nhỏ gọn, chắc chắn: Vtel A1 sở hữu thân hình nhỏ gọn giúp bạn dễ dàng cầm nắm máy trên tay và di chuyển một cách dễ dàng. Màn hình 1.77 inch: Màn hình của máy có kích thước 1.77 inch đ...", "Xám", 573293, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(127058581,"Điện thoại Xiaomi 11T (8GB/128GB) - Hàng chính hãng", 10990000,10990000, "https://salt.tikicdn.com/cache/200x280/ts/product/54/23/d3/03b44aa3dcd6849723ffbe4316e788ea.jpg", "Vẻ ngoài tối giản, phù hợp với mọi đối tượngĐiện thoại Xiaomi 11T được hoàn thiện từ sự kết hợp hài hòa giữa khung kim loại và mặt lưng kính cường lực, không chỉ đẹp mà còn bền. Máy có trọng lượng 20...", "Xám", 25422, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(34942635,"Điện Thoại Nokia 110 Dual Sim (2019) - Hàng Chính Hãng", 520000,484000, "https://salt.tikicdn.com/cache/200x280/ts/product/24/b6/7b/15e351d0bc3a476bb8fc22444633384a.jpg", "Tiện ích cao, giá rẻĐiện Thoại Nokia 110 Dual Sim (2019) hỗ trợ 2 sim 2 sóng online, hỗ trợ danh bạ lên đến 1000 số, bộ nhớ trong 10 MB, hỗ trợ thẻ nhớ ngoài lên đến 32 GB không những thế Nokia 110 đ...", "Black/Đen", 19673, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(34942635,"Điện Thoại Nokia 110 Dual Sim (2019) - Hàng Chính Hãng", 520000,484000, "https://salt.tikicdn.com/cache/200x280/ts/product/24/b6/7b/15e351d0bc3a476bb8fc22444633384a.jpg", "Tiện ích cao, giá rẻĐiện Thoại Nokia 110 Dual Sim (2019) hỗ trợ 2 sim 2 sóng online, hỗ trợ danh bạ lên đến 1000 số, bộ nhớ trong 10 MB, hỗ trợ thẻ nhớ ngoài lên đến 32 GB không những thế Nokia 110 đ...", "Black/Đen", 19673, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(52347882,"Điện thoại Mobell C310 - Hàng chính hãng", 225000,206000, "https://salt.tikicdn.com/cache/200x280/ts/product/b3/8a/7b/63c662da37834ed6393a147b7c0b6661.png", "Mobell C310 Màn hình rộng 1.77inch2 sim 2 sóngCamera VGAPin 800mAhHỗ trợ thẻ nhớ ngoài tối đa 32GBNghe FM, Nghe nhạc MP3Ghi âm cuộc gọiDanh bạ lưu tối đa 500 số ...", "Vàng", 22017, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(143275307,"Điện thoại mini siêu nhỏ Servo ,độc lạ hình cây bút,tích hợp đầy đủ các chức năng của chiếc smartphone - Hàng Chính Hãng ", 1000000,510000, "https://salt.tikicdn.com/cache/200x280/ts/product/be/61/8f/52aa792af7f1a685dc4a4394e4a90852.jpg", "       +Điện thoại hình cây bút k07 sở hữu thiết rất đặc biệt chưa từng có trên thị trường Việt Nam. Máy được thiết kế với hình dáng như cây bút ( có thể viết được), được trang bị 2 khe SIM và 01 ...", "trắng", 366269, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(125171841,"Điện Thoại Bàn Panasonic KX-TSC11 - Hàng Chính Hãng", 540000,540000, "https://salt.tikicdn.com/cache/200x280/ts/product/c1/14/e0/d06efd03bd2d169f22e2c451d7a97b1e.jpg", "Điện thoại chính hãng Panasonic KX-TSC11– Màn hình hiển thị số gọi đến, gọi đi.– Bộ nhớ 50 số điện thoại.– Nhớ 50 số gọi đến 10 số gọi đi.– Khoá đường dài, di động bằng mã.– Có các mức điều chỉnh...", "Trắng", 18804, 8061,"2022/04/01");
@@ -436,12 +426,11 @@ INSERT INTO SAN_PHAM VALUES(91301334,"Điện thoại cho người già Goly A10
 INSERT INTO SAN_PHAM VALUES(109860433,"Điện thoại di động Forme L6P - Hàng chính hãng", 390000,390000, "https://salt.tikicdn.com/cache/200x280/ts/product/9b/5d/56/51ab9dc705efdbb225c61a22d120c79e.jpg", "***** THÔNG SỐ KỸ THUẬT FORME L6P-Chip MTK6261-Màn hình: 2.4inch-Camera: 0.3Mp-Pin: 1800mAh-2 Sim: 1 thường, 1 micro sim-Thẻ nhớ ngoài: hỗ trợ thẻ Micro SD 8Gb-FM Radio: có-Nghe nhạc: có-Blutooth: có*...", "Hồng", 150568, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(85005934,"Điện Thoại Samsung Galaxy A52 (8GB/128GB) - ĐÃ KÍCH HOẠT BẢO HÀNH ĐIỆN TỬ - Hàng Chính Hãng", 8990000,7990000, "https://salt.tikicdn.com/cache/200x280/ts/product/c2/69/7d/5378ee26916303992775626597838e4e.jpg", "Cuộn Lướt Mượt Mà Trên Màn Hình Tuyệt ĐỉnhĐiện Thoại Samsung Galaxy A52 (8GB/128GB) - Hàng Chính Hãng - Mãn nhãn với những hình ảnh chi tiết, rực rỡ trên màn hình Super AMOLED chuẩn FHD+ với độ sáng ...", "Xanh", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(144639576,"Điện thoại Masstel IZI 206 - Loa to - Màn lớn 2.4 - Hàng chính hãng", 329000,276000, "https://salt.tikicdn.com/cache/200x280/ts/product/b3/62/ef/e13d68ad85f6f37d817e85a73b5b8457.jpg", "Cấu hình Điện thoại Masstel IZI 206Màn hình: TFT LCD2.4' 65.536 màuSIM: 2 SIM thườngHỗ trợ 2GDanh bạ: 300 sốThẻ nhớ: MicroSD, hỗ trợ tối đa 32 GBCamera sau: 08 MPRadio FM: CóJack cắm tai ...", "Xanh dương", 112638, 1796,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(19460704,"Combo Máy Đọc Sách Kindle Paperwhite Gen 10th (8GB - Màu Đen) và Bao da WELL BEGUN Màu vàng - Hàng Chính Hãng", 2890000,2890000, "https://salt.tikicdn.com/cache/200x280/ts/product/8e/9c/39/c36bc4be8167a492883f37a53a7f7924.jpg", "Kindle Paperwhite Gen 10 - 2019 vừa được ra mắt sau một chu kỳ dài hơn 3 năm và nó có màn hình phẳng, chống thấm nước và Bluetooth. Đây là Kindle Paperwhite đầu tiên có tích hợp Audiobook Audible, ch...", "", 147856, 1789,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(140960962,"Điện thoại Xiaomi Redmi 9C (4GB/128GB) - Hàng chính hãng", 3490000,3459000, "https://salt.tikicdn.com/cache/200x280/ts/product/f0/00/d2/c673f2153d2f64a57f0241b093a8426a.jpg", "Thiết kế thời thượng  Redmi 9C có thiết kế nguyên khối với mặt lưng chất liệu nhựa cao cấp, bền bỉ. Các góc cạnh của máy được bo tròn tinh tế cùng mặt hoạ tiết vân xéo cho cảm giác cầm nắm chắc ch...", "Xanh chạng vạng", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(87866915,"Điện thoại Itel it9200 4G - Hàng chính hãng", 880000,880000, "https://salt.tikicdn.com/cache/200x280/ts/product/97/7b/af/53bd02f511ac1341094dde1581887c0c.jpg", "Itel il9200 4G là một chiếc điện thoại phổ thông hỗ trợ đầy đủ các tính năng như một smartphone với các tính năng đàm thoại, quay phim chụp ảnh, đặc biệt còn hỗ trợ mạng 4G tốc độ cao, một lựa chọn ...", "Xanh ", 111684, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(144639994,"Điện thoại Itel it2171 - Phím mềm - Hàng chính hãng ", 239000,216000, "https://salt.tikicdn.com/cache/200x280/ts/product/51/96/98/d3a53859c4c057df4a62b56e53bb6a48.jpg", "Cấu hình Điện thoại Itel it2171Màn hình: TFT LCD1.77' 65.536 màuSIM: 2 SIM thườngHỗ trợ 2GDanh bạ: 500 sốThẻ nhớ: MicroSD, hỗ trợ tối đa 32 GBCamera sau: 0.3 MPRadio FM: CóJack cắ...", "Xanh dương", 111684, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(125245180,"Điện thoại Realme C11 (2021)(2GB/32GB) - Hàng chính hãng", 2990000,2990000, "https://salt.tikicdn.com/cache/200x280/ts/product/47/b6/43/4a759f440ea040fcd472c85999add3b8.jpg", "Realme trình làng chiếc smartphone giá rẻ mang tên Realme C11 (2021) có cấu hình và thiết kế là sự kết hợp giữa Realme C11 phiên bản cũ và Realme C20. Tuy thuộc phân khúc giá rẻ nhưng máy vẫn cho hiệu...", "Xanh Dương", 247549, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(125739785,"Điện thoại Masstel izi 220 _ Hàng chính hãng", 359000,299000, "https://salt.tikicdn.com/cache/200x280/ts/product/be/88/06/6a3be789a3f1ec00a514ae7f10314515.jpg", "Nhiều tiện ích đi kèmChiếc điện thoại Masstel IZI 200 còn được hỗ trợ nghe FM radio tiện lợi cho người dùng giải trí và cập nhật tin tức hàng ngày. Bên cạnh đó, máy còn được hỗ trợ thẻ nhớ lên tới ...", "Xanh", 112638, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(125739785,"Điện thoại Masstel izi 220 _ Hàng chính hãng", 359000,299000, "https://salt.tikicdn.com/cache/200x280/ts/product/be/88/06/6a3be789a3f1ec00a514ae7f10314515.jpg", "Nhiều tiện ích đi kèmChiếc điện thoại Masstel IZI 200 còn được hỗ trợ nghe FM radio tiện lợi cho người dùng giải trí và cập nhật tin tức hàng ngày. Bên cạnh đó, máy còn được hỗ trợ thẻ nhớ lên tới ...", "Xanh", 112638, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(4048581,"Điện Thoại Bàn Panasonic KX-TSC11 - Hàng Chính Hãng", 520000,520000, "https://salt.tikicdn.com/cache/200x280/ts/product/1e/d0/02/a1ddac9b56a2df5a4e1aa925eab04a22.jpg", "Thiết kế nổi bật, tiện íchĐiện Thoại Bàn Panasonic KX-TSC11 được thiết kế đơn giản, thanh thoát nhưng rất sang trọng. Với màu sắc bắt mắt KX-TS500 làm cho căn phòng của bạn thêm nổi bật. Máy thích hợ...", "Trắng", 18804, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(21317020,"Điện thoại bàn không dây Panasonic KX-TGF310 - Hàng Chính Hãng", 1950000,1950000, "https://salt.tikicdn.com/cache/200x280/ts/product/01/79/d6/3993a1a8ba77d5dfb475e5b5613c3a97.jpg", "Dù với sự phát triển ngày càng mạnh mẽ và thông dụng của điện thoại di động, nhưng chiếc điện thoại bàn vẫn luôn gắn bó và có mặt trong mọi gia đình Việt. Điện thoài bàn ngày nay đã được cải tiến với ...", "", 18804, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(12630187,"Điện Thoại Huawei P30 Lite - Hàng Chính Hãng", 5490000,5490000, "https://salt.tikicdn.com/cache/200x280/ts/product/73/b7/30/3c99ffe7b0debc22f87f3025082021f6.jpg", "Thiết kế giọt nước - Màn hình 6.0 inchĐiện Thoại Huawei P30 Lite sẽ được trang bị một màn hình có kích thước 6.0 inch độ phân giải Full HD+. Bên cạnh đó, tương tự như P20 Lite, tấm nền màn hình trên...", "Xanh", 19788, 1795,"2022/04/01");
@@ -453,10 +442,10 @@ INSERT INTO SAN_PHAM VALUES(138891950,"Điện thoại Vivo Y51 (8GB/128GB) - H�
 INSERT INTO SAN_PHAM VALUES(136975373,"Điện Thoại Vivo Y21 4GB/64GB - Hàng Chính Hãng", 4290000,3772000, "https://salt.tikicdn.com/cache/200x280/ts/product/f4/c0/e1/d3a455d8c4a067fe3b900683e5140d71.jpg", "Điện Thoại Vivo Y21 4GB/64GB - Hàng Chính HãngBộ sản phẩm bao gồm: Thân máy, bộ sạc, cáp USB, dụng cụ lấy sim, sách hướng dẫn, ốp lưng điện thoại.Màn hình tràn viền, sắc nét- Được  trang bị màn hìn...", "Trắng Kim Cương", 52232, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(136220253,"Điện thoại Samsung Galaxy S21 5G (8GB/128GB) - Hàng chính hãng - Trắng", 20990000,13990000, "https://salt.tikicdn.com/cache/200x280/ts/product/90/f8/e1/d40eaad62279cde0618a545eba2b8d99.jpg", "Một siêu phẩm với diện mạo độc đáo, hiệu năng mạnh mẽ đến từ Samsung mang tên Galaxy S21 5G được ra mắt vào dịp đầu năm (01/2021) đang làm khuynh đảo cộng đồng người tiêu dùng bằng những thông số gần ...", "", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(137203873,"Điện thoại Vivo Y15s (3GB/32GB) - Hàng chính hãng", 3590000,3289000, "https://salt.tikicdn.com/cache/200x280/ts/product/ca/87/90/b244f634de866d7e1d812f6ddd05868b.jpg", "Với hướng đi tập trung vào phân khúc tầm trung giá rẻ của Vivo thì vừa đây hãng đã cho ra mắt dòng Vivo Y15s với nhiều đặc điểm nổi bật như camera kép, màn hình rộng, thiết kế sang trọng cùng nhiều đi...", "Xanh biển sâu", 52232, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(58616047,"Điện Thoại Samsung Galaxy Note 20 (8GB/256GB) - Hàng Chính Hãng", 23990000,14990000, "https://salt.tikicdn.com/cache/200x280/ts/product/d9/cf/9d/1641581b35b98f4837858b96db6cba56.jpg", "Galaxy Note 20 mẫu flagship được Samsung cho ra mắt vào giữa tháng 8/2020. Chiếc smartphone đã gây ấn tượng mạnh mẽ và được nhiều người trông chờ nhất đã xuất hiện hứa hẹn mang lại trải nghiệm ấn tượn...", "Xanh", 18802, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(58616047,"Điện Thoại Samsung Galaxy Note 20 (8GB/256GB) - Hàng Chính Hãng", 23990000,14990000, "https://salt.tikicdn.com/cache/200x280/ts/product/d9/cf/9d/1641581b35b98f4837858b96db6cba56.jpg", "Galaxy Note 20 mẫu flagship được Samsung cho ra mắt vào giữa tháng 8/2020. Chiếc smartphone đã gây ấn tượng mạnh mẽ và được nhiều người trông chờ nhất đã xuất hiện hứa hẹn mang lại trải nghiệm ấn tượn...", "Xanh", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(144870494,"Điện Thoại Oppo A16k 3GB/32GB - Hàng Chính Hãng", 3690000,3690000, "https://salt.tikicdn.com/cache/200x280/ts/product/6d/de/91/4c3b7fad29218bc8a17965859a86fd82.jpg", "Điện Thoại Oppo A16k 3GB/32GB - Hàng Chính HãngBộ sản phẩm bao gồm: Thân máy, sạc, cáp USB, dụng cụ lấy sim, vỏ bảo vệ, sách hướng dẫn. Màn hình tràn viền, sắc nét- Được trang bị màn hình kích thư...", "Xanh Thời Thượng", 25643, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(146262041,"Điện thoại Itel A26 (2GB/32GB) - Hàng chính hãng", 1990000,1990000, "https://salt.tikicdn.com/cache/200x280/ts/product/b2/58/45/dcab885944cc31fdb75c523e37e762ed.jpg", "Itel A26 được ra mắt vào ngày 22 tháng 9 năm 2021 sở hữu ngoại hình đẹp với cấu hình tốt với mức giá cực tốt, chạy trên hệ điều hành Android 10 (Go Edition) mượt mà.Ngoại hình được chau chuốt tinh tế...", "Tím", 111684, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(108202051,"ĐIỆN THOẠI SAMSUNG GALAXY A72 (8GB/256GB) - hàng chính hãng", 10575000,10575000, "https://salt.tikicdn.com/cache/200x280/ts/product/b6/70/fc/c2df6ed427e275fc3570aee6f7b3920a.jpg", "Thiết kế hiện đại, sang trọngĐiện thoại Samsung Galaxy A72 8GB/256GB  Hàng chính hãng thiết kế nguyên khối đơn giản, trang nhã. Mặt lưng nhựa nhám cao cấp bóng bẩy, sang trọng và bền đẹp. Kích thước ...", "", 18802, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(108202051,"ĐIỆN THOẠI SAMSUNG GALAXY A72 (8GB/256GB) - hàng chính hãng", 10575000,10575000, "https://salt.tikicdn.com/cache/200x280/ts/product/b6/70/fc/c2df6ed427e275fc3570aee6f7b3920a.jpg", "Thiết kế hiện đại, sang trọngĐiện thoại Samsung Galaxy A72 8GB/256GB  Hàng chính hãng thiết kế nguyên khối đơn giản, trang nhã. Mặt lưng nhựa nhám cao cấp bóng bẩy, sang trọng và bền đẹp. Kích thước ...", "", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(136383784,"Điện thoại Samsung Galaxy Z Flip3 5G (8GB/128GB) - Hàng chính hãng - ĐÃ KÍCH HOẠT BẢO HÀNH ĐIỆN TỬ", 24990000,21900000, "https://salt.tikicdn.com/cache/200x280/ts/product/cc/7a/3f/da4884678d63eb04e948fe31389a12cf.jpg", "Thiết kế hiện đại cùng màu sắc thời trangGalaxy Z Flip 3 sở hữu cơ cấu gập theo chiều dọc xịn sò, tạo ra chiếc smartphone khác biệt so với phần còn lại, có thể đóng lại gọn gàng khi không sử...", "Xanh Rêu", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(40350394,"Điện thoại di động GSM Vtel C2 - Hàng chính hãng", 199000,199000, "https://salt.tikicdn.com/cache/200x280/ts/product/ae/3b/04/dc24a99be01bd831309ef002e4e7f272.png", "Thiết kế nhỏ gọn, chắc chắn: Vtel C2 sở hữu thân hình nhỏ gọn giúp bạn dễ dàng cầm nắm máy trên tay và di chuyển một cách dễ dàng. Màn hình 1.77 inch: Màn hình của máy có kích thước 1.77 inch đ...", "Trắng Xám", 573293, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(125766378,"Điện Thoại Samsung Galaxy A03s (4GB/64GB) - Hàng Chính Hãng - Đã kích hoạt bảo hành điện tử", 3990000,3490000, "https://salt.tikicdn.com/cache/200x280/ts/product/a1/f3/28/87c148a66b7d52278e98542bc87b412b.jpg", "Khung Viền Mỏng Cho Trải Nghiệm Xem Tối Ưu- Sở hữu một kiểu dáng xinh xắn với viền màn hình khá mỏng, mặt lưng được phủ một lớp nhám cao cấp giúp hạn chế tối đa bám dấu vân tay khi sử dụng.- Màn h...", "Trắng", 18802, 1795,"2022/04/01");
@@ -484,7 +473,7 @@ INSERT INTO SAN_PHAM VALUES(152374952,"Điện Thoại POCO M4 Pro 5G 6GB l 128G
 INSERT INTO SAN_PHAM VALUES(113586143,"Điện thoại bàn Uniden AS7412-HÀNG CHÍNH HÃNG", 360000,360000, "https://salt.tikicdn.com/cache/200x280/ts/product/27/76/41/17908c69168b5c29edf1fc05bb602e85.jpeg", "- Điện thoại bàn MÀN HÌNH LCD- Lưu được 50 số gọi đến và 20 số gọi đi.- Chức năng gọi lại số vừa gọi.- Chức năng speaker-phone....", "Trắng", 216771, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(125755166,"Điện thoại Samsung Galaxy A52 (8GB/256GB) Trắng - Hàng chính hãng", 10290000,9590000, "https://salt.tikicdn.com/cache/200x280/ts/product/f7/3f/95/c8a08ece276c20b4b389b5cad64e4fd1.jpg", "Samsung cho ra mắt sản phẩm thuộc dòng Galaxy A mang tên Galaxy A52 (8GB/256GB). Sở hữu vi xử lý Snapdragon 720G mạnh mẽ bậc nhất, cụm 4 camera có độ phân giải lên đến 64 MP và một vẻ ngoài hiện đại, ...", "Trắng", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(143847698,"Điện thoại OPPO A95 (8GB/128GB) - Hàng chính hãng", 6990000,6990000, "https://salt.tikicdn.com/cache/200x280/ts/product/32/a5/bd/94109e3b18776582b99065ad0b191e83.jpg", "OPPO A95 4G, một chiếc điện thoại tầm trung tạo ấn tượng lớn tới người tiêu dùng bởi thiết kế mỏng nhẹ, sang trọng, màn hình lớn cùng bộ 3 camera chuyên nghiệp phía sau giúp bạn thoải mái làm việc, li...", "Bạc", 25643, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(31261844,"Điện Thoại Bàn Cố Định Không Dây Lắp Sim", 449000,449000, "https://salt.tikicdn.com/cache/200x280/ts/product/99/d4/77/5f13a5dbea28c014a47351b7a77d6402.jpg", "Điện thoại bànĐiện thoại cố định không dâyDòng cố định không dây lắp SIMLắp SIM cố định hoặc SIM di động đều đượcLắp tất cả các loại SIM của tất cả các thị trường hiện có Viettel, Vina, Mobi, Viet...", "", 19788, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(31261844,"Điện Thoại Bàn Cố Định Không Dây Lắp Sim", 449000,449000, "https://salt.tikicdn.com/cache/200x280/ts/product/99/d4/77/5f13a5dbea28c014a47351b7a77d6402.jpg", "Điện thoại bànĐiện thoại cố định không dâyDòng cố định không dây lắp SIMLắp SIM cố định hoặc SIM di động đều đượcLắp tất cả các loại SIM của tất cả các thị trường hiện có Viettel, Vina, Mobi, Viet...", "", 19788, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(128446446,"[GAMING PHONE] Điện thoại Redmagic 6R  12/256GB- Hỗ trợ Tiếng Việt | Chơi Game cực đỉnh | Snapdragon 888 5G | Màn hình AMOLED 6.67' |Pin 4200 mAh | Sạc nhanh 30W - Hàng Chính Hãng", 17990000,15990000, "https://salt.tikicdn.com/cache/200x280/ts/product/a3/fb/48/d0c71006e8f3059e551574fefce39f20.png", "RedMagic 6R: Smartphone chơi game mỏng nhất thế giớiSo với RedMagic 6, Nubia RedMagic 6R là phiên bản giá rẻ hơn. Tuy nhiên, điện thoại vẫn cung cấp khả năng chơi game tuyệt vời nhờ chip xử ...", "Bạc", 198543, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(108888574,"Điện thoại Nokia 110 4G - Hàng chính hãng", 739000,739000, "https://salt.tikicdn.com/cache/200x280/ts/product/5c/99/f2/8707396c60c5d6e2e6aabbe8a21f2472.png", "Nokia chính thức trình làng chiếc điện thoại Nokia 110 4G phiên bản nâng cấp của Nokia 110 2019 có điểm nhấn chính là công nghệ kết nối Internet 4G thỏa thích trải nghiệm mọi lúc, mọi nơi cùng với một...", "Vàng", 19673, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(140146799,"Điện thoại Samsung Galaxy A52s 5G (8GB/128GB) - Hàng chính hãng", 10990000,9119000, "https://salt.tikicdn.com/cache/200x280/ts/product/a9/35/1c/66d3120110474b56f7aad49a07246256.jpg", " được xem là phiên bản nâng cấp của  ra mắt trước đó, được thừa hưởng thiết kế đẹp mắt và nâng cấp về hiệu năng mạnh mẽ hơn.Thiết kế tinh xảo, bắt mắtNgoại hình  được kế nhiệm từ phiên bản đi trước ...", "Tím thần thái", 18802, 1795,"2022/04/01");
@@ -512,7 +501,7 @@ INSERT INTO SAN_PHAM VALUES(65091422,"Điện thoại Oukitel WP6 (Chống va đ
 INSERT INTO SAN_PHAM VALUES(127695547,"Điện thoại OPPO Find X3 Pro 5G (12GB/256GB) - Hàng chính hãng", 26990000,26990000, "https://salt.tikicdn.com/cache/200x280/ts/product/43/a8/36/f8bd71756749a8229a97464a5f4b9b55.jpg", "...", "xanh", 25643, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(144294851,"Điện Thoại Realme C11 4GB/64GB - Hàng Chính Hãng", 3790000,3409000, "https://salt.tikicdn.com/cache/200x280/ts/product/70/a0/27/3b6b0ac74b0e0593fffa1ab4d337dd6c.png", "Điện Thoại Realme C11 4GB/64GB - Hàng Chính HãngBộ sản phẩm bao gồm: Thân máy, sạc, cáp USB, dụng cụ lấy sim, sách hướng dẫn sử dụng. Thiết kế đẹp mắt, màu sắc ấn tượng- Realme C11 được trang bị m...", "Xanh Biển", 247549, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(125753243,"Điện thoại OPPO Reno4 Pro - Hàng chính hãng", 10490000,10490000, "https://salt.tikicdn.com/cache/200x280/ts/product/a2/8f/d8/c6f2dda85f12057a558d3d9b6069de43.jpg", "OPPO chính thức trình làng chiếc smartphone có tên OPPO Reno4 Pro. Máy trang bị cấu hình vô cùng cao cấp với vi xử lý chip Snapdragon 720G, bộ 4 camera đến 48 MP ấn tượng, cùng công nghệ sạc...", "Trắng", 25643, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(45339109,"Điện Thoại Samsung Galaxy A51 (6GB/128GB) - Hàng Chính Hãng", 8490000,5990000, "https://salt.tikicdn.com/cache/200x280/ts/product/9a/da/fd/c806910bc5a12d1c43a2e0932ff10732.jpg", "Bắt trọn đường nét mọi tuyệt tácĐiện Thoại Samsung Galaxy A51 (6GB/128GB) - Hàng Chính Hãng được thiết kế trẻ trung với màu sắc độc đáo, 4 camera sau chuyên nghiệp, Samsung Galaxy A51 sẵn sàng đột p...", "Đen", 18802, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(45339109,"Điện Thoại Samsung Galaxy A51 (6GB/128GB) - Hàng Chính Hãng", 8490000,5990000, "https://salt.tikicdn.com/cache/200x280/ts/product/9a/da/fd/c806910bc5a12d1c43a2e0932ff10732.jpg", "Bắt trọn đường nét mọi tuyệt tácĐiện Thoại Samsung Galaxy A51 (6GB/128GB) - Hàng Chính Hãng được thiết kế trẻ trung với màu sắc độc đáo, 4 camera sau chuyên nghiệp, Samsung Galaxy A51 sẵn sàng đột p...", "Đen", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(88740808,"Điện thoại bàn Uniden AS7101, có thể treo tường - HÀNG CHÍNH HÃNG", 220000,220000, "https://salt.tikicdn.com/cache/200x280/ts/product/5c/fc/84/bb9569d03ac9360a4c686d8af1c59a68.jpg", "+ Điện thoại bàn Uniden AS7101 - có thể treo tường tiện lợi, dùng được trong phòng tắm, nhà bếp,+ Phím bấm to, tiện lợi, dễ dàng sử dụng. Điện thoại AS7101 có thể sử dụng để thử đường  dây,+ Điều ch...", "", 216771, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(70839193,"ĐIỆN THOẠI TÂN CỔ ĐIỂN DT4  bàn phím quay , dùng cáp điện thoại cố định nghe gọi âm thanh rõ ràng (điện thoại bàn tân cổ điển)", 2100000,2100000, "https://salt.tikicdn.com/cache/200x280/ts/product/d5/3d/05/63247352b91a136c15cfd77dcf7cc686.JPG", "Kích thước : 26 x 18 x 21 cmChất liệu: Composite mạ đồngĐiện thoại dùng lắp như điện thoại bàn cho khách hàng lựa chọnHộp đóng mở bàn phím gọn gàng, chuông thanh bàn phím quay, nghe gọi rõ ràngKiểu Dá...", "", 111461, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(146364791,"Điện Thoại Nokia 105 4G - Hàng Chính Hãng", 710000,641000, "https://salt.tikicdn.com/cache/200x280/ts/product/46/41/f2/8192ead17e3a87e6825c2a05e606e2fe.jpg", "Điện Thoại Nokia 105 4G - Hàng Chính HãngBộ sản phẩm bao gồm: Thân máy, pin, sạc micro USB, tai nghe,sách hướng dẫn sử dụng.Thiết Kế Sang Trọng- Toàn thân của máy được hoàn thiện từ nhựa với lớp vỏ...", "Black/Đen", 19673, 1796,"2022/04/01");
@@ -523,7 +512,7 @@ INSERT INTO SAN_PHAM VALUES(136796629,"Điện thoại Vivo Y21 (4GB/64GB) - Hà
 INSERT INTO SAN_PHAM VALUES(118094940,"Điện thoại Panasonic KX-TS840MX -Hàng chính hãng", 630000,630000, "https://salt.tikicdn.com/cache/200x280/ts/product/86/0d/7d/a35170cf0a4d16b79afaba8f472eefba.jpg", "- Speakerphone 2 chiều- Điều chỉnh âm lượng chuông: High/Low/Off- Chức năng gọi lại số vừa gọi.- Chức năng khóa bàn phím.- Jack cắm tai nghe.- Chức năng hạn chế cuộc gọi- Điều chỉnh độ nghiêng 2 nấc.-...", "", 18804, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(125755115,"Điện thoại Vivo Y72 5G - Hàng chính hãng", 7990000,7690000, "https://salt.tikicdn.com/cache/200x280/ts/product/20/22/3f/88ec06e19a27210450a93bc62c8bfcbb.jpg", "Vivo Y72 5G mẫu smartphone 5G của Vivo, máy sở hữu một màn hình lớn, hiệu năng mạnh mẽ, cụm 3 camera sắc nét và thời lượng pin ấn tượng, máy đáp ứng tốt hầu hết nhu cầu sử dụng mà người dùng cần. Th...", "Xanh hồng", 52232, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(125755159,"Điện thoại Realme C25s - Hàng chính hãng", 4990000,4990000, "https://salt.tikicdn.com/cache/200x280/ts/product/e1/b9/6d/edec5114fc79f35518acd926313c7186.jpg", "Nối tiếp thành công của Realme C25, Realme đã cho ra mắt mẫu smartphone mang tên Realme C25s với nhiều tính năng vượt trội về camera, dung lượng pin, con chip mạnh mẽ và hơn hết là được bán ra với mức...", "Xanh Dương", 247549, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(52063654,"Điện Thoại Samsung Galaxy M21 (4GB/64GB) - Hàng Chính Hãng", 5990000,4990000, "https://salt.tikicdn.com/cache/200x280/ts/product/e9/4d/8c/7f3ca8af28dbf1281892c07f5c34dc25.jpg", "Thiết kế hiện đại, sang trọngĐiện Thoại Samsung Galaxy M21 (64GB/4GB) - Hàng Chính Hãng nổi bật với thiết kế 2.5D hiện đại cùng vẻ ngoài bóng bẩy, thời thượng của Galaxy M21. Thân máy được chế tác ho...", "Xanh", 18802, 1789,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(52063654,"Điện Thoại Samsung Galaxy M21 (4GB/64GB) - Hàng Chính Hãng", 5990000,4990000, "https://salt.tikicdn.com/cache/200x280/ts/product/e9/4d/8c/7f3ca8af28dbf1281892c07f5c34dc25.jpg", "Thiết kế hiện đại, sang trọngĐiện Thoại Samsung Galaxy M21 (64GB/4GB) - Hàng Chính Hãng nổi bật với thiết kế 2.5D hiện đại cùng vẻ ngoài bóng bẩy, thời thượng của Galaxy M21. Thân máy được chế tác ho...", "Xanh", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(140743889,"Điện thoại Vivo Y21s (4GB/128GB) - Hàng chính hãng", 5290000,4849000, "https://salt.tikicdn.com/cache/200x280/ts/product/bd/f7/a9/8b493a903194450eed4a7780134f1ac4.jpg", " đã gây ấn tượng với hàng loạt các ưu điểm nổi bật với ngoại hình hiện đại cùng chất lượng tốt. Cùng với đó là với mức giá hợp lý trong phân khúc,  hứa hẹn sẽ đồng hành cùng bạn trong mọi khoảnh khắc ...", "Trắng ngọc trai", 52232, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(140163114,"Điện thoại Oppo A55 (4GB/64GB) - Hàng chính hãng", 4990000,4559000, "https://salt.tikicdn.com/cache/200x280/ts/product/1f/e8/05/55dfe076f7972e4182da6ebea9e0e5a3.jpg", " là mẫu điện thoại tầm trung của thay thế cho người tiền nhiệm của mình là  với thiết kế trẻ trung, hiện đại, camera chụp ảnh ấn tượng, cấu hình ổn áp, dung lượng pin khủng… Tất cả sẽ đem đến những tr...", "Xanh thời thượng", 25643, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(91616179,"Điện Thoại Realme 8 (8GB/128GB) - Hàng Chính Hãng", 7290000,7290000, "https://salt.tikicdn.com/cache/200x280/ts/product/74/7c/ab/5c6f28808fe556329259746f9f5e12ce.jpg", "Điện thoại Realme 8 được ra mắt nằm trong phân khúc tầm trung, có thiết kế đẹp mắt đặc trưng của Realme, smartphone trang bị hiệu năng bên trong đầy mạnh mẽ và có dung lượng pin tương đối lớn.Lan tỏa...", "Bạc", 247549, 1795,"2022/04/01");
@@ -547,7 +536,7 @@ INSERT INTO SAN_PHAM VALUES(125755210,"Điện thoại Vivo V20 (2021) - Hàng c
 INSERT INTO SAN_PHAM VALUES(78527518,"Điện Thoại Phổ Thông Coolpad F212 màn hình 2.4 inch 2 SIM-Màu Xanh đen -Hàng Chính Hãng", 259000,259000, "https://salt.tikicdn.com/cache/200x280/ts/product/6a/66/8b/8e457c2bbdf64cd1260dc117d5018f8c.jpg", "Điện thoại Coolpad F212.Đặc điểm nổi bật của Coolpad F212.Chiếc điện thoại Coolpad F212 một sản phẩm mới của Coolpad ra mắt trong năm 2020 với thiết kế gọn nhẹ, dễ sử dụng. Thiết bị phù hợp với ngườ...", "Xanh đen", 50609, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(3560691,"Điện Thoại Suntek X68 - Hàng Chính Hãng", 599000,599000, "https://salt.tikicdn.com/cache/200x280/ts/product/84/27/48/0d80683d3a2f1be108007e29fd4931ff.jpg", "Thiết kế góc cạnh, cứng cápĐiện Thoại Suntek X68 - Hàng Chính Hãng theo cảm quan ban đầu là chiếc điện thoại góc cạnh, mang dáng vẻ cứng cáp, chắc chắn. Máy với 3 màu xanh đen, caffe đen, đen, Việc k...", "Cafe", 143976, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(139812836,"Điện thoại Nokia 215 4G - Hàng chính hãng", 839000,839000, "https://salt.tikicdn.com/cache/200x280/ts/product/cf/61/67/e60a94dccaba5940900bce10d9f62531.jpg", " Màn hình: QVGA 2.4' Hệ điều hành: Series 30+ Chipset: Unisoc UMS9117 Bộ nhớ trong: 128 + 64MB Hỗ trợ thẻ nhớ: 32G Camera sau: Không Cổng sạc: MicroUSB Dung lượng pin: 1150mAh Bộ sản phẩm gồm: thân m...", "Xanh lục bảo", 19673, 1796,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(112691045,"Điện Thoại Samsung Galaxy A22 LTE (6GB/128GB) - ĐÃ KÍCH HOẠT BẢO HÀNH ĐIỆN TỬ - Hàng Chính Hãng", 5890000,5489000, "https://salt.tikicdn.com/cache/200x280/ts/product/e7/7c/4d/599be030a53942a85e8e06f3701d8a71.jpg", "Samsung chào đón mùa hè 2021 bằng sự ra mắt của bộ đôi Galaxy A22 LTE và Galaxy A22 5G với nhiều thông số ấn tượng. Trong đó, Galaxy A22 sở hữu viên pin đầy năng suất, hiệu năng gaming mạnh mẽ và màn...", "Xanh", 18802, 2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(112691045,"Điện Thoại Samsung Galaxy A22 LTE (6GB/128GB) - ĐÃ KÍCH HOẠT BẢO HÀNH ĐIỆN TỬ - Hàng Chính Hãng", 5890000,5489000, "https://salt.tikicdn.com/cache/200x280/ts/product/e7/7c/4d/599be030a53942a85e8e06f3701d8a71.jpg", "Samsung chào đón mùa hè 2021 bằng sự ra mắt của bộ đôi Galaxy A22 LTE và Galaxy A22 5G với nhiều thông số ấn tượng. Trong đó, Galaxy A22 sở hữu viên pin đầy năng suất, hiệu năng gaming mạnh mẽ và màn...", "Xanh", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(150717022,"Điện Thoại Samsung Galaxy A72 (8GB/256GB) - ĐÃ KÍCH HOẠT BẢO HÀNH ĐIỆN TỬ - Hàng Chính Hãng", 11490000,9890000, "https://salt.tikicdn.com/cache/200x280/ts/product/7d/c5/3e/5f1b0ee48d031a0b642e1ab4d98219e4.jpg", "Sau sự thành công của Galaxy S21 series, Samsung tiếp tục tấn công phân khúc tầm trung với Galaxy A72 thuộc Galaxy A series, sở hữu nhiều màu sắc trẻ trung, hệ thống camera nhiều tính năng cũng như nâ...", "Xanh", 18802, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(149148398,"Điện thoại Xiaomi 11 Lite 5G NE - Hàng chính hãng", 9490000,9090000, "https://salt.tikicdn.com/cache/200x280/ts/product/79/bc/03/59ad3f6ec4c580e36f8601232c94b555.jpg", "Ngoài Xiaomi 11T thì Xiaomi vẫn còn tung ra mẫu Xiaomi 11 Lite 5G NE, máy mang một thiết kế mỏng nhẹ bậc nhất nhưng chứa đầy một hiệu năng mạnh mẽ khi sử dụng chip Snapdragon 778G, màn hình AMOLED cho...", "Hồng", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(132221911,"Điện Thoại Oppo Reno5 5G (8GB/128G) - Hàng Chính Hãng", 11990000,11990000, "https://salt.tikicdn.com/cache/200x280/ts/product/2b/dc/6d/3215031772b7202e3b48715cd73ccf47.jpg", "OPPO tiếp tục khẳng định thương hiệu khi tung OPPO Reno5 5G, chiếc điện thoại thông minh sở hữu những ưu điểm vượt trội từ vẻ bề ngoài sang trọng đến hiệu năng mạnh mẽ và dàn camera “xịn sò”.Thiết kế...", "Bạc", 25643, 1795,"2022/04/01");
@@ -586,7 +575,7 @@ INSERT INTO SAN_PHAM VALUES(142419452,"Điện thoại Xiaomi 11T (8G/128GB) - H
 INSERT INTO SAN_PHAM VALUES(39047200,"Điện thoại bàn cổ điển DT02", 1600000,1600000, "https://salt.tikicdn.com/cache/200x280/ts/product/d0/ac/a7/61d654400040974069ad89d4da10673a.jpg", "Điện thoại bàn cổ điển có các chi tiết được điêu khắc tinh xảo, kết hợp giữa màu nâu tự nhiên của gỗ & sơn màu đồng giả cổ tạo ấn tượng vô cùng đẹp mắt giúp không gian sống của bạn trở nên sang tr...", "", 111461, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(145370588,"Điện thoại Vivo V23e (8GB/128GB) - Hàng chính hãng", 8490000,7790000, "https://salt.tikicdn.com/cache/200x280/ts/product/0a/f8/4f/957cee51034bae752cbbab0ea1f32896.jpg", "Vivo V23e - sản phẩm tầm trung được đầu tư lớn về khả năng selfie cùng ngoại hình mỏng nhẹ, bên cạnh thiết kế vuông vức theo xu hướng hiện tại thì V23e còn có hiệu năng tốt và một viên pin có khả năng...", "Xanh hồng", 52232, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(9796817,"Điện Thoại THTphone A1", 279000,279000, "https://salt.tikicdn.com/cache/200x280/ts/product/06/1d/12/c4adbb561378e377bd3a0ddb37b1596d.jpg", "Bàn phím to rõ, ngôn ngữ tiếng việt dễ sử dụngNghe nhạc, và xem video với âm thanh 3D2 sim 2 sóngSạc pin cho máy khá...", "ĐEN", 222813, 1796,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(73655906,"Điện Thoại Xiaomi POCO X3 NFC (6GB/128GB) - Hàng Chính Hãng", 6990000,6990000, "https://salt.tikicdn.com/cache/200x280/ts/product/c5/d2/59/02c5d3e4c5ce3cffc7ca4fc55085e620.jpg", "Hệ thống camera đột phá, ấn tượngCụm 4 camera của POCO X3 được đặt phía trên ở giữa mặt lưng với cảm biến chính 64 MP hỗ trợ khả năng chụp đêm ấn tượng giúp lấy nét nhanh, giảm nhiễu và thu sáng tốt ...", "Xám", 25422, 2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(73655906,"Điện Thoại Xiaomi POCO X3 NFC (6GB/128GB) - Hàng Chính Hãng", 6990000,6990000, "https://salt.tikicdn.com/cache/200x280/ts/product/c5/d2/59/02c5d3e4c5ce3cffc7ca4fc55085e620.jpg", "Hệ thống camera đột phá, ấn tượngCụm 4 camera của POCO X3 được đặt phía trên ở giữa mặt lưng với cảm biến chính 64 MP hỗ trợ khả năng chụp đêm ấn tượng giúp lấy nét nhanh, giảm nhiễu và thu sáng tốt ...", "Xám", 25422, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(5193379,"Điện thoại THTphone A11", 299000,299000, "https://salt.tikicdn.com/cache/200x280/ts/product/89/a3/83/f605663bc56b0128968899bb3e4013fb.jpg", "Đèn pin siêu sáng, sạc dự phòng cho máy khácKiểu màn hình: Màn hình đơn sắcCamera sau 2MegapixelLoại thẻ nhớ tích hợp MicroSDTin nhắn SMSĐồng bộ hóa dữ liệu Bluetooth Wifi 802.11 b/g/nBluetooth...", "Đỏ", 222813, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(72744821,"Điện thoại để bàn tân cổ điển phím quay DT11", 3200000,2850000, "https://salt.tikicdn.com/cache/200x280/ts/product/12/39/65/31c2fa6c307d4090f6ffc0062e681e86.jpg", "Một chiếc điện thoại để bàn kiểu dáng tân cổ điển độc đáo, vừa sử dụng nghe gọi tốt lại vừa là đồ trang trí hiếm có khó tìm. Thật tiếc nếu anh chị bỏ qua sản phẩm tuyệt vời này ạ. Kích thước chi ti...", "", 111461, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(125755157,"Điện thoại Realme 8 Pro Vàng Rực Rỡ Vàng - Hàng chính hãng", 8690000,8690000, "https://salt.tikicdn.com/cache/200x280/ts/product/dc/01/76/715182fa80452e4b806516fc78cb4078.jpg", "Realme 8 Pro Vàng Rực Rỡ là sản phẩm được kết hợp giữa sức mạnh đáng ngưỡng mộ của Realme 8 Pro và màu vàng đầy sang trọng. Chiếc điện thoại hứa hẹn sẽ đem lại sự hài lòng đáng mong đợi cho người dùng...", "", 247549, 1795,"2022/04/01");
@@ -598,7 +587,6 @@ INSERT INTO SAN_PHAM VALUES(150735429,"Điện Thoại Chuyên Game Nubia Redmag
 INSERT INTO SAN_PHAM VALUES(52644706,"ĐIỆN THOẠI BÀN TÂN CỔ ĐIỂN ( NGHE GOI BẰNG DÂY LINE)", 1999000,1999000, "https://salt.tikicdn.com/cache/200x280/ts/product/a3/86/b3/9e2da1aa64a46607087291d1183bc73b.JPG", "MẪU ĐIỆN THOẠI BÀN DÙNG DÂY LINE NGHE GỌI Điện thoại bàn Giả CổSản phẩm mang phong cách cổ điển Nghe gọi như điện Thoại Di Động,Chức năng– Kiểu quay số của Máy điện thoại giả cổ ODEAN CY- Bấ...", "", 111461, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(70858342,"Điện thoại để bàn tân cổ điển mạ vàng titan DT13", 2500000,1950000, "https://salt.tikicdn.com/cache/200x280/ts/product/47/a6/7f/7addb82093961d8a81b7ad2642265b74.PNG", "Một chiếc điện thoại để bàn kiểu dáng tân cổ điển độc đáo, vừa sử dụng nghe gọi tốt lại vừa là đồ trang trí hiếm có khó tìm. Thật tiếc nếu anh chị bỏ qua sản phẩm tuyệt vời này ạ.  Kích thước chi ...", "dùng dây", 111461, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(52481412,"Điện thoại bàn cổ điển, điện thoại bàn tân cổ điển, DT122", 2200000,2200000, "https://salt.tikicdn.com/cache/200x280/ts/product/f3/62/7f/eb25b494606019df0caf177c893fdcf5.jpg", "Điện thoại bàn cổ điển có các chi tiết được điêu khắc tinh xảo, kết hợp giữa đồng và gỗ tự nhiên theo phong cách cổ điển, rất ấn tượng và vô cùng đẹp mắt giúp không gian sống của bạn trở nên sang trọn...", "", 111461, 8061,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(116583246,"Bộ Combo Sản Phẩm Máy Hát Loa Kèn + Điện Thoại Bàn Cổ Điển Tay Quay", 6800000,6300000, "https://salt.tikicdn.com/cache/200x280/ts/product/5e/5d/91/45d228762ed0b812e02b40c60e67139e.jpg", " Bộ Combo Sản Phẩm Máy Hát Loa Kèn (Vàng Đen) + Điện Thoại Bàn Cổ Điển Tay Quay  Điện Thoại Bàn Cổ Điển Mẫu Tay QuayMẫu điện Thoại Cổ Điển Điện thoại bàn cổ điển có các chi tiết được điêu k...", "Vàng Nâu", 111461, 1789,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(131144991,"Điện thoại IP Yealink W60P cầm tay - Hàng chính hãng", 3100000,3100000, "https://salt.tikicdn.com/cache/200x280/ts/product/0f/a9/00/a35d52dccd6b000955713ac9f9155946.jpg", "Yealink W60P thuộc hệ thống điện thoại không dây SIP hiệu suất cao của thương hiệu Yealink. Đây được xem là giải pháp lý tưởng dành cho các doanh nghiệp vừa và nhỏ. Điện thoại IP DECT này không chỉ hỗ...", "", 472079, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(68842354,"ĐIỆN THOẠI BÀN TÂN CỔ ĐIỂN PHÍM QUAY DÙNG NHƯ ĐIỆN THOẠI DI ĐỘNG (DD2)", 3200000,2700000, "https://salt.tikicdn.com/cache/200x280/ts/product/dd/8d/4a/fb4933bf0f3f1f7846903a78b085c104.jpg", "MẪU ĐIỆN THOẠI BÀN TÂN CỔ ĐIỂN PHÍM QUAY LẮP SIM DI ĐỘNG (DÙNG NHƯ MÁY DI ĐỘNG)Điện thoại bàn cổ điển có các chi tiết được điêu khắc tinh xảo, kết hợp giữa màu nâu tự nhiên sơn màu đồng giả cổ tạo ấ...", "", 111461, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(83472273,"Điện thoại bàn cổ điển, điện thoại bàn tân cổ điển DT77", 2400000,2400000, "https://salt.tikicdn.com/cache/200x280/ts/product/8f/8e/2d/565e7b1d44cbe47849219e27097fbbca.gif", "Với chiếc Điện thoại bàn cổ điển này, bạn có thể nghe gọi như một máy cố định thông thường, thực hiện đầy đủ chức năng đàm thoại và các tiện ích cá nhân khác.Chất liệu Gỗ kết hợp với Đồng và các chi t...", "", 111461, 8061,"2022/04/01");
@@ -620,7 +608,6 @@ INSERT INTO SAN_PHAM VALUES(130841391,"Điện thoại bàn cổ điển, bản 
 INSERT INTO SAN_PHAM VALUES(81647765,"ĐIỆN THOẠI BÀN TÂN CỔ ĐIỂN PHÍM QUAY DÙNG NHƯ ĐIỆN THOẠI DI ĐỘNG", 2800000,2600000, "https://salt.tikicdn.com/cache/200x280/ts/product/37/f0/31/1d0daca2eea50920eb33a50c88992b5d.jpg", "       ---------------------------------------------------------------------------   ...", "", 111461, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(129356132,"Điện thoại bàn IP Yealink SIP-T30 - Hàng chính hãng", 1000000,1000000, "https://salt.tikicdn.com/cache/200x280/ts/product/9f/15/0d/59a1fd284d0c10ce20679fcfc1286899.png", "Điện thoại bàn IP YEALINK SIP-T30 là dòng điện thoại được trang bị một số công nghệ mới vượt trội hơn dòng cũ.SIP-T30 là dòng điện thoại thông dụng dành cho người dùng khối doanh nghiệp. T30 được thiế...", "", 472079, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(59238806,"ĐIỆN THOẠI BÀN TÂN CỔ ĐIỂN - NGHE GỌI DÂY LINE  MẪU SIÊU ĐẸP", 3950000,3600000, "https://salt.tikicdn.com/cache/200x280/ts/product/4e/ce/b4/dadfb2af41765c46f447110c867a9b59.jpg", "THÔNG SỐ ĐIỆN THOẠI BÀN TÂN CỔ ĐIỂNĐiện thoại bàn cổ điển có các chi tiết được điêu khắc tinh xảo, kết hợp giữa đồng và kim loại theo phong cách cổ điển, rất ấn tượng và vô cùng đẹp mắt giúp không ...", "", 111461, 8061,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(116583413,"Bộ Combo Sản Phẩm Máy Hát Loa Kèn + Điện Thoại Bàn Dùng Sim Di Động", 5999000,5700000, "https://salt.tikicdn.com/cache/200x280/ts/product/6f/28/de/94ac93a5812bc47e86a4c54e742dca5b.jpg", "Bộ Đôi Sản Phẩm Máy Hát Loa Kèn + Điện Thoại bàn Dùng Sim Di ĐộngMẫu Máy Phát nhạc Loa kèn được thiết kế cực kỳ tinh xảo với chất liệu đế bằng Gỗ Sồi Sơn Màu Đen + Loa bằng kèn đồngCHỨC NĂNG: Máy...", "Vàng Nâu", 111461, 1789,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(52326343,"Cisco Unified IP Phone CP-7821-K9 - Hàng chính hãng", 2580000,2580000, "https://salt.tikicdn.com/cache/200x280/ts/product/79/f7/cd/12024318baca5d87352e48b649bda7fd.jpg", "Thông số kỹ thuật Cisco VoIP phone CP-7821-K9Two-lines deliver more efficient call handling.High-resolution graphical grayscale display makes viewing easier.Dedicated fixed keys (Includes messagi...", "", 65095, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(117347869,"ĐIỆN THOẠI HỘI NGHỊ YEALINK CP960 -HÀNG CHÍNH HÃNG", 15230000,15230000, "https://salt.tikicdn.com/cache/200x280/ts/product/b9/77/a7/bbdbf4268b53d0db9e5cea42e52272a2.jpg", "       ĐIỆN THOẠI HỘI NGHỊ YEALINK CP960   CHẤT LƯỢNG ÂM THANH TRUNG THỰC VÀ MẠNH MẼ   THU ÂM ĐA HƯỚNG VỚI KHOẢNG CÁCH RỘNG   ● Với khả năng thu âm đa hướng(3600) với khoảng cách lên đến 6m, Ye...", "", 472079, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(68840521,"MẪU ĐIỆN THOẠI BÀN TÂN CỔ ĐIỂN  PHÍM DÙNG QUAY TAY (NGHE GỌI  DÙNG SIM DI ĐỘNG)", 6800000,3900000, "https://salt.tikicdn.com/cache/200x280/ts/product/33/ad/1a/0a8d45f53d0dd0ff9c55c457324f516f.jpg", "LƯU Ý: đây là mẫu điện thoại dùng sim DI ĐỘNG nên khi nhận máy khách hàng lắp sim xong tắt nguồn khởi động lại là sử dụng được)ĐẾ GỖ - CHUÔNG BẰNG ĐỒNGPHÍM QUAY TAY NGHE GỌI BẰNG SIM DI ĐỘNG...", "", 111461, 8061,"2022/04/01");
@@ -649,8 +636,8 @@ INSERT INTO SAN_PHAM VALUES(11487786,"Điện thoại bàn UNIDEN AS-7413 - Hàn
 INSERT INTO SAN_PHAM VALUES(16521748,"Điện thoại để bàn Panasonic KX-TS880 hàng chính hãng", 950000,950000, "https://salt.tikicdn.com/cache/200x280/ts/product/66/f6/8c/d27276cd9a9849356dc5382f03a18972.jpg", " Được thiết kế đơn giản, thanh thoát nhưng rất sang trọng. Với nhiều màu sắc khác nhau, thiết bị cho bạn có thể lựa chọn màu sắc phù hợp với căn phòng của mình. Panasonic KX- TS840 thích hợp dùng tron...", "", 18804, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(94453667,"Điện thoại VoIP Yealink SIP-T30", 1050000,1050000, "https://salt.tikicdn.com/cache/200x280/ts/product/22/22/42/f2e510e7d7949b4a3d0cc0e73ef8e952.jpg", "Điện thoại VoIP Yealink SIP-T30 là dòng điện thoại thay thế cho các dòng T19 cũ. Điện thoại thoại được trang bị một số công nghệ mới vượt trội hơn dòng cũ.SIP-T30 là dòng điện thoại thông dụng dành c...", "", 472079, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(48612183,"Điện thoại bàn Tân Cổ Điển 217", 1800000,1800000, "https://salt.tikicdn.com/cache/200x280/ts/product/77/bd/87/f3c7dc6ceaf1e0a1bbdebe9d121b09bf.jpg", "Điện thoại có độ bền cao vừa dùng để trang trí, vừa để thay thế điện thoại bàn, thích hợp bày ở nhà hoặc tặng quà sinh nhật, tân gia,Điện thoại có màu trắng kết hợp với các họa tiết nổi màu vàng Điệ...", "", 111461, 8061,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(125739974,"Điện Thoại Masstel Fami 9 - Hàng Chính Hãng", 0,350000, "https://salt.tikicdn.com/cache/200x280/ts/product/23/e2/5a/2df31ea78b9ca5361cf764f9745644c9.png", " Masstel FAMI 9Thiết kế đơn giản tập trung hiệu năng    Thiết Kế Thân Thiện, Thuận Tiện Mang Theo Bàn Phím Số To, Sử Dụng Đơn Giản Tính Năng ...", "", 112638,2,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(125578112,"Điện Thoại Samsung Galaxy Note 9 (128GB/6GB) - Hàng Nhập Khẩu", 0,9490000, "https://salt.tikicdn.com/cache/200x280/ts/product/ad/64/c0/1c7c52911de57de6609c6f4cf782314b.jpg", "Samsung Galaxy Note 9 128GB hiện có 5 màu : Vàng Đồng , Bạc titan , Xanh , Tím , Đen  Đánh giá chi tiết Samsung Galaxy Note 9 128GBSamsung Note 9 là chiếc điện thoại hoàn hảo nhất hiện nay với tất...", "", 18802,2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(125739974,"Điện Thoại Masstel Fami 9 - Hàng Chính Hãng", 0,350000, "https://salt.tikicdn.com/cache/200x280/ts/product/23/e2/5a/2df31ea78b9ca5361cf764f9745644c9.png", " Masstel FAMI 9Thiết kế đơn giản tập trung hiệu năng    Thiết Kế Thân Thiện, Thuận Tiện Mang Theo Bàn Phím Số To, Sử Dụng Đơn Giản Tính Năng ...", "", 112638,1796,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(125578112,"Điện Thoại Samsung Galaxy Note 9 (128GB/6GB) - Hàng Nhập Khẩu", 0,9490000, "https://salt.tikicdn.com/cache/200x280/ts/product/ad/64/c0/1c7c52911de57de6609c6f4cf782314b.jpg", "Samsung Galaxy Note 9 128GB hiện có 5 màu : Vàng Đồng , Bạc titan , Xanh , Tím , Đen  Đánh giá chi tiết Samsung Galaxy Note 9 128GBSamsung Note 9 là chiếc điện thoại hoàn hảo nhất hiện nay với tất...", "", 18802,1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(72194096,"Điện thoại để bàn tân cổ điển phím quay DT15", 3800000,3550000, "https://salt.tikicdn.com/cache/200x280/ts/product/25/05/71/25b191338a8a33437f3b634fd8f8ffe5.jpg", "Một chiếc điện thoại để bàn kiểu dáng tân cổ điển độc đáo, vừa sử dụng nghe gọi tốt lại vừa là đồ trang trí hiếm có khó tìm. Thật tiếc nếu anh chị bỏ qua sản phẩm tuyệt vời này ạ.  Kích thước chi ...", "", 111461, 8061,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(153581568,"Điện thoại Masstel IZI 55 4G - Hàng chính hãng", 649000,649000, "https://salt.tikicdn.com/cache/200x280/ts/product/93/b1/8a/b62de4a360a4ec518dba224c834fd57d.jpg", "       Masstel trình làng Masstel IZI 55 mẫu điện thoại phổ thông hỗ trợ 4G VoLTE thuộc series IZI, sở hữu thiết kế thân thiện, chip xử lý Unisoc, thời lượng pin ấn tượng và nhiều tính năng tiện í...", "Rose Gold", 112638, 1796,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(153581573,"Điện thoại Masstel IZI 50 4G - Hàng chính hãng", 549000,549000, "https://salt.tikicdn.com/cache/200x280/ts/product/7e/24/c2/21bb5efbf1c1ca05ad7fdc88cfd87c89.jpg", "       Thiết kế   Izi 50 thiết kế với khung viên kim loại sang trọng và chất liệu vỏ nhựa PC cứng cáp   Màn hình 2.4inch với giao diện thân thiện, cỡ chữ to rõ ràng.   Bàn phím chữ số lớn dễ sử...", "Xanh dương", 112638, 1796,"2022/04/01");
@@ -659,15 +646,14 @@ INSERT INTO SAN_PHAM VALUES(147426086,"Điện thoại Realme C21y 3-32GB xanh c
 INSERT INTO SAN_PHAM VALUES(147426081,"Điện thoại Realme C21y 3-32GB đen caro - Hàng Chính Hãng", 4390000,4390000, "https://salt.tikicdn.com/cache/200x280/ts/product/b1/dc/01/cd25bec2b8027eba05238616a127d56d.jpg", "THÔNG SỐ KỸ THUẬT:- MÀN HÌNHCông nghệ màn hình: IPS LCDĐộ phân giải: HD+ (720 x 1600 Pixels)Màn hình rộng: 6.5' - Tần số quét 60 HzĐộ sáng tối đa: 420 nitsMặt kính cảm ứng: Kính cường lực- CA...", "", 247549, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(141087694,"Điện thoại Nokia 105 4G - Hàng chính hãng", 710000,710000, "https://salt.tikicdn.com/cache/200x280/ts/product/11/3c/54/5d7e6d25668122006264c834a90b787d.jpg", "Màn hình: TFT LCD 1.8' Danh bạ: 2000 sốRadio FM: FM không cần tai ngheJack cắm tai nghe: 3.5 mmMạng di động: Hỗ trợ 4GGiao diện trực quan, dễ sử dụngBàn phím rời với độ đàn hồi tốtCổng kết nô...", "Xanh dương", 19673, 1796,"2022/04/01");
 
-INSERT INTO SAN_PHAM VALUES(125590736,"Điện Thoại Samsung Galaxy S9 PLUS - Hàng Nhập Khẩu", 0,7390000, "https://salt.tikicdn.com/cache/200x280/ts/product/37/1c/1c/e78c82bdfe0cb1d54beab6eff340997d.jpg", "Samsung Galaxy S9 PLus hiện có 4 màu : Tím , Xanh , Đen , Đỏ .Đánh giá chi tiết Samsung Galaxy S9+Thế hệ điện thoại Samsung Galaxy S tiếp tục được Samsung nâng lên một tầm cao mới. Với Samsung S9+, ...", "", 18802,2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(125590736,"Điện Thoại Samsung Galaxy S9 PLUS - Hàng Nhập Khẩu", 0,7390000, "https://salt.tikicdn.com/cache/200x280/ts/product/37/1c/1c/e78c82bdfe0cb1d54beab6eff340997d.jpg", "Samsung Galaxy S9 PLus hiện có 4 màu : Tím , Xanh , Đen , Đỏ .Đánh giá chi tiết Samsung Galaxy S9+Thế hệ điện thoại Samsung Galaxy S tiếp tục được Samsung nâng lên một tầm cao mới. Với Samsung S9+, ...", "", 18802,1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(145751598,"Điện thoại di động Vivo Y21s (6+128GB) trắng - Hàng Chính Hãng", 5299000,5299000, "https://salt.tikicdn.com/cache/200x280/ts/product/3b/ff/85/1b2585b8f8c9b16f793b9fcaf5a851fb.jpg", "THÔNG TIN CHI TIẾT:- Vivo chính thức tung ra chiếc điện thoại Vivo Y21s với hàng loạt các ưu điểm nổi bật, không chỉ ngoại hình bên ngoài mà cả sức mạnh bên trong. Đặc biệt, chiếc smartphone này còn ...", "", 52232, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(5868813,"Điện Thoại Bphone 3 - Hàng Chính Hãng", 6990000,6990000, "https://salt.tikicdn.com/cache/200x280/ts/product/db/0f/00/dc873d08e25d59ea9abcc0d1638295d0.jpg", "Thiết kế đỉnh caoĐiện Thoại Bphone 3 - Hàng Chính Hãng là smartphone android đầu tiên có thiết kế Tràn đáy với viền đều hai bên và đáy rất mỏng, chỉ 2.25mm, mỏng nhất hiện nay. Bphone 3 cho cảm giác ...", "Trắng", 229213, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(712616,"Điện Thoại Suntek Nomu U3W - Hàng Chính Hãng", 2750000,2750000, "https://salt.tikicdn.com/cache/200x280/media/catalog/product/v/j/vjq1394542482.u2769.d20170710.t104609.476009_2.jpg", "Thiết kế chắc chắn, siêu bền Điện Thoại Suntek Nomu U3W - Hàng Chính Hãng được thiết kế từ chất liệu cao su và nhựa cứng cáp, siêu bền. Sản phẩm có khả năng chịu được sự va đập và chống lại những điề...", "Cam - Đen", 143976, 1796,"2022/04/01");
 
 INSERT INTO SAN_PHAM VALUES(145867932,"Điện thoại Vivo Y15s (3+32GB) trắng xanh - Hàng Chính Hãng", 3690000,3690000, "https://salt.tikicdn.com/cache/200x280/ts/product/3c/6a/3c/4863a877ef3c492e5842b0aaa8dd505a.png", "Điện Thoại Vivo Y15S RAM 3GB + 32 GB - Bảo Hành Chính Hãng THÔNG SỐ KỸ THUẬT:- RAM: 3GB- Dung lượng lưu trữ: 32GB- Dung lượng pin: 5000mAh- Số khe SIM: Hai SIM hai sóng (DSDS)- Tiện ích bảo mật...", "", 52232, 1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(145907337,"Điện thoại di động Vivo Y21s (4+128GB) trắng - Hàng Chính Hãng", 4699000,4699000, "https://salt.tikicdn.com/cache/200x280/ts/product/3b/ff/85/2e2c065e400dc0c4a66642563315fdaf.jpg", "THÔNG SỐ KỸ THUẬT:- Hệ điều hành: Funtouch OS 11.1 (Tùy biến trên Android 11)- Chipset: Mediatek Helio G80- RAM: 4GB- Bộ nhớ trong: 128GB- Cảm ứng: Cảm ứng điện dung đa điểm- Loại màn hình:  LCD...", "", 52232, 1795,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(58245791,"Máy Tính Bảng Kindle Fire HD10(9th) 32GB (2019) - Hàng Nhập Khẩu - Balck", 3150000,3150000, "https://salt.tikicdn.com/cache/200x280/ts/product/c1/09/a6/d5d4cf143c7e8b7faffaf937f3f003df.jpg", "Thiết kế không trọng lượngMáy Đọc Sách Kindle Fire HD 10 vỏ ngoài được làm từ nhựa, tạo cảm giác thoải mái khi cầm trên tay, mang đến cho bạn trải nghiệm bất ngờ khi lần đầu tiên cầm máy trên tay khi...", "", 17856, 1789,"2022/04/01");
-INSERT INTO SAN_PHAM VALUES(125590763,"Điện Thoại Samsung Galaxy S9 - Hàng Nhập Khẩu", 0,7490000, "https://salt.tikicdn.com/cache/200x280/ts/product/ed/1b/40/e0b149a71541aec7097119b2064f1565.jpg", "Siêu phẩm Samsung Galaxy S9 chính thức ra mắt mang theo hàng loạt cải tiến, tính năng cao cấp như camera thay đổi khẩu độ, quay phim siêu chậm 960 fps, AR E nhanh chóng gây sốt làng công nghệ.Thiết kế...", "", 18802,2,"2022/04/01");
+INSERT INTO SAN_PHAM VALUES(125590763,"Điện Thoại Samsung Galaxy S9 - Hàng Nhập Khẩu", 0,7490000, "https://salt.tikicdn.com/cache/200x280/ts/product/ed/1b/40/e0b149a71541aec7097119b2064f1565.jpg", "Siêu phẩm Samsung Galaxy S9 chính thức ra mắt mang theo hàng loạt cải tiến, tính năng cao cấp như camera thay đổi khẩu độ, quay phim siêu chậm 960 fps, AR E nhanh chóng gây sốt làng công nghệ.Thiết kế...", "", 18802,1795,"2022/04/01");
 INSERT INTO SAN_PHAM VALUES(145751360,"Điện thoại di động Vivo Y21s (6+128GB) xanh - Hàng Chính Hãng", 5299000,5299000, "https://salt.tikicdn.com/cache/200x280/ts/product/5a/60/3c/f731fb2dffc335a638030540b7afb32f.jpg", "THÔNG TIN CHI TIẾT:Vivo chính thức tung ra chiếc điện thoại Vivo Y21s với hàng loạt các ưu điểm nổi bật, không chỉ ngoại hình bên ngoài mà cả sức mạnh bên trong. Đặc biệt, chiếc smartphone này còn sở...", "", 52232, 1795,"2022/04/01");
 
 INSERT INTO SAN_PHAM VALUES(145905253,"Điện thoại di động Vivo Y21s (4+128GB) xanh - Hàng Chính Hãng", 4699000,4699000, "https://salt.tikicdn.com/cache/200x280/ts/product/35/1f/d0/5d059d4552de05fe98b8d698f2bb57ee.jpg", "THÔNG SỐ KỸ THUẬT:- Hệ điều hành: Funtouch OS 11.1 (Tùy biến trên Android 11)- Chipset: Mediatek Helio G80- RAM: 4GB- Bộ nhớ trong: 128GB- Cảm ứng: Cảm ứng điện dung đa điểm- Loại màn hình:  LCD...", "", 52232, 1795,"2022/04/01");
@@ -676,7 +662,9 @@ INSERT INTO SAN_PHAM VALUES(7357967,"Điện Thoại M-Power A18Mini - Hàng Ch�
 INSERT INTO SAN_PHAM VALUES(152880374,"Điện thoại thông minh Bphone A40, nhiếp ảnh điện toán, 2 sim, bảo mật – Hàng chính hãng", 4490000,4490000, "https://salt.tikicdn.com/cache/200x280/ts/product/1a/16/8d/88714337ac51aeaacea2650add811324.png", "Nâng tầm nhiếp ảnh điện toán Trí tuệ nhân tạo AI cùng các sáng tạo công nghệ nhiếp ảnh điện toán nổi bật: sMacro, sCorrection, sMoment, sNight nâng cấp khả năng chụp ảnh vượt xa giới hạn phần cứng c...", "", 229213, 1795,"2022/04/01");
 
 
+
 -- Insert hinh_anh table ----
+
 INSERT INTO HINH_ANH VALUES(123547395,"https://salt.tikicdn.com/cache/w300/ts/product/ea/f0/31/53c13846f5ecb0fdccc671c40e893076.jpg");
 INSERT INTO HINH_ANH VALUES(99376042,"https://salt.tikicdn.com/cache/w300/ts/product/38/0f/76/3377a65a5e426e395b9984e275886353.jpg");
 INSERT INTO HINH_ANH VALUES(99376042,"https://salt.tikicdn.com/cache/w300/ts/product/ad/b3/91/d2c101d7c2b6e77e0b391fbb5041d1ca.jpg");
@@ -731,14 +719,7 @@ INSERT INTO HINH_ANH VALUES(123345348,"https://salt.tikicdn.com/cache/w300/media
 INSERT INTO HINH_ANH VALUES(123345348,"https://salt.tikicdn.com/cache/w300/media/catalog/producttmp/c4/a7/92/24a45f751507d276fbdca84524c43c70.jpg");
 INSERT INTO HINH_ANH VALUES(138914723,"https://salt.tikicdn.com/cache/w300/ts/product/74/58/59/17e2b2233717d5a82e7a17464f0947d1.jpg");
 INSERT INTO HINH_ANH VALUES(138914723,"https://salt.tikicdn.com/cache/w300/ts/product/e2/ed/2d/81385aa76b59884135ff89c8affd13ed.png");
-INSERT INTO HINH_ANH VALUES(103168071,"https://salt.tikicdn.com/cache/w300/ts/product/db/6c/6d/656872c0e24cf16bb6dd85b3bf68c476.jpg");
-INSERT INTO HINH_ANH VALUES(103168071,"https://salt.tikicdn.com/cache/w300/ts/product/84/2a/4e/54c148aebb38509227c413a0ba9a8685.png");
-INSERT INTO HINH_ANH VALUES(103168071,"https://salt.tikicdn.com/cache/w300/ts/product/21/7c/5c/d14319edaaa9a39abdf69f6775e6f1d4.jpg");
-INSERT INTO HINH_ANH VALUES(103168071,"https://salt.tikicdn.com/cache/w300/ts/product/24/26/e0/8c40c80d79be274e8c5c0d83ef0015e6.jpg");
-INSERT INTO HINH_ANH VALUES(103168071,"https://salt.tikicdn.com/cache/w300/ts/product/2c/99/ee/36d4baeb47b8b5662f94cb8a18f472ef.jpg");
-INSERT INTO HINH_ANH VALUES(103168071,"https://salt.tikicdn.com/cache/w300/ts/product/7a/09/86/8d6982ed8fd4b5fb43b2f7995598cc4e.jpg");
-INSERT INTO HINH_ANH VALUES(103168071,"https://salt.tikicdn.com/cache/w300/ts/product/7a/09/86/ba1965bee0f1600c2a31da624cbd0a16.jpg");
-INSERT INTO HINH_ANH VALUES(103168071,"https://salt.tikicdn.com/cache/w300/ts/product/d9/35/3c/39634c366f85f9d93210591b31c4ee2c.jpg");
+
 INSERT INTO HINH_ANH VALUES(123554520,"https://salt.tikicdn.com/cache/w300/ts/product/f8/57/9c/e6e7f0bdc7411c356e2ee61159e9262c.jpg");
 INSERT INTO HINH_ANH VALUES(121790468,"https://salt.tikicdn.com/cache/w300/media/catalog/producttmp/3f/ae/c5/d86558e8a92410feed1194e72636c2ad.jpg");
 INSERT INTO HINH_ANH VALUES(121790468,"https://salt.tikicdn.com/cache/w300/media/catalog/producttmp/09/17/7c/6e7ba32534d75672cbe9e99011524d42.jpg");
@@ -842,7 +823,7 @@ INSERT INTO HINH_ANH VALUES(74935377,"https://salt.tikicdn.com/cache/w300/ts/pro
 INSERT INTO HINH_ANH VALUES(74935377,"https://salt.tikicdn.com/cache/w300/ts/product/b6/ac/58/a781e8737a2409136f50428085437da7.jpg");
 INSERT INTO HINH_ANH VALUES(74935377,"https://salt.tikicdn.com/cache/w300/ts/product/3f/3d/9b/72f83e19fec4d06011b8564adf015526.jpg");
 INSERT INTO HINH_ANH VALUES(74935377,"https://salt.tikicdn.com/cache/w300/ts/product/cb/81/e6/423f7899c96c4ab0de4dc6fc1ac8ef9a.jpg");
-INSERT INTO HINH_ANH VALUES(40639597,"https://salt.tikicdn.com/cache/w300/ts/product/09/43/67/0fad375f1bee9b1597256a326059e8bc.jpg");
+
 INSERT INTO HINH_ANH VALUES(115765556,"https://salt.tikicdn.com/cache/w300/ts/product/24/75/08/e5894d550747f9acdd8ea10beb1af4fc.jpg");
 INSERT INTO HINH_ANH VALUES(115765556,"https://salt.tikicdn.com/cache/w300/ts/product/42/6a/d3/09185ef16666ed7c80f965f1d1452851.jpg");
 INSERT INTO HINH_ANH VALUES(115765556,"https://salt.tikicdn.com/cache/w300/media/catalog/producttmp/fd/4c/c0/a12d1d14337eab5813389aaf82735c1b.jpg");
@@ -863,8 +844,7 @@ INSERT INTO HINH_ANH VALUES(130744724,"https://salt.tikicdn.com/cache/w300/ts/pr
 INSERT INTO HINH_ANH VALUES(130744724,"https://salt.tikicdn.com/cache/w300/ts/product/a3/cf/22/b955f43130ae210873ee98e3f742985b.jpg");
 INSERT INTO HINH_ANH VALUES(32033717,"https://salt.tikicdn.com/cache/w300/ts/product/84/3d/55/7bb112f36cd07f712d461e386e74e3d5.jpg");
 INSERT INTO HINH_ANH VALUES(142545270,"https://salt.tikicdn.com/cache/w300/ts/product/63/7c/04/bd4065a80679723ad0a784bd8eaa578c.jpg");
-INSERT INTO HINH_ANH VALUES(6597807,"https://salt.tikicdn.com/cache/w300/ts/product/dc/39/ea/c1babbb53d968c38b0e5a528ea9548af.jpg");
-INSERT INTO HINH_ANH VALUES(6597807,"https://salt.tikicdn.com/cache/w300/ts/product/3e/ca/e6/7a4a655c68b628ecef6fbed54dddf759.jpg");
+
 INSERT INTO HINH_ANH VALUES(57809866,"https://salt.tikicdn.com/cache/w300/ts/product/d7/d3/86/92970c20cd8d10f281f079dba08b3d6b.jpg");
 INSERT INTO HINH_ANH VALUES(57809866,"https://salt.tikicdn.com/cache/w300/ts/product/3c/96/5b/432d7d1183d09e75fdf730f45ab10708.jpg");
 INSERT INTO HINH_ANH VALUES(57809866,"https://salt.tikicdn.com/cache/w300/ts/product/40/43/9e/3e7988cfffb8d2f7a71247a7b15fd4c8.jpg");
@@ -897,17 +877,6 @@ INSERT INTO HINH_ANH VALUES(70765398,"https://salt.tikicdn.com/cache/w300/ts/pro
 INSERT INTO HINH_ANH VALUES(70765398,"https://salt.tikicdn.com/cache/w300/ts/product/d0/57/81/a9e3417b86a69b07f32b1688c8206f09.jpg");
 INSERT INTO HINH_ANH VALUES(70765398,"https://salt.tikicdn.com/cache/w300/ts/product/7a/da/0d/983cd7c9f1cc41ecef479b5fe277d930.jpg");
 INSERT INTO HINH_ANH VALUES(88100602,"https://salt.tikicdn.com/cache/w300/ts/product/b4/5e/dc/1815a83302f98a0921eec8913ac16051.png");
-INSERT INTO HINH_ANH VALUES(74034401,"https://salt.tikicdn.com/cache/w300/ts/product/55/b9/7f/e1d1f2f2b1f3e0750ac3bf040d1807c7.jpg");
-INSERT INTO HINH_ANH VALUES(74034401,"https://salt.tikicdn.com/cache/w300/ts/product/31/aa/6a/f8badb1b7f6632d89dccbbee7d03d164.jpg");
-INSERT INTO HINH_ANH VALUES(74034401,"https://salt.tikicdn.com/cache/w300/ts/product/38/fb/93/3116b5c745be5e48f6492186d7f0d58a.jpg");
-INSERT INTO HINH_ANH VALUES(74034401,"https://salt.tikicdn.com/cache/w300/ts/product/3a/aa/44/03cea7338a4824feaa9421995277d5d4.jpg");
-INSERT INTO HINH_ANH VALUES(74034401,"https://salt.tikicdn.com/cache/w300/ts/product/58/51/c7/222ea85d0d20dc708b08b59a617657a5.jpg");
-INSERT INTO HINH_ANH VALUES(74034401,"https://salt.tikicdn.com/cache/w300/ts/product/99/ab/8b/b0b46446d0e9334451afaa5d597e9752.jpg");
-INSERT INTO HINH_ANH VALUES(74034401,"https://salt.tikicdn.com/cache/w300/ts/product/a9/25/ee/df2115e119f1109103993911f1790262.jpg");
-INSERT INTO HINH_ANH VALUES(74034401,"https://salt.tikicdn.com/cache/w300/ts/product/c5/b6/24/a5587eb139d29c67670f2e691758dc47.jpg");
-INSERT INTO HINH_ANH VALUES(74034401,"https://salt.tikicdn.com/cache/w300/ts/product/cf/c7/a1/14a4eac812b25823ad9493ae6abaf274.jpg");
-INSERT INTO HINH_ANH VALUES(74034401,"https://salt.tikicdn.com/cache/w300/ts/product/dc/8b/3f/8fa932d321f0faddaabb89d06c5b1c44.jpg");
-INSERT INTO HINH_ANH VALUES(74034401,"https://salt.tikicdn.com/cache/w300/ts/product/dc/cd/e6/9afe05982d7aa790b6b880372a7bcd47.jpg");
 INSERT INTO HINH_ANH VALUES(142667084,"https://salt.tikicdn.com/cache/w300/ts/product/ec/ac/9f/b709a5fc190243fb8cac5da0aeef9a3a.jpg");
 INSERT INTO HINH_ANH VALUES(142667084,"https://salt.tikicdn.com/cache/w300/ts/product/06/d4/d4/6168062871cfb69a874a1fd3d3faa3ee.jpg");
 INSERT INTO HINH_ANH VALUES(142667084,"https://salt.tikicdn.com/cache/w300/ts/product/69/56/aa/866394a57733e7b89eb573602f111346.jpg");
@@ -953,13 +922,7 @@ INSERT INTO HINH_ANH VALUES(119461456,"https://salt.tikicdn.com/cache/w300/ts/pr
 INSERT INTO HINH_ANH VALUES(119461456,"https://salt.tikicdn.com/cache/w300/ts/product/a3/7f/76/d2fb6919548e15bf0562787a9c88c2fc.jpg");
 INSERT INTO HINH_ANH VALUES(119461456,"https://salt.tikicdn.com/cache/w300/ts/product/e2/d8/d0/5883640355fd530dd776263d596f1b66.jpg");
 INSERT INTO HINH_ANH VALUES(119461456,"https://salt.tikicdn.com/cache/w300/ts/product/cc/42/62/e11ce0ab69a7141a195a9c06e5208a18.jpg");
-INSERT INTO HINH_ANH VALUES(66773643,"https://salt.tikicdn.com/cache/w300/ts/product/8b/d5/ff/8b8ab913d1f347396e5bfcb0fc336b74.jpg");
-INSERT INTO HINH_ANH VALUES(66773643,"https://salt.tikicdn.com/cache/w300/ts/product/35/20/15/8240591b5f1f4a1d460b9aadffc4b5ae.jpg");
-INSERT INTO HINH_ANH VALUES(66773643,"https://salt.tikicdn.com/cache/w300/ts/product/38/2c/02/b3ac9470f7edfc4854eed0ed9285048f.jpg");
-INSERT INTO HINH_ANH VALUES(66773643,"https://salt.tikicdn.com/cache/w300/ts/product/4d/e8/d7/4b689a22c40f62322c9d368dedab51a6.jpg");
-INSERT INTO HINH_ANH VALUES(66773643,"https://salt.tikicdn.com/cache/w300/ts/product/53/f9/dc/c8a886939ddccf55ca9bf78ca1a00f3d.jpg");
-INSERT INTO HINH_ANH VALUES(66773643,"https://salt.tikicdn.com/cache/w300/ts/product/7f/a0/e9/40745fbaaf1f9dfda0d5524be22b7c5f.jpg");
-INSERT INTO HINH_ANH VALUES(66773643,"https://salt.tikicdn.com/cache/w300/ts/product/33/c1/c9/6c8adc3626e12dfe1fc86346f53c6d6b.jpg");
+
 INSERT INTO HINH_ANH VALUES(34942696,"https://salt.tikicdn.com/cache/w300/ts/product/a9/2c/c6/40228339d1640d0db7af7f4be95d4bde.jpg");
 INSERT INTO HINH_ANH VALUES(34942696,"https://salt.tikicdn.com/cache/w300/ts/product/13/2a/3b/b47f4f044064a6ed95557f42276d2982.jpg");
 INSERT INTO HINH_ANH VALUES(34942696,"https://salt.tikicdn.com/cache/w300/ts/product/1f/8f/65/f39d089f317ab759a39422951805f80f.jpg");
@@ -1049,17 +1012,7 @@ INSERT INTO HINH_ANH VALUES(115765559,"https://salt.tikicdn.com/cache/w300/media
 INSERT INTO HINH_ANH VALUES(115765559,"https://salt.tikicdn.com/cache/w300/media/catalog/producttmp/5f/02/2e/302c1879d332fa3bdd0fbde9577d257d.jpg");
 INSERT INTO HINH_ANH VALUES(68165482,"https://salt.tikicdn.com/cache/w300/ts/product/be/d8/51/6277ddb5af76d22a8517a37e3f4bd45f.jpg");
 INSERT INTO HINH_ANH VALUES(68165482,"https://salt.tikicdn.com/cache/w300/ts/product/ac/82/06/f1ec1b4ad34cc6cb1b21e50b81a90917.jpg");
-INSERT INTO HINH_ANH VALUES(69060449,"https://salt.tikicdn.com/cache/w300/ts/product/0e/8d/5b/6331dc8b8ec9a5352b9df3006cb4b593.png");
-INSERT INTO HINH_ANH VALUES(69060449,"https://salt.tikicdn.com/cache/w300/ts/product/2c/62/df/9ebd95e9052beb306133bfe3e7f2047d.jpg");
-INSERT INTO HINH_ANH VALUES(69060449,"https://salt.tikicdn.com/cache/w300/ts/product/e1/8c/86/1050d71f9b87b51178e274c2b31657fe.jpg");
-INSERT INTO HINH_ANH VALUES(69060449,"https://salt.tikicdn.com/cache/w300/ts/product/02/60/3c/447c0f3afc91c47ae3559d28d5bf9bf2.jpg");
-INSERT INTO HINH_ANH VALUES(69060449,"https://salt.tikicdn.com/cache/w300/ts/product/19/0b/c6/8a3929195dc298af9b3bc67d65c9fdfa.jpg");
-INSERT INTO HINH_ANH VALUES(69060449,"https://salt.tikicdn.com/cache/w300/ts/product/fb/2e/57/0bc6eb07e80f26bc614e265debc3d625.jpg");
-INSERT INTO HINH_ANH VALUES(69060449,"https://salt.tikicdn.com/cache/w300/ts/product/74/03/2a/c412e80bc2b1bc4922ad4cdb0a9d3aab.jpg");
-INSERT INTO HINH_ANH VALUES(69060449,"https://salt.tikicdn.com/cache/w300/ts/product/0d/b9/01/aba981b3fbcee2b210627a315a5db8d6.jpg");
-INSERT INTO HINH_ANH VALUES(69060449,"https://salt.tikicdn.com/cache/w300/ts/product/e9/a1/d8/917495df569035f004ac72c58a9bdee9.jpg");
-INSERT INTO HINH_ANH VALUES(69060449,"https://salt.tikicdn.com/cache/w300/ts/product/df/d7/56/9a9018c848d49543b79f6d36b987dcc4.jpg");
-INSERT INTO HINH_ANH VALUES(69060449,"https://salt.tikicdn.com/cache/w300/ts/product/8c/b9/0e/ce6bd557d27affc970707254b8687bc7.jpg");
+
 INSERT INTO HINH_ANH VALUES(113569117,"https://salt.tikicdn.com/cache/w300/ts/product/0d/f4/c6/ca9484b98ecce0a5c65273e4203a010c.jpg");
 INSERT INTO HINH_ANH VALUES(113569117,"https://salt.tikicdn.com/cache/w300/ts/product/37/ca/98/2c38796869182fda6d4ea4b31341ee98.jpg");
 INSERT INTO HINH_ANH VALUES(113569117,"https://salt.tikicdn.com/cache/w300/ts/product/d9/45/e5/fd74ed7d9a1cb50d944198b97b3d35f7.jpg");
@@ -1321,8 +1274,7 @@ INSERT INTO HINH_ANH VALUES(123565891,"https://salt.tikicdn.com/cache/w300/ts/pr
 INSERT INTO HINH_ANH VALUES(123565891,"https://salt.tikicdn.com/cache/w300/ts/product/c3/de/23/af420eae435da029a775953a9a5991a9.jpg");
 INSERT INTO HINH_ANH VALUES(141122642,"https://salt.tikicdn.com/cache/w300/ts/product/a6/d4/5e/7a35234723ed33e65fa70513acff891c.jpg");
 INSERT INTO HINH_ANH VALUES(141122642,"https://salt.tikicdn.com/cache/w300/ts/product/99/2b/9a/58177024703d6a55117c29f6f51639b1.jpg");
-INSERT INTO HINH_ANH VALUES(6598039,"https://salt.tikicdn.com/cache/w300/ts/product/be/f2/ba/7c5e015111d8a91615f60b4d5194a9b1.jpg");
-INSERT INTO HINH_ANH VALUES(6598039,"https://salt.tikicdn.com/cache/w300/ts/product/ff/ec/01/4b0d1f7af2922e373d129ef98c81b519.jpg");
+
 INSERT INTO HINH_ANH VALUES(74810915,"https://salt.tikicdn.com/cache/w300/ts/product/7a/b7/0a/8a806c3e769a498d638606b07b231f7f.jpg");
 INSERT INTO HINH_ANH VALUES(74810915,"https://salt.tikicdn.com/cache/w300/ts/product/7d/31/ce/dc3d013958fc2bde8692269b3ed7d2bd.jpg");
 INSERT INTO HINH_ANH VALUES(74810915,"https://salt.tikicdn.com/cache/w300/ts/product/eb/5f/1c/704e80f76494fd2498ef4981cf92b844.jpg");
@@ -1425,12 +1377,7 @@ INSERT INTO HINH_ANH VALUES(68693081,"https://salt.tikicdn.com/cache/w300/ts/pro
 INSERT INTO HINH_ANH VALUES(68693081,"https://salt.tikicdn.com/cache/w300/ts/product/ef/9f/00/55ae8afad6db85a727ce385e20de4d0b.jpg");
 INSERT INTO HINH_ANH VALUES(68693081,"https://salt.tikicdn.com/cache/w300/ts/product/d8/c0/23/cc7b15131125e1fb60edb238876cd86c.jpg");
 INSERT INTO HINH_ANH VALUES(68693081,"https://salt.tikicdn.com/cache/w300/ts/product/cd/e6/1e/0322d55bf68cff90123c8df389c11b11.jpg");
-INSERT INTO HINH_ANH VALUES(72290345,"https://salt.tikicdn.com/cache/w300/ts/product/f0/04/a4/8daf08244f9766c75ece956b9edcb0b9.png");
-INSERT INTO HINH_ANH VALUES(72290345,"https://salt.tikicdn.com/cache/w300/ts/product/3c/ed/34/773e3da741b4f941c89446a8b4012a84.jpg");
-INSERT INTO HINH_ANH VALUES(72290345,"https://salt.tikicdn.com/cache/w300/ts/product/6d/26/f2/2874e3a3f3f5f1e76f7bfaae71d1c77e.JPG");
-INSERT INTO HINH_ANH VALUES(72290345,"https://salt.tikicdn.com/cache/w300/ts/product/a0/3e/ea/5eccb627565a63fd93f006f11419fa54.jpg");
-INSERT INTO HINH_ANH VALUES(72290345,"https://salt.tikicdn.com/cache/w300/ts/product/ad/fd/a7/c95891c7fea82a8bbec6095b754c9d96.png");
-INSERT INTO HINH_ANH VALUES(72290345,"https://salt.tikicdn.com/cache/w300/ts/product/c4/30/bc/5ddca8f07fbab09857db24abfc78d2d4.jpg");
+
 INSERT INTO HINH_ANH VALUES(93502532,"https://salt.tikicdn.com/cache/w300/ts/product/97/8d/a7/96ff2d18e90b05e0ec655c2fd06de469.jpg");
 INSERT INTO HINH_ANH VALUES(93502532,"https://salt.tikicdn.com/cache/w300/ts/product/8b/5b/c6/fe14b16181d569f3d0d9d084f3092623.jpg");
 INSERT INTO HINH_ANH VALUES(93502532,"https://salt.tikicdn.com/cache/w300/ts/product/19/6e/93/38bad7c28435677a2788739b6c6b795b.jpg");
@@ -1555,7 +1502,7 @@ INSERT INTO HINH_ANH VALUES(141418024,"https://salt.tikicdn.com/cache/w300/ts/pr
 INSERT INTO HINH_ANH VALUES(141418024,"https://salt.tikicdn.com/cache/w300/ts/product/31/45/64/1e04ad6ad6721ef1250109e06f998126.jpg");
 INSERT INTO HINH_ANH VALUES(141418024,"https://salt.tikicdn.com/cache/w300/ts/product/0c/36/a9/4429ce67c533d41bf2427bb41ef4ae37.jpg");
 INSERT INTO HINH_ANH VALUES(141418024,"https://salt.tikicdn.com/cache/w300/ts/product/f2/b4/74/5af2c8f49066aa4cb6b92528d42f8135.jpg");
-INSERT INTO HINH_ANH VALUES(52675635,"https://salt.tikicdn.com/cache/w300/ts/product/16/95/56/bedf64c760859ac6dccdf7ca929685e8.jpg");
+
 INSERT INTO HINH_ANH VALUES(144335825,"https://salt.tikicdn.com/cache/w300/ts/product/28/d5/eb/02c1b7b37fa01e4d205335b87dc546bf.jpg");
 INSERT INTO HINH_ANH VALUES(144335825,"https://salt.tikicdn.com/cache/w300/ts/product/26/c6/8d/9b2f63dff28af3bdbffe7f96b0a37d8e.jpg");
 INSERT INTO HINH_ANH VALUES(144335825,"https://salt.tikicdn.com/cache/w300/ts/product/c4/89/9f/42c774eae1c0d6519eab6d2007879532.jpg");
@@ -1923,9 +1870,7 @@ INSERT INTO HINH_ANH VALUES(144639576,"https://salt.tikicdn.com/cache/w300/ts/pr
 INSERT INTO HINH_ANH VALUES(144639576,"https://salt.tikicdn.com/cache/w300/ts/product/b9/ce/29/563afef19701a1e95e4e7a161a137d1f.jpg");
 INSERT INTO HINH_ANH VALUES(144639576,"https://salt.tikicdn.com/cache/w300/ts/product/8b/c5/ce/a089ba917499d2105ef911b1d243c710.jpg");
 INSERT INTO HINH_ANH VALUES(144639576,"https://salt.tikicdn.com/cache/w300/ts/product/79/0c/b9/c21b28b64190c0e660be08d0bd1f6c3a.jpg");
-INSERT INTO HINH_ANH VALUES(19460704,"https://salt.tikicdn.com/cache/w300/ts/product/8e/9c/39/c36bc4be8167a492883f37a53a7f7924.jpg");
-INSERT INTO HINH_ANH VALUES(19460704,"https://salt.tikicdn.com/cache/w300/ts/product/af/11/5a/8cdf64459b3c1623a7097fbe6e049ec8.jpg");
-INSERT INTO HINH_ANH VALUES(19460704,"https://salt.tikicdn.com/cache/w300/ts/product/99/67/80/c36ec92bd6ad38d84241c70e60968530.png");
+
 INSERT INTO HINH_ANH VALUES(140960962,"https://salt.tikicdn.com/cache/w300/ts/product/f0/00/d2/c673f2153d2f64a57f0241b093a8426a.jpg");
 INSERT INTO HINH_ANH VALUES(140960962,"https://salt.tikicdn.com/cache/w300/ts/product/cd/cb/a9/158df9aaeb06053a08d99cda17f9a300.jpg");
 INSERT INTO HINH_ANH VALUES(140960962,"https://salt.tikicdn.com/cache/w300/ts/product/3c/08/ff/139a3a198c4ba303d04a067c62a35853.jpg");
@@ -2809,15 +2754,7 @@ INSERT INTO HINH_ANH VALUES(52481412,"https://salt.tikicdn.com/cache/w300/ts/pro
 INSERT INTO HINH_ANH VALUES(52481412,"https://salt.tikicdn.com/cache/w300/ts/product/f3/62/7f/8e7d57fae142169ac12f4e4fc14a56fd.jpg");
 INSERT INTO HINH_ANH VALUES(52481412,"https://salt.tikicdn.com/cache/w300/ts/product/0b/21/3a/0b94f565a2b556f8649e18289b6999e6.jpg");
 INSERT INTO HINH_ANH VALUES(52481412,"https://salt.tikicdn.com/cache/w300/ts/product/f3/62/7f/f33cba12c33f30eea4ce9e1d54f7979f.jpg");
-INSERT INTO HINH_ANH VALUES(116583246,"https://salt.tikicdn.com/cache/w300/ts/product/5e/5d/91/45d228762ed0b812e02b40c60e67139e.jpg");
-INSERT INTO HINH_ANH VALUES(116583246,"https://salt.tikicdn.com/cache/w300/ts/product/5f/d9/52/4a219e11511dbbfb77b4c9cf3ac1018c.JPG");
-INSERT INTO HINH_ANH VALUES(116583246,"https://salt.tikicdn.com/cache/w300/ts/product/ae/11/68/bbb46872906c992a8d9e66f65f7c3c43.jpg");
-INSERT INTO HINH_ANH VALUES(116583246,"https://salt.tikicdn.com/cache/w300/ts/product/99/f9/46/cfa54aafb44c7984e1da2fb3a0f69756.JPG");
-INSERT INTO HINH_ANH VALUES(116583246,"https://salt.tikicdn.com/cache/w300/ts/product/2f/b9/8a/e5fe26fe1097b83d2a2ed4d874e2358d.JPG");
-INSERT INTO HINH_ANH VALUES(116583246,"https://salt.tikicdn.com/cache/w300/ts/product/f3/36/09/a0e0b07dab7d3bc82b75c2979bc2bfbc.JPG");
-INSERT INTO HINH_ANH VALUES(116583246,"https://salt.tikicdn.com/cache/w300/ts/product/a6/c8/99/55aff6c85c3598a457ebfb23efb8f3ef.jpg");
-INSERT INTO HINH_ANH VALUES(116583246,"https://salt.tikicdn.com/cache/w300/ts/product/2e/07/4b/3b71d9dd9cb675c0f1da663534251981.jpg");
-INSERT INTO HINH_ANH VALUES(116583246,"https://salt.tikicdn.com/cache/w300/ts/product/e5/fc/9a/f316e01a46e20dd85c3851714eb88b54.JPG");
+
 INSERT INTO HINH_ANH VALUES(131144991,"https://salt.tikicdn.com/cache/w300/ts/product/0f/a9/00/a35d52dccd6b000955713ac9f9155946.jpg");
 INSERT INTO HINH_ANH VALUES(131144991,"https://salt.tikicdn.com/cache/w300/ts/product/50/29/ec/3d1b2de8b89bcbcfd4a41bfe84da92bc.jpg");
 INSERT INTO HINH_ANH VALUES(131144991,"https://salt.tikicdn.com/cache/w300/ts/product/ca/fc/bb/3c63da7147f6fbb20f1717cb902fde16.jpg");
@@ -2912,12 +2849,7 @@ INSERT INTO HINH_ANH VALUES(59238806,"https://salt.tikicdn.com/cache/w300/ts/pro
 INSERT INTO HINH_ANH VALUES(59238806,"https://salt.tikicdn.com/cache/w300/ts/product/2f/b9/8a/c14ac706c3a3718ff0350df2919d7c78.JPG");
 INSERT INTO HINH_ANH VALUES(59238806,"https://salt.tikicdn.com/cache/w300/ts/product/08/8f/eb/5bd5824f8e5c180f1086dbd1f8b6ff1d.JPG");
 INSERT INTO HINH_ANH VALUES(59238806,"https://salt.tikicdn.com/cache/w300/ts/product/a6/c8/99/6d217b958c56bf89d4870caad4c2e02d.jpg");
-INSERT INTO HINH_ANH VALUES(116583413,"https://salt.tikicdn.com/cache/w300/ts/product/6f/28/de/94ac93a5812bc47e86a4c54e742dca5b.jpg");
-INSERT INTO HINH_ANH VALUES(116583413,"https://salt.tikicdn.com/cache/w300/ts/product/25/90/b6/2f995da17fed6c0d1f94edc85ac9bbd8.jpg");
-INSERT INTO HINH_ANH VALUES(116583413,"https://salt.tikicdn.com/cache/w300/ts/product/3c/c9/7c/29b63be2945e1ef5b842f9a20940398f.jpg");
-INSERT INTO HINH_ANH VALUES(116583413,"https://salt.tikicdn.com/cache/w300/ts/product/5f/d9/52/a84b4113271ca2c55591ab47b6203f6c.JPG");
-INSERT INTO HINH_ANH VALUES(116583413,"https://salt.tikicdn.com/cache/w300/ts/product/98/75/40/cf9e9d8e99e1211c215e9289066d6dd4.jpg");
-INSERT INTO HINH_ANH VALUES(116583413,"https://salt.tikicdn.com/cache/w300/ts/product/ae/11/68/51a7ca8cfd4e433de370cfedaa71ffb2.jpg");
+
 INSERT INTO HINH_ANH VALUES(52326343,"https://salt.tikicdn.com/cache/w300/ts/product/79/f7/cd/12024318baca5d87352e48b649bda7fd.jpg");
 INSERT INTO HINH_ANH VALUES(117347869,"https://salt.tikicdn.com/cache/w300/ts/product/b9/77/a7/bbdbf4268b53d0db9e5cea42e52272a2.jpg");
 INSERT INTO HINH_ANH VALUES(68840521,"https://salt.tikicdn.com/cache/w300/ts/product/33/ad/1a/0a8d45f53d0dd0ff9c55c457324f516f.jpg");
@@ -3085,14 +3017,7 @@ INSERT INTO HINH_ANH VALUES(145867932,"https://salt.tikicdn.com/cache/w300/ts/pr
 INSERT INTO HINH_ANH VALUES(145907337,"https://salt.tikicdn.com/cache/w300/ts/product/3b/ff/85/2e2c065e400dc0c4a66642563315fdaf.jpg");
 INSERT INTO HINH_ANH VALUES(145907337,"https://salt.tikicdn.com/cache/w300/ts/product/d9/73/69/486a1f7579b5d49f5ddbbbf45f58b91b.jpg");
 INSERT INTO HINH_ANH VALUES(145907337,"https://salt.tikicdn.com/cache/w300/ts/product/c2/9d/e2/41464e1b845da32853af786df2de8f9b.jpg");
-INSERT INTO HINH_ANH VALUES(58245791,"https://salt.tikicdn.com/cache/w300/ts/product/c1/09/a6/d5d4cf143c7e8b7faffaf937f3f003df.jpg");
-INSERT INTO HINH_ANH VALUES(58245791,"https://salt.tikicdn.com/cache/w300/ts/product/57/5f/86/411b3deefdec1b46ee59b385d6485a95.jpg");
-INSERT INTO HINH_ANH VALUES(58245791,"https://salt.tikicdn.com/cache/w300/ts/product/5c/4a/1c/063516a4377b90db85530642fd2e8965.jpg");
-INSERT INTO HINH_ANH VALUES(58245791,"https://salt.tikicdn.com/cache/w300/ts/product/7d/d6/5e/5bcfcf8c98b9ce2287e21e73f25206fb.jpg");
-INSERT INTO HINH_ANH VALUES(58245791,"https://salt.tikicdn.com/cache/w300/ts/product/a8/b6/c0/9bb99a801d4c24b57d0eb4dde2b713d9.jpg");
-INSERT INTO HINH_ANH VALUES(58245791,"https://salt.tikicdn.com/cache/w300/ts/product/de/79/ca/b51e5d546bd620bb8a303c5700c76cb4.jpg");
-INSERT INTO HINH_ANH VALUES(58245791,"https://salt.tikicdn.com/cache/w300/ts/product/e0/09/d7/bbeb83b2cd9cc796a62010a30463edc6.jpg");
-INSERT INTO HINH_ANH VALUES(58245791,"https://salt.tikicdn.com/cache/w300/ts/product/fe/1e/ca/a4b89f4e658810f74ac47a837587ef3f.jpg");
+
 INSERT INTO HINH_ANH VALUES(125590763,"https://salt.tikicdn.com/cache/w300/ts/product/ed/1b/40/e0b149a71541aec7097119b2064f1565.jpg");
 INSERT INTO HINH_ANH VALUES(125590763,"https://salt.tikicdn.com/cache/w300/ts/product/54/8b/f2/6ab7cc27294b5b34c38cc6fceda3c7e6.jpg");
 INSERT INTO HINH_ANH VALUES(145751360,"https://salt.tikicdn.com/cache/w300/ts/product/5a/60/3c/f731fb2dffc335a638030540b7afb32f.jpg");
@@ -3121,6 +3046,7 @@ INSERT INTO HINH_ANH VALUES(152880374,"https://salt.tikicdn.com/cache/w300/ts/pr
 INSERT INTO HINH_ANH VALUES(152880374,"https://salt.tikicdn.com/cache/w300/ts/product/f6/01/3f/558ea7b71936f2459be0082343f16e3b.jpg");
 
 -- insert sl_sp table----
+
 INSERT INTO SL_SP VALUES(123547395, 10, 0);
 INSERT INTO SL_SP VALUES(99376042, 10, 0);
 INSERT INTO SL_SP VALUES(104038451, 10, 0);
@@ -3134,7 +3060,6 @@ INSERT INTO SL_SP VALUES(87645053, 10, 0);
 INSERT INTO SL_SP VALUES(58616042, 10, 0);
 INSERT INTO SL_SP VALUES(123345348, 10, 0);
 INSERT INTO SL_SP VALUES(138914723, 10, 0);
-INSERT INTO SL_SP VALUES(103168071, 10, 0);
 INSERT INTO SL_SP VALUES(123554520, 10, 0);
 INSERT INTO SL_SP VALUES(121790468, 10, 0);
 INSERT INTO SL_SP VALUES(132197119, 10, 0);
@@ -3149,25 +3074,21 @@ INSERT INTO SL_SP VALUES(132200969, 10, 0);
 INSERT INTO SL_SP VALUES(123348908, 10, 0);
 INSERT INTO SL_SP VALUES(120450353, 10, 0);
 INSERT INTO SL_SP VALUES(74935377, 10, 0);
-INSERT INTO SL_SP VALUES(40639597, 10, 0);
 INSERT INTO SL_SP VALUES(115765556, 10, 0);
 INSERT INTO SL_SP VALUES(130744724, 10, 0);
 INSERT INTO SL_SP VALUES(32033717, 10, 0);
 INSERT INTO SL_SP VALUES(142545270, 10, 0);
-INSERT INTO SL_SP VALUES(6597807, 10, 0);
 INSERT INTO SL_SP VALUES(57809866, 10, 0);
 INSERT INTO SL_SP VALUES(128865871, 10, 0);
 INSERT INTO SL_SP VALUES(126957198, 10, 0);
 INSERT INTO SL_SP VALUES(70765398, 10, 0);
 INSERT INTO SL_SP VALUES(88100602, 10, 0);
-INSERT INTO SL_SP VALUES(74034401, 10, 0);
 INSERT INTO SL_SP VALUES(142667084, 10, 0);
 INSERT INTO SL_SP VALUES(123547339, 10, 0);
 INSERT INTO SL_SP VALUES(109516584, 10, 0);
 INSERT INTO SL_SP VALUES(115754593, 10, 0);
 INSERT INTO SL_SP VALUES(121744434, 10, 0);
 INSERT INTO SL_SP VALUES(119461456, 10, 0);
-INSERT INTO SL_SP VALUES(66773643, 10, 0);
 INSERT INTO SL_SP VALUES(34942696, 10, 0);
 INSERT INTO SL_SP VALUES(120782084, 10, 0);
 INSERT INTO SL_SP VALUES(142545264, 10, 0);
@@ -3183,7 +3104,7 @@ INSERT INTO SL_SP VALUES(125600698, 10, 0);
 INSERT INTO SL_SP VALUES(88100671, 10, 0);
 INSERT INTO SL_SP VALUES(115765559, 10, 0);
 INSERT INTO SL_SP VALUES(68165482, 10, 0);
-INSERT INTO SL_SP VALUES(69060449, 10, 0);
+
 INSERT INTO SL_SP VALUES(113569117, 10, 0);
 INSERT INTO SL_SP VALUES(133578350, 10, 0);
 INSERT INTO SL_SP VALUES(119222043, 10, 0);
@@ -3232,7 +3153,6 @@ INSERT INTO SL_SP VALUES(129855867, 10, 0);
 INSERT INTO SL_SP VALUES(143358429, 10, 0);
 INSERT INTO SL_SP VALUES(123565891, 10, 0);
 INSERT INTO SL_SP VALUES(141122642, 10, 0);
-INSERT INTO SL_SP VALUES(6598039, 10, 0);
 INSERT INTO SL_SP VALUES(74810915, 10, 0);
 INSERT INTO SL_SP VALUES(145972424, 10, 0);
 INSERT INTO SL_SP VALUES(143359355, 10, 0);
@@ -3250,7 +3170,6 @@ INSERT INTO SL_SP VALUES(21129624, 10, 0);
 INSERT INTO SL_SP VALUES(127372598, 10, 0);
 INSERT INTO SL_SP VALUES(68693081, 10, 0);
 
-INSERT INTO SL_SP VALUES(72290345, 10, 0);
 INSERT INTO SL_SP VALUES(93502532, 10, 0);
 INSERT INTO SL_SP VALUES(129167418, 10, 0);
 INSERT INTO SL_SP VALUES(101627815, 10, 0);
@@ -3269,7 +3188,6 @@ INSERT INTO SL_SP VALUES(137440825, 10, 0);
 INSERT INTO SL_SP VALUES(74240829, 10, 0);
 INSERT INTO SL_SP VALUES(136980288, 10, 0);
 INSERT INTO SL_SP VALUES(141418024, 10, 0);
-INSERT INTO SL_SP VALUES(52675635, 10, 0);
 INSERT INTO SL_SP VALUES(144335825, 10, 0);
 INSERT INTO SL_SP VALUES(141595397, 10, 0);
 INSERT INTO SL_SP VALUES(73271125, 10, 0);
@@ -3347,7 +3265,7 @@ INSERT INTO SL_SP VALUES(91301334, 10, 0);
 INSERT INTO SL_SP VALUES(109860433, 10, 0);
 INSERT INTO SL_SP VALUES(85005934, 10, 0);
 INSERT INTO SL_SP VALUES(144639576, 10, 0);
-INSERT INTO SL_SP VALUES(19460704, 10, 0);
+
 INSERT INTO SL_SP VALUES(140960962, 10, 0);
 INSERT INTO SL_SP VALUES(87866915, 10, 0);
 INSERT INTO SL_SP VALUES(144639994, 10, 0);
@@ -3509,7 +3427,6 @@ INSERT INTO SL_SP VALUES(150735429, 10, 0);
 INSERT INTO SL_SP VALUES(52644706, 10, 0);
 INSERT INTO SL_SP VALUES(70858342, 10, 0);
 INSERT INTO SL_SP VALUES(52481412, 10, 0);
-INSERT INTO SL_SP VALUES(116583246, 10, 0);
 INSERT INTO SL_SP VALUES(131144991, 10, 0);
 INSERT INTO SL_SP VALUES(68842354, 10, 0);
 INSERT INTO SL_SP VALUES(83472273, 10, 0);
@@ -3531,7 +3448,7 @@ INSERT INTO SL_SP VALUES(130841391, 10, 0);
 INSERT INTO SL_SP VALUES(81647765, 10, 0);
 INSERT INTO SL_SP VALUES(129356132, 10, 0);
 INSERT INTO SL_SP VALUES(59238806, 10, 0);
-INSERT INTO SL_SP VALUES(116583413, 10, 0);
+
 INSERT INTO SL_SP VALUES(52326343, 10, 0);
 INSERT INTO SL_SP VALUES(117347869, 10, 0);
 INSERT INTO SL_SP VALUES(68840521, 10, 0);
@@ -3574,7 +3491,7 @@ INSERT INTO SL_SP VALUES(5868813, 10, 0);
 INSERT INTO SL_SP VALUES(712616, 10, 0);
 INSERT INTO SL_SP VALUES(145867932, 10, 0);
 INSERT INTO SL_SP VALUES(145907337, 10, 0);
-INSERT INTO SL_SP VALUES(58245791, 10, 0);
+
 INSERT INTO SL_SP VALUES(125590763, 10, 0);
 INSERT INTO SL_SP VALUES(145751360, 10, 0);
 
@@ -3583,7 +3500,7 @@ INSERT INTO SL_SP VALUES(70840366, 10, 0);
 INSERT INTO SL_SP VALUES(7357967, 10, 0);
 INSERT INTO SL_SP VALUES(152880374, 10, 0);
 
--- insert cau_hinh table --- 
+-- insert cau_hinh table ---
 
 INSERT INTO CAU_HINH VALUES(123547395,"bluetooth", "Bluetooth","v5.0");
 INSERT INTO CAU_HINH VALUES(123547395,"brand", "Thương hiệu","Apple");
@@ -3916,11 +3833,6 @@ INSERT INTO CAU_HINH VALUES(138914723,"kha_dung", "Bộ nhớ khả dụng","128
 INSERT INTO CAU_HINH VALUES(138914723,"loai_pin", "Loại pin","Li-on");
 INSERT INTO CAU_HINH VALUES(138914723,"resolution", "Độ phân giải","HD+ (720 x 1600 pixels)");
 INSERT INTO CAU_HINH VALUES(138914723,"screen_size", "Kích thước màn hình","6.4 inch");
-INSERT INTO CAU_HINH VALUES(103168071,"brand", "Thương hiệu","Samsung");
-INSERT INTO CAU_HINH VALUES(103168071,"brand_country", "Xuất xứ thương hiệu","Hàn Quốc");
-INSERT INTO CAU_HINH VALUES(103168071,"included_accessories", "Phụ kiện đi kèm","Thân máy, cáp sạc Type C, chọc sim, sách hướng dẫn");
-INSERT INTO CAU_HINH VALUES(103168071,"item_model_number", "Model","SM-T225");
-INSERT INTO CAU_HINH VALUES(103168071,"kha_dung", "Bộ nhớ khả dụng","32GB");
 INSERT INTO CAU_HINH VALUES(123554520,"battery_capacity", "Dung lượng pin"," 3095 mAh");
 INSERT INTO CAU_HINH VALUES(123554520,"bluetooth", "Bluetooth","Có");
 INSERT INTO CAU_HINH VALUES(123554520,"brand", "Thương hiệu","Apple");
@@ -4316,13 +4228,6 @@ INSERT INTO CAU_HINH VALUES(74935377,"tinh_nang_camera", "Tính năng camera","Z
 INSERT INTO CAU_HINH VALUES(74935377,"video_call", "Video call","Thông qua ứng dụng thứ 3");
 INSERT INTO CAU_HINH VALUES(74935377,"wifi", "Wifi","Wi-Fi 802.11 a/b/g/n,Wi-Fi hotspot");
 INSERT INTO CAU_HINH VALUES(74935377,"xem_phim", "Xem phim","WMV AVI 3GP MP4");
-INSERT INTO CAU_HINH VALUES(40639597,"battery_life", "Thời gian pin","Sử dụng khoảng 4 tuần nếu dùng 30phút/ngày, không có kết nối WiFi");
-INSERT INTO CAU_HINH VALUES(40639597,"brand", "Thương hiệu","Kindle");
-INSERT INTO CAU_HINH VALUES(40639597,"charge_time", "Thời gian sạc","Khoảng 2 giờ");
-INSERT INTO CAU_HINH VALUES(40639597,"dimensions", "Kích thước","6.6” x 4.6” x 0.3” ( 167 x 116 x 8.18 mm)");
-INSERT INTO CAU_HINH VALUES(40639597,"included_accessories", "Phụ kiện đi kèm","1 cáp sạc");
-INSERT INTO CAU_HINH VALUES(40639597,"item_model_number", "Model","Kindle Paperwhite 10th - Generation");
-INSERT INTO CAU_HINH VALUES(40639597,"origin", "Xuất xứ","Trung Quốc");
 INSERT INTO CAU_HINH VALUES(115765556,"battery_capacity", "Dung lượng pin","3300 mAh");
 INSERT INTO CAU_HINH VALUES(115765556,"bluetooth", "Bluetooth"," v5.1 - A2DP. - LE");
 INSERT INTO CAU_HINH VALUES(115765556,"brand", "Thương hiệu","Samsung");
@@ -4438,14 +4343,6 @@ INSERT INTO CAU_HINH VALUES(142545270,"screen_size", "Kích thước màn hình"
 INSERT INTO CAU_HINH VALUES(142545270,"tinh_nang_camera", "Tính năng camera"," HDR, Toàn cảnh (Panorama)");
 INSERT INTO CAU_HINH VALUES(142545270,"wifi", "Wifi","Có");
 INSERT INTO CAU_HINH VALUES(142545270,"xem_phim", "Xem phim","Có");
-INSERT INTO CAU_HINH VALUES(6597807,"brand", "Thương hiệu","Kindle");
-INSERT INTO CAU_HINH VALUES(6597807,"brand_country", "Xuất xứ thương hiệu","Mỹ");
-INSERT INTO CAU_HINH VALUES(6597807,"dimensions", "Kích thước","167 x 116 x 8.18 mm");
-INSERT INTO CAU_HINH VALUES(6597807,"display_type", "Loại/ Công nghệ màn hình","Carta HD");
-INSERT INTO CAU_HINH VALUES(6597807,"included_accessories", "Phụ kiện đi kèm","Cáp sạc &amp; Sách HDSD");
-INSERT INTO CAU_HINH VALUES(6597807,"origin", "Xuất xứ","Trung Quốc");
-INSERT INTO CAU_HINH VALUES(6597807,"product_weight", "Trọng lượng","182g");
-INSERT INTO CAU_HINH VALUES(6597807,"screen_size", "Kích thước màn hình","6 inch");
 INSERT INTO CAU_HINH VALUES(57809866,"battery_capacity", "Dung lượng pin","	5000 mAh");
 INSERT INTO CAU_HINH VALUES(57809866,"bluetooth", "Bluetooth","	A2DP, LE");
 INSERT INTO CAU_HINH VALUES(57809866,"brand", "Thương hiệu","Xiaomi");
@@ -4584,23 +4481,6 @@ INSERT INTO CAU_HINH VALUES(88100602,"resolution", "Độ phân giải","Full HD
 INSERT INTO CAU_HINH VALUES(88100602,"screen_size", "Kích thước màn hình","6.67 inch");
 INSERT INTO CAU_HINH VALUES(88100602,"the_ngoai_toi_da", "Hỗ trợ thẻ tối đa","512GB");
 INSERT INTO CAU_HINH VALUES(88100602,"wifi", "Wifi","Dual-band (2.4GHz/5GHz)");
-INSERT INTO CAU_HINH VALUES(74034401,"battery_capacity", "Dung lượng pin","7040 mAh");
-INSERT INTO CAU_HINH VALUES(74034401,"brand", "Thương hiệu","Samsung");
-INSERT INTO CAU_HINH VALUES(74034401,"brand_country", "Xuất xứ thương hiệu","Hàn Quốc");
-INSERT INTO CAU_HINH VALUES(74034401,"camera_sau", "Camera sau","8 MP");
-INSERT INTO CAU_HINH VALUES(74034401,"camera_truoc", "Camera trước","5 MP");
-INSERT INTO CAU_HINH VALUES(74034401,"chip_do_hoa", "Chip đồ họa (GPU)","Adreno 610");
-INSERT INTO CAU_HINH VALUES(74034401,"chip_set", "Chip set","Snapdragon 662 8 nhân");
-INSERT INTO CAU_HINH VALUES(74034401,"cpu_speed", "Tốc độ CPU","4 nhân 2 GHz & 4 nhân 1.8 GHz");
-INSERT INTO CAU_HINH VALUES(74034401,"dimensions", "Kích thước","Dài 247.6 mm - Ngang 157.4 mm - Dày 7 mm");
-INSERT INTO CAU_HINH VALUES(74034401,"display_type", "Loại/ Công nghệ màn hình","TFT LCD");
-INSERT INTO CAU_HINH VALUES(74034401,"item_model_number", "Model","T505");
-INSERT INTO CAU_HINH VALUES(74034401,"khe_sim", "Số sim","1 Nano SIM, hỗ trợ 4G");
-INSERT INTO CAU_HINH VALUES(74034401,"loai_pin", "Loại pin","Pin chuẩn Li-Ion");
-INSERT INTO CAU_HINH VALUES(74034401,"manufacturer_electronics", "Nhà sản xuất","Samsung");
-INSERT INTO CAU_HINH VALUES(74034401,"product_weight", "Trọng lượng","477 g");
-INSERT INTO CAU_HINH VALUES(74034401,"ram", "RAM","3GB");
-INSERT INTO CAU_HINH VALUES(74034401,"rom", "ROM","64GB");
 INSERT INTO CAU_HINH VALUES(142667084,"battery_capacity", "Dung lượng pin","5000mah");
 INSERT INTO CAU_HINH VALUES(142667084,"bluetooth", "Bluetooth","Có");
 INSERT INTO CAU_HINH VALUES(142667084,"brand", "Thương hiệu","Vivo");
@@ -4752,18 +4632,6 @@ INSERT INTO CAU_HINH VALUES(119461456,"rom", "ROM","64GB");
 INSERT INTO CAU_HINH VALUES(119461456,"the_ngoai_toi_da", "Hỗ trợ thẻ tối đa","1 TB");
 INSERT INTO CAU_HINH VALUES(119461456,"wifi", "Wifi","Dual-band (2.4 GHz/5 GHz),  Wi-Fi 802.11 a/b/g/n/ac,  Wi-Fi Direct , Wi-Fi hotspot");
 INSERT INTO CAU_HINH VALUES(119461456,"xem_phim", "Xem phim","3GP,  AVI,  MP4");
-INSERT INTO CAU_HINH VALUES(66773643,"battery_life", "Thời gian pin","4 tuần không dùng wifi, 1 tuần khi dùng wifi");
-INSERT INTO CAU_HINH VALUES(66773643,"brand", "Thương hiệu","Amazon");
-INSERT INTO CAU_HINH VALUES(66773643,"brand_country", "Xuất xứ thương hiệu","Mỹ");
-INSERT INTO CAU_HINH VALUES(66773643,"charge_time", "Thời gian sạc","Khoảng 3h");
-INSERT INTO CAU_HINH VALUES(66773643,"content_formats_supported", "Hỗ trợ định dạng","Kindle 8 (AZW3), Kindle (AZW), TXT, PDF, MOBI , PRC; HTML, DOC, DOCX, JPEG, GIF, PNG, BMP thông qua chuyển đổi");
-INSERT INTO CAU_HINH VALUES(66773643,"display_type", "Loại/ Công nghệ màn hình","E-Ink");
-INSERT INTO CAU_HINH VALUES(66773643,"dung_luong_dientu", "Dung lượng ổ cứng","8GB");
-INSERT INTO CAU_HINH VALUES(66773643,"included_accessories", "Phụ kiện đi kèm","Hộp + Máy + Cáp sạc + Hướng dẫn sử dụng");
-INSERT INTO CAU_HINH VALUES(66773643,"manufacturer_electronics", "Nhà sản xuất","Amazon");
-INSERT INTO CAU_HINH VALUES(66773643,"origin", "Xuất xứ","Mỹ / Trung Quốc");
-INSERT INTO CAU_HINH VALUES(66773643,"product_weight", "Trọng lượng","174g");
-INSERT INTO CAU_HINH VALUES(66773643,"usb_port", "Cổng USB","Micro USB");
 INSERT INTO CAU_HINH VALUES(34942696,"loai_sim", "Loại Sim","Sim Thường");
 INSERT INTO CAU_HINH VALUES(34942696,"battery_capacity", "Dung lượng pin","	800 mAh");
 INSERT INTO CAU_HINH VALUES(34942696,"brand", "Thương hiệu","Nokia");
@@ -5099,11 +4967,6 @@ INSERT INTO CAU_HINH VALUES(68165482,"tinh_nang_camera", "Tính năng camera","	
 INSERT INTO CAU_HINH VALUES(68165482,"video_call", "Video call","	Hỗ trợ VideoCall thông qua ứng dụng");
 INSERT INTO CAU_HINH VALUES(68165482,"wifi", "Wifi","	Wi-Fi 802.11 a/b/g/n/ac, Dual-band (2.4 GHz/5 GHz)");
 INSERT INTO CAU_HINH VALUES(68165482,"xem_phim", "Xem phim","Có");
-INSERT INTO CAU_HINH VALUES(69060449,"loai_sim", "Loại Sim","nano sim");
-INSERT INTO CAU_HINH VALUES(69060449,"brand", "Thương hiệu","Masstel");
-INSERT INTO CAU_HINH VALUES(69060449,"brand_country", "Xuất xứ thương hiệu","Trung Quốc");
-INSERT INTO CAU_HINH VALUES(69060449,"camera_sau", "Camera sau","VGA");
-INSERT INTO CAU_HINH VALUES(69060449,"origin", "Xuất xứ","Trung Quốc");
 INSERT INTO CAU_HINH VALUES(113569117,"battery_capacity", "Dung lượng pin","4310mAh");
 INSERT INTO CAU_HINH VALUES(113569117,"bluetooth", "Bluetooth","Có");
 INSERT INTO CAU_HINH VALUES(113569117,"brand", "Thương hiệu","OPPO");
@@ -6200,11 +6063,7 @@ INSERT INTO CAU_HINH VALUES(141122642,"port_sac", "Cổng sạc","Micro USB");
 INSERT INTO CAU_HINH VALUES(141122642,"product_weight", "Trọng lượng","195 g");
 INSERT INTO CAU_HINH VALUES(141122642,"screen_size", "Kích thước màn hình","6.5 inch");
 INSERT INTO CAU_HINH VALUES(141122642,"wifi", "Wifi"," Wi-Fi 802.11 a/b/g/nWi-Fi hotspot");
-INSERT INTO CAU_HINH VALUES(6598039,"brand", "Thương hiệu","Kindle");
-INSERT INTO CAU_HINH VALUES(6598039,"dimensions", "Kích thước","167 x 116 x 8.18 mm");
-INSERT INTO CAU_HINH VALUES(6598039,"display_type", "Loại/ Công nghệ màn hình","Carta HD");
-INSERT INTO CAU_HINH VALUES(6598039,"product_weight", "Trọng lượng","182g");
-INSERT INTO CAU_HINH VALUES(6598039,"screen_size", "Kích thước màn hình","6 inch");
+
 INSERT INTO CAU_HINH VALUES(74810915,"battery_capacity", "Dung lượng pin","5000 mAh");
 INSERT INTO CAU_HINH VALUES(74810915,"bluetooth", "Bluetooth"," A2DP  apt-X  v5.0");
 INSERT INTO CAU_HINH VALUES(74810915,"brand", "Thương hiệu","Samsung");
@@ -6514,15 +6373,6 @@ INSERT INTO CAU_HINH VALUES(68693081,"video_call", "Video call","Thông qua ứn
 INSERT INTO CAU_HINH VALUES(68693081,"wifi", "Wifi","Wi-Fi 802.11 a/b/g/n/ac/ax, Wi-Fi MIMO, Wi-Fi hotspot, Dual-band (2.4 GHz/5 GHz), Wi-Fi Direct");
 INSERT INTO CAU_HINH VALUES(68693081,"xem_phim", "Xem phim","MP4, 3GP, WMV, AVI");
 
-INSERT INTO CAU_HINH VALUES(72290345,"brand", "Thương hiệu","Kobo");
-INSERT INTO CAU_HINH VALUES(72290345,"brand_country", "Xuất xứ thương hiệu","Nhật Bản");
-INSERT INTO CAU_HINH VALUES(72290345,"display_color", "Hiển thị màu sắc","đen - xám - trắng");
-INSERT INTO CAU_HINH VALUES(72290345,"display_type", "Loại/ Công nghệ màn hình","Clara HD");
-INSERT INTO CAU_HINH VALUES(72290345,"dung_luong_dientu", "Dung lượng ổ cứng","8gb");
-INSERT INTO CAU_HINH VALUES(72290345,"included_accessories", "Phụ kiện đi kèm","không có");
-INSERT INTO CAU_HINH VALUES(72290345,"manufacturer_electronics", "Nhà sản xuất","Đang cập nhật");
-INSERT INTO CAU_HINH VALUES(72290345,"origin", "Xuất xứ","Trung Quốc");
-INSERT INTO CAU_HINH VALUES(72290345,"product_weight", "Trọng lượng","166 gram");
 INSERT INTO CAU_HINH VALUES(93502532,"battery_capacity", "Dung lượng pin","2950");
 INSERT INTO CAU_HINH VALUES(93502532,"bluetooth", "Bluetooth","Có");
 INSERT INTO CAU_HINH VALUES(93502532,"brand", "Thương hiệu","Nokia");
@@ -6882,24 +6732,6 @@ INSERT INTO CAU_HINH VALUES(141418024,"port_sac", "Cổng sạc"," Type-C");
 INSERT INTO CAU_HINH VALUES(141418024,"product_weight", "Trọng lượng"," 221 g");
 INSERT INTO CAU_HINH VALUES(141418024,"screen_size", "Kích thước màn hình","6.5 inch");
 INSERT INTO CAU_HINH VALUES(141418024,"wifi", "Wifi","Wi-Fi 802.11 a/b/g/n  Wi-Fi Direct  Wi-Fi hotspot");
-INSERT INTO CAU_HINH VALUES(52675635,"battery_capacity", "Dung lượng pin","	36.71 Wh");
-INSERT INTO CAU_HINH VALUES(52675635,"brand", "Thương hiệu","Apple");
-INSERT INTO CAU_HINH VALUES(52675635,"brand_country", "Xuất xứ thương hiệu","Mỹ");
-INSERT INTO CAU_HINH VALUES(52675635,"camera_sau", "Camera sau","	Wide: 12MP, Ultra Wide: 10MP");
-INSERT INTO CAU_HINH VALUES(52675635,"camera_truoc", "Camera trước","	7.0 MP");
-INSERT INTO CAU_HINH VALUES(52675635,"connect_nfc", "NFC","Bluetooth 5.0");
-INSERT INTO CAU_HINH VALUES(52675635,"dimensions", "Kích thước","280.6 x 214.9 x 5.9 mm");
-INSERT INTO CAU_HINH VALUES(52675635,"display_type", "Loại/ Công nghệ màn hình","	Liquid Retina display with True Tone");
-INSERT INTO CAU_HINH VALUES(52675635,"included_accessories", "Phụ kiện đi kèm","Cáp, Sạc, Sách hướng dẫn");
-INSERT INTO CAU_HINH VALUES(52675635,"jack_headphone", "Jack tai nghe","USB Type-C");
-INSERT INTO CAU_HINH VALUES(52675635,"loai_pin", "Loại pin","Lithium polymer");
-INSERT INTO CAU_HINH VALUES(52675635,"port_sac", "Cổng sạc","USB Type-C");
-INSERT INTO CAU_HINH VALUES(52675635,"quay_phim", "Quay phim","	4K 60 fps (Wide); 60 fps (Ultra Wide) 1080p HD 60 fps 720p HD 30 fps");
-INSERT INTO CAU_HINH VALUES(52675635,"ram", "RAM","6 GB");
-INSERT INTO CAU_HINH VALUES(52675635,"resolution", "Độ phân giải","2732 x 2048 pixels");
-INSERT INTO CAU_HINH VALUES(52675635,"screen_size", "Kích thước màn hình","12.9 inch");
-INSERT INTO CAU_HINH VALUES(52675635,"tinh_nang_camera", "Tính năng camera","Zoom kĩ thuật số 5x, Zoom quang học góc rộng hơn 2 lần, Đèn True Tone Flash sáng hơn, Quay phim 4K 60fps cả góc rộng và góc siêu rộng, Chụp ảnh 8MP khi đang quay video 4K, Máy quét LIDAR tiên tiến được NASA tin dùng");
-INSERT INTO CAU_HINH VALUES(52675635,"wifi", "Wifi","802.11ax");
 INSERT INTO CAU_HINH VALUES(144335825,"brand", "Thương hiệu","Tecno");
 INSERT INTO CAU_HINH VALUES(144335825,"chip_set", "Chip set","Spreadtrum SC9863");
 INSERT INTO CAU_HINH VALUES(144335825,"item_model_number", "Model","BD4");
@@ -8122,10 +7954,6 @@ INSERT INTO CAU_HINH VALUES(144639576,"brand", "Thương hiệu","Masstel");
 INSERT INTO CAU_HINH VALUES(144639576,"dimensions", "Kích thước","Kích thước 126*52.6*13.5mm");
 INSERT INTO CAU_HINH VALUES(144639576,"origin", "Xuất xứ","Việt Nam");
 INSERT INTO CAU_HINH VALUES(144639576,"screen_size", "Kích thước màn hình","2.4 inch");
-INSERT INTO CAU_HINH VALUES(19460704,"brand", "Thương hiệu","Kindle");
-INSERT INTO CAU_HINH VALUES(19460704,"dimensions", "Kích thước","6.6” x 4.6” x 0.3” ( 167 x 116 x 8.18 mm)");
-INSERT INTO CAU_HINH VALUES(19460704,"dung_luong_dientu", "Dung lượng ổ cứng","8GB");
-INSERT INTO CAU_HINH VALUES(19460704,"included_accessories", "Phụ kiện đi kèm","Hộp máy + Seri máy (13 Tháng) + Sách hướng dẫn sử dụng");
 INSERT INTO CAU_HINH VALUES(140960962,"bluetooth", "Bluetooth","Có");
 INSERT INTO CAU_HINH VALUES(140960962,"brand", "Thương hiệu","Xiaomi");
 INSERT INTO CAU_HINH VALUES(140960962,"cart_slot", "Hỗ trợ thẻ nhớ ngoài","Có");
@@ -10844,10 +10672,7 @@ INSERT INTO CAU_HINH VALUES(52481412,"included_accessories", "Phụ kiện đi k
 INSERT INTO CAU_HINH VALUES(52481412,"item_model_number", "Model","DT122");
 INSERT INTO CAU_HINH VALUES(52481412,"origin", "Xuất xứ","Đài Loan");
 INSERT INTO CAU_HINH VALUES(52481412,"product_weight", "Trọng lượng","2kg");
-INSERT INTO CAU_HINH VALUES(116583246,"brand", "Thương hiệu","OEM");
-INSERT INTO CAU_HINH VALUES(116583246,"brand_country", "Xuất xứ thương hiệu","Hong Kong");
-INSERT INTO CAU_HINH VALUES(116583246,"item_model_number", "Model","2021");
-INSERT INTO CAU_HINH VALUES(116583246,"origin", "Xuất xứ","HongKong/Trung Quốc");
+
 INSERT INTO CAU_HINH VALUES(131144991,"brand", "Thương hiệu","Yealink");
 INSERT INTO CAU_HINH VALUES(131144991,"brand_country", "Xuất xứ thương hiệu","Trung Quốc");
 INSERT INTO CAU_HINH VALUES(131144991,"origin", "Xuất xứ","Trung Quốc");
@@ -11032,10 +10857,7 @@ INSERT INTO CAU_HINH VALUES(59238806,"brand_country", "Xuất xứ thương hi�
 INSERT INTO CAU_HINH VALUES(59238806,"included_accessories", "Phụ kiện đi kèm","dây line");
 INSERT INTO CAU_HINH VALUES(59238806,"item_model_number", "Model","2021");
 INSERT INTO CAU_HINH VALUES(59238806,"origin", "Xuất xứ","Hong Kong");
-INSERT INTO CAU_HINH VALUES(116583413,"brand", "Thương hiệu","OEM");
-INSERT INTO CAU_HINH VALUES(116583413,"brand_country", "Xuất xứ thương hiệu","Hong Kong");
-INSERT INTO CAU_HINH VALUES(116583413,"item_model_number", "Model","2021");
-INSERT INTO CAU_HINH VALUES(116583413,"origin", "Xuất xứ","Hong Kong");
+
 INSERT INTO CAU_HINH VALUES(52326343,"brand", "Thương hiệu","Cisco");
 INSERT INTO CAU_HINH VALUES(52326343,"brand_country", "Xuất xứ thương hiệu","China");
 INSERT INTO CAU_HINH VALUES(52326343,"included_accessories", "Phụ kiện đi kèm","Nguồn sạc đầy đủ. Sách hướng dẫn.");
@@ -11295,26 +11117,6 @@ INSERT INTO CAU_HINH VALUES(712616,"resolution", "Độ phân giải","320 x 240
 INSERT INTO CAU_HINH VALUES(712616,"screen_size", "Kích thước màn hình","2.4 inch");
 INSERT INTO CAU_HINH VALUES(145867932,"brand", "Thương hiệu","Vivo");
 INSERT INTO CAU_HINH VALUES(145907337,"brand", "Thương hiệu","Vivo");
-INSERT INTO CAU_HINH VALUES(58245791,"battery_capacity", "Dung lượng pin","6300 mmh");
-INSERT INTO CAU_HINH VALUES(58245791,"battery_life", "Thời gian pin","12 h");
-INSERT INTO CAU_HINH VALUES(58245791,"bluetooth", "Bluetooth","4.1");
-INSERT INTO CAU_HINH VALUES(58245791,"brand", "Thương hiệu","Amazon");
-INSERT INTO CAU_HINH VALUES(58245791,"brand_country", "Xuất xứ thương hiệu","Mỹ");
-INSERT INTO CAU_HINH VALUES(58245791,"camera_sau", "Camera sau","2 Mp");
-INSERT INTO CAU_HINH VALUES(58245791,"camera_truoc", "Camera trước","2 Mp");
-INSERT INTO CAU_HINH VALUES(58245791,"cart_slot", "Hỗ trợ thẻ nhớ ngoài","256 Gb");
-INSERT INTO CAU_HINH VALUES(58245791,"charge_time", "Thời gian sạc","4 h");
-INSERT INTO CAU_HINH VALUES(58245791,"cpu_speed", "Tốc độ CPU","2.0 GHz");
-INSERT INTO CAU_HINH VALUES(58245791,"display_type", "Loại/ Công nghệ màn hình","1920 x 1200 (224 ppi)");
-INSERT INTO CAU_HINH VALUES(58245791,"included_accessories", "Phụ kiện đi kèm","Cable+Sạc");
-INSERT INTO CAU_HINH VALUES(58245791,"item_model_number", "Model","FIRE HD 10");
-INSERT INTO CAU_HINH VALUES(58245791,"jack_headphone", "Jack tai nghe","3.5 mm");
-INSERT INTO CAU_HINH VALUES(58245791,"khe_sim", "Số sim","không có");
-INSERT INTO CAU_HINH VALUES(58245791,"manufacturer_electronics", "Nhà sản xuất","Amazon");
-INSERT INTO CAU_HINH VALUES(58245791,"origin", "Xuất xứ","Trung Quốc");
-INSERT INTO CAU_HINH VALUES(58245791,"product_weight", "Trọng lượng","504 gr");
-INSERT INTO CAU_HINH VALUES(58245791,"ram", "RAM","2 GB");
-INSERT INTO CAU_HINH VALUES(58245791,"wifi", "Wifi"," IEEE 802.11 a/b/g/n/ac compatible");
 INSERT INTO CAU_HINH VALUES(145751360,"brand", "Thương hiệu","Vivo");
 INSERT INTO CAU_HINH VALUES(145905253,"brand", "Thương hiệu","Vivo");
 INSERT INTO CAU_HINH VALUES(70840366,"brand", "Thương hiệu","OEM");
@@ -11354,9 +11156,3 @@ INSERT INTO CAU_HINH VALUES(152880374,"resolution", "Độ phân giải","1080 x
 INSERT INTO CAU_HINH VALUES(152880374,"screen_size", "Kích thước màn hình","6.67 inch");
 INSERT INTO CAU_HINH VALUES(152880374,"the_ngoai_toi_da", "Hỗ trợ thẻ tối đa","256G");
 INSERT INTO CAU_HINH VALUES(152880374,"wifi", "Wifi","Có");
-
-
-SELECT ID_SANPHAM, COUNT(*) as count 
-FROM CAU_HINH 
-GROUP BY ID_SANPHAM 
-ORDER BY count DESC;

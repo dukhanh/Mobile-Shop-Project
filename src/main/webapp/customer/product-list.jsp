@@ -1,7 +1,10 @@
+
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.math.RoundingMode" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +21,25 @@
 
 <% int beforePage = (int) request.getAttribute("index") - 1;%>
 <% int afterPage = (int) request.getAttribute("index") + 1;%>
+<% String cat = (String) request.getAttribute("category");%>
+<% String sort = (String) request.getAttribute("sorttype");%>
 
+<%! String setUrtSort(String s){
+    if(s==null) {
+        return "";
+    }else{
+        return "&sort="+s;
+    }
+}
+%>
+<%! String setUrl(String category){
+        if(category==null) {
+            return "";
+        }else{
+            return "cid="+category;
+        }
+    }
+%>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
@@ -53,33 +74,28 @@
                         <tr>
                             <th>Category</th>
                         </tr>
-                        <tr>
-                            <td><a href="category?id=1795">Điện thoại Smartphone</a> </td>
-                        </tr>
-                        <tr>
-                            <td><a href="category?id=1796">Điện thoại phổ thông</a> </td>
-                        </tr>
-                        <tr>
-                            <td><a href="category?id=8061">Điện thoại bàn</a> </td>
-                        </tr>
-                        <tr>
-                            <td><a href="category?id=1789">Khác</a> </td>
-                        </tr>
+                        <c:forEach items="${categorylist}" var="c">
+
+                            <tr>
+                                <td class="${c.id==category?"active":""}"><a href="ProductList?cid=${c.id}">${c.name}</a></td>
+                            </tr>
+                        </c:forEach>
+
+
                     </table>
                 </div>
                 <!-- /.sidenav-section -->
             </div>
             <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb10 alignright">
+                    <div class="col-lg-8 alignleft mb10" style="padding: 0">
                         <form>
-                            <div class="select-option form-group">
-                                <select name="select" class="form-control" placeholder="Sắp xếp theo">
-                                    <option value="" default>Sắp xếp theo</option>
-                                    <option value="">Bán Chạy</option>
-                                    <option value="">Giá Thấp</option>
-                                    <option value="">Giá Cao</option>
-                                </select>
+                            <div class="sort-list alignleft">
+                                <ul class="content-sort">
+                                    <li><a class="${sorttype.equals("top_seller") ? "active" : ""}" href="ProductList?<%=setUrl(cat)%>&sort=top_seller">Bán Chạy</a></li>
+                                    <li><a class="${sorttype.equals("price_asc") ? "active" : ""}" href="ProductList?<%=setUrl(cat)%>&sort=price_asc">Giá Thấp</a></li>
+                                    <li><a class="${sorttype.equals("price_desc") ? "active" : ""}" href="ProductList?<%=setUrl(cat)%>&sort=price_desc">Giá Cao</a></li>
+                                </ul>
                             </div>
                         </form>
                     </div>
@@ -132,14 +148,15 @@
                     <!-- pagination start -->
                     <div class="pagination">
                         <ul>
+
                             <c:if test="${index > 1}">
-                                <a href="ProductList?page=${index-1}">
+                                <a href="ProductList?<%=setUrl(cat)%><%=setUrtSort(sort)%>&page=${index-1}">
                                     <li class="btn prev"><span><i class="fas fa-angle-left"></i>Prev</span>
                                     </li>
                                 </a>
                             </c:if>
-                            <c:if test="${(index > 2)&&(pages>3)}">
-                                <a href="ProductList?page=${1}">
+                            <c:if test="${(index > 2)&&(pages>4)}">
+                                <a href="ProductList?<%=setUrl(cat)%><%=setUrtSort(sort)%>&page=${1}">
                                     <li class="first numb"><span>1</span></li>
                                 </a>
                                 <c:if test="${index > 3}">
@@ -174,12 +191,12 @@
                                 <c:if test="${(p > 0)&&(p< pages+1)}">
                                     <c:choose>
                                         <c:when test="${p == index}">
-                                            <a href="ProductList?page=${p}">
+                                            <a href="ProductList?<%=setUrl(cat)%><%=setUrtSort(sort)%>&page=${p}">
                                                 <li class="numb active"><span>${p}</span></li>
                                             </a>
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="ProductList?page=${p}">
+                                            <a href="ProductList?<%=setUrl(cat)%><%=setUrtSort(sort)%>&page=${p}">
                                                 <li class="numb"><span>${p}</span></li>
                                             </a>
                                         </c:otherwise>
@@ -187,16 +204,16 @@
                                 </c:if>
                             </c:forEach>
 
-                            <c:if test="${(index < pages-1)&&(pages>3)}">
+                            <c:if test="${(index < pages-1)&&(pages>4)}">
                                 <c:if test="${index < pages-1}">
                                     <li class="dots"><span>...</span></li>
                                 </c:if>
-                                <a href="ProductList?page=${pages}">
+                                <a href="ProductList?<%=setUrl(cat)%><%=setUrtSort(sort)%>&page=${pages}">
                                     <li class="last numb"><span>${pages}</span></li>
                                 </a>
                             </c:if>
                             <c:if test="${index < pages}">
-                                <a href="ProductList?page=${index+1}">
+                                <a href="ProductList?<%=setUrl(cat)%><%=setUrtSort(sort)%>&page=${index+1}">
                                     <li class="btn next"><span>Next<i
                                             class="fas fa-angle-right"></i></span></li>
                                 </a>
@@ -211,6 +228,7 @@
 <!-- /.product-list -->
 <!-- footer -->
 <jsp:include page="/sub-component/footer.jsp"/>
+
 </body>
 
 </html>
