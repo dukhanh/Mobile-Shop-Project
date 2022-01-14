@@ -9,8 +9,10 @@ public class Product implements Serializable {
     private int price;
     private int priceSale;
     private String imageUrl;
+    private String color;
     private String description;
     private int idBrand;
+    private String brand;
     private int idCategory;
     private int quantity;
     private int quantitySale;
@@ -19,14 +21,16 @@ public class Product implements Serializable {
 
     }
 
-    public Product(int id, String name, int price, int priceSale, String imageUrl, String description, int idBrand, int idCategory, int quantity, int quantitySale) {
+    public Product(int id, String name, int price, int priceSale, String imageUrl, String color, String description, int idBrand, String brand, int idCategory, int quantity, int quantitySale) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.priceSale = priceSale;
         this.imageUrl = imageUrl;
+        this.color = color;
         this.description = description;
         this.idBrand = idBrand;
+        this.brand = brand;
         this.idCategory = idCategory;
         this.quantity = quantity;
         this.quantitySale = quantitySale;
@@ -108,7 +112,42 @@ public class Product implements Serializable {
         return quantitySale;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public void setQuantitySale(int quantitySale) {
         this.quantitySale = quantitySale;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", priceSale=" + priceSale +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", color='" + color + '\'' +
+                ", description='" + description + '\'' +
+                ", idBrand=" + idBrand +
+                ", brand='" + brand + '\'' +
+                ", idCategory=" + idCategory +
+                ", quantity=" + quantity +
+                ", quantitySale=" + quantitySale +
+                '}';
     }
 }

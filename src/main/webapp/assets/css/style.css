@@ -1989,10 +1989,10 @@ img {
     margin-bottom: 10px;
 }
 
-.product-price {
+.product-meta .product-price {
     margin-bottom: 0;
     font-size: 18px;
-    font-weight: 650;
+    font-weight: 700;
     color: #fb730f;
     display: inline-block;
     margin-right: 5px;
@@ -2166,10 +2166,6 @@ img {
 
 }
 
-/*-------------------------
- 9.2 Product Single
-/*---------------------------*!*/
-
 
 #cssmenu table {
     border: 1px solid #d5d5d5;
@@ -2201,7 +2197,7 @@ img {
 
 }
 #cssmenu table td:hover a{
-     color: white;
+    color: white;
 }
 #cssmenu table td.active {
     background: rgb(88, 176, 229);
@@ -2240,6 +2236,34 @@ img {
     background: rgb(88,176,229);
 }
 
+.filter-brand{
+    margin-top: 30px;
+    border: 1px solid #d5d5d5;
+    padding:10px 20px;
+    width: 265px;
+    background: white;
+    color: #2f2f2f;
+}
+
+.filter-brand .title-filter{
+    color: #343434;
+    font-weight: 550;
+    margin-bottom: 5px;
+}
+.filter-brand form{
+
+}
+
+.filter-brand form input{
+    width: 15px;
+    margin: 0 5px;
+}
+
+/*-------------------------
+ 9.2 Product Single
+/*---------------------------*!*/
+
+
 .slideshow_thumbs {
     overflow-y: scroll;
     height: 350px;
@@ -2266,6 +2290,33 @@ img {
 
 .thumb-img img:hover {
     border: 1px solid #fb730f;
+}
+.product-single .product-brand p{
+    color: #666666;
+}
+.product-single .product-color{
+    margin-bottom: 10px;
+}
+.product-single .product-color p{
+    color: #666666;
+}
+.product-single .product-color span{
+    color: #1f1f1f;
+}
+.product-single .product-price {
+    display: flex;
+    margin: 10px 0;
+}
+
+.product-single .product-price .price-sale{
+    color: #fb730f;
+    font-size: 28px;
+    font-weight: 550;
+    margin:0 10px 0 0;
+}
+.product-single .product-price .original-price strike{
+    color: #6b6b6b;
+    font-size: 15px;
 }
 
 .product-single .box-capacity {
@@ -2438,20 +2489,19 @@ img {
 }
 
 .description-details {
-    padding-top: 15px;
-    background: white;
-    display: flex;
     font-family: "Bai Jamjuree", sans-serif;
 }
 
 .description-details .dgctpro {
-    border-bottom: 1px solid rgba(221, 221, 221, 0.767);
+    margin-bottom: 20px;
 }
 
 .description-details .description-left {
-    padding: 15px;
-    float: left;
-    border: 1px solid rgba(221, 221, 221, 0.767);
+    padding: 20px;
+    box-sizing: border-box;
+    background: white;
+    margin: 15px 0;
+
 }
 
 .description-details .description-left h2,
@@ -2461,7 +2511,7 @@ h3 {
 }
 
 .description-details .description-left .content-desc {
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .description-details .description-left .content-desc p {
@@ -2477,21 +2527,29 @@ h3 {
 
 .description-details .description-right {
     padding: 15px;
-    border: 1px solid rgba(221, 221, 221, 0.767);
-    margin-left: 15px;
+    box-sizing: border-box;
+    background: white;
+}
+.description-details .description-right table{
+    border: 1px solid rgb(201, 201, 201);
 }
 
 .description-details .description-right table tr {
     border-bottom: 1px solid rgb(201, 201, 201);
 }
-
+.description-details .description-right table td{
+    text-align: left;
+    padding: 10px;
+}
 .description-details .description-right table td.title_charactestic {
-    padding: 10px 10px 10px 0;
+    background: #e0e0e0;
+    color: black;
+    width: 300px;
 }
 
 .description-details .description-right table td.content_charactestic {
-    padding: 10px 0 10px 10px;
     color: rgb(61, 61, 61);
+    min-width: 600px;
 }
 
 .product-small-title {
@@ -3167,7 +3225,7 @@ h3 {
 .box-body {
     background-color: #ffffff;
     padding: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .box-info {

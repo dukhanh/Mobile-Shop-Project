@@ -1,6 +1,6 @@
+<%@ page import="java.io.File" %>
 <!DOCTYPE html>
 <html lang="en">
-
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -17,6 +17,7 @@
 <% String cat = (String) request.getAttribute("category");%>
 <% String sort = (String) request.getAttribute("sorttype");%>
 <% String price = (String) request.getAttribute("filPrice");%>
+<% boolean[] brandCheck = (boolean[]) request.getAttribute("isBrandCheck");%>
 <%! String setUrtSort(String s) {
     if (s == null) {
         return "";
@@ -42,6 +43,13 @@
     }
 }
 %>
+<%! String setUrlBrand() {
+
+    return "?ibrand=18802";
+
+}
+%>
+
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
@@ -78,8 +86,9 @@
                         </tr>
                         <c:forEach items="${categorylist}" var="c">
                             <tr>
-                                <td class="${c.id==category?"active":""}"><a
-                                        href="ProductList?cid=${c.id}<%=setUrlFPrice(price)%>">${c.name}</a></td>
+                                <td class="${c.id==category?"active":""}">
+                                    <a href="ProductList?cid=${c.id}<%=setUrlFPrice(price)%>">${c.name}</a>
+                                </td>
                             </tr>
                         </c:forEach>
 
@@ -94,19 +103,29 @@
                             <jsp:useBean id="filterPrice" scope="request" type="java.util.LinkedHashMap"/>
                             <c:forEach items="${filterPrice}" var="entry">
                                 <div class="item-filter">
-                                        <%--                                    <a  href="ProductList?<%=setUrlCa(cat)%>&price=${entry.key}">${entry.value}</a>--%>
-
                                     <a class="${entry.key==filPrice ? "active":""}"
                                        href="ProductList?<%=setUrlCa(cat)%>&price=${entry.key}">${entry.value}</a>
                                 </div>
                             </c:forEach>
 
                         </div>
+<%--                        <div class="filter-brand">--%>
+<%--                            <div class="title-filter">--%>
+<%--                                <span>Thương hiệu</span>--%>
+<%--                            </div>--%>
+<%--                            <form action="ProductList" method="GET">--%>
+<%--                                <jsp:useBean id="brand" scope="request" type="java.util.List"/>--%>
+<%--                                <c:forEach begin="0" end="${brand.size()-1}" var="b">--%>
+<%--                                    <input type="checkbox" name="ibrand" value="${brand.get(b).getId()}"--%>
+<%--                                           onClick="this.form.submit()" ${isBrandCheck[b]?"checked":""}>${brand.get(b).getName()}--%>
+<%--                                    <br/>--%>
+<%--                                </c:forEach>--%>
 
-                        <div class="filter-brand">
+<%--                            </form>--%>
+<%--                        </div>--%>
 
-                        </div>
                     </div>
+
                 </div>
                 <!-- /.sidenav-section -->
             </div>
@@ -127,15 +146,14 @@
                         </form>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="content">
                     <!-- product -->
                     <c:choose>
-
                         <c:when test="${fn:length(products)>0}">
                             <jsp:useBean id="products" scope="request" type="java.util.List"/>
                             <c:forEach var="p" items="${products}">
                                 <div class="col-sm-3 m-0" style="padding: 2px;">
-                                    <a href="#">
+                                    <a href="ProductDetails?id=${p.id}">
                                         <div class="product-block">
                                             <div class="product-img"><img src="${p.imageUrl}" alt=""></div>
                                             <div class="product-content">

@@ -28,6 +28,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css/jquery.rateyo.min.css"/>">
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- owl-carousel -->
 <link href="<c:url value="/assets/css/owl.carousel.css"/>" rel="stylesheet">
 <link href="<c:url value="/assets/css/owl.theme.default.css"/>" rel="stylesheet">
