@@ -32,16 +32,14 @@ public class ProductList extends HttpServlet {
         // sắp xếp sản phẩm
 
         String sortCondition = sortPriceCondition(sortType);
-        String condition = conditionWhere(categoryId, filPrice);
+        String condition = conditionWhere(categoryId, filPrice, iBrand);
+
+//        System.out.println(condition);
 
         int product = ProductDAO.getInstance().getNumberOfProducts(condition);
         int pages = dividePages(product);
         int indexPage = startIndex(index);
 
-        String categortyWhere = "";
-        if (categoryId != null) {
-            categortyWhere = "AND ID_LOAI_SP=" + categoryId;
-        }
 
         LinkedHashMap<String, String> filterPrice = new LinkedHashMap<>();
         filterPrice.put("price_1", "Dưới 1.000.000");
@@ -69,10 +67,6 @@ public class ProductList extends HttpServlet {
             }
         }
 
-        if(iBrand!=null){
-            list = ProductDAO.getInstance().getProductsByBrand(iBrand);
-        }
-
         request.setAttribute("sortProducts", sortProducts);
         request.setAttribute("filterPrice", filterPrice);
         request.setAttribute("filPrice", filPrice);
@@ -84,6 +78,7 @@ public class ProductList extends HttpServlet {
         request.setAttribute("sorttype", sortType);
         request.setAttribute("brand", listBrand);
         request.setAttribute("isBrandCheck", isBrandChecked);
+        request.setAttribute("iBrand", iBrand);
         request.getRequestDispatcher("/customer/product-list.jsp").forward(request, response);
     }
 
@@ -93,44 +88,50 @@ public class ProductList extends HttpServlet {
         doGet(request, response);
     }
 
-    private String conditionWhere(String category, String price) {
+    private String conditionWhere(String category, String price, String[] iBrand) {
         String condition = "";
         if (category != null) {
-            condition = "WHERE ID_LOAI_SP = " + category;
+            condition = " AND ID_LOAI_SP = " + category;
         }
 
         String conditionFPrice = "";
         if (price != null) {
             if (price.equals("price_1")) {
-                conditionFPrice = "GIA_KM BETWEEN 0 AND 1000000";
+                conditionFPrice = " AND (GIA_KM BETWEEN 0 AND 1000000)";
             }
             if (price.equals("price_2")) {
-                conditionFPrice = "GIA_KM BETWEEN 1000000 AND 5500000";
+                conditionFPrice = " AND (GIA_KM BETWEEN 1000000 AND 5500000)";
             }
             if (price.equals("price_3")) {
-                conditionFPrice = "GIA_KM BETWEEN 5500000 AND 22500000";
+                conditionFPrice = " AND (GIA_KM BETWEEN 5500000 AND 22500000)";
             }
             if (price.equals("price_4")) {
-                conditionFPrice = "GIA_KM > 22500000";
+                conditionFPrice = " AND (GIA_KM > 22500000)";
             }
         }
-        if (!conditionFPrice.equals("")) {
-            if (!condition.equals("")) {
-                condition += " AND (" + conditionFPrice + ")";
-            } else {
-                condition = "WHERE " + conditionFPrice;
+        StringBuilder conditionBrand = new StringBuilder();
+        if (iBrand != null) {
+            conditionBrand.append(" AND ID_THUONG_HIEU IN(");
+            for (String s : iBrand) {
+                conditionBrand.append(s).append(",");
             }
+            if (conditionBrand.toString().endsWith(",")) {
+                conditionBrand = new StringBuilder(conditionBrand.substring(0, conditionBrand.length() - 1));
+            }
+            conditionBrand.append(")");
         }
-        return condition;
+
+
+        return condition + conditionFPrice + conditionBrand.toString();
     }
 
     private String sortPriceCondition(String sortType) {
         String sortCondition = "";
         if (sortType != null) {
             if (sortType.equals("price_asc")) {
-                sortCondition = "ORDER BY GIA_KM ASC";
+                sortCondition = " ORDER BY GIA_KM ASC";
             } else {
-                sortCondition = "ORDER BY GIA_KM DESC";
+                sortCondition = " ORDER BY GIA_KM DESC";
             }
         }
         return sortCondition;

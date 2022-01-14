@@ -53,13 +53,6 @@
                                         </a>
                                     </li>
                                     <% } %>
-<%--                                    <c:forEach var="i" items="images">--%>
-<%--                                        <li>--%>
-<%--                                            <a href="<c:out value="${i}"/>">--%>
-<%--                                                <div class=" thumb-img"><img src="<c:out value="${i}"/>" alt=""></div>--%>
-<%--                                            </a>--%>
-<%--                                        </li>--%>
-<%--                                    </c:forEach>--%>
 
                                 </ul>
                             </div>

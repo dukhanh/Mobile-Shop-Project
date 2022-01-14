@@ -2251,12 +2251,21 @@ img {
     margin-bottom: 5px;
 }
 .filter-brand form{
-
+    height: 350px;
+}
+.filter-brand form label{
+    font-weight: 500;
 }
 
 .filter-brand form input{
     width: 15px;
     margin: 0 5px;
+}
+.filter-brand .show-more{
+    display: none;
+    cursor: pointer;
+    color: rgb(88,176,229);
+    text-align: center;
 }
 
 /*-------------------------

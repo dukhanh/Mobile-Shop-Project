@@ -25,11 +25,11 @@ public class ProductDAO {
     public List<Product> getProducts(int page, int products, String condition, String sort) {
         Product product;
         List<Product> res = new LinkedList<>();
+        String sql ="SELECT * FROM SAN_PHAM WHERE 1=1 " + condition + "\n" + sort + " LIMIT ?,?";
         try {
-            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement("SELECT * FROM SAN_PHAM " + condition + "\n" + sort + " LIMIT ?,?");
+            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, page);
             psupdate.setInt(2, products);
-
             ResultSet rs = psupdate.executeQuery();
             while (rs.next()) {
                 product = new Product();
@@ -51,7 +51,7 @@ public class ProductDAO {
     public int getNumberOfProducts(String condition) {
 
         try {
-            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement("SELECT COUNT(*) FROM SAN_PHAM " + condition);
+            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement("SELECT COUNT(*) FROM SAN_PHAM WHERE 1=1 " + condition);
             ResultSet rs = psupdate.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);
@@ -104,7 +104,6 @@ public class ProductDAO {
             }
             sql += ")";
         }
-        System.out.println(sql);
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             ResultSet rs = psupdate.executeQuery();
