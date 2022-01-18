@@ -1053,6 +1053,7 @@ img {
 
 .search-bg .form-control {
     height: 50px;
+    text-transform: none;
 }
 
 .search-bg button {
@@ -1067,7 +1068,9 @@ img {
 }
 
 .account-section {
-    line-height: 63px;
+    line-height: 40px;
+    display: flex;
+    margin-top: 15px;
 }
 
 .account-section ul {
@@ -1086,8 +1089,92 @@ img {
     text-transform: uppercase;
 }
 
+.account-section ul li a i{
+    font-size: 20px;
+}
+.account-section ul li a sup{
+    top: -1em;
+}
+
 .account-section ul li a:hover {
     color: #fb730f;
+}
+
+.account-section .account-login {
+    box-sizing: border-box;
+    border-radius: 50px;
+    margin-left: 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.account-section .account-login .account-name{
+    display: flex;
+    height: 40px;
+    color: rgb(37, 37, 37);
+    align-items: center;
+}
+.account-section .account-login .account-name i{
+    font-size: 25px;
+}
+.account-section .account-login .account-name div{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+.account-section .account-login .account-name p{
+
+    margin: 0;
+}
+
+.account-section .account-login .account-name p.title-user{
+    font-size: 12px;
+    line-height: 16px;
+}
+.account-section .account-login .account-name p.user-name{
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.account-section .account-login:hover {
+    cursor: pointer;
+}
+
+.account-section .account-login i {
+    font-size: 15px;
+    margin-left: 4px;
+}
+
+.account-section .drop-down-account {
+    position: absolute;
+    top: 52px;
+    border: 1px solid #58b0e5;
+    width: 160px;
+    /*right: 25px;*/
+    border-radius: 6px;
+    z-index: 1;
+    display: none;
+    background: white;
+}
+
+.account-section .drop-down-account ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-section .drop-down-account ul li {
+    padding: 0 10px;
+}
+
+.account-section .drop-down-account ul li a {
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+.account-section .drop-down-account ul li:hover {
+    cursor: pointer;
+    background: rgb(219, 219, 219);
 }
 
 .cart-quantity {
@@ -1105,7 +1192,6 @@ img {
 .navigation {
     background-color: #0cafe5;
     position: relative;
-    z-index: 9999;
     top: 20px;
 }
 
@@ -2210,7 +2296,7 @@ img {
 }
 
 #cssmenu .filter-product .filter-price{
-    margin-top: 30px;
+    margin-top: 20px;
     border: 1px solid #d5d5d5;
     padding:10px 20px;
     width: 265px;
@@ -2237,7 +2323,7 @@ img {
 }
 
 .filter-brand{
-    margin-top: 30px;
+    margin-top: 20px;
     border: 1px solid #d5d5d5;
     padding:10px 20px;
     width: 265px;

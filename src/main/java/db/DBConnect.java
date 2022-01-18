@@ -20,11 +20,9 @@ public class DBConnect {
         }
     }
 
+
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        int sl = 10;
-        ResultSet rs = connect().executeQuery("SELECT * FROM SAN_PHAM LIMIT "+ sl);
-        while(rs.next()) {
-            System.out.println(rs.getString(2));
-        }
+
     }
 }

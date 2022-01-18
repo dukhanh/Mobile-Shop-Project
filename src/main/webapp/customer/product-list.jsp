@@ -1,17 +1,14 @@
-<%@ page import="java.io.File" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ include file="/sub-component/taglib.jsp" %>
 <%
     request.setCharacterEncoding("UTF-8");
     response.setCharacterEncoding("UTF-8");
 %>
-
+<fmt:setLocale value="vi_VN"/>
 <% int beforePage = (int) request.getAttribute("index") - 1;%>
 <% int afterPage = (int) request.getAttribute("index") + 1;%>
 <% String cat = (String) request.getAttribute("category");%>
@@ -99,7 +96,6 @@
                             </tr>
                         </c:forEach>
 
-
                     </table>
 
                     <div class="filter-product">
@@ -121,10 +117,10 @@
                                 <span>Thương hiệu</span>
                             </div>
                             <form class="filter-form" action="ProductList" method="GET">
-                                <c:if test="${cat!=null}">
+                                <c:if test="${category!=null}">
                                     <input type="hidden" name="cid" value="<%=cat%>"/>
                                 </c:if>
-                                <c:if test="${price!=null}">
+                                <c:if test="${filPrice!=null}">
                                     <input type="hidden" name="price" value="<%=price%>"/>
                                 </c:if>
 
@@ -178,23 +174,14 @@
                                             <div class="product-content">
                                                 <h5 class="product-title">${p.name}</h5>
                                                 <div class="product-meta">
-                                                    <fmt:setLocale value="vi_VN"/>
-                                                    <c:choose>
-                                                        <c:when test="${p.price > p.priceSale}">
-                                                            <a href="#" class="discounted-price">
-                                                                <fmt:formatNumber value="${p.price}"/> vnđ
-                                                            </a>
-                                                            <a href="#" class="product-price">
-                                                                <fmt:formatNumber value="${p.priceSale}"/> vnđ
-                                                            </a>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <a href="#" class="product-price">
-                                                                <fmt:formatNumber value="${p.priceSale}"/> vnđ
-                                                            </a>
-                                                        </c:otherwise>
-                                                    </c:choose>
-
+                                                    <c:if test="${p.price > p.priceSale}">
+                                                        <a href="#" class="discounted-price">
+                                                            <fmt:formatNumber value="${p.price}"/> vnđ
+                                                        </a>
+                                                    </c:if>
+                                                    <a href="#" class="product-price">
+                                                        <fmt:formatNumber value="${p.priceSale}"/> vnđ
+                                                    </a>
                                                 </div>
                                                 <div class="shopping-btn">
                                                     <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
@@ -217,92 +204,76 @@
                     <!-- /.product -->
 
                 </div>
-                <div class="row">
-                    <!-- pagination start -->
-                    <c:if test="${pages > 1}">
-                        <div class="pagination">
-                            <ul>
-                                <c:if test="${index > 1}">
-                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${index-1}">
-                                        <li class="btn prev"><span><i class="fas fa-angle-left"></i>Prev</span>
-                                        </li>
-                                    </a>
-                                </c:if>
 
-                                <c:if test="${(index > 2)&&(pages>4)}">
-                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${1}">
-                                        <li class="first numb"><span>1</span></li>
-                                    </a>
-                                    <c:if test="${index > 3}">
-                                        <li class="dots"><span>...</span></li>
+                                <div class="row">
+                                    <!-- pagination start -->
+                                    <c:if test="${pages > 1}">
+                                        <div class="pagination">
+                                            <ul>
+                                                <c:if test="${index > 1}">
+                                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${index-1}">
+                                                        <li class="btn prev"><span><i class="fas fa-angle-left"></i>Prev</span>
+                                                        </li>
+                                                    </a>
+                                                </c:if>
+                                                <c:if test="${(index > 2)&&(pages>4)}">
+                                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${1}">
+                                                        <li class="first numb"><span>1</span></li>
+                                                    </a>
+                                                    <c:if test="${index > 3}">
+                                                        <li class="dots"><span>...</span></li>
+                                                    </c:if>
+                                                </c:if>
+                                                <c:choose>
+                                                    <c:when test="${index == pages}">
+                                                        <% beforePage = beforePage - 2; %>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:if test="${index == pages-1}">
+                                                            <% beforePage = beforePage - 1; %>
+                                                        </c:if>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <c:choose>
+                                                    <c:when test="${index == 1}">
+                                                        <% afterPage = afterPage + 2; %>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:if test="${index == 2}">
+                                                            <% afterPage = afterPage + 1; %>
+                                                        </c:if>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <c:if test="${pages == 2}">
+                                                    <% afterPage = 2; %>
+                                                    <% beforePage = 1; %>
+                                                </c:if>
+                                                <c:forEach begin="<%=beforePage%>" end="<%=afterPage%>" var="p">
+                                                    <c:if test="${(p > 0)&&(p< pages+1)}">
+                                                        <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${p}">
+                                                            <li class="numb ${p==index?"active":""}"><span>${p}</span></li>
+                                                        </a>
+                                                    </c:if>
+                                                </c:forEach>
+                                                <c:if test="${(index < pages-1)&&(pages>4)}">
+                                                    <c:if test="${index < pages-1}">
+                                                        <li class="dots"><span>...</span></li>
+                                                    </c:if>
+                                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${pages}">
+                                                        <li class="last numb"><span>${pages}</span></li>
+                                                    </a>
+                                                </c:if>
+                                                <c:if test="${index < pages}">
+                                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${index+1}">
+                                                        <li class="btn next"><span>Next<i
+                                                                class="fas fa-angle-right"></i></span></li>
+                                                    </a>
+                                                </c:if>
+                                            </ul>
+                                        </div>
                                     </c:if>
-                                </c:if>
-                                <c:choose>
-                                    <c:when test="${index == pages}">
-                                        <% beforePage = beforePage - 2; %>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:choose>
-                                            <c:when test="${index == pages-1}">
-                                                <% beforePage = beforePage - 1; %>
-                                            </c:when>
-                                        </c:choose>
-                                    </c:otherwise>
-                                </c:choose>
-                                <c:choose>
-                                    <c:when test="${index == 1}">
-                                        <% afterPage = afterPage + 2; %>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:choose>
-                                            <c:when test="${index == 2}">
-                                                <% afterPage = afterPage + 1; %>
-                                            </c:when>
-                                        </c:choose>
-                                    </c:otherwise>
-                                </c:choose>
-                                <c:choose>
-                                    <c:when test="${pages == 2}">
-                                        <% afterPage = 2; %>
-                                        <% beforePage = 1; %>
-                                    </c:when>
-                                </c:choose>
-                                <c:forEach begin="<%=beforePage%>" end="<%=afterPage%>" var="p">
-                                    <c:if test="${(p > 0)&&(p< pages+1)}">
-                                        <c:choose>
-                                            <c:when test="${p == index}">
-                                                <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${p}">
-                                                    <li class="numb active"><span>${p}</span></li>
-                                                </a>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${p}">
-                                                    <li class="numb"><span>${p}</span></li>
-                                                </a>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:if>
-                                </c:forEach>
-                                <c:if test="${(index < pages-1)&&(pages>4)}">
-                                    <c:if test="${index < pages-1}">
-                                        <li class="dots"><span>...</span></li>
-                                    </c:if>
-                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${pages}">
-                                        <li class="last numb"><span>${pages}</span></li>
-                                    </a>
-                                </c:if>
 
-                                <c:if test="${index < pages}">
-                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${index+1}">
-                                        <li class="btn next"><span>Next<i
-                                                class="fas fa-angle-right"></i></span></li>
-                                    </a>
-                                </c:if>
-                            </ul>
-                        </div>
-                    </c:if>
-
-                </div>
+                                </div>
             </div>
         </div>
     </div>
@@ -310,11 +281,12 @@
 <!-- /.product-list -->
 <!-- footer -->
 <jsp:include page="/sub-component/footer.jsp"/>
+
+
 <script>
     $(document).ready(function () {
         if ($('.ty-compact-list').length > 10) {
             $('.ty-compact-list:gt(9)').hide();
-            $('.filter-form').css('height', "350px");
             $('.show-more').show();
         }
 

@@ -5,11 +5,10 @@
   Time: 8:06 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@include file="taglib.jsp"%>
 
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -47,4 +46,4 @@
 <script type="text/javascript" src="<c:url value="/assets/js/jquery.easing.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/assets/js/jquery.rateyo.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/assets/js/jquery.desoslide.js"/>"></script>
-<%--<script type="text/javascript" src="<c:url value="/assets/js/quantity-product.js"/>"></script>--%>
+<script type="text/javascript" src="<c:url value="/assets/js/quantity-product.js"/>"></script>

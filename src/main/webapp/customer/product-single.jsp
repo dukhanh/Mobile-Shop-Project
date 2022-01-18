@@ -4,14 +4,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="/sub-component/taglib.jsp"%>
 
 <% List<String> list = (List<String>) request.getAttribute("images");%>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
+
 </head>
 
 <body>
@@ -99,8 +98,10 @@
                                         <h4>Số lượng</h4>
                                         <div class="quantity mb20">
                                             <button class="btn-quantity decrease-quantity" type="button">-</button>
-                                            <input type="number" max="5" min="1" name="quantity" value="1"
-                                                   class="quantity-input">
+                                            <label>
+                                                <input type="number" max="${product.quantity}" min="1" name="quantity" value="1"
+                                                       class="quantity-input">
+                                            </label>
                                             <button class="btn-quantity increase-quantity" type="button">+</button>
                                         </div>
                                         <span class="rest-quantity">${product.quantity} sản phẩm có sẵn</span>
@@ -112,10 +113,7 @@
                                         <button type="submit" class="btn btn-default">
                                             <i class="fa fa-shopping-cart"></i>&nbsp;Thêm vào giỏ hàng
                                         </button>
-
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
@@ -398,61 +396,7 @@
                     </div>
                     <!-- /.product -->
                     <!-- product -->
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb30">
-                        <div class="product-block">
-                            <div class="product-img"><img src="../assets/images/product_img_2.png" alt=""></div>
-                            <div class="product-content">
-                                <h5><a href="#" class="product-title">HTC U Ultra <strong>(64GB, Blue)</strong></a>
-                                </h5>
-                                <div class="product-meta"><a href="#" class="product-price">$1200</a>
-                                    <a href="#" class="discounted-price">$1700</a>
-                                    <span class="offer-price">10%off</span>
-                                </div>
-                                <div class="shopping-btn">
-                                    <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                    <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.product -->
-                    <!-- product -->
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb30">
-                        <div class="product-block">
-                            <div class="product-img"><img src="../assets/images/product_img_3.png" alt=""></div>
-                            <div class="product-content">
-                                <h5><a href="#" class="product-title">Samsung Galaxy Note 8</a></h5>
-                                <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                    <a href="#" class="discounted-price">$2000</a>
-                                    <span class="offer-price">40%off</span>
-                                </div>
-                                <div class="shopping-btn">
-                                    <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                    <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.product -->
-                    <!-- product -->
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb30">
-                        <div class="product-block">
-                            <div class="product-img"><img src="../assets/images/product_img_4.png" alt=""></div>
-                            <div class="product-content">
-                                <h5><a href="#" class="product-title">Vivo V5 Plus <strong>(Matte
-                                    Black)</strong></a></h5>
-                                <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                    <a href="#" class="discounted-price">$2000</a>
-                                    <span class="offer-price">15%off</span>
-                                </div>
-                                <div class="shopping-btn">
-                                    <a href="#" class="product-btn btn-like">
-                                        <i class="fa fa-heart"></i></a>
-                                    <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- /.product -->
                 </div>
             </div>
@@ -462,8 +406,6 @@
 </div>
 <!-- footer -->
 <jsp:include page="/sub-component/footer.jsp"/>
-
-<script type="text/javascript" src="<c:url value="/assets/js/quantity-product.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/assets/js/product-single.js"/>"></script>
 
 </body>

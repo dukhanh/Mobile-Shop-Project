@@ -6,9 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@include file="taglib.jsp"%>
 <div class="side-bar bg-light border-right" id="sidebar-wrapper">
     <div class="sidebar-heading text-center"><b>Mobile Shop</b></div>
     <div class="profile">

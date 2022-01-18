@@ -6,9 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@include file="taglib.jsp"%>
 <div class="top-header">
     <div class="container">
         <div class="row">
@@ -32,7 +30,7 @@
             <!-- logo -->
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-8">
                 <div class="logo">
-                    <a href="<c:url value="../customer/index.jsp"/>"><img src="/assets/images/logo.png" alt=""> </a>
+                    <a href="<c:url value="/customer/index.jsp"/>"><img src="/assets/images/logo.png" alt=""> </a>
                 </div>
             </div>
             <!-- /.logo -->
@@ -48,15 +46,35 @@
             <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                 <div class="account-section">
                     <ul>
-                        <li><a href="<c:url value="../customer/account.jsp"/>" class="title hidden-xs">Tài khoản</a></li>
-                        <li class="hidden-xs">|</li>
-                        <li><a href="../customer/login-form.jsp" class="title hidden-xs">Đăng nhập</a></li>
                         <li><a href="../customer/favorite-list.jsp"><i class="fa fa-heart"></i><sup
                                 class="cart-quantity">2</sup></a></li>
-                        <li><a href="../customer/cart.jsp" class="title"><i class="fa fa-shopping-cart"></i> <sup
+                        <li><a href="../customer/cart.jsp" class="title"><i class="fa fa-shopping-cart"></i>
+                            <sup
                                 class="cart-quantity">2</sup></a>
                         </li>
                     </ul>
+                    <div class="account-login" onclick="myFunction()">
+                        <div class="account-name">
+                            <i class="far fa-user"></i>
+                            <div>
+                                <p class="title-user">Tài khoản</p>
+                                <p class="user-name">Nguyen Du Khanh</p>
+                            </div>
+                        </div>
+                        <i class="fa fa-caret-down"></i>
+                        <div class="drop-down-account" id='myDIV'>
+                            <ul>
+                                <li><a href="">Tài khoản của tôi</a> </li>
+                                <li><a href="">Đơn hàng của tôi</a></li>
+                                <li><a href="">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </div>
+<%--                                        <ul>--%>
+                    <%--                                            <li><a href="<c:url value="../customer/account.jsp"/>" class="title hidden-xs">Tài khoản</a></li>--%>
+                    <%--                                            <li class="hidden-xs">|</li>--%>
+                    <%--                                            <li><a href="../customer/login-form.jsp" class="title hidden-xs">Đăng nhập</a></li>--%>
+                    <%--                                        </ul>--%>
                 </div>
                 <!-- /.account -->
             </div>
@@ -71,10 +89,10 @@
                     <!-- navigations-->
                     <div id="navigation">
                         <ul>
-                            <li class="active"><a href="<c:url value="../customer/index.jsp"/>">Trang chủ</a></li>
+                            <li class="active"><a href="<c:url value="/customer/index.jsp"/>">Trang chủ</a></li>
                             <li><a href="${pageContext.request.contextPath}/ProductList">Điện thoại</a>
                             </li>
-                            <li><a href="<c:url value="../customer/about.jsp"/>">Thông tin</a>
+                            <li><a href="<c:url value="/customer/about.jsp"/>">Thông tin</a>
                             </li>
                             <li><a href="../customer/blog-default.jsp">Bài viết</a></li>
                             <li><a href="../customer/contact-us.jsp">Liên hệ, hỗ trợ</a>
@@ -87,3 +105,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
