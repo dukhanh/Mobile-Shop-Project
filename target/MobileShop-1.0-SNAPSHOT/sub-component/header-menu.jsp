@@ -30,7 +30,7 @@
             <!-- logo -->
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-8">
                 <div class="logo">
-                    <a href="<c:url value="../customer/index.jsp"/>"><img src="/assets/images/logo.png" alt=""> </a>
+                    <a href="<c:url value="/customer/index.jsp"/>"><img src="/assets/images/logo.png" alt=""> </a>
                 </div>
             </div>
             <!-- /.logo -->
@@ -53,6 +53,7 @@
                                 class="cart-quantity">2</sup></a>
                         </li>
                     </ul>
+<%--                    khi da dang nhap--%>
                     <div class="account-login" onclick="myFunction()">
                         <div class="account-name">
                             <i class="far fa-user"></i>
@@ -70,6 +71,8 @@
                             </ul>
                         </div>
                     </div>
+<%--                    khi chua dang nhap--%>
+
 <%--                                        <ul>--%>
                     <%--                                            <li><a href="<c:url value="../customer/account.jsp"/>" class="title hidden-xs">Tài khoản</a></li>--%>
                     <%--                                            <li class="hidden-xs">|</li>--%>
@@ -89,10 +92,10 @@
                     <!-- navigations-->
                     <div id="navigation">
                         <ul>
-                            <li class="active"><a href="<c:url value="../customer/index.jsp"/>">Trang chủ</a></li>
+                            <li class="active"><a href="${pageContext.request.contextPath}/HomeController">Trang chủ</a></li>
                             <li><a href="${pageContext.request.contextPath}/ProductList">Điện thoại</a>
                             </li>
-                            <li><a href="<c:url value="../customer/about.jsp"/>">Thông tin</a>
+                            <li><a href="<c:url value="/customer/about.jsp"/>">Thông tin</a>
                             </li>
                             <li><a href="../customer/blog-default.jsp">Bài viết</a></li>
                             <li><a href="../customer/contact-us.jsp">Liên hệ, hỗ trợ</a>

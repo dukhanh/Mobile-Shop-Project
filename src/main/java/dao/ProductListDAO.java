@@ -8,16 +8,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-public class ProductDAO {
-    private static ProductDAO productDAO;
+public class ProductListDAO {
+    private static ProductListDAO productDAO;
 
-    public ProductDAO() {
+    public ProductListDAO() {
 
     }
 
-    public static ProductDAO getInstance() {
+    public static ProductListDAO getInstance() {
         if (productDAO == null) {
-            productDAO = new ProductDAO();
+            productDAO = new ProductListDAO();
         }
         return productDAO;
     }
@@ -25,7 +25,7 @@ public class ProductDAO {
     public List<Product> getProducts(int page, int products, String condition, String sort) {
         Product product;
         List<Product> res = new LinkedList<>();
-        String sql ="SELECT * FROM SAN_PHAM WHERE 1=1 " + condition + "\n" + sort + " LIMIT ?,?";
+        String sql = "SELECT * FROM SAN_PHAM WHERE 1=1 " + condition + "\n" + sort + " LIMIT ?,?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, page);
@@ -89,23 +89,15 @@ public class ProductDAO {
         return res;
     }
 
-    public List<Product> getProductsByBrand(String[] id) {
+    public List<Product> getProductPromotion(int page, int products, String condition) {
         Product product;
         List<Product> res = new LinkedList<>();
-        String sql = "SELECT *\n" +
-                "from san_pham \n";
-        if (id != null) {
-            sql += " WHERE ID_THUONG_HIEU IN(";
-            for (String s : id) {
-                sql += s + ",";
-            }
-            if (sql.endsWith(",")) {
-                sql = sql.substring(0, sql.length() - 1);
-            }
-            sql += ")";
-        }
+        String sql = "SELECT * \n" +
+                "from san_pham \n" + condition + "AND ((GIA_SP-GIA_KM)>0) ORDER BY (GIA_SP-GIA_KM) desc LIMIT ?,?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
+            psupdate.setInt(1, page);
+            psupdate.setInt(2, products);
             ResultSet rs = psupdate.executeQuery();
             while (rs.next()) {
                 product = new Product();
@@ -123,6 +115,7 @@ public class ProductDAO {
         }
         return res;
     }
+}
 
 //
 //    public static void main(String[] args) {
@@ -135,4 +128,4 @@ public class ProductDAO {
 //    }
 
 
-}
+

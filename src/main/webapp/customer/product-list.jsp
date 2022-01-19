@@ -96,6 +96,7 @@
                             </tr>
                         </c:forEach>
 
+
                     </table>
 
                     <div class="filter-product">
@@ -281,7 +282,6 @@
 <!-- /.product-list -->
 <!-- footer -->
 <jsp:include page="/sub-component/footer.jsp"/>
-
 
 <script>
     $(document).ready(function () {

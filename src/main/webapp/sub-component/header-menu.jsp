@@ -53,6 +53,7 @@
                                 class="cart-quantity">2</sup></a>
                         </li>
                     </ul>
+<%--                    khi da dang nhap--%>
                     <div class="account-login" onclick="myFunction()">
                         <div class="account-name">
                             <i class="far fa-user"></i>
@@ -70,6 +71,8 @@
                             </ul>
                         </div>
                     </div>
+<%--                    khi chua dang nhap--%>
+
 <%--                                        <ul>--%>
                     <%--                                            <li><a href="<c:url value="../customer/account.jsp"/>" class="title hidden-xs">Tài khoản</a></li>--%>
                     <%--                                            <li class="hidden-xs">|</li>--%>
@@ -89,7 +92,7 @@
                     <!-- navigations-->
                     <div id="navigation">
                         <ul>
-                            <li class="active"><a href="<c:url value="/customer/index.jsp"/>">Trang chủ</a></li>
+                            <li class="active"><a href="${pageContext.request.contextPath}/HomeController">Trang chủ</a></li>
                             <li><a href="${pageContext.request.contextPath}/ProductList">Điện thoại</a>
                             </li>
                             <li><a href="<c:url value="/customer/about.jsp"/>">Thông tin</a>

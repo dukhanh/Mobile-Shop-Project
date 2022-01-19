@@ -16,8 +16,11 @@ public class ProductListService {
 
     static {
         sortProducts.put("top_seller", "Bán Chạy");
+        sortProducts.put("best_new", "Mới nhất");
+        sortProducts.put("promotion", "Khuyến mãi");
         sortProducts.put("price_asc", "Giá Thấp");
         sortProducts.put("price_desc", "Giá Cao");
+
 
     }
 
@@ -29,7 +32,7 @@ public class ProductListService {
     }
 
 
-    public static String conditionWhere(String category, String price, String[] iBrand) {
+    public static String conditionWhere(String category, String price, String[] iBrand, String sortCondition) {
         String condition = "";
         if (category != null) {
             condition = " AND ID_LOAI_SP = " + category;
@@ -50,6 +53,10 @@ public class ProductListService {
                 conditionFPrice = " AND (GIA_KM > 22500000)";
             }
         }
+        String sortPromotion = "";
+        if (sortCondition.equals("promotion")) {
+            sortPromotion = " AND ((GIA_SP-GIA_KM)>0)";
+        }
         StringBuilder conditionBrand = new StringBuilder();
         if (iBrand != null) {
             conditionBrand.append(" AND ID_THUONG_HIEU IN(");
@@ -61,7 +68,7 @@ public class ProductListService {
             }
             conditionBrand.append(")");
         }
-        return condition + conditionFPrice + conditionBrand.toString();
+        return condition + conditionFPrice + sortPromotion + conditionBrand.toString();
     }
 
 
@@ -70,8 +77,15 @@ public class ProductListService {
         if (sortType != null) {
             if (sortType.equals("price_asc")) {
                 sortCondition = " ORDER BY GIA_KM ASC";
-            } else {
+            }
+            if (sortType.equals("price_desc")) {
                 sortCondition = " ORDER BY GIA_KM DESC";
+            }
+            if (sortType.equals("best_new")) {
+                sortCondition = " ORDER BY NGAY_CAPNHAT DESC";
+            }
+            if(sortType.equals("promotion")){
+                sortCondition = " ORDER BY (GIA_SP-GIA_KM) DESC";
             }
         }
         return sortCondition;

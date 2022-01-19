@@ -4,7 +4,7 @@ import bean.Brand;
 import bean.Product;
 import dao.BrandDAO;
 import dao.CategoryDAO;
-import dao.ProductDAO;
+import dao.ProductListDAO;
 import service.ProductListService;
 
 import javax.servlet.ServletException;
@@ -35,14 +35,13 @@ public class ProductListController extends HttpServlet {
         // sắp xếp sản phẩm
 
         String sortCondition = ProductListService.sortPriceCondition(sortType);
-        String condition = ProductListService.conditionWhere(categoryId, filPrice, iBrand);
+        String condition = ProductListService.conditionWhere(categoryId, filPrice, iBrand, sortCondition);
 
 //        System.out.println(condition);
 
-        int product = ProductDAO.getInstance().getNumberOfProducts(condition);
+        int product = ProductListDAO.getInstance().getNumberOfProducts(condition);
         int pages = ProductListService.dividePages(product);
         int indexPage = ProductListService.startIndex(index);
-
 
         List<Brand> listBrand = BrandDAO.getInstance().getTopBrand();
         boolean[] isBrandChecked = new boolean[listBrand.size()];
@@ -51,10 +50,10 @@ public class ProductListController extends HttpServlet {
         }
         // list data products
 
-        List<Product> list = ProductDAO.getInstance().getProducts(indexPage, productsInPage, condition, sortCondition);
+        List<Product> list = ProductListDAO.getInstance().getProducts(indexPage, productsInPage, condition, sortCondition);
         if (sortType != null) {
             if (sortType.equals("top_seller")) {
-                list = ProductDAO.getInstance().getProductsTopSeller(indexPage, productsInPage, condition);
+                list = ProductListDAO.getInstance().getProductsTopSeller(indexPage, productsInPage, condition);
             }
         }
 

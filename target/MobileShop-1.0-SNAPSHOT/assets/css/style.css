@@ -3948,13 +3948,10 @@ Class----------------
     position: relative;
 }
 
-.sort-list {
-
-}
 
 .sort-list ul {
     display: flex;
-    width: 400px;
+    width: 550px;
     justify-content: space-between;
     padding: 0 20px;
 }

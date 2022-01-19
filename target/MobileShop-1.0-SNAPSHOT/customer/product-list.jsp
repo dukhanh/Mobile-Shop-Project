@@ -96,12 +96,6 @@
                             </tr>
                         </c:forEach>
 
-                        <tr>
-                            <td>
-                                <button onclick="testAjax()">testAjax</button>
-                            </td>
-                        </tr>
-
 
                     </table>
 
@@ -288,22 +282,6 @@
 <!-- /.product-list -->
 <!-- footer -->
 <jsp:include page="/sub-component/footer.jsp"/>
-
-<script>
-
-    function testAjax() {
-        $.ajax({
-            url: '/ServletAjax',
-            type: 'get',
-            bindEncoding: "UTF-8",
-            success: function (data) {
-                var row = document.getElementById("content");
-                row.innerHTML = data;
-            }
-        })
-
-    }
-</script>
 
 <script>
     $(document).ready(function () {

@@ -2,8 +2,12 @@
 <html lang="en">
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="/sub-component/taglib.jsp" %>
+<%
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
+%>
+<fmt:setLocale value="vi_VN"/>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
@@ -11,7 +15,7 @@
 
 <body>
 <!-- top-header-->
-    <jsp:include page="/sub-component/header-menu.jsp"/>
+<jsp:include page="/sub-component/header-menu.jsp"/>
 <!-- /. header-section-->
 <!-- slider -->
 <div class="slider">
@@ -29,8 +33,8 @@
                             <h1 class="slider-title">Red Mi <span>Y1</span></h1>
                             <p class="hidden-xs">LED Selfie-light | Fingerprint sensor | Dedicated microSD card slot
                                 Snapdragon 435 octa-core processor </p>
-                            <p class="slider-price">$138.99 </p>
-                            <a href="cart.html" class="btn btn-primary btn-lg hidden-xs">Buy Now</a>
+<%--                            <p class="slider-price">$138.99 </p>--%>
+<%--                            <a href="cart.html" class="btn btn-primary btn-lg hidden-xs">Buy Now</a>--%>
                         </div>
                     </div>
                 </div>
@@ -48,8 +52,9 @@
                             <h1 class="slider-title">Google Pixel 2</h1>
                             <p class="hidden-xs">The latest Qualcomm Snapdragon 835 processor | Water-resistant metal
                                 unibody | Up to 7 hours of battery.</p>
-                            <p class="slider-price">$ 938.10</p>
-                            <a href="cart.html" class="btn btn-primary btn-lg hidden-xs">Buy Now</a></div>
+                            <%--                            <p class="slider-price">$ 938.10</p>--%>
+                            <%--                            <a href="cart.html" class="btn btn-primary btn-lg hidden-xs">Buy Now</a>--%>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,8 +71,9 @@
                             <h1 class="slider-title">iphone 8 plus </h1>
                             <p class="hidden-xs">5.5 inch Retina HD Display | 12MP wide-angle cameras
                                 <br> | 64 GB &amp; 256 GB ROM Memory</p>
-                            <p class="slider-price">$759.64</p>
-                            <a href="cart.html" class="btn btn-primary btn-lg hidden-xs">Buy Now</a></div>
+                            <%--                                <p class="slider-price">$759.64</p>--%>
+                            <%--                                <a href="cart.html" class="btn btn-primary btn-lg hidden-xs">Buy Now</a>--%>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -89,7 +95,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="showcase-block active">
                     <div class="display-logo alignleft">
                         <a href="#"> <img src="/assets/images/iphone.png" alt="">
@@ -98,6 +104,17 @@
                     <div class="showcase-img">
                         <a href="#"> <img src="/assets/images/display_img_2.png" alt=""
                                           style="padding-left: 80px;"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="showcase-block ">
+                    <div class="display-logo ">
+                        <a href="#"> <img src="/assets/images/samsung.png" alt="">
+                        </a>
+                    </div>
+                    <div class="showcase-img">
+                        <a href="#"><img src="/assets/images/display_img_3.png" alt=""> </a>
                     </div>
                 </div>
             </div>
@@ -165,86 +182,41 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="head-title">Sản phẩm mới nhất</h3>
+                    <h3 class="head-title"><a href="">Sản phẩm mới nhất</a></h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
                         <!-- product -->
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="product-block">
-                                <div class="product-img"><img src="/assets/images/product_img_1.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Google Pixel <strong>(128GB,
-                                        Black)</strong></a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1100</a>
-                                        <a href="#" class="discounted-price">$1400</a>
-                                        <span class="offer-price">20%off</span>
+                        <jsp:useBean id="listProductBestNew" scope="request" type="java.util.List"/>
+                        <c:forEach items="${listProductBestNew}" var="p">
+                            <div class="col-sm-3 m-0" style="padding: 2px;">
+                                <a href="ProductDetails?id=${p.id}">
+                                    <div class="product-block">
+                                        <div class="product-img"><img src="${p.imageUrl}" alt=""></div>
+                                        <div class="product-content">
+                                            <h5 class="product-title">${p.name}</h5>
+                                            <div class="product-meta">
+                                                <c:if test="${p.price > p.priceSale}">
+                                                    <a href="#" class="discounted-price">
+                                                        <fmt:formatNumber value="${p.price}"/> vnđ
+                                                    </a>
+                                                </c:if>
+                                                <a href="#" class="product-price">
+                                                    <fmt:formatNumber value="${p.priceSale}"/> vnđ
+                                                </a>
+                                            </div>
+                                            <div class="shopping-btn">
+                                                <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
+                                                <a href="#" class="product-btn btn-cart"><i
+                                                        class="fa fa-shopping-cart"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
-                        </div>
-                        <!-- /.product -->
-                        <!-- product -->
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="product-block">
-                                <div class="product-img"><img src="/assets/images/product_img_2.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">HTC U Ultra <strong>(64GB, Blue)</strong></a>
-                                    </h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1200</a>
-                                        <a href="#" class="discounted-price">$1700</a>
-                                        <span class="offer-price">10%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.product -->
-                        <!-- product -->
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="product-block">
-                                <div class="product-img"><img src="/assets/images/product_img_3.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Samsung Galaxy Note 8</a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                        <a href="#" class="discounted-price">$2000</a>
-                                        <span class="offer-price">40%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.product -->
-                        <!-- product -->
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="product-block">
-                                <div class="product-img"><img src="/assets/images/product_img_4.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Vivo V5 Plus <strong>(Matte
-                                        Black)</strong></a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                        <a href="#" class="discounted-price">$2000</a>
-                                        <span class="offer-price">15%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like">
-                                            <i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.product -->
+                            <!-- /.product -->
+                        </c:forEach>
+
                     </div>
                 </div>
             </div>
@@ -258,7 +230,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="head-title">Bán chạy nhất</h3>
+                    <h3 class="head-title"><a href="ProductList?&sort=top_seller">Bán chạy nhất</a></h3>
                 </div>
             </div>
         </div>
@@ -268,89 +240,39 @@
             <div class="row">
                 <div class="owl-carousel owl-two owl-theme">
                     <!-- product -->
-                    <div class="item">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="product-block">
-                                <div class="product-img"><img src="/assets/images/product_img_5.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Apple iPhone 6 <strong>(32 GB, Gold)</strong></a>
-                                    </h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1700</a>
-                                        <a href="#" class="discounted-price">$2000</a>
-                                        <span class="offer-price">20%off</span>
+                    <jsp:useBean id="listProductTopSeller" scope="request" type="java.util.List"/>
+                    <c:forEach items="${listProductTopSeller}" var="p">
+                        <div class="item">
+                            <div class="col-lg-12 m-0" style="padding: 2px;">
+                                <a href="ProductDetails?id=${p.id}">
+                                    <div class="product-block">
+                                        <div class="product-img"><img src="${p.imageUrl}" alt=""></div>
+                                        <div class="product-content">
+                                            <h5 class="product-title">${p.name}</h5>
+                                            <div class="product-meta">
+                                                <c:if test="${p.price > p.priceSale}">
+                                                    <a href="#" class="discounted-price">
+                                                        <fmt:formatNumber value="${p.price}"/> vnđ
+                                                    </a>
+                                                </c:if>
+                                                <a href="#" class="product-price">
+                                                    <fmt:formatNumber value="${p.priceSale}"/> vnđ
+                                                </a>
+                                            </div>
+                                            <div class="shopping-btn">
+                                                <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
+                                                <a href="#" class="product-btn btn-cart"><i
+                                                        class="fa fa-shopping-cart"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
-                        <!-- /.product -->
-                    </div>
-                    <!-- product -->
-                    <div class="item">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="product-block">
-                                <div class="product-img"><img src="/assets/images/product_img_6.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Apple iPhone 7 <strong>(256 GB,
-                                        Black)</strong> </a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1400</a>
-                                        <a href="#" class="discounted-price"><strike>$1800</strike></a>
-                                        <span class="offer-price">20%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.product -->
-                    <!-- product -->
-                    <div class="item">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="product-block">
-                                <div class="product-img"><img src="/assets/images/product_img_7.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Apple iPhone 6S <strong>(32GB, Gold)</strong>
-                                    </a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1300</a>
-                                        <a href="#" class="discounted-price"><strike>$2000</strike></a>
-                                        <span class="offer-price">20%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.product -->
-                    <!-- product -->
-                    <div class="item">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="product-block">
-                                <div class="product-img"><img src="/assets/images/product_img_8.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Apple iPhone X <strong>(64 GB, Grey)</strong></a>
-                                    </h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1200</a>
-                                        <a href="#" class="discounted-price"><strike>$2000</strike></a>
-                                        <span class="offer-price">20%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.product -->
-                    </div>
+
+
+                    </c:forEach>
+
                 </div>
             </div>
         </div>
@@ -363,86 +285,42 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="head-title">Đang khuyến mãi</h3>
+                    <h3 class="head-title"><a href="">Đang khuyến mãi</a></h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
                         <!-- product -->
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="product-block">
-                                <div class="product-img"><img src="/assets/images/product_img_3.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Samsung Galaxy Note 8</a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                        <a href="#" class="discounted-price"><strike>$2000</strike></a>
-                                        <span class="offer-price">40%off</span>
+                        <jsp:useBean id="listProductPromotions" scope="request" type="java.util.List"/>
+                        <c:forEach items="${listProductPromotions}" var="p">
+                            <div class="col-sm-3 m-0" style="padding: 2px;">
+                                <a href="ProductDetails?id=${p.id}">
+                                    <div class="product-block">
+                                        <div class="product-img"><img src="${p.imageUrl}" alt=""></div>
+                                        <div class="product-content">
+                                            <h5 class="product-title">${p.name}</h5>
+                                            <div class="product-meta">
+                                                <c:if test="${p.price > p.priceSale}">
+                                                    <a href="#" class="discounted-price">
+                                                        <fmt:formatNumber value="${p.price}"/> vnđ
+                                                    </a>
+                                                </c:if>
+                                                <a href="#" class="product-price">
+                                                    <fmt:formatNumber value="${p.priceSale}"/> vnđ
+                                                </a>
+                                            </div>
+                                            <div class="shopping-btn">
+                                                <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
+                                                <a href="#" class="product-btn btn-cart"><i
+                                                        class="fa fa-shopping-cart"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
-                        </div>
-                        <!-- /.product -->
-                        <!-- product -->
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="product-block">
-                                <div class="product-img"><img src="/assets/images/product_img_4.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Vivo V5 Plus <strong>(Matte
-                                        Black)</strong></a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1500</a>
-                                        <a href="#" class="discounted-price"><strike>$2000</strike></a>
-                                        <span class="offer-price">15%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like">
-                                            <i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.product -->
-                        <!-- product -->
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="product-block">
-                                <div class="product-img"><img src="/assets/images/product_img_1.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">Google Pixel <strong>(128GB,
-                                        Black)</strong></a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1100</a>
-                                        <a href="#" class="discounted-price"><strike>$1400</strike></a>
-                                        <span class="offer-price">20%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.product -->
-                        <!-- product -->
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="product-block">
-                                <div class="product-img"><img src="/assets/images/product_img_2.png" alt=""></div>
-                                <div class="product-content">
-                                    <h5><a href="#" class="product-title">HTC U Ultra <strong>(64GB, Blue)</strong></a>
-                                    </h5>
-                                    <div class="product-meta"><a href="#" class="product-price">$1200</a>
-                                        <a href="#" class="discounted-price"><strike>$1700</strike></a>
-                                        <span class="offer-price">10%off</span>
-                                    </div>
-                                    <div class="shopping-btn">
-                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                        <a href="#" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.product -->
+                            <!-- /.product -->
+                        </c:forEach>
+
+
                     </div>
                 </div>
             </div>
