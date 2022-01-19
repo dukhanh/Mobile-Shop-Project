@@ -7,7 +7,7 @@ CREATE TABLE THUONG_HIEU(
                             SLUG VARCHAR(20) NOT NULL
 );
 ALTER TABLE THUONG_HIEU ADD CONSTRAINT PK_THUONG_HIEU PRIMARY KEY (ID);
-
+ALTER TABLE THUONG_HIEU ADD COLUMN LOGO VARCHAR(300) AFTER SLUG;
 
 CREATE TABLE LOAI_SP(
                         ID INT NOT NULL,
@@ -148,49 +148,49 @@ ALTER TABLE DANH_GIA_SP ADD CONSTRAINT FK_SP_DG FOREIGN KEY (ID_SP) REFERENCES S
 
 -- Insert thuong_hieu TABLE
 
-INSERT INTO THUONG_HIEU VALUES(17827, "Apple","apple");
-INSERT INTO THUONG_HIEU VALUES(18802, "Samsung","samsung");
-INSERT INTO THUONG_HIEU VALUES(25422, "Xiaomi","xiaomi");
-INSERT INTO THUONG_HIEU VALUES(25643, "OPPO","oppo");
-INSERT INTO THUONG_HIEU VALUES(52232, "Vivo","vivo");
-INSERT INTO THUONG_HIEU VALUES(162007, "Tecno","tecno");
-INSERT INTO THUONG_HIEU VALUES(27468, "OnePlus ","oneplus");
-INSERT INTO THUONG_HIEU VALUES(19673, "Nokia","nokia");
-INSERT INTO THUONG_HIEU VALUES(257333, "Vsmart","vsmart");
-INSERT INTO THUONG_HIEU VALUES(112638, "Masstel","masstel");
-INSERT INTO THUONG_HIEU VALUES(111684, "Itel","itel");
-INSERT INTO THUONG_HIEU VALUES(573293, "Vtel","vtel");
-INSERT INTO THUONG_HIEU VALUES(725567, "DXD","dxd");
-INSERT INTO THUONG_HIEU VALUES(181955, "Nippon","nippon");
-INSERT INTO THUONG_HIEU VALUES(279275, "Orange","orange");
-INSERT INTO THUONG_HIEU VALUES(247549, "Realme","realme");
-INSERT INTO THUONG_HIEU VALUES(19788, "Huawei","huawei");
-INSERT INTO THUONG_HIEU VALUES(50609, "Coolpad","coolpad");
-INSERT INTO THUONG_HIEU VALUES(183625, "Kobo","kobo");
-INSERT INTO THUONG_HIEU VALUES(166193, "Goly","goly");
-INSERT INTO THUONG_HIEU VALUES(233903, "Black Shark","black-shark");
-INSERT INTO THUONG_HIEU VALUES(19018, "Philips","philips");
-INSERT INTO THUONG_HIEU VALUES(150568, "Forme","forme");
-INSERT INTO THUONG_HIEU VALUES(523467, "China Mobile","china-mobile");
-INSERT INTO THUONG_HIEU VALUES(198543, "nubia","nubia");
-INSERT INTO THUONG_HIEU VALUES(111461, "OEM","oem");
-INSERT INTO THUONG_HIEU VALUES(112735, "Oukitel","oukitel");
-INSERT INTO THUONG_HIEU VALUES(25697, "Viettel","viettel");
-INSERT INTO THUONG_HIEU VALUES(22017, "Mobell","mobell");
-INSERT INTO THUONG_HIEU VALUES(366269, "Servo","servo");
-INSERT INTO THUONG_HIEU VALUES(143976, "Suntek","suntek");
-INSERT INTO THUONG_HIEU VALUES(216771, "Uniden","uniden");
-INSERT INTO THUONG_HIEU VALUES(4960305, "Sugar","sugar");
-INSERT INTO THUONG_HIEU VALUES(472079, "Yealink","yealink");
-INSERT INTO THUONG_HIEU VALUES(229213, "Bphone","bphone");
-INSERT INTO THUONG_HIEU VALUES(222813, "THT","tht");
-INSERT INTO THUONG_HIEU VALUES(17825, "HP","hp");
-INSERT INTO THUONG_HIEU VALUES(522685, "Flyingvoice","flyingvoice");
-INSERT INTO THUONG_HIEU VALUES(25685, "Bavapen","bavapen");
-INSERT INTO THUONG_HIEU VALUES(525323, "Fanvil","fanvil");
-INSERT INTO THUONG_HIEU VALUES(65095, "Cisco","cisco");
-INSERT INTO THUONG_HIEU VALUES(79650, "Mpower","m-power");
-INSERT INTO THUONG_HIEU VALUES(18804, "Panasonic","panasonic");
+INSERT INTO THUONG_HIEU VALUES(17827, "Apple","apple", "https://1000logos.net/wp-content/uploads/2018/08/Apple-logo-500x281.jpg");
+INSERT INTO THUONG_HIEU VALUES(18802, "Samsung","samsung","https://1000logos.net/wp-content/uploads/2018/08/Samsung-logo-500x281.jpg");
+INSERT INTO THUONG_HIEU VALUES(25422, "Xiaomi","xiaomi","https://1000logos.net/wp-content/uploads/2018/08/Xiaomi-logo-500x281.jpg");
+INSERT INTO THUONG_HIEU VALUES(25643, "OPPO","oppo","https://1000logos.net/wp-content/uploads/2018/08/OPPO-logo-500x281.jpg");
+INSERT INTO THUONG_HIEU VALUES(52232, "Vivo","vivo","https://1000logos.net/wp-content/uploads/2018/08/Vivo-logo-500x281.jpg");
+INSERT INTO THUONG_HIEU VALUES(162007, "Tecno","tecno","https://getlogovector.com/wp-content/uploads/2021/05/tecno-mobile-logo-vector.png");
+INSERT INTO THUONG_HIEU VALUES(27468, "OnePlus ","oneplus","https://1000logos.net/wp-content/uploads/2018/08/OnePlus-logo-500x281.jpg");
+INSERT INTO THUONG_HIEU VALUES(19673, "Nokia","nokia","https://1000logos.net/wp-content/uploads/2018/08/Nokia-logo-500x281.jpg");
+INSERT INTO THUONG_HIEU VALUES(257333, "Vsmart","vsmart","https://www.elib.vn/images/topic/2020/20200727//654_1596530234.png");
+INSERT INTO THUONG_HIEU VALUES(112638, "Masstel","masstel","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdX-J0s-PHD5Cn6xScU2oFkpOpfFlfWjxJXpHH9jWqDZxBXJPuJbBtIMXCmFZSN_b_2Q&usqp=CAU");
+INSERT INTO THUONG_HIEU VALUES(111684, "Itel","itel","https://upload.wikimedia.org/wikipedia/commons/d/db/Itel_Mobile_logo.png");
+INSERT INTO THUONG_HIEU VALUES(573293, "Vtel","vtel","");
+INSERT INTO THUONG_HIEU VALUES(725567, "DXD","dxd","");
+INSERT INTO THUONG_HIEU VALUES(181955, "Nippon","nippon","");
+INSERT INTO THUONG_HIEU VALUES(279275, "Orange","orange","");
+INSERT INTO THUONG_HIEU VALUES(247549, "Realme","realme","https://data.timvieclam.asia/canthojob/companies/2021/01/08/origin_canthojob.vn-2021-01-08-161007272192500realme.jpg");
+INSERT INTO THUONG_HIEU VALUES(19788, "Huawei","huawei","https://1000logos.net/wp-content/uploads/2018/08/Huawei-logo-500x281.jpg");
+INSERT INTO THUONG_HIEU VALUES(50609, "Coolpad","coolpad","");
+INSERT INTO THUONG_HIEU VALUES(183625, "Kobo","kobo","");
+INSERT INTO THUONG_HIEU VALUES(166193, "Goly","goly","");
+INSERT INTO THUONG_HIEU VALUES(233903, "Black Shark","black-shark","");
+INSERT INTO THUONG_HIEU VALUES(19018, "Philips","philips","");
+INSERT INTO THUONG_HIEU VALUES(150568, "Forme","forme","");
+INSERT INTO THUONG_HIEU VALUES(523467, "China Mobile","china-mobile","");
+INSERT INTO THUONG_HIEU VALUES(198543, "nubia","nubia","");
+INSERT INTO THUONG_HIEU VALUES(111461, "OEM","oem","");
+INSERT INTO THUONG_HIEU VALUES(112735, "Oukitel","oukitel","");
+INSERT INTO THUONG_HIEU VALUES(25697, "Viettel","viettel", "https://static.wixstatic.com/media/9d8ed5_a00501b84f6c4bdf84170a87e873b56b~mv2.png/v1/fill/w_1654,h_886,al_c/9d8ed5_a00501b84f6c4bdf84170a87e873b56b~mv2.png");
+INSERT INTO THUONG_HIEU VALUES(22017, "Mobell","mobell","");
+INSERT INTO THUONG_HIEU VALUES(366269, "Servo","servo","");
+INSERT INTO THUONG_HIEU VALUES(143976, "Suntek","suntek","");
+INSERT INTO THUONG_HIEU VALUES(216771, "Uniden","uniden","");
+INSERT INTO THUONG_HIEU VALUES(4960305, "Sugar","sugar","");
+INSERT INTO THUONG_HIEU VALUES(472079, "Yealink","yealink","");
+INSERT INTO THUONG_HIEU VALUES(229213, "Bphone","bphone","");
+INSERT INTO THUONG_HIEU VALUES(222813, "THT","tht","");
+INSERT INTO THUONG_HIEU VALUES(17825, "HP","hp","");
+INSERT INTO THUONG_HIEU VALUES(522685, "Flyingvoice","flyingvoice","");
+INSERT INTO THUONG_HIEU VALUES(25685, "Bavapen","bavapen","");
+INSERT INTO THUONG_HIEU VALUES(525323, "Fanvil","fanvil","");
+INSERT INTO THUONG_HIEU VALUES(65095, "Cisco","cisco","");
+INSERT INTO THUONG_HIEU VALUES(79650, "Mpower","m-power","");
+INSERT INTO THUONG_HIEU VALUES(18804, "Panasonic","panasonic","https://1000logos.net/wp-content/uploads/2017/04/Panasonic-logo.jpg");
 
 
 

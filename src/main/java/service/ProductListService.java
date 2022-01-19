@@ -16,8 +16,8 @@ public class ProductListService {
 
     static {
         sortProducts.put("top_seller", "Bán Chạy");
-        sortProducts.put("best_new", "Mới nhất");
-        sortProducts.put("promotion", "Khuyến mãi");
+        sortProducts.put("best_new", "Hàng Mới");
+        sortProducts.put("promotion", "Khuyến Mãi");
         sortProducts.put("price_asc", "Giá Thấp");
         sortProducts.put("price_desc", "Giá Cao");
 

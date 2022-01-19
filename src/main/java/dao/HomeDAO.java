@@ -1,5 +1,6 @@
 package dao;
 
+import bean.Brand;
 import bean.Product;
 import controller.HomeController;
 import db.DBConnect;
@@ -112,6 +113,7 @@ public class HomeDAO {
         }
         return res;
     }
+
 
 
     public static void main(String[] args) {

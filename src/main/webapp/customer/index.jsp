@@ -82,96 +82,20 @@
 </div>
 <!-- /.slider -->
 <!-- mobile showcase -->
-<div class="space-medium">
+<div class="pdt80 pdb20">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <div class="showcase-block">
-                    <div class="display-logo ">
-                        <a href="#"> <img src="/assets/images/nexus.png" alt=""></a>
-                    </div>
-                    <div class="showcase-img">
-                        <a href="#"> <img src="/assets/images/display_img_1.png" alt=""></a>
-                    </div>
+            <jsp:useBean id="listBrandLogo" scope="request" type="java.util.List"/>
+            <c:forEach items="${listBrandLogo}" var="list">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <a href="ProductList?ibrand=${list.id}">
+                        <div class="showcase-block">
+                            <img src="${list.logo}" alt="">
+                        </div>
+                    </a>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <div class="showcase-block active">
-                    <div class="display-logo alignleft">
-                        <a href="#"> <img src="/assets/images/iphone.png" alt="">
-                        </a>
-                    </div>
-                    <div class="showcase-img">
-                        <a href="#"> <img src="/assets/images/display_img_2.png" alt=""
-                                          style="padding-left: 80px;"></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <div class="showcase-block ">
-                    <div class="display-logo ">
-                        <a href="#"> <img src="/assets/images/samsung.png" alt="">
-                        </a>
-                    </div>
-                    <div class="showcase-img">
-                        <a href="#"><img src="/assets/images/display_img_3.png" alt=""> </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <div class="showcase-block ">
-                    <div class="display-logo ">
-                        <a href="#"> <img src="/assets/images/samsung.png" alt="">
-                        </a>
-                    </div>
-                    <div class="showcase-img">
-                        <a href="#"><img src="/assets/images/display_img_3.png" alt=""> </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="showcase-block">
-                    <div class="display-logo ">
-                        <a href="#"><img src="/assets/images/htc.png" alt=""></a>
-                    </div>
-                    <div class="showcase-img">
-                        <a href="#"><img src="/assets/images/display_img_4.png" alt=""></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="showcase-block">
-                    <div class="display-logo">
-                        <a href="#"> <img src="/assets/images/alcatel.png" alt=""></a>
-                    </div>
-                    <div class="showcase-img">
-                        <a href="#"> <img src="/assets/images/display_img_5.png" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="showcase-block">
-                    <div class="display-logo ">
-                        <a href="#"><img src="/assets/images/pixel.png" alt=""></a>
-                    </div>
-                    <div class="showcase-img">
-                        <a href="#"> <img src="/assets/images/display_img_6.png" alt=""></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="showcase-block">
-                    <div class="display-logo ">
-                        <a href="#"> <img src="/assets/images/vivo.png" alt=""></a>
-                    </div>
-                    <div class="showcase-img">
-                        <a href="#"><img src="/assets/images/display_img_7.png" alt=""></a>
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
+
         </div>
     </div>
 </div>

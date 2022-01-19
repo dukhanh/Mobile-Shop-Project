@@ -1,6 +1,8 @@
 package controller;
 
+import bean.Brand;
 import bean.Product;
+import dao.BrandDAO;
 import dao.HomeDAO;
 
 import javax.servlet.*;
@@ -16,9 +18,11 @@ public class HomeController extends HttpServlet {
         List<Product> listProductPromotions = HomeDAO.getInstance().getProductPromotion();
         List<Product> listProductTopSeller = HomeDAO.getInstance().getProductTopSeller();
         List<Product> listProductBestNew = HomeDAO.getInstance().getProductBestNew();
-        request.setAttribute("listProductPromotions",listProductPromotions);
-        request.setAttribute("listProductTopSeller",listProductTopSeller);
-        request.setAttribute("listProductBestNew",listProductBestNew);
+        List<Brand> listBrandLogo = BrandDAO.getInstance().getBrandLogo();
+        request.setAttribute("listProductPromotions", listProductPromotions);
+        request.setAttribute("listProductTopSeller", listProductTopSeller);
+        request.setAttribute("listProductBestNew", listProductBestNew);
+        request.setAttribute("listBrandLogo", listBrandLogo);
 
         request.getRequestDispatcher("/customer/index.jsp").forward(request, response);
     }
