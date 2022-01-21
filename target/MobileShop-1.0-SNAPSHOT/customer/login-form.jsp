@@ -38,28 +38,31 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 mb20">
-                                    <h3 class="mb10">Đăng nhập</h3>
+                                    <h1 class="mb10" style="text-align:center">Đăng nhập</h1>
                                 </div>
                                 <!-- form -->
                                 <form>
+
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="alert alert-danger" role="alert">
+                                            This is a danger alert—check it out!
+                                        </div>
                                         <div class="form-group">
-                                            <label class="control-label sr-only" for="email"></label>
                                             <div class="login-input">
-                                                <input id="email" name="emaol" type="text" class="form-control"
+                                                <input id="email" name="email" type="text" class="form-control"
                                                     placeholder="Địa chỉ email" required>
-                                                <div class="login-icon"><i class="fa fa-user"></i></div>
+<%--                                                <div class="login-icon"><i class="fa fa-user"></i></div>--%>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label class="control-label sr-only"></label>
+
                                             <div class="login-input">
                                                 <input name="password" type="password" class="form-control"
                                                     placeholder="Mật khẩu" required>
-                                                <div class="login-icon"><i class="fa fa-lock"></i></div>
-                                                <div class="eye-icon"><i class="fa fa-eye"></i></div>
+<%--                                                <div class="login-icon"><i class="fa fa-lock"></i></div>--%>
+<%--                                                <div class="eye-icon"><i class="fa fa-eye"></i></div>--%>
                                             </div>
                                         </div>
                                     </div>

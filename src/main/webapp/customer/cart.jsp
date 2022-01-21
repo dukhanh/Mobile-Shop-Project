@@ -43,7 +43,7 @@
         <table class="table">
             <thead class="thead-light">
             <tr>
-                <th></th>
+                <th> <div class="item-center pdl10"><input type="checkbox" class="checkboxStyle"></div></th>
                 <th>Sản phẩm</th>
                 <th scope="col">Đơn giá</th>
                 <th scope="col">Số lượng</th>

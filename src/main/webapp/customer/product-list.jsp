@@ -1,58 +1,64 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/sub-component/taglib.jsp" %>
+<%@ page buffer="8192kb" %>
 <%
     request.setCharacterEncoding("UTF-8");
     response.setCharacterEncoding("UTF-8");
 %>
 <fmt:setLocale value="vi_VN"/>
+
 <% int beforePage = (int) request.getAttribute("index") - 1;%>
 <% int afterPage = (int) request.getAttribute("index") + 1;%>
 <% String cat = (String) request.getAttribute("category");%>
 <% String sort = (String) request.getAttribute("sorttype");%>
 <% String price = (String) request.getAttribute("filPrice");%>
 <% String[] iBrand = (String[]) request.getAttribute("iBrand");%>
-<%! String setUrtSort(String s) {
-    if (s == null) {
-        return "";
-    } else {
-        return "&sort=" + s;
-    }
-}
-%>
-<%! String setUrlCa(String category) {
-    if (category == null) {
-        return "";
-    } else {
-        return "cid=" + category;
-    }
-}
-%>
 
-<%! String setUrlFPrice(String fp) {
-    if (fp == null) {
-        return "";
-    } else {
-        return "&price=" + fp;
-    }
-}
-%>
-<%! String setUrlBrand(String[] br) {
-    StringBuilder res = new StringBuilder();
-    if (br != null) {
-        for (String s : br) {
-            res.append("&ibrand=").append(s);
+<%!
+    String setUrtSort(String s) {
+        if (s == null) {
+            return "";
+        } else {
+            return "&sort=" + s;
         }
     }
-    return res.toString();
-}
 %>
-<%! String setUrlAll(String cat, String price, String sort, String[] brand) {
-    return "ProductList?" + setUrlCa(cat) + setUrlFPrice(price) + setUrlBrand(brand) + setUrtSort(sort);
-}
+<%!
+    String setUrlCa(String category) {
+        if (category == null) {
+            return "";
+        } else {
+            return "cid=" + category;
+        }
+    }
+%>
+<%!
+    String setUrlFPrice(String fp) {
+        if (fp == null) {
+            return "";
+        } else {
+            return "&price=" + fp;
+        }
+    }
+%>
+<%!
+    String setUrlBrand(String[] br) {
+        StringBuilder res = new StringBuilder();
+        if (br != null) {
+            for (String s : br) {
+                res.append("&ibrand=").append(s);
+            }
+        }
+        return res.toString();
+    }
+%>
+<%!
+    String setUrlAll(String cat, String price, String sort, String[] brand) {
+        return "ProductList?" + setUrlCa(cat) + setUrlFPrice(price) + setUrlBrand(brand) + setUrtSort(sort);
+    }
 %>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
@@ -69,7 +75,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li><a href="../customer/index.jsp">Trang chủ</a></li>
+                        <li><a href="HomeController">Trang chủ</a></li>
                         <li>Điện thoại</li>
                     </ol>
                 </div>
@@ -95,8 +101,6 @@
                                 </td>
                             </tr>
                         </c:forEach>
-
-
                     </table>
 
                     <div class="filter-product">
@@ -125,7 +129,6 @@
                                     <input type="hidden" name="price" value="<%=price%>"/>
                                 </c:if>
 
-                                <jsp:useBean id="brand" scope="request" type="java.util.List"/>
                                 <c:forEach begin="0" end="${brand.size()-1}" var="b">
                                     <label class="ty-compact-list">
                                         <input class="test-compact" type="checkbox" name="ibrand"
@@ -134,7 +137,6 @@
                                             ${brand.get(b).getName()}
                                     </label>
                                     <br/>
-
                                 </c:forEach>
                             </form>
                             <div class="show-more">Show more</div>
@@ -147,26 +149,61 @@
             </div>
             <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
                 <div class="row">
-                    <div class="col-lg-8 alignleft mb10" style="padding: 0">
-                        <form>
-                            <div class="sort-list alignleft">
-                                <ul class="content-sort">
-                                    <jsp:useBean id="sortProducts" scope="request" type="java.util.LinkedHashMap"/>
-                                    <c:forEach items="${sortProducts}" var="entry">
-                                        <li><a class="${sorttype==entry.key ? "active" : ""}"
-                                               href="ProductList?<%=setUrlCa(cat)%><%=setUrlFPrice(price)%><%=setUrlBrand(iBrand)%>&sort=${entry.key}">${entry.value}</a>
-                                        </li>
-                                    </c:forEach>
-                                </ul>
-                            </div>
-                        </form>
+                    <div class="col-lg-8 alignleft" style="padding: 0">
+                        <div class="sort-list alignleft">
+                            <ul class="content-sort">
+                                <jsp:useBean id="sortProducts" scope="request" type="java.util.LinkedHashMap"/>
+                                <c:forEach items="${sortProducts}" var="entry">
+                                    <li><a class="${sorttype==entry.key ? "active" : ""}"
+                                           href="ProductList?<%=setUrlCa(cat)%><%=setUrlFPrice(price)%><%=setUrlBrand(iBrand)%>&sort=${entry.key}">${entry.value}</a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 alignleft" style="padding: 0">
+                        <div class="filter-items">
+                            <c:forEach items="${categorylist}" var="c">
+                                <c:if test="${c.id==category}">
+                                    <p class="item">${c.name}<a
+                                            href="ProductList?<%=setUrlFPrice(price)%><%=setUrlBrand(iBrand)%>">
+                                        <img src="https://salt.tikicdn.com/ts/upload/09/59/a4/a99bbc2a604f745281eca1aab8c87345.png"></a>
+                                    </p>
+                                </c:if>
+                            </c:forEach>
+                            <c:forEach items="${filterPrice}" var="entry">
+                                <c:if test="${entry.key==filPrice}">
+                                    <p class="item">${entry.value}<a
+                                            href="ProductList?<%=setUrlCa(cat)%><%=setUrlBrand(iBrand)%>">
+                                        <img src="https://salt.tikicdn.com/ts/upload/09/59/a4/a99bbc2a604f745281eca1aab8c87345.png"></a>
+                                    </p>
+                                </c:if>
+                            </c:forEach>
+                            <jsp:useBean id="brand" scope="request" type="java.util.List"/>
+                            <c:forEach items="${brand}" var="b" varStatus="loop">
+                                <c:if test="${isBrandCheck[loop.index]}">
+                                    <c:set var="l" value="${loop.index}"/>
+                                    <p class="item">${b.getName()}<a
+                                            href="ProductList">
+                                        <img src="https://salt.tikicdn.com/ts/upload/09/59/a4/a99bbc2a604f745281eca1aab8c87345.png"></a>
+                                    </p>
+                                </c:if>
+                            </c:forEach>
+
+                            <c:if test="${category!=null||filPrice!=null||iBrand!=null}">
+                                <p class="item default"><a href="ProductList">Xóa tất cả</a></p>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
                 <div class="row" id="content">
                     <!-- product -->
                     <c:choose>
                         <c:when test="${fn:length(products)>0}">
-                            <jsp:useBean id="products" scope="request" type="java.util.List"/>
+
                             <c:forEach var="p" items="${products}">
                                 <div class="col-sm-3 m-0" style="padding: 2px;">
                                     <a href="ProductDetails?id=${p.id}">
@@ -205,76 +242,75 @@
                     <!-- /.product -->
 
                 </div>
-
-                                <div class="row">
-                                    <!-- pagination start -->
-                                    <c:if test="${pages > 1}">
-                                        <div class="pagination">
-                                            <ul>
-                                                <c:if test="${index > 1}">
-                                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${index-1}">
-                                                        <li class="btn prev"><span><i class="fas fa-angle-left"></i>Prev</span>
-                                                        </li>
-                                                    </a>
-                                                </c:if>
-                                                <c:if test="${(index > 2)&&(pages>4)}">
-                                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${1}">
-                                                        <li class="first numb"><span>1</span></li>
-                                                    </a>
-                                                    <c:if test="${index > 3}">
-                                                        <li class="dots"><span>...</span></li>
-                                                    </c:if>
-                                                </c:if>
-                                                <c:choose>
-                                                    <c:when test="${index == pages}">
-                                                        <% beforePage = beforePage - 2; %>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <c:if test="${index == pages-1}">
-                                                            <% beforePage = beforePage - 1; %>
-                                                        </c:if>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                <c:choose>
-                                                    <c:when test="${index == 1}">
-                                                        <% afterPage = afterPage + 2; %>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <c:if test="${index == 2}">
-                                                            <% afterPage = afterPage + 1; %>
-                                                        </c:if>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                <c:if test="${pages == 2}">
-                                                    <% afterPage = 2; %>
-                                                    <% beforePage = 1; %>
-                                                </c:if>
-                                                <c:forEach begin="<%=beforePage%>" end="<%=afterPage%>" var="p">
-                                                    <c:if test="${(p > 0)&&(p< pages+1)}">
-                                                        <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${p}">
-                                                            <li class="numb ${p==index?"active":""}"><span>${p}</span></li>
-                                                        </a>
-                                                    </c:if>
-                                                </c:forEach>
-                                                <c:if test="${(index < pages-1)&&(pages>4)}">
-                                                    <c:if test="${index < pages-1}">
-                                                        <li class="dots"><span>...</span></li>
-                                                    </c:if>
-                                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${pages}">
-                                                        <li class="last numb"><span>${pages}</span></li>
-                                                    </a>
-                                                </c:if>
-                                                <c:if test="${index < pages}">
-                                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${index+1}">
-                                                        <li class="btn next"><span>Next<i
-                                                                class="fas fa-angle-right"></i></span></li>
-                                                    </a>
-                                                </c:if>
-                                            </ul>
-                                        </div>
+                <div class="row">
+                    <!-- pagination start -->
+                    <c:if test="${pages > 1}">
+                        <div class="pagination">
+                            <ul>
+                                <c:if test="${index > 1}">
+                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${index-1}">
+                                        <li class="btn prev"><span><i class="fas fa-angle-left"></i>Prev</span>
+                                        </li>
+                                    </a>
+                                </c:if>
+                                <c:if test="${(index > 2)&&(pages>4)}">
+                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${1}">
+                                        <li class="first numb"><span>1</span></li>
+                                    </a>
+                                    <c:if test="${index > 3}">
+                                        <li class="dots"><span>...</span></li>
                                     </c:if>
+                                </c:if>
+                                <c:choose>
+                                    <c:when test="${index == pages}">
+                                        <% beforePage = beforePage - 2; %>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:if test="${index == pages-1}">
+                                            <% beforePage = beforePage - 1; %>
+                                        </c:if>
+                                    </c:otherwise>
+                                </c:choose>
+                                <c:choose>
+                                    <c:when test="${index == 1}">
+                                        <% afterPage = afterPage + 2; %>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:if test="${index == 2}">
+                                            <% afterPage = afterPage + 1; %>
+                                        </c:if>
+                                    </c:otherwise>
+                                </c:choose>
+                                <c:if test="${pages == 2}">
+                                    <% afterPage = 2; %>
+                                    <% beforePage = 1; %>
+                                </c:if>
+                                <c:forEach begin="<%=beforePage%>" end="<%=afterPage%>" var="p">
+                                    <c:if test="${(p > 0)&&(p< pages+1)}">
+                                        <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${p}">
+                                            <li class="numb ${p==index?"active":""}"><span>${p}</span></li>
+                                        </a>
+                                    </c:if>
+                                </c:forEach>
+                                <c:if test="${(index < pages-1)&&(pages>4)}">
+                                    <c:if test="${index < pages-1}">
+                                        <li class="dots"><span>...</span></li>
+                                    </c:if>
+                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${pages}">
+                                        <li class="last numb"><span>${pages}</span></li>
+                                    </a>
+                                </c:if>
+                                <c:if test="${index < pages}">
+                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${index+1}">
+                                        <li class="btn next"><span>Next<i
+                                                class="fas fa-angle-right"></i></span></li>
+                                    </a>
+                                </c:if>
+                            </ul>
+                        </div>
+                    </c:if>
 
-                                </div>
+                </div>
             </div>
         </div>
     </div>
