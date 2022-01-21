@@ -31,7 +31,7 @@
         if (category == null) {
             return "";
         } else {
-            return "cid=" + category;
+            return "&cid=" + category;
         }
     }
 %>
@@ -94,6 +94,7 @@
                         <tr>
                             <th>Category</th>
                         </tr>
+                        <jsp:useBean id="categorylist" scope="request" type="java.util.List"/>
                         <c:forEach items="${categorylist}" var="c">
                             <tr>
                                 <td class="${c.id==category?"active":""}">
@@ -185,9 +186,16 @@
                             <jsp:useBean id="brand" scope="request" type="java.util.List"/>
                             <c:forEach items="${brand}" var="b" varStatus="loop">
                                 <c:if test="${isBrandCheck[loop.index]}">
-                                    <c:set var="l" value="${loop.index}"/>
+                                    <c:url value="ProductList" var="displayURL">
+                                        <c:param name="1" value="1"/>
+                                        <c:forEach items="${iBrand}" var="ib">
+                                            <c:if test="${ib!=b.getId()}">
+                                                <c:param name="ibrand" value="${ib}"/>
+                                            </c:if>
+                                        </c:forEach>
+                                    </c:url>
                                     <p class="item">${b.getName()}<a
-                                            href="ProductList">
+                                            href="<c:out value='${displayURL}' /><%=setUrlCa(cat)%><%=setUrlFPrice(price)%>">
                                         <img src="https://salt.tikicdn.com/ts/upload/09/59/a4/a99bbc2a604f745281eca1aab8c87345.png"></a>
                                     </p>
                                 </c:if>

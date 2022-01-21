@@ -4004,6 +4004,7 @@ Class----------------
 .filter-items {
     /*height: 45px;*/
     display: flex;
+    flex-wrap: wrap;
     padding-left: 20px;
     align-items: center;
     border-top: 1px solid rgb(213, 213, 213);
