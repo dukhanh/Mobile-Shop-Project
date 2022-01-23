@@ -41,17 +41,19 @@
                                     <h1 class="mb10" style="text-align:center">Đăng nhập</h1>
                                 </div>
                                 <!-- form -->
-                                <form>
+                                <form action="${pageContext.request.contextPath}/login" method="post">
 
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="alert alert-danger" role="alert">
-                                            This is a danger alert—check it out!
-                                        </div>
+                                        <c:if test="${errorMessage!=null}">
+                                            <div class="alert alert-danger" role="alert">
+                                                ${errorMessage}
+                                            </div>
+                                        </c:if>
+
                                         <div class="form-group">
                                             <div class="login-input">
                                                 <input id="email" name="email" type="text" class="form-control"
-                                                    placeholder="Địa chỉ email" required>
-<%--                                                <div class="login-icon"><i class="fa fa-user"></i></div>--%>
+                                                    placeholder="Địa chỉ email" value="${email}" required>
                                             </div>
                                         </div>
                                     </div>
@@ -60,14 +62,12 @@
 
                                             <div class="login-input">
                                                 <input name="password" type="password" class="form-control"
-                                                    placeholder="Mật khẩu" required>
-<%--                                                <div class="login-icon"><i class="fa fa-lock"></i></div>--%>
-<%--                                                <div class="eye-icon"><i class="fa fa-eye"></i></div>--%>
+                                                    placeholder="Mật khẩu"  required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb20 ">
-                                        <button class="btn btn-primary btn-block mb10">Đăng nhập</button>
+                                        <button class="btn btn-primary btn-block mb10" type="submit">Đăng nhập</button>
                                         <div style="margin: 0 auto; width: 50%">
                                             <a href="../customer/signup-form.jsp" style="margin-right: 40px;" class="text-blue">Đăng ký</a>
                                             <a href="../customer/forgot-password.jsp" class="text-blue">Quên mật khẩu </a>

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="taglib.jsp"%>
+<%@include file="taglib.jsp" %>
 <div class="top-header">
     <div class="container">
         <div class="row">
@@ -50,34 +50,42 @@
                                 class="cart-quantity">2</sup></a></li>
                         <li><a href="../customer/cart.jsp" class="title"><i class="fa fa-shopping-cart"></i>
                             <sup
-                                class="cart-quantity">2</sup></a>
+                                    class="cart-quantity">2</sup></a>
                         </li>
                     </ul>
-<%--                    khi da dang nhap--%>
-                    <div class="account-login" onclick="myFunction()">
-                        <div class="account-name">
-                            <i class="far fa-user"></i>
-                            <div>
-                                <p class="title-user">Tài khoản</p>
-                                <p class="user-name">Nguyen Du Khanh</p>
+                    <%--                    khi da dang nhap--%>
+                    <c:if test="${sessionScope.account!=null}">
+                        <div class="account-login" onclick="myFunction()">
+                            <div class="account-name">
+                                <i class="far fa-user"></i>
+                                <div>
+                                    <p class="title-user">Tài khoản</p>
+                                    <p class="user-name">${sessionScope.account.fullName}</p>
+                                </div>
+                            </div>
+                            <i class="fa fa-caret-down"></i>
+                            <div class="drop-down-account" id='myDIV'>
+                                <ul>
+                                    <a href="../customer/account.jsp"><li>Tài khoản của tôi</li></a>
+                                    <a href="../customer/profile-receipt.jsp"><li>Đơn hàng của tôi</li></a>
+                                    <c:if test="${(sessionScope.account.role).equals('admin')}">
+                                        <a href="../admin/admin.jsp"><li>Trang admin</li></a>
+                                    </c:if>
+                                    <a href="${pageContext.request.contextPath}/logout"> <li>Đăng xuất</li></a>
+                                </ul>
                             </div>
                         </div>
-                        <i class="fa fa-caret-down"></i>
-                        <div class="drop-down-account" id='myDIV'>
-                            <ul>
-                                <li><a href="">Tài khoản của tôi</a> </li>
-                                <li><a href="">Đơn hàng của tôi</a></li>
-                                <li><a href="">Đăng xuất</a></li>
-                            </ul>
-                        </div>
-                    </div>
-<%--                    khi chua dang nhap--%>
-
-<%--                                        <ul>--%>
-                    <%--                                            <li><a href="<c:url value="../customer/account.jsp"/>" class="title hidden-xs">Tài khoản</a></li>--%>
-                    <%--                                            <li class="hidden-xs">|</li>--%>
-                    <%--                                            <li><a href="../customer/login-form.jsp" class="title hidden-xs">Đăng nhập</a></li>--%>
-                    <%--                                        </ul>--%>
+                    </c:if>
+                    <%--                    khi chua dang nhap--%>
+                    <c:if test="${sessionScope.account==null}">
+                        <ul>
+                            <li><a href="<c:url value="../customer/signup-form.jsp"/>" class="title hidden-xs">Đăng
+                                ký</a>
+                            </li>
+                            <li class="hidden-xs">|</li>
+                            <li><a href="../customer/login-form.jsp" class="title hidden-xs">Đăng nhập</a></li>
+                        </ul>
+                    </c:if>
                 </div>
                 <!-- /.account -->
             </div>
@@ -92,7 +100,8 @@
                     <!-- navigations-->
                     <div id="navigation">
                         <ul>
-                            <li class="active"><a href="${pageContext.request.contextPath}/HomeController">Trang chủ</a></li>
+                            <li class="active"><a href="${pageContext.request.contextPath}/HomeController">Trang chủ</a>
+                            </li>
                             <li><a href="${pageContext.request.contextPath}/ProductList">Điện thoại</a>
                             </li>
                             <li><a href="<c:url value="/customer/about.jsp"/>">Thông tin</a>

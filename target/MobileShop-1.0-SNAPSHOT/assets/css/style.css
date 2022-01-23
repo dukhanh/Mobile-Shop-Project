@@ -1146,6 +1146,10 @@ img {
     cursor: pointer;
 }
 
+.account-section .account-login:hover>.drop-down-account{
+    display: block;
+}
+
 .account-section .account-login i {
     font-size: 15px;
     margin-left: 4px;
@@ -1170,6 +1174,7 @@ img {
 
 .account-section .drop-down-account ul li {
     padding: 0 10px;
+    width: 100%;
 }
 
 .account-section .drop-down-account ul li a {
