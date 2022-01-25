@@ -2,6 +2,7 @@ package dao;
 
 import bean.Account;
 import db.DBConnect;
+import mode_utility.Encrypt;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,6 +34,30 @@ public class AccountDAO {
                 account.setId(rs.getInt("ID_USER"));
                 account.setEmail(rs.getString("EMAIL"));
                 account.setFullName(rs.getString("TEN_ND"));
+                account.setPassword(Encrypt.MD5(rs.getString("MAT_KHAU")));
+                account.setRole(rs.getString("QUYEN_HAN"));
+                account.setStatus(rs.getString("TRANG_THAI"));
+                return account;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            return null;
+        }
+        return null;
+    }
+
+    public Account checkAccountExists(String email){
+        String sql = "SELECT * FROM TAI_KHOAN WHERE EMAIL= ?";
+        try {
+            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
+            psupdate.setString(1, email);
+            ResultSet rs = psupdate.executeQuery();
+            while (rs.next()) {
+                Account account = new Account();
+                account.setId(rs.getInt("ID_USER"));
+                account.setEmail(rs.getString("EMAIL"));
+                account.setFullName(rs.getString("TEN_ND"));
                 account.setPassword(rs.getString("MAT_KHAU"));
                 account.setRole(rs.getString("QUYEN_HAN"));
                 account.setStatus(rs.getString("TRANG_THAI"));
@@ -44,6 +69,24 @@ public class AccountDAO {
             return null;
         }
         return null;
+    }
+
+    public void addAccount(Account account){
+        String sql = "INSERT INTO tai_khoan (EMAIL, TEN_ND, MAT_KHAU,TRANG_THAI,QUYEN_HAN,CREATE_DATE) VALUES (?,?, ?,?,?,now())";
+        try {
+            PreparedStatement prepareStatement = DBConnect.connect().getConnection().prepareStatement(sql);
+            prepareStatement.setString(1,account.getEmail());
+            prepareStatement.setString(2,account.getFullName());
+            prepareStatement.setString(3, account.getPassword());
+            prepareStatement.setString(4,account.getStatus());
+            prepareStatement.setString(5,account.getRole());
+            prepareStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

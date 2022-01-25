@@ -19,7 +19,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="page-breadcrumb">
                         <ol class="breadcrumb">
-                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="">Trang chủ</a></li>
                             <li>Đăng nhập</li>
                         </ol>
                     </div>
@@ -52,7 +52,7 @@
 
                                         <div class="form-group">
                                             <div class="login-input">
-                                                <input id="email" name="email" type="text" class="form-control"
+                                                <input id="email" name="email" type="text" class="form-control" style="margin-bottom: 15px;"
                                                     placeholder="Địa chỉ email" value="${email}" required>
                                             </div>
                                         </div>
@@ -61,7 +61,7 @@
                                         <div class="form-group">
 
                                             <div class="login-input">
-                                                <input name="password" type="password" class="form-control"
+                                                <input name="password" type="password" class="form-control" style="margin-bottom: 15px;"
                                                     placeholder="Mật khẩu"  required>
                                             </div>
                                         </div>
@@ -69,8 +69,8 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb20 ">
                                         <button class="btn btn-primary btn-block mb10" type="submit">Đăng nhập</button>
                                         <div style="margin: 0 auto; width: 50%">
-                                            <a href="../customer/signup-form.jsp" style="margin-right: 40px;" class="text-blue">Đăng ký</a>
-                                            <a href="../customer/forgot-password.jsp" class="text-blue">Quên mật khẩu </a>
+                                            <a href="signup-form.jsp" style="margin-right: 40px;" class="text-blue">Đăng ký</a>
+                                            <a href="forgot-password.jsp" class="text-blue">Quên mật khẩu </a>
                                         </div>
                                     </div>
                                 </form>
@@ -80,8 +80,7 @@
                                     <div class="social-media">
                                         <a href="#" class="btn-social-rectangle btn-facebook"><i
                                                 class="fa fa-facebook"></i><span class="social-text">Facebook</span></a>
-                                        <a href="#" class="btn-social-rectangle btn-twitter"><i
-                                                class="fa fa-twitter"></i><span class="social-text">Twitter</span> </a>
+
                                         <a href="#" class="btn-social-rectangle btn-googleplus"><i
                                                 class="fa fa-google-plus"></i><span class="social-text">Google
                                                 Plus</span></a>

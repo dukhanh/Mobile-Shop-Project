@@ -41,50 +41,79 @@
                             <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 mb20">
                                 <h1 class="mb10" style="text-align: center">Tạo tài khoản</h1>
                             </div>
-                            <form>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="alert alert-danger" role="alert">
-                                        This is a danger alert—check it out!
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <c:if test="${errorMessage!=null}">
+                                    <div class="alert alert-danger" role="alert" style="margin-bottom:0">
+                                            ${errorMessage}
                                     </div>
+                                </c:if>
+
+                            </div>
+
+                            <form action="${pageContext.request.contextPath}/create_account" method="post" onsubmit="return checkRegister()" accept-charset="utf-8">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label class="control-label sr-only" for="name"> </label>
+                                        <label class="control-label" for="email">Địa chỉ email*</label>
+                                        <input id="email" name="email" type="email" class="form-control"
+                                               value="${sessionScope.emailRegister}" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="code">Email Verification Code*</label>
+                                        <input id="code" name="code" type="text" class="form-control"
+                                               placeholder="6 chữ số" maxlength="6" onfocusout="checkCode(this.id)" required>
+                                    </div>
+                                    <div class="require" id="require-code" style="display: none">
+                                        Mã phải là các chữ số
+                                    </div>
+                                    <div class="require" id="require-code-length" style="display: none">
+                                        Mã phải có 6 chữ số
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="name">Họ tên*</label>
                                         <input id="name" name="name" type="text" class="form-control"
-                                               placeholder="Họ và tên" required>
+                                               placeholder="Họ và tên" onfocusout="checkName(this.id)" required>
+                                    </div>
+                                    <div class="require" id="require-name" style="display: none">
+                                         Tên không chứa ký tự đặc biệt hoặc số
+                                    </div>
+                                    <div class="require" id="require-name-length" style="display: none">
+                                         Tên phải có ít nhất 5 ký tự
                                     </div>
                                 </div>
+
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label class="control-label sr-only" for="phone"></label>
-                                        <input id="phone" name="phone" type="text" class="form-control"
-                                               placeholder="Điện thoại" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label class="control-label sr-only" for="email"></label>
-                                        <input id="email" name="emaol" type="text" class="form-control"
-                                               placeholder="Email" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label class="control-label  sr-only" for="password"></label>
+                                        <label class="control-label" for="password">Mật khẩu*</label>
                                         <input id="password" name="password" type="password" class="form-control"
-                                               placeholder="Mật khẩu" required>
+                                               placeholder="Tối thiểu 8 ký tự bao gồm chữ và số" onfocusout="checkPassword(this.id)" required>
+                                    </div>
+                                    <div class="require" id="require-password" style="display: none">
+                                        Mật khẩu phải có ít nhất 8 ký tự bao gồm chữ và số
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label class="control-label  sr-only" for="re_password"></label>
-                                        <input id="re_password" name="re_password" type="password"
-                                               class="form-control" placeholder="Xác nhận mật khẩu" required>
+                                        <label class="control-label" for="re_password">Xác nhận mật khẩu*</label>
+                                        <input id="re_password" name="re_password" type="password" class="form-control"
+                                               placeholder="Xác nhận mật khẩu" onfocusout="checkPasswordConfirm(this.id)" required>
+                                    </div>
+                                    <div class="require" id="require-password-confirm" style="display: none">
+                                        Xác nhận mật khẩu không đúng
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                    <button class="btn btn-primary btn-block mb10">Đăng Ký</button>
-                                    <div>
-                                        <p>Bạn đã có tài khoản?<a href="../customer/login-form.jsp"> Đăng Nhập</a></p>
+                                    <input class="btn btn-primary btn-block mb10 mt10" type="submit" value="Đăng Ký">
+                                    <div style="display: flex;justify-content: space-between">
+                                        <p>Bạn đã có tài khoản?<a
+                                                href="${pageContext.request.contextPath}/account/login-form.jsp"
+                                                class="text-blue"> Đăng Nhập</a></p>
+                                        <a href="${pageContext.request.contextPath}/account/send-code-register.jsp"
+                                           class="text-blue">Gửi lại mã</a>
                                     </div>
                                 </div>
                             </form>

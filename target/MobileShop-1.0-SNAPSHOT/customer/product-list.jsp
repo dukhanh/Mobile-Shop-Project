@@ -57,7 +57,7 @@
 %>
 <%!
     String setUrlAll(String cat, String price, String sort, String[] brand) {
-        return "ProductList?" + setUrlCa(cat) + setUrlFPrice(price) + setUrlBrand(brand) + setUrtSort(sort);
+        return "productlist?" + setUrlCa(cat) + setUrlFPrice(price) + setUrlBrand(brand) + setUrtSort(sort);
     }
 %>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
@@ -98,7 +98,7 @@
                         <c:forEach items="${categorylist}" var="c">
                             <tr>
                                 <td class="${c.id==category?"active":""}">
-                                    <a href="ProductList?cid=${c.id}<%=setUrlFPrice(price)%><%=setUrlBrand(iBrand)%>">${c.name}</a>
+                                    <a href="productlist?cid=${c.id}<%=setUrlFPrice(price)%><%=setUrlBrand(iBrand)%>">${c.name}</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -113,7 +113,7 @@
                             <c:forEach items="${filterPrice}" var="entry">
                                 <div class="item-filter">
                                     <a class="${entry.key==filPrice ? "active":""}"
-                                       href="ProductList?<%=setUrlCa(cat)%>&price=${entry.key}<%=setUrlBrand(iBrand)%>">${entry.value}</a>
+                                       href="productlist?<%=setUrlCa(cat)%>&price=${entry.key}<%=setUrlBrand(iBrand)%>">${entry.value}</a>
                                 </div>
                             </c:forEach>
 
@@ -122,7 +122,7 @@
                             <div class="title-filter">
                                 <span>Thương hiệu</span>
                             </div>
-                            <form class="filter-form" action="ProductList" method="GET">
+                            <form class="filter-form" action="productlist" method="GET">
                                 <c:if test="${category!=null}">
                                     <input type="hidden" name="cid" value="<%=cat%>"/>
                                 </c:if>
@@ -156,7 +156,7 @@
                                 <jsp:useBean id="sortProducts" scope="request" type="java.util.LinkedHashMap"/>
                                 <c:forEach items="${sortProducts}" var="entry">
                                     <li><a class="${sorttype==entry.key ? "active" : ""}"
-                                           href="ProductList?<%=setUrlCa(cat)%><%=setUrlFPrice(price)%><%=setUrlBrand(iBrand)%>&sort=${entry.key}">${entry.value}</a>
+                                           href="productlist?<%=setUrlCa(cat)%><%=setUrlFPrice(price)%><%=setUrlBrand(iBrand)%>&sort=${entry.key}">${entry.value}</a>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -170,7 +170,7 @@
                             <c:forEach items="${categorylist}" var="c">
                                 <c:if test="${c.id==category}">
                                     <p class="item">${c.name}<a
-                                            href="ProductList?<%=setUrlFPrice(price)%><%=setUrlBrand(iBrand)%>">
+                                            href="productlist?<%=setUrlFPrice(price)%><%=setUrlBrand(iBrand)%>">
                                         <img src="https://salt.tikicdn.com/ts/upload/09/59/a4/a99bbc2a604f745281eca1aab8c87345.png"></a>
                                     </p>
                                 </c:if>
@@ -178,7 +178,7 @@
                             <c:forEach items="${filterPrice}" var="entry">
                                 <c:if test="${entry.key==filPrice}">
                                     <p class="item">${entry.value}<a
-                                            href="ProductList?<%=setUrlCa(cat)%><%=setUrlBrand(iBrand)%>">
+                                            href="productlist?<%=setUrlCa(cat)%><%=setUrlBrand(iBrand)%>">
                                         <img src="https://salt.tikicdn.com/ts/upload/09/59/a4/a99bbc2a604f745281eca1aab8c87345.png"></a>
                                     </p>
                                 </c:if>
@@ -186,7 +186,7 @@
                             <jsp:useBean id="brand" scope="request" type="java.util.List"/>
                             <c:forEach items="${brand}" var="b" varStatus="loop">
                                 <c:if test="${isBrandCheck[loop.index]}">
-                                    <c:url value="ProductList" var="displayURL">
+                                    <c:url value="productlist" var="displayURL">
                                         <c:param name="1" value="1"/>
                                         <c:forEach items="${iBrand}" var="ib">
                                             <c:if test="${ib!=b.getId()}">
@@ -202,7 +202,7 @@
                             </c:forEach>
 
                             <c:if test="${category!=null||filPrice!=null||iBrand!=null}">
-                                <p class="item default"><a href="ProductList">Xóa tất cả</a></p>
+                                <p class="item default"><a href="productlist">Xóa tất cả</a></p>
                             </c:if>
                         </div>
                     </div>
@@ -214,7 +214,7 @@
 
                             <c:forEach var="p" items="${products}">
                                 <div class="col-sm-3 m-0" style="padding: 2px;">
-                                    <a href="ProductDetails?id=${p.id}">
+                                    <a href="productdetails?id=${p.id}">
                                         <div class="product-block">
                                             <div class="product-img"><img src="${p.imageUrl}" alt=""></div>
                                             <div class="product-content">

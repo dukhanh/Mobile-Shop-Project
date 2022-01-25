@@ -30,7 +30,7 @@
             <!-- logo -->
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-8">
                 <div class="logo">
-                    <a href="<c:url value="/customer/index.jsp"/>"><img src="/assets/images/logo.png" alt=""> </a>
+                    <a href="<c:url value="/home"/>"><img src="/assets/images/logo.png" alt=""> </a>
                 </div>
             </div>
             <!-- /.logo -->
@@ -66,7 +66,7 @@
                             <i class="fa fa-caret-down"></i>
                             <div class="drop-down-account" id='myDIV'>
                                 <ul>
-                                    <a href="../customer/account.jsp"><li>Tài khoản của tôi</li></a>
+                                    <a href="../customer/profile-account.jsp"><li>Tài khoản của tôi</li></a>
                                     <a href="../customer/profile-receipt.jsp"><li>Đơn hàng của tôi</li></a>
                                     <c:if test="${(sessionScope.account.role).equals('admin')}">
                                         <a href="../admin/admin.jsp"><li>Trang admin</li></a>
@@ -79,11 +79,10 @@
                     <%--                    khi chua dang nhap--%>
                     <c:if test="${sessionScope.account==null}">
                         <ul>
-                            <li><a href="<c:url value="../customer/signup-form.jsp"/>" class="title hidden-xs">Đăng
-                                ký</a>
+                            <li><a href="${pageContext.request.contextPath}/account/send-code-register.jsp" class="title hidden-xs">Đăng ký</a>
                             </li>
                             <li class="hidden-xs">|</li>
-                            <li><a href="../customer/login-form.jsp" class="title hidden-xs">Đăng nhập</a></li>
+                            <li><a href="${pageContext.request.contextPath}/account/login-form.jsp" class="title hidden-xs">Đăng nhập</a></li>
                         </ul>
                     </c:if>
                 </div>
@@ -100,9 +99,9 @@
                     <!-- navigations-->
                     <div id="navigation">
                         <ul>
-                            <li class="active"><a href="${pageContext.request.contextPath}/HomeController">Trang chủ</a>
+                            <li class="active"><a href="${pageContext.request.contextPath}/home">Trang chủ</a>
                             </li>
-                            <li><a href="${pageContext.request.contextPath}/ProductList">Điện thoại</a>
+                            <li><a href="${pageContext.request.contextPath}/productlist">Điện thoại</a>
                             </li>
                             <li><a href="<c:url value="/customer/about.jsp"/>">Thông tin</a>
                             </li>

@@ -47,3 +47,4 @@
 <script type="text/javascript" src="<c:url value="/assets/js/jquery.rateyo.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/assets/js/jquery.desoslide.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/assets/js/quantity-product.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/form-register.js"/>"></script>

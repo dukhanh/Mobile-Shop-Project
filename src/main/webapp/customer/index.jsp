@@ -18,6 +18,45 @@
 <jsp:include page="/sub-component/header-menu.jsp"/>
 <!-- /. header-section-->
 <!-- slider -->
+
+<%-- message success register account --%>
+
+<c:if test="${messageSuccess!=null}">
+    <script>
+        window.onload = function() {
+            document.getElementById('btn-message').click();
+        }
+    </script>
+
+    <!-- Button trigger modal -->
+    <button style="padding: -30px; visibility: hidden; z-index: 99999"
+            type="button" id="btn-message" class="btn btn-white"
+            data-toggle="modal" data-target="#exampleModalCenter"></button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+         role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">${messageSuccess}</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Vui lòng cập nhật thông tin cá nhân
+                    <p>
+                </div>
+                <div class="modal-footer">
+                    <a href="${pageContext.request.contextPath}/member/profile"
+                       class="btn btn-primary" role="button">Cập nhật</a>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cập
+                        nhật sau</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</c:if>
+
 <div class="slider">
     <div class="owl-carousel owl-one owl-theme">
         <div class="item">
@@ -88,7 +127,7 @@
             <jsp:useBean id="listBrandLogo" scope="request" type="java.util.List"/>
             <c:forEach items="${listBrandLogo}" var="list">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <a href="ProductList?ibrand=${list.id}">
+                    <a href="productlist?ibrand=${list.id}">
                         <div class="showcase-block">
                             <img src="${list.logo}" alt="">
                         </div>
@@ -106,7 +145,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="head-title"><a href="ProductList?&sort=best_new">Sản phẩm mới nhất</a></h3>
+                    <h3 class="head-title"><a href="productlist?&sort=best_new">Sản phẩm mới nhất</a></h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
@@ -114,7 +153,7 @@
                         <jsp:useBean id="listProductBestNew" scope="request" type="java.util.List"/>
                         <c:forEach items="${listProductBestNew}" var="p">
                             <div class="col-sm-3 m-0" style="padding: 2px;">
-                                <a href="ProductDetails?id=${p.id}">
+                                <a href="productdetails?id=${p.id}">
                                     <div class="product-block">
                                         <div class="product-img"><img src="${p.imageUrl}" alt=""></div>
                                         <div class="product-content">
@@ -154,7 +193,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="head-title"><a href="ProductList?&sort=top_seller">Bán chạy nhất</a></h3>
+                    <h3 class="head-title"><a href="productlist?&sort=top_seller">Bán chạy nhất</a></h3>
                 </div>
             </div>
         </div>
@@ -168,7 +207,7 @@
                     <c:forEach items="${listProductTopSeller}" var="p">
                         <div class="item">
                             <div class="col-lg-12 m-0" style="padding: 2px;">
-                                <a href="ProductDetails?id=${p.id}">
+                                <a href="productdetails?id=${p.id}">
                                     <div class="product-block">
                                         <div class="product-img"><img src="${p.imageUrl}" alt=""></div>
                                         <div class="product-content">
@@ -209,7 +248,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="head-title"><a href="ProductList?&sort=promotion">Đang khuyến mãi</a></h3>
+                    <h3 class="head-title"><a href="productlist?&sort=promotion">Đang khuyến mãi</a></h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
@@ -217,7 +256,7 @@
                         <jsp:useBean id="listProductPromotions" scope="request" type="java.util.List"/>
                         <c:forEach items="${listProductPromotions}" var="p">
                             <div class="col-sm-3 m-0" style="padding: 2px;">
-                                <a href="ProductDetails?id=${p.id}">
+                                <a href="productdetails?id=${p.id}">
                                     <div class="product-block">
                                         <div class="product-img"><img src="${p.imageUrl}" alt=""></div>
                                         <div class="product-content">

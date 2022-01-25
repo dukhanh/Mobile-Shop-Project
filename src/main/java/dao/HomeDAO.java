@@ -26,9 +26,8 @@ public class HomeDAO {
         return homeDAO;
     }
 
-    public List<Product> getProductPromotion() {
+    public List<Product> getProductPromotion(int products) {
         Product product;
-        int products = 4;
         List<Product> res = new LinkedList<>();
         String sql = "SELECT * \n" +
                 "from san_pham \n" +
@@ -56,9 +55,8 @@ public class HomeDAO {
         return res;
     }
 
-    public List<Product> getProductTopSeller() {
+    public List<Product> getProductTopSeller( int products) {
         Product product;
-        int products = 20;
         List<Product> res = new LinkedList<>();
         String sql = "select *\n" +
                 "from san_pham sp join sl_sp ss on sp.ID_SANPHAM = ss.ID_SANPHAM\n" +
@@ -85,9 +83,8 @@ public class HomeDAO {
         return res;
     }
 
-    public List<Product> getProductBestNew() {
+    public List<Product> getProductBestNew(int products) {
         Product product;
-        int products = 4;
         List<Product> res = new LinkedList<>();
         String sql = "select *\n" +
                 "from san_pham sp\n" +
@@ -115,12 +112,12 @@ public class HomeDAO {
     }
 
 
-
-    public static void main(String[] args) {
-        HomeDAO p = new HomeDAO();
-        Iterator<Product> l = p.getProductTopSeller().iterator();
-        while (l.hasNext()) {
-            System.out.println(l.next().getName());
-        }
-    }
+//
+//    public static void main(String[] args) {
+//        HomeDAO p = new HomeDAO();
+//        Iterator<Product> l = p.getProductTopSeller().iterator();
+//        while (l.hasNext()) {
+//            System.out.println(l.next().getName());
+//        }
+//    }
 }

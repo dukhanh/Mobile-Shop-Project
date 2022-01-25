@@ -1,5 +1,7 @@
 package bean;
 
+import mode_utility.Encrypt;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,6 +19,15 @@ public class Account implements Serializable {
 
     public Account() {
 
+    }
+
+    // use register account
+    public Account(String email,String name, String passwordPlaintext) {
+        this.email = email;
+        this.fullName = name;
+        this.password = Encrypt.MD5(passwordPlaintext);
+        this.role = "customer";
+        this.status = "open";
     }
 
     public Account(int id, String username, String password, String email, String fullName, String phoneNumber, String address, String role, String status, Date createdAt) {
