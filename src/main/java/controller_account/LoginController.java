@@ -1,4 +1,4 @@
-package controller;
+package controller_account;
 
 import bean.Account;
 import dao.AccountDAO;

@@ -1,4 +1,4 @@
-package controller;
+package controller_account;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

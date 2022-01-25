@@ -41,11 +41,11 @@
                         </div>
                         <div class="side-bar-content">
                             <ul>
-                                <a href="../customer/account.jsp">
+                                <a href="profile-account.jsp">
                                     <li class="slide-bar"><i class="fa fa-edit"></i><span>Thông tin tài khoản</span>
                                     </li>
                                 </a>
-                                <a href="../customer/profile-receipt.jsp">
+                                <a href="profile-receipt.jsp">
                                     <li class="slide-bar"><i class="fas fa-money-check"></i><span>Quản lý đơn
                                             hàng</span></li>
                                 </a>
@@ -53,7 +53,7 @@
                                     <li class="slide-bar"><i class="fas fa-map-marker-alt"></i><span> Địa chỉ nhận
                                             hàng</span></li>
                                 </a> -->
-                                <a href="../customer/reset-password.jsp">
+                                <a href="reset-password.jsp">
                                     <li class="slide-bar active"><i class="fas fa-lock"></i><span> Đổi mật khẩu</span>
                                     </li>
                                 </a>

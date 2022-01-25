@@ -37,7 +37,7 @@
                 <div class="left-container">
                     <div class="user-infor">
                         <img src="../assets/images/user-img.png" alt="">
-                        <span>NGUYEN DU KHANH</span>
+                        <span>${sessionScope.account.fullName}</span>
                     </div>
                     <div class="side-bar-content">
                         <ul>
@@ -61,49 +61,48 @@
                     <div class="account-infor">
                         <form action="">
                             <div class="form-control">
-                                <label for="" class="input-label">
-                                    Họ & tên
-                                </label>
-                                <input type="text" placeholder="Thêm họ tên" class="input-field">
-                            </div>
-                            <div class="form-control">
-                                <label for="" class="input-label">
+                                <label for="email" class="input-label">
                                     Email
                                 </label>
-                                <input type="email" placeholder="Thêm email" class="input-field">
+                                <input id="email" type="email" name="email" placeholder="Thêm email" class="input-field" value="${sessionScope.account.email}" disabled>
+                            </div>
+                            <div class="form-control">
+                                <label for="name" class="input-label">
+                                    Họ & tên
+                                </label>
+                                <input id="name" type="text" name="name" placeholder="Thêm họ tên" class="input-field" value="${sessionScope.account.fullName}">
                             </div>
 
+
                             <div class="form-control">
-                                <label for="" class="input-label">
+                                <label for="phone" class="input-label">
                                     Số điện thoại
                                 </label>
-                                <input type="phone" placeholder="Thêm số điện thoại" class="input-field">
+                                <input id="phone" type="text" name="phone" placeholder="Thêm số điện thoại" class="input-field" value="${sessionScope.account.phoneNumber}">
                             </div>
                             <div class="form-control">
-                                <label for="" class="input-label">
+                                <label for="address" class="input-label">
                                     Địa chỉ giao hàng
                                 </label>
-                                <input type="phone" placeholder="Địa chỉ" class="input-field">
+                                <input id="address" name="address" type="text" placeholder="Địa chỉ" class="input-field" value="${sessionScope.account.address}">
                             </div>
-                            <div class="form-control">
-                                <label for="" class="input-label">
-                                    Ngày sinh
-                                </label>
-                                <input type="date" placeholder="Thêm ngày sinh" class="input-field">
-                            </div>
+<%--                            <div class="form-control">--%>
+<%--                                <label for="birth-date" class="input-label">--%>
+<%--                                    Ngày sinh--%>
+<%--                                </label>--%>
+<%--                                <input id="birth-date" name="birth-date" type="date" placeholder="Thêm ngày sinh" class="input-field">--%>
+<%--                            </div>--%>
+<%--                            <div class="form-control">--%>
+<%--                                <label for="" class="input-label">--%>
+<%--                                    Giới tính--%>
+<%--                                </label>--%>
+<%--                                <input type="radio" name="gender" value="male" checked class="input-radio"> Nam--%>
+<%--                                <input type="radio" name="gender" value="female" class="input-radio"> Nữ--%>
+<%--                                <input type="radio" name="gender" value="other" class="input-radio"> Khác--%>
 
-                            <div class="form-control">
-                                <label for="" class="input-label">
-                                    Giới tính
-                                </label>
+<%--                            </div>--%>
 
-                                <input type="radio" name="gender" value="male" checked class="input-radio"> Nam
-                                <input type="radio" name="gender" value="female" class="input-radio"> Nữ
-                                <input type="radio" name="gender" value="other" class="input-radio"> Khác
-
-                            </div>
-
-                            <button class="btn-update">Cập nhật</button>
+                            <button class="btn-update" type="submit">Cập nhật</button>
                         </form>
                     </div>
                 </div>
