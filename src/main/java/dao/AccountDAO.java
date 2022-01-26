@@ -35,6 +35,8 @@ public class AccountDAO {
                 account.setEmail(rs.getString("EMAIL"));
                 account.setFullName(rs.getString("TEN_ND"));
                 account.setPassword(Encrypt.MD5(rs.getString("MAT_KHAU")));
+                account.setPhoneNumber(rs.getString("SDT"));
+                account.setAddress(rs.getString("DIA_CHI"));
                 account.setRole(rs.getString("QUYEN_HAN"));
                 account.setStatus(rs.getString("TRANG_THAI"));
                 return account;
@@ -87,6 +89,26 @@ public class AccountDAO {
             e.printStackTrace();
         }
 
+    }
+    public void updateAccount(String email, String name, String phone, String address){
+        String sql = "UPDATE tai_khoan SET TEN_ND = ?, SDT = ?, DIA_CHI= ? WHERE EMAIL = ?";
+        try {
+            PreparedStatement prepareStatement = DBConnect.connect().getConnection().prepareStatement(sql);
+            prepareStatement.setString(1,name);
+            prepareStatement.setString(2,phone);
+            prepareStatement.setString(3, address);
+            prepareStatement.setString(4, email);
+            prepareStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+
+        AccountDAO.getInstance().updateAccount("dukhanhqt@gmail.com","Nguyễn Du Khánh", "0364413771","hello");
     }
 
 

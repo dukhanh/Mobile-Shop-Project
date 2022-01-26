@@ -31,6 +31,11 @@ function vali_Code(code) {
     return regex.test(code);
 }
 
+function vali_PhoneNumber(phoneNumber){
+    const regex  =/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
+    return regex.test(phoneNumber);
+}
+
 var ckeckEmailkk = false;
 
 function checkEmail(id) {
@@ -55,6 +60,7 @@ var isValidConform = false;
 var isValidPassword = false;
 var isValidName = false;
 var isValidCode = false;
+var isValidPhone = false;
 
 function checkPasswordConfirm(id) {
     const pass = document.getElementById("password").value;
@@ -111,6 +117,21 @@ function checkCode(id) {
             isValidCode = true;
         }
     }
+}
+
+function checkPhoneNumber(id){
+    const phone = document.getElementById(id).value;
+    if(!vali_PhoneNumber(phone)){
+        document.getElementById("require-phone").style.display = "block";
+        isValidPhone = false;
+    }else{
+        document.getElementById("require-phone").style.display = "none";
+        isValidPhone = true;
+    }
+}
+
+function checkUpdateProfile(){
+    return isValidName && isValidPhone;
 }
 
 

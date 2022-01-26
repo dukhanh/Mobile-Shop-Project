@@ -7,7 +7,13 @@
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
 </head>
-
+<c:if test="${not empty message}">
+    <script>
+        window.addEventListener("load",function(){
+            alert("${message}");
+        })
+    </script>
+</c:if>
 <body>
 <!-- top-header-->
 <jsp:include page="/sub-component/header-menu.jsp"/>
@@ -59,48 +65,69 @@
                 <div class="right-container">
                     <h3 class="title-content">Thông tin tài khoản</h3>
                     <div class="account-infor">
-                        <form action="">
+
+
+                        <form action="${pageContext.request.contextPath}/profile_update" method="post" accept-charset="utf-8">
+
                             <div class="form-control">
                                 <label for="email" class="input-label">
                                     Email
                                 </label>
-                                <input id="email" type="email" name="email" placeholder="Thêm email" class="input-field" value="${sessionScope.account.email}" disabled>
+                                <input id="email" type="email" name="email" class="input-field"
+                                       value="${sessionScope.account.email}" readonly="readonly">
                             </div>
-                            <div class="form-control">
-                                <label for="name" class="input-label">
-                                    Họ & tên
-                                </label>
-                                <input id="name" type="text" name="name" placeholder="Thêm họ tên" class="input-field" value="${sessionScope.account.fullName}">
+                            <div>
+                                <div class="form-control">
+                                    <label for="name" class="input-label">
+                                        Họ & tên
+                                    </label>
+                                    <input id="name" type="text" name="name" placeholder="Thêm họ tên"
+                                           class="input-field"
+                                           value="${sessionScope.account.fullName}" onfocusout="checkName(this.id)">
+                                </div>
+                                <div class="require" id="require-name" style="display: none;margin-left:160px;">
+                                    Tên không chứa ký tự đặc biệt hoặc số
+                                </div>
+                                <div class="require" id="require-name-length" style="display: none;margin-left:160px;">
+                                    Tên phải có ít nhất 5 ký tự
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-control">
+                                    <label for="phone" class="input-label">
+                                        Số điện thoại
+                                    </label>
+                                    <input id="phone" type="text" name="phone" placeholder="Thêm số điện thoại"
+                                           class="input-field" maxlength="10"
+                                           value="${sessionScope.account.phoneNumber}" onfocusout="checkPhoneNumber(this.id)">
+                                </div>
+                                <div class="require" id="require-phone" style="display: none;margin-left:160px;">
+                                    Số điện thoại không hợp lệ
+                                </div>
                             </div>
 
-
-                            <div class="form-control">
-                                <label for="phone" class="input-label">
-                                    Số điện thoại
-                                </label>
-                                <input id="phone" type="text" name="phone" placeholder="Thêm số điện thoại" class="input-field" value="${sessionScope.account.phoneNumber}">
-                            </div>
                             <div class="form-control">
                                 <label for="address" class="input-label">
                                     Địa chỉ giao hàng
                                 </label>
-                                <input id="address" name="address" type="text" placeholder="Địa chỉ" class="input-field" value="${sessionScope.account.address}">
+                                <input id="address" name="address" type="text" placeholder="Địa chỉ" class="input-field"
+                                       value="${sessionScope.account.address}">
                             </div>
-<%--                            <div class="form-control">--%>
-<%--                                <label for="birth-date" class="input-label">--%>
-<%--                                    Ngày sinh--%>
-<%--                                </label>--%>
-<%--                                <input id="birth-date" name="birth-date" type="date" placeholder="Thêm ngày sinh" class="input-field">--%>
-<%--                            </div>--%>
-<%--                            <div class="form-control">--%>
-<%--                                <label for="" class="input-label">--%>
-<%--                                    Giới tính--%>
-<%--                                </label>--%>
-<%--                                <input type="radio" name="gender" value="male" checked class="input-radio"> Nam--%>
-<%--                                <input type="radio" name="gender" value="female" class="input-radio"> Nữ--%>
-<%--                                <input type="radio" name="gender" value="other" class="input-radio"> Khác--%>
+                            <%--                            <div class="form-control">--%>
+                            <%--                                <label for="birth-date" class="input-label">--%>
+                            <%--                                    Ngày sinh--%>
+                            <%--                                </label>--%>
+                            <%--                                <input id="birth-date" name="birth-date" type="date" placeholder="Thêm ngày sinh" class="input-field">--%>
+                            <%--                            </div>--%>
+                            <%--                            <div class="form-control">--%>
+                            <%--                                <label for="" class="input-label">--%>
+                            <%--                                    Giới tính--%>
+                            <%--                                </label>--%>
+                            <%--                                <input type="radio" name="gender" value="male" checked class="input-radio"> Nam--%>
+                            <%--                                <input type="radio" name="gender" value="female" class="input-radio"> Nữ--%>
+                            <%--                                <input type="radio" name="gender" value="other" class="input-radio"> Khác--%>
 
-<%--                            </div>--%>
+                            <%--                            </div>--%>
 
                             <button class="btn-update" type="submit">Cập nhật</button>
                         </form>
