@@ -48,7 +48,6 @@
                                             ${errorMessage}
                                     </div>
                                 </c:if>
-
                             </div>
 
                             <form action="${pageContext.request.contextPath}/create_account" method="post" onsubmit="return checkRegister()" accept-charset="utf-8">

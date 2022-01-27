@@ -137,7 +137,9 @@ function checkUpdateProfile() {
 function checkResetPassword() {
     return isValidPassword && isValidConform;
 }
-
+function checkCodeForgot(){
+    return isValidCode;
+}
 
 function checkRegister() {
     return isValidCode && isValidPassword && isValidName && isValidConform;

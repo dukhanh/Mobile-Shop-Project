@@ -7,6 +7,7 @@
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
+    <script type="text/javascript" src="<c:url value="/assets/js/validate-form.js"/>"></script>
 </head>
 
 <body>
@@ -35,11 +36,23 @@
         <img src="../assets/images/otp-icon.png" alt="">
         <h1 class="title">Nhập mã OTP</h1>
         <p>Mã OTP được gửi qua email</p>
-        <form action="">
-            <input type="email" class="field-email" placeholder="Nhập mã OTP">
+        <c:if test="${errorMessage!=null}">
+            <div class="alert alert-danger" role="alert">
+                    ${errorMessage}
+            </div>
+        </c:if>
+        <form action="${pageContext.request.contextPath}/verify_code" method="post" onsubmit="return checkCodeForgot()">
+            <input type="hidden" name="email" value="${sessionScope.emailRegister}">
+            <input id="code" name="code" type="text" class="field-email" placeholder="Nhập mã OTP" maxlength="6" onfocusout="checkCode(this.id)" required>
+            <div class="require" id="require-code" style="display: none">
+                Mã phải là các chữ số
+            </div>
+            <div class="require" id="require-code-length" style="display: none">
+                Mã phải có 6 chữ số
+            </div>
             <button type="submit" class="submit-email mb20">Tiếp tục</button>
         </form>
-        <a href="" class="text-blue">Gửi lại mã OTP</a>
+        <a href="${pageContext.request.contextPath}/account/forgot-password.jsp" class="text-blue">Gửi lại mã OTP</a>
     </div>
 </div>
 <!-- /.login-form -->

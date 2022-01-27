@@ -8,7 +8,13 @@
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
 </head>
-
+<c:if test="${not empty successNewPass}">
+    <script>
+        window.addEventListener("load", function () {
+            alert("${successNewPass}");
+        })
+    </script>
+</c:if>
 <body>
 <!-- top-header-->
 <jsp:include page="/sub-component/header-menu.jsp"/>
