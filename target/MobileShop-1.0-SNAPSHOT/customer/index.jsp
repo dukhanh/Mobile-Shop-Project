@@ -47,7 +47,7 @@
                     <p>
                 </div>
                 <div class="modal-footer">
-                    <a href="${pageContext.request.contextPath}/member/profile"
+                    <a href="${pageContext.request.contextPath}/customer/profile-account.jsp"
                        class="btn btn-primary" role="button">Cập nhật</a>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cập
                         nhật sau</button>

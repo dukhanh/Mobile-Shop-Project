@@ -106,9 +106,41 @@ public class AccountDAO {
         }
     }
 
+    public void resetPassword(String email, String newPassword){
+        String sql = "UPDATE tai_khoan SET MAT_KHAU = ? WHERE EMAIL = ?";
+        try {
+            PreparedStatement prepareStatement = DBConnect.connect().getConnection().prepareStatement(sql);
+            prepareStatement.setString(1,newPassword);
+            prepareStatement.setString(2,email);
+            prepareStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public String getCurrentPassword(String email){
+        String result = null;
+        String sql = "Select MAT_KHAU from tai_khoan where EMAIL = ?";
+        try {
+            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
+            psupdate.setString(1, email);
+            ResultSet rs = psupdate.executeQuery();
+            while (rs.next()) {
+                result =  rs.getString("MAT_KHAU");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            return null;
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
 
-        AccountDAO.getInstance().updateAccount("dukhanhqt@gmail.com","Nguyễn Du Khánh", "0364413771","hello");
+        System.out.println(AccountDAO.getInstance().getCurrentPassword("dukhanhqt@gmail.com"));
     }
 
 

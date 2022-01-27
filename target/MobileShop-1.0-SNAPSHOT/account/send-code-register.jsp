@@ -14,6 +14,7 @@
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
+    <script type="text/javascript" src="<c:url value="/assets/js/validate-form.js"/>"></script>
 </head>
 
 <body>

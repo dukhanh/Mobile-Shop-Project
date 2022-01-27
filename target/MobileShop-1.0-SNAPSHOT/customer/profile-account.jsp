@@ -6,6 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
+    <script type="text/javascript" src="<c:url value="/assets/js/validate-form.js"/>"></script>
 </head>
 <c:if test="${not empty message}">
     <script>
@@ -51,12 +52,12 @@
                                 <li class="slide-bar active"><i class="fa fa-edit"></i><span>Thông tin tài khoản</span>
                                 </li>
                             </a>
-                            <a href="profile-receipt.jsp">
+                            <a href="${pageContext.request.contextPath}/customer/profile-receipt.jsp">
                                 <li class="slide-bar"><i class="fas fa-money-check"></i><span>Quản lý đơn hàng</span>
                                 </li>
                             </a>
                             <!-- <a href="address-deliver.html"><li class="slide-bar"><i class="fas fa-map-marker-alt"></i><span> Địa chỉ nhận hàng</span></li></a> -->
-                            <a href="profile-reset-password.jsp">
+                            <a href="${pageContext.request.contextPath}/customer/profile-reset-password.jsp">
                                 <li class="slide-bar"><i class="fas fa-lock"></i><span> Đổi mật khẩu</span></li>
                             </a>
                         </ul>
@@ -67,7 +68,7 @@
                     <div class="account-infor">
 
 
-                        <form action="${pageContext.request.contextPath}/profile_update" method="post" accept-charset="utf-8">
+                        <form action="${pageContext.request.contextPath}/profile_update" method="post" onsubmit="return checkUpdateProfile()">
 
                             <div class="form-control">
                                 <label for="email" class="input-label">
@@ -98,8 +99,8 @@
                                         Số điện thoại
                                     </label>
                                     <input id="phone" type="text" name="phone" placeholder="Thêm số điện thoại"
-                                           class="input-field" maxlength="10"
-                                           value="${sessionScope.account.phoneNumber}" onfocusout="checkPhoneNumber(this.id)">
+                                           class="input-field"
+                                           value="${sessionScope.account.phoneNumber}" onfocusout="checkPhone(this.id)">
                                 </div>
                                 <div class="require" id="require-phone" style="display: none;margin-left:160px;">
                                     Số điện thoại không hợp lệ

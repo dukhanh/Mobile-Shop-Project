@@ -31,8 +31,8 @@ function vali_Code(code) {
     return regex.test(code);
 }
 
-function vali_PhoneNumber(phoneNumber){
-    const regex  =/^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
+function vali_PhoneNumber(phoneNumber) {
+    const regex = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
     return regex.test(phoneNumber);
 }
 
@@ -108,30 +108,34 @@ function checkCode(id) {
     if (!vali_Code(code)) {
         document.getElementById("require-code").style.display = "block";
         isValidCode = false;
-    }else{
+    } else {
         document.getElementById("require-code").style.display = "none";
-        if(code.trim().length!==6){
+        if (code.trim().length !== 6) {
             document.getElementById("require-code-length").style.display = "block";
-        }else{
+        } else {
             document.getElementById("require-code-length").style.display = "none";
             isValidCode = true;
         }
     }
 }
 
-function checkPhoneNumber(id){
+function checkPhone(id) {
     const phone = document.getElementById(id).value;
-    if(!vali_PhoneNumber(phone)){
+    if (!vali_PhoneNumber(phone)) {
         document.getElementById("require-phone").style.display = "block";
         isValidPhone = false;
-    }else{
+    } else {
         document.getElementById("require-phone").style.display = "none";
         isValidPhone = true;
     }
 }
 
-function checkUpdateProfile(){
-    return isValidName && isValidPhone;
+function checkUpdateProfile() {
+    return isValidName;
+}
+
+function checkResetPassword() {
+    return isValidPassword && isValidConform;
 }
 
 

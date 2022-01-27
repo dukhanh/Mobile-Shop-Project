@@ -7,6 +7,7 @@
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
+    <script type="text/javascript" src="<c:url value="/assets/js/validate-form.js"/>"></script>
 </head>
 
 <body>
@@ -97,15 +98,20 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <label class="control-label" for="re_password">Xác nhận mật khẩu*</label>
-                                        <input id="re_password" name="re_password" type="password" class="form-control"
+                                        <label class="control-label" for="re-password">Xác nhận mật khẩu*</label>
+                                        <input id="re-password" name="re_password" type="password" class="form-control"
                                                placeholder="Xác nhận mật khẩu" onfocusout="checkPasswordConfirm(this.id)" required>
                                     </div>
                                     <div class="require" id="require-password-confirm" style="display: none">
                                         Xác nhận mật khẩu không đúng
                                     </div>
                                 </div>
-
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="show-password" style="margin: 0;">
+                                        <input id="show-password" type="checkbox" onclick="Toggle()">
+                                        <label for="show-password">Hiển thị mật khẩu</label>
+                                    </div>
+                                </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                                     <input class="btn btn-primary btn-block mb10 mt10" type="submit" value="Đăng Ký">
                                     <div style="display: flex;justify-content: space-between">
@@ -169,4 +175,18 @@
 
 </body>
 
+<script>
+    // Change the type of input to password or text
+    function Toggle() {
+        const pass = document.getElementById("password");
+        let re_pass = document.getElementById("re-password");
+        if (pass.type === "password") {
+            pass.type = "text";
+            re_pass.type="text";
+        } else {
+            pass.type = "password";
+            re_pass.type="password";
+        }
+    }
+</script>
 </html>

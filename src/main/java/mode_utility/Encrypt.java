@@ -1,11 +1,12 @@
 package mode_utility;
 
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Encrypt {
-    public static String MD5(String str) {
+    public static  String MD5(String str) {
         String result = "";
         MessageDigest digest;
         try {
@@ -18,4 +19,11 @@ public class Encrypt {
         }
         return result;
     }
+//
+//    public static void main(String[] args) {
+//       String result = Encrypt.MD5("dukhanh09");
+//       System.out.println(result);
+//    }
 }
+
+
