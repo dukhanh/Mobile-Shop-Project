@@ -37,8 +37,10 @@
             <!-- search -->
             <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6">
                 <div class="search-bg">
-                    <input type="text" class="form-control" placeholder="Search Here">
-                    <button type="Submit"><i class="fa fa-search"></i></button>
+                    <form action="productlist" method="get">
+                        <input type="text" name="search" class="form-control" value="${search}" placeholder="Search Here">
+                        <button type="Submit"><i class="fa fa-search"></i></button>
+                    </form>
                 </div>
             </div>
             <!-- /.search -->
@@ -66,12 +68,20 @@
                             <i class="fa fa-caret-down"></i>
                             <div class="drop-down-account" id='myDIV'>
                                 <ul>
-                                    <a href="../customer/profile-account.jsp"><li>Tài khoản của tôi</li></a>
-                                    <a href="../customer/profile-receipt.jsp"><li>Đơn hàng của tôi</li></a>
+                                    <a href="../customer/profile-account.jsp">
+                                        <li>Tài khoản của tôi</li>
+                                    </a>
+                                    <a href="../customer/profile-receipt.jsp">
+                                        <li>Đơn hàng của tôi</li>
+                                    </a>
                                     <c:if test="${(sessionScope.account.role).equals('admin')}">
-                                        <a href="../admin/admin.jsp"><li>Trang admin</li></a>
+                                        <a href="../admin/admin.jsp">
+                                            <li>Trang admin</li>
+                                        </a>
                                     </c:if>
-                                    <a href="${pageContext.request.contextPath}/logout"> <li>Đăng xuất</li></a>
+                                    <a href="${pageContext.request.contextPath}/logout">
+                                        <li>Đăng xuất</li>
+                                    </a>
                                 </ul>
                             </div>
                         </div>
@@ -79,10 +89,12 @@
                     <%--                    khi chua dang nhap--%>
                     <c:if test="${sessionScope.account==null}">
                         <ul>
-                            <li><a href="${pageContext.request.contextPath}/account/send-code-register.jsp" class="title hidden-xs">Đăng ký</a>
+                            <li><a href="${pageContext.request.contextPath}/account/send-code-register.jsp"
+                                   class="title hidden-xs">Đăng ký</a>
                             </li>
                             <li class="hidden-xs">|</li>
-                            <li><a href="${pageContext.request.contextPath}/account/login-form.jsp" class="title hidden-xs">Đăng nhập</a></li>
+                            <li><a href="${pageContext.request.contextPath}/account/login-form.jsp"
+                                   class="title hidden-xs">Đăng nhập</a></li>
                         </ul>
                     </c:if>
                 </div>

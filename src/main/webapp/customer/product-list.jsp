@@ -1,3 +1,4 @@
+<%@ page import="service.SetURL" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,50 +17,9 @@
 <% String sort = (String) request.getAttribute("sorttype");%>
 <% String price = (String) request.getAttribute("filPrice");%>
 <% String[] iBrand = (String[]) request.getAttribute("iBrand");%>
+<% String search = (String) request.getAttribute("search");%>
 
-<%!
-    String setUrtSort(String s) {
-        if (s == null) {
-            return "";
-        } else {
-            return "&sort=" + s;
-        }
-    }
-%>
-<%!
-    String setUrlCa(String category) {
-        if (category == null) {
-            return "";
-        } else {
-            return "&cid=" + category;
-        }
-    }
-%>
-<%!
-    String setUrlFPrice(String fp) {
-        if (fp == null) {
-            return "";
-        } else {
-            return "&price=" + fp;
-        }
-    }
-%>
-<%!
-    String setUrlBrand(String[] br) {
-        StringBuilder res = new StringBuilder();
-        if (br != null) {
-            for (String s : br) {
-                res.append("&ibrand=").append(s);
-            }
-        }
-        return res.toString();
-    }
-%>
-<%!
-    String setUrlAll(String cat, String price, String sort, String[] brand) {
-        return "productlist?" + setUrlCa(cat) + setUrlFPrice(price) + setUrlBrand(brand) + setUrtSort(sort);
-    }
-%>
+
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
@@ -98,7 +58,7 @@
                         <c:forEach items="${categorylist}" var="c">
                             <tr>
                                 <td class="${c.id==category?"active":""}">
-                                    <a href="productlist?cid=${c.id}<%=setUrlFPrice(price)%><%=setUrlBrand(iBrand)%>">${c.name}</a>
+                                    <a href="productlist?<%=SetURL.setUrlSearch(search)%>&cid=${c.id}<%=SetURL.setUrlFPrice(price)%><%=SetURL.setUrlBrand(iBrand)%>">${c.name}</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -113,7 +73,7 @@
                             <c:forEach items="${filterPrice}" var="entry">
                                 <div class="item-filter">
                                     <a class="${entry.key==filPrice ? "active":""}"
-                                       href="productlist?<%=setUrlCa(cat)%>&price=${entry.key}<%=setUrlBrand(iBrand)%>">${entry.value}</a>
+                                       href="productlist?<%=SetURL.setUrlSearch(search)%><%=SetURL.setUrlCa(cat)%>&price=${entry.key}<%=SetURL.setUrlBrand(iBrand)%>">${entry.value}</a>
                                 </div>
                             </c:forEach>
 
@@ -123,6 +83,9 @@
                                 <span>Thương hiệu</span>
                             </div>
                             <form class="filter-form" action="productlist" method="GET">
+                                <c:if test="${search!=null}">
+                                    <input type="hidden" name="search" value="<%=search%>"/>
+                                </c:if>
                                 <c:if test="${category!=null}">
                                     <input type="hidden" name="cid" value="<%=cat%>"/>
                                 </c:if>
@@ -151,12 +114,13 @@
             <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
                 <div class="row">
                     <div class="col-lg-8 alignleft" style="padding: 0">
+                        <%--short product--%>
                         <div class="sort-list alignleft">
                             <ul class="content-sort">
                                 <jsp:useBean id="sortProducts" scope="request" type="java.util.LinkedHashMap"/>
                                 <c:forEach items="${sortProducts}" var="entry">
                                     <li><a class="${sorttype==entry.key ? "active" : ""}"
-                                           href="productlist?<%=setUrlCa(cat)%><%=setUrlFPrice(price)%><%=setUrlBrand(iBrand)%>&sort=${entry.key}">${entry.value}</a>
+                                           href="productlist?<%=SetURL.setUrlSearch(search)%><%=SetURL.setUrlCa(cat)%><%=SetURL.setUrlFPrice(price)%><%=SetURL.setUrlBrand(iBrand)%>&sort=${entry.key}">${entry.value}</a>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -166,11 +130,21 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12 alignleft" style="padding: 0">
+
+                        <div class="search-text">
+                            <c:if test="${search!=null}">
+                                <h3>Kết quả tìm kiếm cho `${search}`
+                                </h3>
+                            </c:if>
+
+                        </div>
+                        <%--show item filter and then delete it--%>
+
                         <div class="filter-items">
                             <c:forEach items="${categorylist}" var="c">
                                 <c:if test="${c.id==category}">
                                     <p class="item">${c.name}<a
-                                            href="productlist?<%=setUrlFPrice(price)%><%=setUrlBrand(iBrand)%>">
+                                            href="productlist?<%=SetURL.setUrlSearch(search)%><%=SetURL.setUrlFPrice(price)%><%=SetURL.setUrlBrand(iBrand)%>">
                                         <img src="https://salt.tikicdn.com/ts/upload/09/59/a4/a99bbc2a604f745281eca1aab8c87345.png"></a>
                                     </p>
                                 </c:if>
@@ -178,7 +152,7 @@
                             <c:forEach items="${filterPrice}" var="entry">
                                 <c:if test="${entry.key==filPrice}">
                                     <p class="item">${entry.value}<a
-                                            href="productlist?<%=setUrlCa(cat)%><%=setUrlBrand(iBrand)%>">
+                                            href="productlist?<%=SetURL.setUrlSearch(search)%><%=SetURL.setUrlCa(cat)%><%=SetURL.setUrlBrand(iBrand)%>">
                                         <img src="https://salt.tikicdn.com/ts/upload/09/59/a4/a99bbc2a604f745281eca1aab8c87345.png"></a>
                                     </p>
                                 </c:if>
@@ -195,14 +169,14 @@
                                         </c:forEach>
                                     </c:url>
                                     <p class="item">${b.getName()}<a
-                                            href="<c:out value='${displayURL}' /><%=setUrlCa(cat)%><%=setUrlFPrice(price)%>">
+                                            href="<c:out value='${displayURL}' /><%=SetURL.setUrlSearch(search)%><%=SetURL.setUrlCa(cat)%><%=SetURL.setUrlFPrice(price)%>">
                                         <img src="https://salt.tikicdn.com/ts/upload/09/59/a4/a99bbc2a604f745281eca1aab8c87345.png"></a>
                                     </p>
                                 </c:if>
                             </c:forEach>
 
                             <c:if test="${category!=null||filPrice!=null||iBrand!=null}">
-                                <p class="item default"><a href="productlist">Xóa tất cả</a></p>
+                                <p class="item default"><a href="productlist?<%=SetURL.setUrlSearch(search)%>">Xóa tất cả</a></p>
                             </c:if>
                         </div>
                     </div>
@@ -256,13 +230,13 @@
                         <div class="pagination">
                             <ul>
                                 <c:if test="${index > 1}">
-                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${index-1}">
+                                    <a href="<%=SetURL.setUrlAll(search,cat, price, sort, iBrand)%>&page=${index-1}">
                                         <li class="btn prev"><span><i class="fas fa-angle-left"></i>Prev</span>
                                         </li>
                                     </a>
                                 </c:if>
                                 <c:if test="${(index > 2)&&(pages>4)}">
-                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${1}">
+                                    <a href="<%=SetURL.setUrlAll(search,cat, price, sort, iBrand)%>&page=${1}">
                                         <li class="first numb"><span>1</span></li>
                                     </a>
                                     <c:if test="${index > 3}">
@@ -295,7 +269,7 @@
                                 </c:if>
                                 <c:forEach begin="<%=beforePage%>" end="<%=afterPage%>" var="p">
                                     <c:if test="${(p > 0)&&(p< pages+1)}">
-                                        <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${p}">
+                                        <a href="<%=SetURL.setUrlAll(search,cat, price, sort, iBrand)%>&page=${p}">
                                             <li class="numb ${p==index?"active":""}"><span>${p}</span></li>
                                         </a>
                                     </c:if>
@@ -304,12 +278,12 @@
                                     <c:if test="${index < pages-1}">
                                         <li class="dots"><span>...</span></li>
                                     </c:if>
-                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${pages}">
+                                    <a href="<%=SetURL.setUrlAll(search,cat, price, sort, iBrand)%>&page=${pages}">
                                         <li class="last numb"><span>${pages}</span></li>
                                     </a>
                                 </c:if>
                                 <c:if test="${index < pages}">
-                                    <a href="<%=setUrlAll(cat, price, sort, iBrand)%>&page=${index+1}">
+                                    <a href="<%=SetURL.setUrlAll(search,cat, price, sort, iBrand)%>&page=${index+1}">
                                         <li class="btn next"><span>Next<i
                                                 class="fas fa-angle-right"></i></span></li>
                                     </a>

@@ -19,10 +19,13 @@ import java.util.List;
 public class ProductListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String categoryId = request.getParameter("cid");
         String sortType = request.getParameter("sort");
         String filPrice = request.getParameter("price");
         String[] iBrand = request.getParameterValues("ibrand");
+        String textSearch = request.getParameter("search");
 
         // get current page
         int index = 1;
@@ -35,13 +38,18 @@ public class ProductListController extends HttpServlet {
         // sắp xếp sản phẩm
 
         String sortCondition = ProductListService.sortPriceCondition(sortType);
-        String condition = ProductListService.conditionWhere(categoryId, filPrice, iBrand, sortCondition);
+        String condition = ProductListService.conditionWhere(categoryId, filPrice, textSearch, iBrand, sortCondition);
 
 //        System.out.println(condition);
 
         int product = ProductListDAO.getInstance().getNumberOfProducts(condition);
         int pages = ProductListService.dividePages(product);
         int indexPage = ProductListService.startIndex(index);
+
+//        if(textSearch!=null){
+//            request.setAttribute("textSearch", textSearch);
+//            request.getRequestDispatcher("/sub-component/header-menu.jsp").forward(request, response);
+//        }
 
         List<Brand> listBrand = BrandDAO.getInstance().getTopBrand();
         boolean[] isBrandChecked = new boolean[listBrand.size()];
@@ -69,6 +77,7 @@ public class ProductListController extends HttpServlet {
         request.setAttribute("brand", listBrand);
         request.setAttribute("isBrandCheck", isBrandChecked);
         request.setAttribute("iBrand", iBrand);
+        request.setAttribute("search",textSearch);
         request.getRequestDispatcher("/customer/product-list.jsp").forward(request, response);
     }
 

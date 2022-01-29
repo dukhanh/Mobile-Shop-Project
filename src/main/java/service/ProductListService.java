@@ -32,7 +32,7 @@ public class ProductListService {
     }
 
 
-    public static String conditionWhere(String category, String price, String[] iBrand, String sortCondition) {
+    public static String conditionWhere(String category, String price, String textSearch, String[] iBrand, String sortCondition) {
         String condition = "";
         if (category != null) {
             condition = " AND ID_LOAI_SP = " + category;
@@ -68,7 +68,11 @@ public class ProductListService {
             }
             conditionBrand.append(")");
         }
-        return condition + conditionFPrice + sortPromotion + conditionBrand.toString();
+        String searchCondition = "";
+        if (textSearch != null) {
+            searchCondition = " AND TEN_SP like '%" + textSearch + "%'";
+        }
+        return condition + conditionFPrice + sortPromotion + searchCondition + conditionBrand.toString();
     }
 
 
@@ -84,7 +88,7 @@ public class ProductListService {
             if (sortType.equals("best_new")) {
                 sortCondition = " ORDER BY NGAY_CAPNHAT DESC";
             }
-            if(sortType.equals("promotion")){
+            if (sortType.equals("promotion")) {
                 sortCondition = " ORDER BY (GIA_SP-GIA_KM) DESC";
             }
         }

@@ -31,15 +31,9 @@ public class ProductListDAO {
             psupdate.setInt(1, page);
             psupdate.setInt(2, products);
             ResultSet rs = psupdate.executeQuery();
-            while (rs.next()) {
-                product = new Product();
-                product.setId(rs.getInt("ID_SANPHAM"));
-                product.setName(rs.getString("TEN_SP"));
-                product.setPrice(rs.getInt("GIA_SP"));
-                product.setPriceSale(rs.getInt("GIA_KM"));
-                product.setImageUrl(rs.getString("ANH_CHINH"));
-                res.add(product);
-            }
+
+            res = getProductsByResultSet(rs);
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -63,24 +57,16 @@ public class ProductListDAO {
     }
 
     public List<Product> getProductsTopSeller(int page, int products, String condition) {
-        Product product;
         List<Product> res = new LinkedList<>();
         String sql = "select * from san_pham sp join sl_sp ss on sp.ID_SANPHAM = ss.ID_SANPHAM " + condition + " ORDER BY SL_DABAN DESC LIMIT ?,?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, page);
             psupdate.setInt(2, products);
-
             ResultSet rs = psupdate.executeQuery();
-            while (rs.next()) {
-                product = new Product();
-                product.setId(rs.getInt("ID_SANPHAM"));
-                product.setName(rs.getString("TEN_SP"));
-                product.setPrice(rs.getInt("GIA_SP"));
-                product.setPriceSale(rs.getInt("GIA_KM"));
-                product.setImageUrl(rs.getString("ANH_CHINH"));
-                res.add(product);
-            }
+
+            res = getProductsByResultSet(rs);
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -90,17 +76,31 @@ public class ProductListDAO {
     }
 
     public List<Product> getProductPromotion(int page, int products, String condition) {
-        Product product;
         List<Product> res = new LinkedList<>();
         String sql = "SELECT * \n" +
                 "from san_pham \n" + condition + "AND ((GIA_SP-GIA_KM)>0) ORDER BY (GIA_SP-GIA_KM) desc LIMIT ?,?";
+
+        PreparedStatement psupdate = null;
         try {
-            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
+            psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, page);
             psupdate.setInt(2, products);
             ResultSet rs = psupdate.executeQuery();
+
+            res = getProductsByResultSet(rs);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        return res;
+    }
+
+    public List<Product> getProductsByResultSet(ResultSet rs) {
+        List<Product> res = new LinkedList<>();
+        try {
             while (rs.next()) {
-                product = new Product();
+                Product product = new Product();
                 product.setId(rs.getInt("ID_SANPHAM"));
                 product.setName(rs.getString("TEN_SP"));
                 product.setPrice(rs.getInt("GIA_SP"));
@@ -110,9 +110,9 @@ public class ProductListDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            return null;
         }
+
+
         return res;
     }
 }
