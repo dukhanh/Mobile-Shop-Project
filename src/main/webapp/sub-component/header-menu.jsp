@@ -93,7 +93,7 @@
                                    class="title hidden-xs">Đăng ký</a>
                             </li>
                             <li class="hidden-xs">|</li>
-                            <li><a href="${pageContext.request.contextPath}/account/login-form.jsp"
+                            <li><a href="${pageContext.request.contextPath}/login"
                                    class="title hidden-xs">Đăng nhập</a></li>
                         </ul>
                     </c:if>

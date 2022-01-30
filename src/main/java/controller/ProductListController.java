@@ -5,6 +5,7 @@ import bean.Product;
 import dao.BrandDAO;
 import dao.CategoryDAO;
 import dao.ProductListDAO;
+import mode_utility.Format;
 import service.ProductListService;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "ProductList", value = "/productlist")
@@ -46,10 +48,6 @@ public class ProductListController extends HttpServlet {
         int pages = ProductListService.dividePages(product);
         int indexPage = ProductListService.startIndex(index);
 
-//        if(textSearch!=null){
-//            request.setAttribute("textSearch", textSearch);
-//            request.getRequestDispatcher("/sub-component/header-menu.jsp").forward(request, response);
-//        }
 
         List<Brand> listBrand = BrandDAO.getInstance().getTopBrand();
         boolean[] isBrandChecked = new boolean[listBrand.size()];
@@ -77,7 +75,7 @@ public class ProductListController extends HttpServlet {
         request.setAttribute("brand", listBrand);
         request.setAttribute("isBrandCheck", isBrandChecked);
         request.setAttribute("iBrand", iBrand);
-        request.setAttribute("search",textSearch);
+        request.setAttribute("search", textSearch);
         request.getRequestDispatcher("/customer/product-list.jsp").forward(request, response);
     }
 

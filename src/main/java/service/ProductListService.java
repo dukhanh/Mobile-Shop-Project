@@ -1,6 +1,8 @@
 package service;
 
+import java.text.NumberFormat;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 
 public class ProductListService {
     private static ProductListService instance;

@@ -4922,7 +4922,18 @@ Class----------------
     margin-bottom: 0;
     color: #3a3a3a;
 }
-
+.check-box-class{
+    width: 17px;
+    height: 17px;
+    margin: 0;
+}
+.label-checkbox{
+    margin-left: 5px;
+    font-weight: 500;
+    margin-top: 3px;
+    margin-bottom: 0;
+    color: #3a3a3a;
+}
 .show-password input{
     width: 17px;
     height: 17px;

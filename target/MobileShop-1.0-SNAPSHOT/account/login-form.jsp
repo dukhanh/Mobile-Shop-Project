@@ -68,16 +68,20 @@
                                     <div class="form-group">
 
                                         <div class="login-input">
-                                            <input id="password" name="password" type="password" class="form-control"
+                                            <input id="password" name="password" type="password" value="${password}" class="form-control"
                                                    style="margin-bottom: 15px;"
                                                    placeholder="Mật khẩu" required>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: flex; justify-content: space-between;align-items: center;">
+                                    <div style="display: flex; margin-bottom: 10px;">
+                                        <input id="remember" type="checkbox" class="check-box-class" name="remember">
+                                        <label class="label-checkbox" for="remember">Remember me</label>
+                                    </div>
                                     <div class="show-password" style="margin-left: 0;">
-                                        <input id="show-password" type="checkbox" onclick="Toggle()">
-                                        <label for="show-password">Hiển thị mật khẩu</label>
+                                        <input id="show-password" class="check-box-class" type="checkbox" onclick="Toggle()">
+                                        <label  class="label-checkbox" for="show-password">Hiển thị mật khẩu</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb20 ">

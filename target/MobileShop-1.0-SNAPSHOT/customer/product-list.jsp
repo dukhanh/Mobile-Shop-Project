@@ -176,7 +176,8 @@
                             </c:forEach>
 
                             <c:if test="${category!=null||filPrice!=null||iBrand!=null}">
-                                <p class="item default"><a href="productlist?<%=SetURL.setUrlSearch(search)%>">Xóa tất cả</a></p>
+                                <p class="item default"><a href="productlist?<%=SetURL.setUrlSearch(search)%>">Xóa tất
+                                    cả</a></p>
                             </c:if>
                         </div>
                     </div>
@@ -212,6 +213,7 @@
                                         </div>
                                     </a>
                                 </div>
+
                             </c:forEach>
                         </c:when>
                         <c:otherwise>
@@ -300,7 +302,22 @@
 <!-- /.product-list -->
 <!-- footer -->
 <jsp:include page="/sub-component/footer.jsp"/>
-
+<%--<script>--%>
+<%--    function searchByName(param) {--%>
+<%--        var texSearch = param.value;--%>
+<%--        $.ajax({--%>
+<%--            url: "/searchAjax",--%>
+<%--            type: "get",--%>
+<%--            data: {--%>
+<%--                search: texSearch--%>
+<%--            },--%>
+<%--            success: function (data) {--%>
+<%--                var row = document.getElementById("content");--%>
+<%--                row.innerHTML = data;--%>
+<%--            }--%>
+<%--        });--%>
+<%--    }--%>
+<%--</script>--%>
 <script>
     $(document).ready(function () {
         if ($('.ty-compact-list').length > 10) {
