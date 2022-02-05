@@ -919,7 +919,7 @@ a img.aligncenter {
     margin-top: 13px;
 }
 
-.require{
+.require {
     color: red;
     text-align: left;
     font-size: 15px;
@@ -1089,7 +1089,7 @@ img {
 }
 
 .account-section ul {
-    padding-left: 0px;
+    padding-left: 0;
 }
 
 .account-section ul li {
@@ -1174,7 +1174,7 @@ img {
     position: absolute;
     top: 52px;
     border: 1px solid #58b0e5;
-    width: 160px;
+    width: 180px;
     /*right: 25px;*/
     border-radius: 6px;
     z-index: 1;
@@ -2128,6 +2128,7 @@ img {
 }
 
 .product-btn {
+    border: none;
     width: 35px;
     height: 35px;
     border-radius: 100%;
@@ -2138,8 +2139,13 @@ img {
 }
 
 .btn-like {
-    background-color: #fb730f;
+
+    background: #efc67b;
     color: #fff;
+}
+
+.is-active-like {
+    background: #fb730f;
 }
 
 .btn-cart {
@@ -4020,11 +4026,13 @@ Class----------------
     color: rgb(88, 176, 229);
     border-bottom: 3px solid rgb(88, 176, 229);
 }
-.search-text{
+
+.search-text {
     border-top: 1px solid rgb(213, 213, 213);
 
 }
-.search-text h3{
+
+.search-text h3 {
     margin: 5px 0 0 15px;
     color: rgb(0 0 0);
     font-weight: 300;
@@ -4136,10 +4144,12 @@ Class----------------
 
 .list-favorites .item .thumbnail img {
     width: 130px;
+    height: 140px;
 }
 
 .list-favorites .item .body {
-    flex: 1 1 0%;
+    flex: 1 1 0;
+    padding-right: 70px;
 }
 
 .list-favorites .item .body .rating-review {
@@ -4175,7 +4185,6 @@ Class----------------
 }
 
 .list-favorites .item .footer .wrap .price {
-    border-right: 1px solid gray;
     padding-right: 10px;
 }
 
@@ -4193,6 +4202,26 @@ Class----------------
     height: 8px;
     content: "";
     top: 2px;
+}
+
+.null-favorite {
+    text-align: center;
+    padding: 20px;
+    color: #747474;
+}
+
+.null-favorite p {
+    margin: 0;
+}
+
+.null-favorite a {
+    border: 1px solid orange;
+    color: orange;
+    display: block;
+    width: 200px;
+    font-size: 14px;
+    margin: 15px auto;
+    text-transform: uppercase;
 }
 
 /*------------information account -------------*/
@@ -4908,33 +4937,36 @@ Class----------------
     text-align: center;
 }
 
-.show-password{
+.show-password {
     margin-left: 165px;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
 
-.show-password label{
+.show-password label {
     margin-left: 5px;
     font-weight: 500;
     margin-top: 3px;
     margin-bottom: 0;
     color: #3a3a3a;
 }
-.check-box-class{
+
+.check-box-class {
     width: 17px;
     height: 17px;
     margin: 0;
 }
-.label-checkbox{
+
+.label-checkbox {
     margin-left: 5px;
     font-weight: 500;
     margin-top: 3px;
     margin-bottom: 0;
     color: #3a3a3a;
 }
-.show-password input{
+
+.show-password input {
     width: 17px;
     height: 17px;
     margin: 0;

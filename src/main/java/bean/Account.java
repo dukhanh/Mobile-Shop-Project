@@ -17,8 +17,8 @@ public class Account implements Serializable {
     private String status;
     private Date createdAt;
 
+// constructor null
     public Account() {
-
     }
 
     // use register account

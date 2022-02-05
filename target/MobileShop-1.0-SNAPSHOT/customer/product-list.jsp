@@ -1,4 +1,5 @@
 <%@ page import="service.SetURL" %>
+<%@ page import="service.FavoriteService" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +19,6 @@
 <% String price = (String) request.getAttribute("filPrice");%>
 <% String[] iBrand = (String[]) request.getAttribute("iBrand");%>
 <% String search = (String) request.getAttribute("search");%>
-
 
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
@@ -205,9 +205,11 @@
                                                     </a>
                                                 </div>
                                                 <div class="shopping-btn">
-                                                    <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                                    <a href="#" class="product-btn btn-cart"><i
-                                                            class="fa fa-shopping-cart"></i></a>
+                                                    <button onclick="addToFavorite(this,${p.id},${sessionScope.account.id})"
+                                                            class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
+                                                        <i class="fa fa-heart"></i></button>
+                                                    <button class="product-btn btn-cart"><i
+                                                            class="fa fa-shopping-cart"></i></button>
                                                 </div>
                                             </div>
                                         </div>

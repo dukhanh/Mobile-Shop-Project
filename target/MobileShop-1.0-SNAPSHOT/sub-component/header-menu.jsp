@@ -38,7 +38,8 @@
             <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6">
                 <div class="search-bg">
                     <form action="productlist" method="get">
-                        <input type="text" name="search" class="form-control" value="${search}" placeholder="Search Here">
+                        <input type="text" name="search" class="form-control" value="${search}"
+                               placeholder="Search Here">
                         <button type="Submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
@@ -48,8 +49,11 @@
             <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                 <div class="account-section">
                     <ul>
-                        <li><a href="../customer/favorite-list.jsp"><i class="fa fa-heart"></i><sup
-                                class="cart-quantity">2</sup></a></li>
+<%--                        <li><a href="${pageContext.request.contextPath}/favorite_product"><i class="fa fa-heart"></i>--%>
+<%--                            <c:if test="${sessionScope.amountFavorites!=null}">--%>
+<%--                                <sup class="cart-quantity">${sessionScope.amountFavorites}</sup>--%>
+<%--                            </c:if>--%>
+<%--                        </a></li>--%>
                         <li><a href="../customer/cart.jsp" class="title"><i class="fa fa-shopping-cart"></i>
                             <sup
                                     class="cart-quantity">2</sup></a>
@@ -68,11 +72,14 @@
                             <i class="fa fa-caret-down"></i>
                             <div class="drop-down-account" id='myDIV'>
                                 <ul>
-                                    <a href="../customer/profile-account.jsp">
+                                    <a href="${pageContext.request.contextPath}/customer/profile-account.jsp">
                                         <li>Tài khoản của tôi</li>
                                     </a>
-                                    <a href="../customer/profile-receipt.jsp">
+                                    <a href="${pageContext.request.contextPath}/customer/profile-receipt.jsp">
                                         <li>Đơn hàng của tôi</li>
+                                    </a>
+                                    <a href="${pageContext.request.contextPath}/favorite_product">
+                                        <li>Sản phẩm yêu thích</li>
                                     </a>
                                     <c:if test="${(sessionScope.account.role).equals('admin')}">
                                         <a href="../admin/admin.jsp">

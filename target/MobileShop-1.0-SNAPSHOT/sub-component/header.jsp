@@ -34,7 +34,7 @@
 <!-- FontAwesome CSS -->
 <link href="<c:url value="/assets/css/font-awesome.min.css"/>" rel="stylesheet">
 
-<script type="text/javascript" src="<c:url value="/assets/js/jquery.min.js"/>" ></script>
+<%--<script type="text/javascript" src="<c:url value="/assets/js/jquery.min.js"/>" ></script>--%>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script type="text/javascript" src="<c:url value="/assets/js/bootstrap.min.js"/>" ></script>
 <script type="text/javascript" src="<c:url value="/assets/js/menumaker.js"/>" ></script>
@@ -47,3 +47,4 @@
 <script type="text/javascript" src="<c:url value="/assets/js/jquery.rateyo.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/assets/js/jquery.desoslide.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/assets/js/quantity-product.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/js_ajax/favorite-ajax.js"/>"></script>

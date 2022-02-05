@@ -169,9 +169,11 @@
                                                 </a>
                                             </div>
                                             <div class="shopping-btn">
-                                                <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                                <a href="#" class="product-btn btn-cart"><i
-                                                        class="fa fa-shopping-cart"></i></a>
+                                                <button onclick="addToFavorite(this,${p.id},${sessionScope.account.id})"
+                                                        class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
+                                                    <i class="fa fa-heart"></i></button>
+                                                <button class="product-btn btn-cart"><i
+                                                        class="fa fa-shopping-cart"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -223,9 +225,11 @@
                                                 </a>
                                             </div>
                                             <div class="shopping-btn">
-                                                <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                                <a href="#" class="product-btn btn-cart"><i
-                                                        class="fa fa-shopping-cart"></i></a>
+                                                <button onclick="addToFavorite(this,${p.id},${sessionScope.account.id})"
+                                                        class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
+                                                    <i class="fa fa-heart"></i></button>
+                                                <button class="product-btn btn-cart"><i
+                                                        class="fa fa-shopping-cart"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -272,9 +276,11 @@
                                                 </a>
                                             </div>
                                             <div class="shopping-btn">
-                                                <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
-                                                <a href="#" class="product-btn btn-cart"><i
-                                                        class="fa fa-shopping-cart"></i></a>
+                                                <button onclick="addToFavorite(this,${p.id},${sessionScope.account.id})"
+                                                        class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
+                                                    <i class="fa fa-heart"></i></button>
+                                                <button class="product-btn btn-cart"><i
+                                                        class="fa fa-shopping-cart"></i></button>
                                             </div>
                                         </div>
                                     </div>

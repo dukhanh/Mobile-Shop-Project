@@ -2,6 +2,7 @@ package controller_account;
 
 import bean.Account;
 import dao.AccountDAO;
+import dao.FavoriteProductDAO;
 import mode_utility.Encrypt;
 
 import javax.servlet.*;
@@ -13,16 +14,16 @@ import java.io.IOException;
 public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Cookie[] arr = request.getCookies();
+         Cookie[] arr = request.getCookies();
         if (arr != null) {
             for (Cookie c : arr) {
                 if (c.getName().equals("email")) {
                     request.setAttribute("email", c.getValue());
-                    System.out.println(c.getValue());
+//                    System.out.println(c.getValue());
                 }
                 if (c.getName().equals("password")) {
                     request.setAttribute("password", c.getValue());
-                    System.out.println(c.getValue());
+//                    System.out.println(c.getValue());
                 }
             }
         }
@@ -46,6 +47,8 @@ public class LoginController extends HttpServlet {
             if (account.getStatus().equals("open")) {
                 HttpSession session = request.getSession();
                 session.setAttribute("account", account);
+
+                session.setAttribute("amountFavorites", FavoriteProductDAO.getInstance().countByEmail(email));
 
                 Cookie emailCookie = new Cookie("email", email);
                 Cookie passCookie = new Cookie("password", password);
