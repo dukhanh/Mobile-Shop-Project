@@ -1,9 +1,5 @@
 package service;
 
-import bean.Product;
-
-import java.util.List;
-
 public class ProductService {
     private static ProductService instance;
 

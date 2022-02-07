@@ -1,6 +1,6 @@
 package controller_account;
 
-import bean.Account;
+import model.Account;
 import dao.AccountDAO;
 import mode_utility.Encrypt;
 

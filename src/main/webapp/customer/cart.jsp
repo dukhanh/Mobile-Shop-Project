@@ -3,13 +3,12 @@
 
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="/sub-component/taglib.jsp" %>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
 </head>
-
+<fmt:setLocale value="vi_VN"/>
 <body>
 <!-- top-header-->
 <jsp:include page="/sub-component/header-menu.jsp"/>
@@ -38,88 +37,66 @@
     <div class="cart-content mt30 mb30">
         <div class="title-header mb20">
             <h2 class="title">Giỏ Hàng</h2>
-            <p><span class="text-blue">2</span> sản phẩm trong giỏ hàng của bạn</p>
+<%--            <p><span class="text-blue">${quantityTotal}</span> sản phẩm trong giỏ hàng của bạn</p>--%>
         </div>
-        <table class="table">
+        <table class="table" id="cart-table">
             <thead class="thead-light">
             <tr>
-                <th> <div class="item-center pdl10"><input type="checkbox" class="checkboxStyle"></div></th>
+                <th>
+                    <div class="item-center pdl10"><label for="check-all"></label><input id="check-all" type="checkbox"
+                                                                                         class="checkbox-element"></div>
+                </th>
                 <th>Sản phẩm</th>
                 <th scope="col">Đơn giá</th>
                 <th scope="col">Số lượng</th>
-                <th scope="col">Thành tiền</th>
-                <th scope="col"></th>
+                <th scope="col"><button class="delete-product" onclick="deleteProductSelected()">
+                    <i class="far fa-trash-alt" style="font-size:20px; cursor:pointer;"></i>
+                </button></th>
 
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <div class="item-center pdl10"><input type="checkbox" class="checkboxStyle"></div>
-                </td>
-                <td>
-                    <div class="product-title item-center">
-                        <img src="../assets/images/iPhone_13.jpg" alt="">
-                        <div>
-                            <p>iPhone 13 Pro 128GB</p>
-                            <p>Màu sắc: Đỏ</p>
+            <tbody id="list-product-cart">
+            <jsp:useBean id="cartList" scope="request" type="java.util.List"/>
+            <c:forEach items="${cartList}" var="p" varStatus="loop">
+                <tr>
+                    <td>
+                        <div class="item-center pdl10"><label>
+                            <input type="checkbox" value="${p.id}" class="checkbox-element checkbox-element-child">
+                        </label></div>
+                    </td>
+                    <td>
+                        <div class="product-title item-center" style="width:100%">
+                            <a href="productdetails?id=${p.id}"><img src="${p.imageUrl}" alt=""></a>
+                            <div style="margin-left:20px;">
+                                <a href="productdetails?id=${p.id}"><p>${p.name}</p></a>
+                                    <p>Màu sắc: ${p.color}</p>
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="item-center">30.750.000đ</div>
-                </td>
-                <td>
-                    <div class="item-center">
-                        <div class="quantity">
-                            <button class="btn-quantity decrease-quantity" type="button">-</button>
-                            <input type="number" max="5" min="1" name="quantity" value="1"
-                                   class="quantity-input">
-                            <button class="btn-quantity increase-quantity" type="button">+</button>
+                    </td>
+                    <td>
+                        <div class="item-center text-red"><p id="price-product"><fmt:formatNumber
+                                value="${p.priceSale}"/></p> vnđ
                         </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="item-center text-red">30.750.000đ</div>
-                </td>
-                <td>
-                    <div class="item-center pinside10"><i class="far fa-trash-alt"></i></div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="item-center pdl10"><input type="checkbox" class="checkboxStyle"></div>
-                </td>
-                <td>
-                    <div class="product-title item-center">
-                        <img src="../assets/images/iphone11.png" alt="">
-                        <div>
-                            <p>iPhone 11 Pro 128GB</p>
-                            <p>Màu sắc: Xanh</p>
+                    </td>
+                    <td>
+                        <div class="item-center">
+                            <div class="quantity">
+                                <button class="btn-quantity decrease-quantity"
+                                        onclick="decreaseQuantity(this,${p.id})" type="button">-
+                                </button>
+                                <input type="number" name="quantity" value="${p.quantity}"
+                                       class="quantity-input quantity-product-cart" readonly>
+                                <button class="btn-quantity increase-quantity"
+                                        onclick="increaseQuantity(this,${p.id})" type="button">+
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="item-center">17.000.000đ</div>
-                </td>
-                <td>
-                    <div class="item-center">
-                        <div class="quantity">
-                            <button class="btn-quantity decrease-quantity" type="button">-</button>
-                            <input type="number" max="5" min="1" name="quantity" value="1"
-                                   class="quantity-input">
-                            <button class="btn-quantity increase-quantity" type="button">+</button>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="item-center text-red">17.000.000đ</div>
-                </td>
-                <td>
-                    <div class="item-center pinside10"><i class="far fa-trash-alt"></i></div>
-                </td>
-            </tr>
+                    </td>
+                    <td>
+                        <div class="item-center pinside10"><button class="delete-product" onclick="deleteProductInCart(${p.id},${loop.index})"><i class="far fa-trash-alt"></i></button></div>
+                    </td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
         <div class="prices-summary">
@@ -159,8 +136,11 @@
 <jsp:include page="/sub-component/footer.jsp"/>
 <!-- /.footer -->
 
-<script type="text/javascript" src="<c:url value="/assets/js/quantity-product.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/assets/js/js_pages/cart.js"/>"></script>
+<script>
 
+
+</script>
 
 </body>
 

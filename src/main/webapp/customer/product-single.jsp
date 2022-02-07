@@ -99,7 +99,7 @@
                                         <div class="quantity mb20">
                                             <button class="btn-quantity decrease-quantity" type="button">-</button>
                                             <label>
-                                                <input type="number" max="${product.quantity}" min="1" name="quantity" value="1"
+                                                <input type="number" max="" min="1" name="quantity" value="1"
                                                        class="quantity-input">
                                             </label>
                                             <button class="btn-quantity increase-quantity" type="button">+</button>

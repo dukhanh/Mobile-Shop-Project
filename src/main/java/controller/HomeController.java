@@ -1,7 +1,7 @@
 package controller;
 
-import bean.Brand;
-import bean.Product;
+import model.Brand;
+import model.Product;
 import dao.BrandDAO;
 import dao.HomeDAO;
 

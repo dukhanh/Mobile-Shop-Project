@@ -1,8 +1,7 @@
 package ajax;
 
-import bean.Account;
+import model.Account;
 import dao.FavoriteProductDAO;
-import service.FavoriteService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

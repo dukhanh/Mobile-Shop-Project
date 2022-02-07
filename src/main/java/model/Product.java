@@ -1,4 +1,4 @@
-package bean;
+package model;
 
 import java.io.Serializable;
 
@@ -21,7 +21,7 @@ public class Product implements Serializable {
 
     }
 
-    public Product(int id, String name, int price, int priceSale, String imageUrl, String color, String description, int idBrand, String brand, int idCategory, int quantity, int quantitySale) {
+    public Product(int id, String name, int price, int priceSale, String imageUrl, String color, String description, int idBrand, String brand, int idCategory , int quantity, int quantitySale) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -150,4 +150,5 @@ public class Product implements Serializable {
                 ", quantitySale=" + quantitySale +
                 '}';
     }
+
 }

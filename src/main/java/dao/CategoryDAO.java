@@ -1,13 +1,11 @@
 package dao;
 
-import bean.Category;
-import bean.Product;
+import model.Category;
 import db.DBConnect;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 

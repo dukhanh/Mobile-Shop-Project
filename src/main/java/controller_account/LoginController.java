@@ -1,6 +1,7 @@
 package controller_account;
 
-import bean.Account;
+import dao.CartDAO;
+import model.Account;
 import dao.AccountDAO;
 import dao.FavoriteProductDAO;
 import mode_utility.Encrypt;
@@ -48,7 +49,9 @@ public class LoginController extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("account", account);
 
-                session.setAttribute("amountFavorites", FavoriteProductDAO.getInstance().countByEmail(email));
+                int userId = AccountDAO.getInstance().getUserIdByEmail(email);
+                session.setAttribute("quantityProductInCart", CartDAO.getInstance().sumQuantityProductInCart(userId));
+                session.setAttribute("amountFavorites", FavoriteProductDAO.getInstance().countByUserId(userId));
 
                 Cookie emailCookie = new Cookie("email", email);
                 Cookie passCookie = new Cookie("password", password);

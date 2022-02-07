@@ -1,11 +1,10 @@
 package controller;
 
-import bean.Brand;
-import bean.Product;
+import model.Brand;
+import model.Product;
 import dao.BrandDAO;
 import dao.CategoryDAO;
 import dao.ProductListDAO;
-import mode_utility.Format;
 import service.ProductListService;
 
 import javax.servlet.ServletException;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "ProductList", value = "/productlist")

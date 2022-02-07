@@ -1,3 +1,4 @@
+<%@ page import="service.FavoriteService" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,14 +17,14 @@
 <body>
 <!-- top-header-->
 <jsp:include page="/sub-component/header-menu.jsp"/>
-<!-- /. header-section-->
+<!-- /. header-section favoriteService = new FavoriteService();on-->
 <!-- slider -->
 
 <%-- message success register account --%>
 
 <c:if test="${messageSuccess!=null}">
     <script>
-        window.onload = function() {
+        window.onload = function () {
             document.getElementById('btn-message').click();
         }
     </script>
@@ -50,7 +51,8 @@
                     <a href="${pageContext.request.contextPath}/customer/profile-account.jsp"
                        class="btn btn-primary" role="button">Cập nhật</a>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cập
-                        nhật sau</button>
+                        nhật sau
+                    </button>
                 </div>
             </div>
         </div>
@@ -72,8 +74,8 @@
                             <h1 class="slider-title">Red Mi <span>Y1</span></h1>
                             <p class="hidden-xs">LED Selfie-light | Fingerprint sensor | Dedicated microSD card slot
                                 Snapdragon 435 octa-core processor </p>
-<%--                            <p class="slider-price">$138.99 </p>--%>
-<%--                            <a href="cart.html" class="btn btn-primary btn-lg hidden-xs">Buy Now</a>--%>
+                            <%--                            <p class="slider-price">$138.99 </p>--%>
+                            <%--                            <a href="cart.html" class="btn btn-primary btn-lg hidden-xs">Buy Now</a>--%>
                         </div>
                     </div>
                 </div>
@@ -168,11 +170,14 @@
                                                     <fmt:formatNumber value="${p.priceSale}"/> vnđ
                                                 </a>
                                             </div>
+
+
                                             <div class="shopping-btn">
                                                 <button onclick="addToFavorite(this,${p.id},${sessionScope.account.id})"
                                                         class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
                                                     <i class="fa fa-heart"></i></button>
-                                                <button class="product-btn btn-cart"><i
+
+                                                <button onclick="addToCart(${p.id})" class="product-btn btn-cart"><i
                                                         class="fa fa-shopping-cart"></i></button>
                                             </div>
                                         </div>

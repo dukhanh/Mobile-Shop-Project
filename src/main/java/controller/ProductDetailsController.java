@@ -1,7 +1,7 @@
 package controller;
 
-import bean.Configuration;
-import bean.Product;
+import model.Configuration;
+import model.Product;
 import dao.ProductDetailsDAO;
 
 import javax.servlet.ServletException;

@@ -1,6 +1,6 @@
 package dao;
 
-import bean.Account;
+import model.Account;
 import db.DBConnect;
 import mode_utility.Encrypt;
 
@@ -134,6 +134,25 @@ public class AccountDAO {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             return null;
+        }
+        return result;
+    }
+
+    // get userId by email in tai khoan table
+    public int getUserIdByEmail(String email){
+        int result = 0;
+        String sql = "Select ID_USER from tai_khoan where EMAIL = ?";
+        try {
+            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
+            psupdate.setString(1, email);
+            ResultSet rs = psupdate.executeQuery();
+            while (rs.next()) {
+                result =  rs.getInt("ID_USER");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            return 0;
         }
         return result;
     }

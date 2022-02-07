@@ -1,6 +1,6 @@
 package dao;
 
-import bean.Product;
+import model.Product;
 import db.DBConnect;
 
 import java.sql.PreparedStatement;
@@ -98,23 +98,7 @@ public class FavoriteProductDAO {
         }
         return 0;
     }
-    //count by email from favorite and tai khoan table
-    public int countByEmail(String email) {
-        String sql = "select count(*) from ds_yeuthich dy join tai_khoan tk on dy.ID_USER = tk.ID_USER where tk.EMAIL = ?";
-        try {
-            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
-            psupdate.setString(1, email);
-            ResultSet rs = psupdate.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            return 0;
-        }
-        return 0;
-    }
+
     // check userId and productId from favorite table
     public boolean checkExistFavorite(int userId, int productId) {
         String sql = "select * from ds_yeuthich where ID_USER = ? and ID_SP = ?";

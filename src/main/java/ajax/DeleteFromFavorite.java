@@ -1,7 +1,7 @@
 package ajax;
 
-import bean.Account;
-import bean.Product;
+import model.Account;
+import model.Product;
 import dao.FavoriteProductDAO;
 import mode_utility.Format;
 

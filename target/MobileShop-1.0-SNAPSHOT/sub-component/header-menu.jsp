@@ -49,14 +49,11 @@
             <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                 <div class="account-section">
                     <ul>
-<%--                        <li><a href="${pageContext.request.contextPath}/favorite_product"><i class="fa fa-heart"></i>--%>
-<%--                            <c:if test="${sessionScope.amountFavorites!=null}">--%>
-<%--                                <sup class="cart-quantity">${sessionScope.amountFavorites}</sup>--%>
-<%--                            </c:if>--%>
-<%--                        </a></li>--%>
-                        <li><a href="../customer/cart.jsp" class="title"><i class="fa fa-shopping-cart"></i>
-                            <sup
-                                    class="cart-quantity">2</sup></a>
+                        <li><a href="${pageContext.request.contextPath}/cart" class="title"><i class="fa fa-shopping-cart"></i>
+                            <c:if test="${sessionScope.account!=null}">
+                                <sup class="cart-quantity" id="cart-quantity">${quantityProductInCart}</sup>
+                            </c:if>
+                        </a>
                         </li>
                     </ul>
                     <%--                    khi da dang nhap--%>

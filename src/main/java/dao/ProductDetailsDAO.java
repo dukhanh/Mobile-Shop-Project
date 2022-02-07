@@ -1,7 +1,7 @@
 package dao;
 
-import bean.Configuration;
-import bean.Product;
+import model.Configuration;
+import model.Product;
 import db.DBConnect;
 
 import java.sql.PreparedStatement;
