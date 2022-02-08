@@ -51,7 +51,6 @@ public class LoginController extends HttpServlet {
 
                 int userId = AccountDAO.getInstance().getUserIdByEmail(email);
                 session.setAttribute("quantityProductInCart", CartDAO.getInstance().sumQuantityProductInCart(userId));
-                session.setAttribute("amountFavorites", FavoriteProductDAO.getInstance().countByUserId(userId));
 
                 Cookie emailCookie = new Cookie("email", email);
                 Cookie passCookie = new Cookie("password", password);

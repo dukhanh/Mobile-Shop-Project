@@ -138,15 +138,49 @@ public class CartDAO {
         }
         return quantity;
     }
-
-    // main method test getAllProductCart
-    public static void main(String[] args) {
-        CartDAO cartDAO = new CartDAO();
-        List<Cart> carts =  cartDAO.getAllProductCart(16);
-        for (Cart cart : carts) {
-            System.out.println(cart.getName());
+    // check quantity a product in gio hang table
+    public int checkQuantityProductInCart(int userId, int productId) {
+        String sql = "SELECT SL_SP FROM gio_hang WHERE ID_USER = ? AND ID_SP = ?";
+        int quantity = 0;
+        try {
+            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
+            psupdate.setInt(1, userId);
+            psupdate.setInt(2, productId);
+            ResultSet rs = psupdate.executeQuery();
+            if (rs.next()) {
+                quantity = rs.getInt("SL_SP");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            return 0;
         }
+        return quantity;
     }
+
+    // count price * quantity  product by userId in gio hang table
+        public int sumPriceProductInCart(int userId, int productId) {
+        String sql = "SELECT (g.SL_SP * s.GIA_KM) AS GIA_SP FROM gio_hang g join san_pham s on g.ID_SP = s.ID_SANPHAM WHERE ID_USER = ? AND ID_SP = ?";
+        int price = 0;
+        try {
+            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
+            psupdate.setInt(1, userId);
+            psupdate.setInt(2, productId);
+            ResultSet rs = psupdate.executeQuery();
+            if (rs.next()) {
+                price = rs.getInt("GIA_SP");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            return 0;
+        }
+        return price;
+    }
+    // main method test the last method
+
+
+
 
 
 

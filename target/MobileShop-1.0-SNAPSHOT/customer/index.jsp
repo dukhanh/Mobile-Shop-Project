@@ -1,4 +1,5 @@
 <%@ page import="service.FavoriteService" %>
+<%@ page import="service.CartService" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -177,8 +178,8 @@
                                                         class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
                                                     <i class="fa fa-heart"></i></button>
 
-                                                <button onclick="addToCart(${p.id})" class="product-btn btn-cart"><i
-                                                        class="fa fa-shopping-cart"></i></button>
+                                                <button class="product-btn btn-cart" onclick="addToCart(${p.id}, ${CartService.getQuantity(sessionScope.account.id,p.id)})">
+                                                    <i class="fa fa-shopping-cart"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -233,8 +234,8 @@
                                                 <button onclick="addToFavorite(this,${p.id},${sessionScope.account.id})"
                                                         class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
                                                     <i class="fa fa-heart"></i></button>
-                                                <button class="product-btn btn-cart"><i
-                                                        class="fa fa-shopping-cart"></i></button>
+                                                <button class="product-btn btn-cart" onclick="addToCart(${p.id}, ${CartService.getQuantity(sessionScope.account.id,p.id)})">
+                                                    <i class="fa fa-shopping-cart"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -284,8 +285,8 @@
                                                 <button onclick="addToFavorite(this,${p.id},${sessionScope.account.id})"
                                                         class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
                                                     <i class="fa fa-heart"></i></button>
-                                                <button class="product-btn btn-cart"><i
-                                                        class="fa fa-shopping-cart"></i></button>
+                                                <button class="product-btn btn-cart" onclick="addToCart(${p.id}, ${CartService.getQuantity(sessionScope.account.id,p.id)})">
+                                                    <i class="fa fa-shopping-cart"></i></button>
                                             </div>
                                         </div>
                                     </div>

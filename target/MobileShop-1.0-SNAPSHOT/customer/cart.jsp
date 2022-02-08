@@ -37,7 +37,7 @@
     <div class="cart-content mt30 mb30">
         <div class="title-header mb20">
             <h2 class="title">Giỏ Hàng</h2>
-<%--            <p><span class="text-blue">${quantityTotal}</span> sản phẩm trong giỏ hàng của bạn</p>--%>
+            <%--            <p><span class="text-blue">${quantityTotal}</span> sản phẩm trong giỏ hàng của bạn</p>--%>
         </div>
         <table class="table" id="cart-table">
             <thead class="thead-light">
@@ -49,9 +49,11 @@
                 <th>Sản phẩm</th>
                 <th scope="col">Đơn giá</th>
                 <th scope="col">Số lượng</th>
-                <th scope="col"><button class="delete-product" onclick="deleteProductSelected()">
-                    <i class="far fa-trash-alt" style="font-size:20px; cursor:pointer;"></i>
-                </button></th>
+                <th scope="col">
+                    <button class="delete-product" onclick="deleteProductSelected()">
+                        <i class="far fa-trash-alt" style="font-size:20px; cursor:pointer;"></i>
+                    </button>
+                </th>
 
             </tr>
             </thead>
@@ -69,7 +71,7 @@
                             <a href="productdetails?id=${p.id}"><img src="${p.imageUrl}" alt=""></a>
                             <div style="margin-left:20px;">
                                 <a href="productdetails?id=${p.id}"><p>${p.name}</p></a>
-                                    <p>Màu sắc: ${p.color}</p>
+                                <p>Màu sắc: ${p.color}</p>
                             </div>
                         </div>
                     </td>
@@ -93,7 +95,10 @@
                         </div>
                     </td>
                     <td>
-                        <div class="item-center pinside10"><button class="delete-product" onclick="deleteProductInCart(${p.id},${loop.index})"><i class="far fa-trash-alt"></i></button></div>
+                        <div class="item-center pinside10">
+                            <button class="delete-product" onclick="deleteProductInCart(${p.id},${loop.index})"><i
+                                    class="far fa-trash-alt"></i></button>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>
@@ -101,7 +106,7 @@
         </table>
         <div class="prices-summary">
             <div class="left-content">
-                <a href="../customer/product-list.jsp" class="derection-product text-blue"><i
+                <a href="${pageContext.request.contextPath}/productlist" class="derection-product text-blue"><i
                         class="fas fa-long-arrow-alt-left"></i> Tiếp tục
                     mua hàng</a>
             </div>
@@ -114,16 +119,16 @@
                     <ul class="prices pinside20">
                         <li class="prices-item">
                             <span class="prices-text">Tạm tính</span>
-                            <span class="prices-value">47.750.000đ</span>
+                            <span class="prices-value"><span id="total-price-temp">0 đ</span></span>
                         </li>
                         <li class="prices-item">
                             <span class="prices-text">Giảm giá</span>
-                            <span class="prices-value">0đ</span>
+                            <span class="prices-value"><span id="promotion">0 đ</span></span>
                         </li>
                     </ul>
                     <div class="prices-total pinside20">
                         <span class="price-text">Tổng cộng</span>
-                        <span class="prices-value prices-final text-red">47.750.000đ</span>
+                        <span class="prices-value prices-final text-red"><span id="total-price-cart">0 đ</span></span>
                     </div>
                 </div>
                 <a href="../customer/checkout.jsp" class="btn-default btn-checkout">Mua Hàng</a>
@@ -137,10 +142,6 @@
 <!-- /.footer -->
 
 <script type="text/javascript" src="<c:url value="/assets/js/js_pages/cart.js"/>"></script>
-<script>
-
-
-</script>
 
 </body>
 

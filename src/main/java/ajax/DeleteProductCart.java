@@ -29,7 +29,7 @@ public class DeleteProductCart extends HttpServlet {
             List<Cart> cartList = CartDAO.getInstance().getAllProductCart(userId);
             PrintWriter out = response.getWriter();
             for (int i = 0; i < cartList.size(); i++) {
-                out.println(" <tr>\n" +
+                out.println("<tr>\n" +
                         "                    <td>\n" +
                         "                        <div class=\"item-center pdl10\"><label>\n" +
                         "                            <input type=\"checkbox\" value=\""+cartList.get(i).getId()+"\" class=\"checkbox-element checkbox-element-child\">\n" +
@@ -37,33 +37,33 @@ public class DeleteProductCart extends HttpServlet {
                         "                    </td>\n" +
                         "                    <td>\n" +
                         "                        <div class=\"product-title item-center\" style=\"width:100%\">\n" +
-                        "                            <a href=\"productdetails?id=" + cartList.get(i).getId() + "\"><img src=\"" + cartList.get(i).getImageUrl() + "\" alt=\"\"></a>\n" +
+                        "                            <a href=\"productdetails?id="+cartList.get(i).getId()+"\"><img src=\""+cartList.get(i).getImageUrl()+"\" alt=\"\"></a>\n" +
                         "                            <div style=\"margin-left:20px;\">\n" +
-                        "                                <a href=\"productdetails?id=" + cartList.get(i).getId() + "\"><p>" + cartList.get(i).getName() + "</p></a>\n" +
-                        "                                    <p>Màu sắc: " + cartList.get(i).getColor() + "</p>\n" +
+                        "                                <a href=\"productdetails?id="+cartList.get(i).getId()+"\"><p>"+cartList.get(i).getName()+"</p></a>\n" +
+                        "                                    <p>Màu sắc: "+cartList.get(i).getColor()+"</p>\n" +
                         "                            </div>\n" +
                         "                        </div>\n" +
                         "                    </td>\n" +
                         "                    <td>\n" +
-                        "                        <div class=\"item-center text-red\"><p id=\"price-product\">" + Format.formatIntToMoney(cartList.get(i).getPriceSale()) + "\n" +
+                        "                        <div class=\"item-center text-red\"><p id=\"price-product\">"+Format.formatIntToMoney(cartList.get(i).getPriceSale())+"\n" +
                         "                        </div>\n" +
                         "                    </td>\n" +
                         "                    <td>\n" +
                         "                        <div class=\"item-center\">\n" +
                         "                            <div class=\"quantity\">\n" +
                         "                                <button class=\"btn-quantity decrease-quantity\"\n" +
-                        "                                        onclick=\"decreaseQuantity(this," + cartList.get(i).getId() + ")\" type=\"button\">-\n" +
+                        "                                        onclick=\"decreaseQuantity(this,"+cartList.get(i).getId()+")\" type=\"button\">-\n" +
                         "                                </button>\n" +
-                        "                                <input type=\"number\" name=\"quantity\" value=\"" + cartList.get(i).getQuantity() + "\"\n" +
+                        "                                <input type=\"number\" name=\"quantity\" value=\""+cartList.get(i).getQuantity()+"\"\n" +
                         "                                       class=\"quantity-input quantity-product-cart\" readonly>\n" +
                         "                                <button class=\"btn-quantity increase-quantity\"\n" +
-                        "                                        onclick=\"increaseQuantity(this," + cartList.get(i).getId() + ")\" type=\"button\">+\n" +
+                        "                                        onclick=\"increaseQuantity(this,"+cartList.get(i).getId()+")\" type=\"button\">+\n" +
                         "                                </button>\n" +
                         "                            </div>\n" +
                         "                        </div>\n" +
                         "                    </td>\n" +
                         "                    <td>\n" +
-                        "                        <div class=\"item-center pinside10\"><button class=\"delete-product\" onclick=\"deleteProductInCart(" + cartList.get(i).getId() + "," + i + ")\"><i class=\"far fa-trash-alt\"></i></button></div>\n" +
+                        "                        <div class=\"item-center pinside10\"><button class=\"delete-product\" onclick=\"deleteProductInCart("+cartList.get(i).getId()+","+i+")\"><i class=\"far fa-trash-alt\"></i></button></div>\n" +
                         "                    </td>\n" +
                         "                </tr>");
             }

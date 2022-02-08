@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/sub-component/taglib.jsp" %>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
@@ -61,12 +62,15 @@
                 <div class="right-container">
                     <h3 class="title-content">Danh sách sản phẩm yêu thích</h3>
                     <jsp:useBean id="favoriteProducts" scope="request" type="java.util.List"/>
-                    <c:choose>
-                        <c:when test="${fn:length(favoriteProducts)>0}">
-                            <ul class="list-favorites" id="list-favorites">
+                    <ul class="list-favorites" id="list-favorites">
+                        <c:choose>
+                            <c:when test="${fn:length(favoriteProducts)>0}">
+
                                 <c:forEach items="${favoriteProducts}" var="product">
                                     <li class="item">
-                                        <button onclick="deleteProduct(${product.id})" class="btn-delete">×</button>
+                                        <button type="button" class="btn-delete"
+                                                onclick="deleteProductFavorite(${product.id})">x
+                                        </button>
                                         <div class="thumbnail">
                                             <a href="productdetails?id=${product.id}" class="img">
                                                 <img src="${product.imageUrl}" alt="">
@@ -90,16 +94,16 @@
                                         </div>
                                     </li>
                                 </c:forEach>
-                            </ul>
-                        </c:when>
-                        <c:otherwise>
-                            <div class="null-favorite">
-                                <p>Chưa có danh mục yêu thích</p>
-                                <p>Thêm sản phẩm vào danh sách yêu thích để hiển thị ở đây</p>
-                                <a href="${pageContext.request.contextPath}/productlist">Tiếp tục mua sắm</a>
-                            </div>
-                        </c:otherwise>
-                    </c:choose>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="null-favorite">
+                                    <p>Chưa có danh mục yêu thích</p>
+                                    <p>Thêm sản phẩm vào danh sách yêu thích để hiển thị ở đây</p>
+                                    <a href="${pageContext.request.contextPath}/productlist">Tiếp tục mua sắm</a>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </ul>
                 </div>
                 <!-- /.features -->
             </div>
@@ -110,24 +114,26 @@
 <!-- footer -->
 <jsp:include page="/sub-component/footer.jsp"/>
 </body>
+<script type="text/javascript" src="<c:url value="/assets/js/js_pages/favorite-ajax.js"/>"></script>
 <script>
-    function deleteProduct(id) {
-        // ajax
+
+    function deleteProductFavorite(id) {
+        //ajax
         $.ajax({
-            url: '/delete_favorite_product',
+            url: '/delete_favorite',
             type: 'GET',
             data: {
-                id: id
+                'productId': id,
             },
             success: function (data) {
                 const row = document.getElementById('list-favorites');
                 row.innerHTML = data;
-            }
+            },
+
         });
     }
+
 </script>
-
-
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/login-form.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:41:06 GMT -->
 
 </html>

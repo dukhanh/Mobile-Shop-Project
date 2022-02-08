@@ -7,27 +7,26 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet(name = "AddProductToCart", value = "/add_product_to_cart")
-public class AddProductToCart extends HttpServlet {
+@WebServlet(name = "TotalPriceCart", value = "/get_total_cart")
+public class TotalPriceCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
-        int productId = Integer.parseInt(request.getParameter("productId"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
         Account account = (Account) session.getAttribute("account");
-
-        if (account != null) {
-            int userId = account.getId();
-            if (quantity == 0) {
-                CartDAO.getInstance().addProductToCart(userId, productId, 1);
-            } else {
-                CartDAO.getInstance().updateProductInCart(userId, productId, quantity + 1);
+        int userId = account.getId();
+        String[] productIds = request.getParameterValues("productId[]");
+        int totalPrice = 0;
+        PrintWriter out = response.getWriter();
+        if (productIds.length > 0) {
+            for (String productId : productIds) {
+                totalPrice += CartDAO.getInstance().sumPriceProductInCart(userId, Integer.parseInt(productId));
             }
         }
-
+        out.println(totalPrice);
 
     }
 
