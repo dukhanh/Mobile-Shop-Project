@@ -13,6 +13,7 @@ import java.io.IOException;
 public class SendCodeForgotPass extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/account/forgot-password.jsp").forward(request, response);
 
     }
 

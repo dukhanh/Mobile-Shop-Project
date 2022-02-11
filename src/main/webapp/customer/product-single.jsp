@@ -1,6 +1,6 @@
+<jsp:useBean id="product" scope="request" type="model.Product"/>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="java.util.Iterator" %>
+<%@ page import="service.CartService" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -110,7 +110,7 @@
                                         <button class="btn btn-default btn-buy-now">
                                             Mua Ngay
                                         </button>
-                                        <button type="submit" class="btn btn-default">
+                                        <button type="button" class="btn btn-default" onclick="addToCart(${product.id})">
                                             <i class="fa fa-shopping-cart"></i>&nbsp;Thêm vào giỏ hàng
                                         </button>
                                     </div>

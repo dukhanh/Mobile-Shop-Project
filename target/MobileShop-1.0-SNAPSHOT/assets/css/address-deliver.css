@@ -1,0 +1,121 @@
+.show-address{
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background: white;
+    border-radius: 5px;
+    color: #525252;
+    width: 850px;
+    padding: 20px 40px;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+}
+
+.show-address .infor{
+    display: flex;
+    flex-direction: column;
+}
+.show-address .infor span{
+    font-size: 15px;
+}
+
+.show-address .action{
+
+}
+
+.address-section {
+    width: 850px;
+    /*height: 560px;*/
+    padding: 20px 40px 30px 40px;
+    box-sizing: border-box;
+    background: white;
+    border-radius: 5px;
+    color: #525252;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+}
+
+.address-section .mod-input{
+    margin-bottom: 20px;
+}
+
+.address-section select {
+    width: 100%;
+    height: 35px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid rgb(52 52 52);
+    color: black;
+}
+
+.address-section input {
+    height: 35px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    margin: 0;
+    border: 1px solid rgb(52 52 52);
+    color: black;
+}
+
+.address-section label {
+    font-weight: 200;
+    font-size: 15px;
+    line-height: 1;
+}
+
+.address-section .address-form-bd {
+    display: flex;
+}
+
+.address-section .address-form-bd div {
+    display: flex;
+    flex-direction: column;
+}
+
+.address-form-bd .address-form-left {
+    width: 50%;
+    padding-right: 40px;
+}
+
+.address-form-bd .address-form-right {
+    width: 50%;
+}
+
+.address-form-bd .address-form-right .type-address {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.address-form-right .type-address input{
+    width: 17px;
+}
+.address-form-right .type-address label{
+    margin:0 40px 0 10px;
+    font-size: 17px;
+    font-weight: 100;
+}
+
+.address-form-bd .address-form-right .btn-section {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    justify-content: space-around;
+}
+.address-form-bd .address-form-right .btn-section .button{
+    height: 40px;
+    width: 150px;
+    padding: 5px 25px;
+    text-transform: capitalize;
+}
+.address-form-bd .address-form-right .address-default{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+}
+.address-form-right .address-default label{
+    margin: 0 0 0 5px;
+}
+
+.black-color{
+    color: rgba(0, 0, 0, 0.93);
+}

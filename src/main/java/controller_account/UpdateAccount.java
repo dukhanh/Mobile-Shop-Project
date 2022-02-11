@@ -12,7 +12,13 @@ import java.io.IOException;
 public class UpdateAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        if (account == null) {
+            response.sendRedirect("/login");
+        } else {
+            request.getRequestDispatcher("/customer/profile-account.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -22,17 +28,18 @@ public class UpdateAccount extends HttpServlet {
         String email = request.getParameter("email");
         String name = request.getParameter("name");
         String phoneNumber = request.getParameter("phone");
-        String address = request.getParameter("address");
+        String birthDay = request.getParameter("birth-date");
+        String gender = request.getParameter("gender");
+//        System.out.println("email: " + email + " name: " + name + " phone: " + phoneNumber + " address: " + " birthday: " + birthDay + " gender: " + gender);
 
-        AccountDAO.getInstance().updateAccount(email, name, phoneNumber, address);
-//        System.out.println("email: " + email + " name: " + name + " phone: " + phoneNumber + " address: " + address);
-//
+        AccountDAO.getInstance().updateAccount(email, name, phoneNumber, birthDay,gender);
+
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
         account.setFullName(name);
         account.setPhoneNumber(phoneNumber);
-        account.setAddress(address);
-
+        account.setBirthday(birthDay);
+        account.setGender(gender);
 
         request.setAttribute("message", "Cập nhật tài khoản thành công");
         request.getRequestDispatcher("/customer/profile-account.jsp").forward(request, response);

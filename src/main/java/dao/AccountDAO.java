@@ -36,8 +36,9 @@ public class AccountDAO {
                 account.setFullName(rs.getString("TEN_ND"));
                 account.setPassword(Encrypt.MD5(rs.getString("MAT_KHAU")));
                 account.setPhoneNumber(rs.getString("SDT"));
-                account.setAddress(rs.getString("DIA_CHI"));
                 account.setRole(rs.getString("QUYEN_HAN"));
+                account.setBirthday(rs.getString("NGAY_SINH"));
+                account.setGender(rs.getString("GIOI_TINH"));
                 account.setStatus(rs.getString("TRANG_THAI"));
                 return account;
             }
@@ -90,14 +91,15 @@ public class AccountDAO {
         }
 
     }
-    public void updateAccount(String email, String name, String phone, String address){
-        String sql = "UPDATE tai_khoan SET TEN_ND = ?, SDT = ?, DIA_CHI= ? WHERE EMAIL = ?";
+    public void updateAccount(String email, String name, String phone, String birthDay,String gender){
+        String sql = "UPDATE tai_khoan SET TEN_ND = ?, SDT = ?, NGAY_SINH=?,GIOI_TINH=? WHERE EMAIL = ?";
         try {
             PreparedStatement prepareStatement = DBConnect.connect().getConnection().prepareStatement(sql);
             prepareStatement.setString(1,name);
             prepareStatement.setString(2,phone);
-            prepareStatement.setString(3, address);
-            prepareStatement.setString(4, email);
+            prepareStatement.setString(3,birthDay);
+            prepareStatement.setString(4,gender);
+            prepareStatement.setString(5, email);
             prepareStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -136,6 +138,24 @@ public class AccountDAO {
             return null;
         }
         return result;
+    }
+
+    // check email exists in tai khoan table
+    public boolean checkEmailExists(String email){
+        String sql = "SELECT EMAIL FROM tai_khoan WHERE EMAIL = ?";
+        try {
+            PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
+            psupdate.setString(1, email);
+            ResultSet rs = psupdate.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+        return false;
     }
 
     // get userId by email in tai khoan table

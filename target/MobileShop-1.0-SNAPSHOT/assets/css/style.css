@@ -2067,7 +2067,7 @@ img {
 }
 
 .product-img {
-    padding: 30px;
+    padding:0 30px;
     margin-bottom: 10px;
     min-height: 180px;
 }
@@ -4305,6 +4305,7 @@ Class----------------
     border: none;
     display: flex;
     align-items: center;
+    margin-top: 30px;
 }
 
 .row-account .right-container .account-infor .form-control .input-label {

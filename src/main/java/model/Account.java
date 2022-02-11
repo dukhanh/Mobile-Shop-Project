@@ -12,7 +12,8 @@ public class Account implements Serializable {
     private String email;
     private String fullName;
     private String phoneNumber;
-    private String address;
+    private String birthday;
+    private String gender;
     private String role;
     private String status;
     private Date createdAt;
@@ -30,14 +31,15 @@ public class Account implements Serializable {
         this.status = "open";
     }
 
-    public Account(int id, String username, String password, String email, String fullName, String phoneNumber, String address, String role, String status, Date createdAt) {
+    public Account(int id, String username, String password, String email, String fullName, String phoneNumber,   String birthday, String gender, String role, String status, Date createdAt) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
-        this.address = address;
+        this.birthday = birthday;
+        this.gender = gender;
         this.role = role;
         this.status = status;
         this.createdAt = createdAt;
@@ -91,13 +93,7 @@ public class Account implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() {
-        return address;
-    }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getRole() {
         return role;
@@ -123,6 +119,21 @@ public class Account implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
     @Override
     public String toString() {
         return "User{" +
@@ -132,7 +143,6 @@ public class Account implements Serializable {
                 ", email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
                 ", role='" + role + '\'' +
                 ", status='" + status + '\'' +
                 ", createdAt=" + createdAt +

@@ -87,9 +87,9 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb20 ">
                                     <button class="btn btn-primary btn-block mb10" type="submit">Đăng nhập</button>
                                     <div style="margin: 0 auto; width: 50%">
-                                        <a href="signup-form.jsp" style="margin-right: 40px;" class="text-blue">Đăng
+                                        <a href="${pageContext.request.contextPath}/send_code_register" style="margin-right: 40px;" class="text-blue">Đăng
                                             ký</a>
-                                        <a href="forgot-password.jsp" class="text-blue">Quên mật khẩu </a>
+                                        <a href="${pageContext.request.contextPath}/send_code_forgot_pass" class="text-blue">Quên mật khẩu </a>
                                     </div>
                                 </div>
                             </form>

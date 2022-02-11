@@ -59,6 +59,9 @@
                             <a href="${pageContext.request.contextPath}/favorite_product">
                                 <li class="slide-bar"><i class="far fa-heart"></i><span>Sản phẩm yêu thích</span></li>
                             </a>
+                            <a href="${pageContext.request.contextPath}/address_deliver">
+                                <li class="slide-bar"><i class="fas fa-map-marker"></i><span> Địa chỉ giao hàng</span></li>
+                            </a>
                             <!-- <a href="address-deliver.html"><li class="slide-bar"><i class="fas fa-map-marker-alt"></i><span> Địa chỉ nhận hàng</span></li></a> -->
                             <a href="${pageContext.request.contextPath}/customer/profile-reset-password.jsp">
                                 <li class="slide-bar"><i class="fas fa-lock"></i><span> Đổi mật khẩu</span></li>
@@ -111,27 +114,19 @@
                             </div>
 
                             <div class="form-control">
-                                <label for="address" class="input-label">
-                                    Địa chỉ giao hàng
+                                <label for="birth-date" class="input-label">
+                                    Ngày sinh
                                 </label>
-                                <input id="address" name="address" type="text" placeholder="Địa chỉ" class="input-field"
-                                       value="${sessionScope.account.address}">
+                                <input id="birth-date" name="birth-date" type="date" value="${sessionScope.account.birthday}"
+                                       class="input-field">
                             </div>
-                            <%--                            <div class="form-control">--%>
-                            <%--                                <label for="birth-date" class="input-label">--%>
-                            <%--                                    Ngày sinh--%>
-                            <%--                                </label>--%>
-                            <%--                                <input id="birth-date" name="birth-date" type="date" placeholder="Thêm ngày sinh" class="input-field">--%>
-                            <%--                            </div>--%>
-                            <%--                            <div class="form-control">--%>
-                            <%--                                <label for="" class="input-label">--%>
-                            <%--                                    Giới tính--%>
-                            <%--                                </label>--%>
-                            <%--                                <input type="radio" name="gender" value="male" checked class="input-radio"> Nam--%>
-                            <%--                                <input type="radio" name="gender" value="female" class="input-radio"> Nữ--%>
-                            <%--                                <input type="radio" name="gender" value="other" class="input-radio"> Khác--%>
-
-                            <%--                            </div>--%>
+                            <div class="form-control">
+                                <p class="input-label">
+                                    Giới tính
+                                </p>
+                                <input type="radio" name="gender" value="male" ${sessionScope.account.gender=="male"?"checked":""} class="input-radio"> Nam
+                                <input type="radio" name="gender" value="female" ${sessionScope.account.gender=="female"?"checked":""} class="input-radio"> Nữ
+                            </div>
 
                             <button class="btn-update" type="submit">Cập nhật</button>
                         </form>

@@ -144,3 +144,7 @@ function checkCodeForgot(){
 function checkRegister() {
     return isValidCode && isValidPassword && isValidName && isValidConform;
 }
+
+function checkAddressForm(){
+    return isValidPhone && isValidName;
+}

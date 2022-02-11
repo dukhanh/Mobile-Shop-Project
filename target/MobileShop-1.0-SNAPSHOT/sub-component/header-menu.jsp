@@ -49,11 +49,16 @@
             <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                 <div class="account-section">
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/cart" class="title"><i class="fa fa-shopping-cart"></i>
-                            <c:if test="${sessionScope.account!=null}">
-                                <sup class="cart-quantity" id="cart-quantity">${quantityProductInCart}</sup>
-                            </c:if>
-                        </a>
+                        <li>
+                            <div class="cart-nav">
+                                <a href="${pageContext.request.contextPath}/cart" class="title">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <c:if test="${sessionScope.account!=null}">
+                                        <sup class="cart-quantity" id="cart-quantity">${quantityProductInCart}</sup>
+                                    </c:if>
+                                </a>
+                            </div>
+
                         </li>
                     </ul>
                     <%--                    khi da dang nhap--%>
@@ -69,7 +74,7 @@
                             <i class="fa fa-caret-down"></i>
                             <div class="drop-down-account" id='myDIV'>
                                 <ul>
-                                    <a href="${pageContext.request.contextPath}/customer/profile-account.jsp">
+                                    <a href="${pageContext.request.contextPath}/profile_update">
                                         <li>Tài khoản của tôi</li>
                                     </a>
                                     <a href="${pageContext.request.contextPath}/customer/profile-receipt.jsp">

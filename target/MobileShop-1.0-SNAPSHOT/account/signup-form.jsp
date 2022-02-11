@@ -115,9 +115,9 @@
                                     <input class="btn btn-primary btn-block mb10 mt10" type="submit" value="Đăng Ký">
                                     <div style="display: flex;justify-content: space-between">
                                         <p>Bạn đã có tài khoản?<a
-                                                href="${pageContext.request.contextPath}/account/login-form.jsp"
+                                                href="${pageContext.request.contextPath}/login"
                                                 class="text-blue"> Đăng Nhập</a></p>
-                                        <a href="${pageContext.request.contextPath}/account/send-code-register.jsp"
+                                        <a href="${pageContext.request.contextPath}/send_code_forgot_pass"
                                            class="text-blue">Gửi lại mã</a>
                                     </div>
                                 </div>

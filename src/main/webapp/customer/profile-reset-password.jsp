@@ -28,7 +28,7 @@
                 <div class="page-breadcrumb">
                     <ol class="breadcrumb">
                         <li><a href="#">Trang chủ</a></li>
-                        <li>Thông tin tài khoản</li>
+                        <li>Đổi mật khẩu</li>
                     </ol>
                 </div>
 
@@ -59,6 +59,9 @@
                             </a>
                             <a href="${pageContext.request.contextPath}/favorite_product">
                                 <li class="slide-bar"><i class="far fa-heart"></i><span>Sản phẩm yêu thích</span></li>
+                            </a>
+                            <a href="${pageContext.request.contextPath}/address_deliver">
+                                <li class="slide-bar"><i class="fas fa-map-marker"></i><span> Địa chỉ giao hàng</span></li>
                             </a>
                             <a href="${pageContext.request.contextPath}/customer/profile-reset-password.jsp">
                                 <li class="slide-bar active"><i class="fas fa-lock"></i><span> Đổi mật khẩu</span>

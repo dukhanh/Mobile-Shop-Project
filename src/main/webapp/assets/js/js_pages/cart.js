@@ -67,13 +67,15 @@ function deleteProductInCart(productId, index) {
         success: function (data) {
             const row = document.getElementById('list-product-cart');
             row.innerHTML = data;
+
+            // call function to calculate total price
+            calTotalCart();
         }
     });
     amount = amount - quantityT;
     amountEle.innerHTML = amount;
 
-    // call function to calculate total price
-    calTotalCart();
+
 }
 
 function deleteProductSelected() {
@@ -109,25 +111,25 @@ function deleteProductSelected() {
 
 }
 
-function addToCart(productId, quantity) {
+function addToCart(productId ) {
     const amountEle = document.getElementById('cart-quantity');
     let amount = parseInt(amountEle.innerText);
-    if (quantity < 5) {
-        amount = amount + 1;
-        $.ajax({
-            url: '/add_product_to_cart',
-            type: 'GET',
-            data: {
-                'productId': productId,
-                'quantity': quantity,
-            },
-            success: function (data) {
 
+    $.ajax({
+        url: '/add_product_to_cart',
+        type: 'GET',
+        data: {
+            'productId': productId,
+
+        },
+        success: function (data) {
+            if (data === 'success') {
+                amount = amount + 1;
+                amountEle.innerHTML = amount;
             }
-        });
-        amountEle.innerHTML = amount;
+        }
+    });
 
-    }
     // call function to calculate total price
     calTotalCart();
 
@@ -156,7 +158,7 @@ $(document).on('change', '#cart-table tbody input[type="checkbox"]', function ()
     // call function to calculate total price
     calTotalCart();
 })
- 
+
 
 function calTotalCart() {
     const productIdsEle = document.getElementsByClassName('checkbox-element-child');
@@ -189,6 +191,23 @@ function calTotalCart() {
         const totalPrice = document.getElementById('total-price-cart');
         totalPrice.innerHTML = '0 đ';
         totalPriceTemp.innerHTML = '0 đ';
+    }
+}
+
+function isChecked(){
+    const productIds = [];
+    const productIdsEle = document.getElementsByClassName('checkbox-element-child');
+    for (let i = 0; i < productIdsEle.length; i++) {
+        if (productIdsEle[i].checked) {
+            productIds.push(productIdsEle[i].value);
+        }
+    }
+    return productIds.length > 0;
+}
+
+function checkIsSelect(){
+    if(!isChecked()){
+        alert("Vui lòng chọn ít nhất 1 sản phẩm");
     }
 }
 

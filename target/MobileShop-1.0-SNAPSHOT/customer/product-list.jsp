@@ -192,7 +192,7 @@
                                 <div class="col-sm-3 m-0" style="padding: 2px;">
                                     <a href="productdetails?id=${p.id}">
                                         <div class="product-block">
-                                            <div class="product-img"><img src="${p.imageUrl}" alt=""></div>
+                                            <div class="product-img"><img class="img-card" src="${p.imageUrl}" alt=""></div>
                                             <div class="product-content">
                                                 <h5 class="product-title">${p.name}</h5>
                                                 <div class="product-meta">
@@ -209,7 +209,7 @@
                                                     <button onclick="addToFavorite(this,${p.id},${sessionScope.account.id})"
                                                             class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
                                                         <i class="fa fa-heart"></i></button>
-                                                    <button class="product-btn btn-cart" onclick="addToCart(${p.id}, ${CartService.getQuantity(sessionScope.account.id,p.id)})">
+                                                    <button class="product-btn btn-cart" onclick="addToCart(${p.id})">
                                                         <i class="fa fa-shopping-cart"></i></button>
                                                 </div>
                                             </div>
