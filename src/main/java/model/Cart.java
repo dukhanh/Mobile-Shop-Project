@@ -7,14 +7,17 @@ public class Cart extends Product {
     public Cart() {
 
     }
+
     public Cart(int quantity) {
         super();
         this.quantity = quantity;
     }
+
     // getter setter
     public int getQuantity() {
         return quantity;
     }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }

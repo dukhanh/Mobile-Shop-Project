@@ -814,6 +814,10 @@ a img.aligncenter {
     color: rgb(88, 176, 229);
 }
 
+.text-orange{
+    color: #fb730f;
+}
+
 .section-title {
     margin-bottom: 40px;
     text-align: center;
@@ -1099,7 +1103,7 @@ img {
 .account-section ul li a {
     font-weight: 400;
     font-size: 15px;
-    margin-right:15px;
+    margin-right: 15px;
     color: #848687;
     padding: 0px 8px;
     text-transform: uppercase;
@@ -2067,7 +2071,7 @@ img {
 }
 
 .product-img {
-    padding:0 30px;
+    padding: 0 30px;
     margin-bottom: 10px;
     min-height: 180px;
 }
@@ -3207,13 +3211,15 @@ h3 {
 .cart-content table tbody img {
     width: 100px;
 }
-.cart-content table button.delete-product{
+
+.cart-content table button.delete-product {
     border: none;
     padding: 0;
     background: none;
     cursor: pointer;
 }
-.cart-content table button.delete-product:hover{
+
+.cart-content table button.delete-product:hover {
     color: #fb730f;
 }
 
@@ -3352,6 +3358,133 @@ h3 {
     margin-bottom: 20px;
 }
 
+.product-list {
+    background-color: white;
+    /*padding: 10px;*/
+    margin-top: 15px;
+    /* border-top: 1px solid #dfdfdf; */
+}
+
+.product-list table {
+    width: 100%;
+    padding: 10px;
+    display: block;
+}
+
+.product-list table tbody {
+    display: block;
+}
+
+.product-list table tr {
+    border: 1px solid #d7d7d7;
+    padding: 0 10px;
+    width: 100%;
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.product-list table tr td {
+    padding: 10px;
+}
+
+.product-list table tr td div {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+
+.product-list img {
+    width: 65px;
+
+}
+
+.product-list .name-phone {
+    color: #3e3e3e;
+    margin: 0 0 10px 0;
+    text-align: left;
+}
+
+.product-list .price-phone {
+    color: #fb730f;
+    margin: 0;
+}
+
+.product-list .quantity-phone {
+    color: #3e3e3e;
+    margin: 0;
+}
+
+.card-container {
+    background: white;
+    padding: 10px;
+}
+
+.card-container .card {
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.card-container .card .card-content {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.card-container .card .card-content div {
+
+}
+.card-container .card .card-content div span{
+    color: #505050;
+}
+
+.card-container .card .card-content div img {
+    width: 30px;
+}
+
+.card-container .card .card-footer {
+    padding: 5px 10px;
+    border-top: 1px solid #d7d7d7;
+    display:flex;
+    justify-content: space-between;
+}
+.card-container .card .card-footer img{
+    width: 20px;
+}
+
+.card-container .card .card-footer p {
+    font-size: 14px;
+
+}
+.total-checkout{
+    margin-top: 15px;
+    background: white;
+    padding: 10px;
+}
+.total-checkout .price-item{
+display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.total-checkout .price-item span{
+    color: #505050;
+}
+
+.total-checkout .price-total{
+    /*font-size: 22px;*/
+    /*color: #fb730f;*/
+    border-top: 1px solid #d7d7d7;
+    padding: 10px 0;
+    margin: 0;
+
+}
+
+.total-checkout .btn-checkout{
+    width: 100%;
+    background: rgb(88,176,229);
+}
+
 /*--------------------------
 9.6  404 error 
 ---------------------------*/
@@ -3367,12 +3500,12 @@ h3 {
 
 .box-head {
     background-color: #ffffff;
-    border-bottom: 1px solid #f3f5f7;
+    border-bottom: 1px solid #e1e1e1;
 }
 
 .head-title {
-    padding: 16px 30px;
-    margin-bottom: 0px;
+    padding: 10px 20px;
+    margin-bottom: 0;
 }
 
 .box-body {

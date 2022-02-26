@@ -13,7 +13,13 @@ import java.io.IOException;
 public class ResetPassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        if (account == null) {
+            response.sendRedirect("/login");
+        } else {
+            request.getRequestDispatcher("/customer/profile-reset-password.jsp").forward(request, response);
+        }
     }
 
     @Override

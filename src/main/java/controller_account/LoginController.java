@@ -1,10 +1,12 @@
 package controller_account;
 
+import dao.AddressDAO;
 import dao.CartDAO;
 import model.Account;
 import dao.AccountDAO;
 import dao.FavoriteProductDAO;
 import mode_utility.Encrypt;
+import model.Address;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -58,7 +60,8 @@ public class LoginController extends HttpServlet {
 
                     int userId = AccountDAO.getInstance().getUserIdByEmail(email);
                     session.setAttribute("quantityProductInCart", CartDAO.getInstance().sumQuantityProductInCart(userId));
-
+                    Address address = AddressDAO.getInstance().getAddressByUserId(userId);
+                    session.setAttribute("address", address);
                     Cookie emailCookie = new Cookie("email", email);
                     Cookie passCookie = new Cookie("password", password);
                     if (remember != null) {

@@ -13,6 +13,13 @@ import java.io.IOException;
 public class UpdateAddress extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        if (account == null) {
+            response.sendRedirect("/login");
+        }else {
+            request.getRequestDispatcher("/customer/profile-address.jsp").forward(request, response);
+        }
 
     }
 
@@ -41,11 +48,13 @@ public class UpdateAddress extends HttpServlet {
             address.setWard(ward);
             address.setDetail(detail);
             address.setTypeAddress(typeAddress);
-            AddressDAO.getInstance().updateAddressByUserId(address);
-            request.setAttribute("message", "Cập nhật địa chỉ thành công");
-            request.setAttribute("address", address);
+            if(AddressDAO.getInstance().checkAddressByUserId(userId)) {
+                AddressDAO.getInstance().updateAddressByUserId(address);
+            }else {
+                AddressDAO.getInstance().insertAddress(address);
+            }
+            session.setAttribute("address", address);
             request.getRequestDispatcher("/customer/profile-address.jsp").forward(request, response);
-//            request.getRequestDispatcher("/sub-component/address-form.jsp").forward(request, response);
 
         }
     }

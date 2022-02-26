@@ -2,168 +2,159 @@
 <html lang="en">
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="/sub-component/taglib.jsp" %>
+<fmt:setLocale value="vi_VN"/>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
+    <link href="<c:url value="/assets/css/address-deliver.css"/>" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="<c:url value="/assets/js/validate-form.js"/>"></script>
+    <script src="<c:url value="/assets/js/vietnamlocalselector.js"/>"></script>
+    <script src="<c:url value="/assets/js/js_pages/address.js"/>"></script>
+    <script>
+        const localpicker = new LocalPicker({
+            province: "ls_province",
+            district: "ls_district",
+            ward: "ls_ward",
+        });
+    </script>
+    <script>
+        window.onload = function () {
+            defaultProvince("${sessionScope.address.province}");
+            defaultDistrict("${sessionScope.address.district}");
+            defaultWard("${sessionScope.address.ward}");
+        };
+    </script>
 </head>
-
 <body>
 <!-- top-header-->
 <jsp:include page="/sub-component/header-menu.jsp"/>
-    <!-- /.page-header-->
-    <!-- checkout -->
-    <div class="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                    <div class="box checkout-form">
-                        <!-- checkout - form -->
-                        <div class="box-head">
-                            <h2 class="head-title">Thông tin của bạn</h2>
+<!-- /.page-header-->
+<!-- checkout -->
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <div class="box checkout-form">
+                    <!-- checkout - form -->
+                    <div class="box-head">
+                        <h4 class="head-title">Địa chỉ giao hàng</h4>
+                    </div>
+                    <jsp:include page="/sub-component/address.jsp"/>
+                </div>
+                <div class="product-list">
+                    <div class="box-head">
+                        <h4 class="head-title">Sản phẩm</h4>
+                    </div>
+                    <table>
+                        <thead>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${listProduct}" var="p">
+                            <tr>
+                                <td style="width:100px;">
+                                    <img src="${p.imageUrl}" alt="">
+                                </td>
+                                <td>
+                                    <p class="name-phone">${p.name}</p>
+                                    <div>
+                                        <p class="price-phone"><fmt:formatNumber
+                                                value="${p.priceSale}"/> đ</p>
+                                        <p class="quantity-phone">Số lượng: ${p.quantity}</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:forEach>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- product total -->
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding:0;">
+                <div class="box mb30">
+                    <div class="box-head">
+                        <h4 class="head-title">Phương thức thanh toán</h4>
+                    </div>
+                    <div class="card-container">
+                        <div class="card">
+                            <div class="card-content">
+                                <div><img src="https://laz-img-cdn.alicdn.com/tfs/TB1ZP8kM1T2gK0jSZFvXXXnFXXa-96-96.png"
+                                          alt="">
+                                    <span>Thanh toán khi nhận hàng</span></div>
+
+                                <input type="radio" name="payment" value="1" checked>
+                            </div>
+                            <div class="card-footer">
+                                <p>Thanh toán khi nhận hàng</p>
+                            </div>
                         </div>
-                        <div class="box-body">
-                            <div class="row">
-                                <form>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="control-label sr-only" for="name"></label>
-                                            <input name="name" type="text" class="form-control"
-                                                placeholder="Họ" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="control-label sr-only" for="name"></label>
-                                            <input id="name" name="name" type="text" class="form-control"
-                                                placeholder="Tên" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="control-label sr-only" for="email">Email</label>
-                                            <input id="email" name="email" type="text" class="form-control"
-                                                placeholder="Email address" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="control-label sr-only" for="phone"></label>
-                                            <input id="phone" name="phone" type="text" class="form-control"
-                                                placeholder="Phone" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="control-label sr-only"> </label>
-                                            <select name="country name" class="form-control" required>
-                                                <option value="">Việt Nam</option>
-                                                <option value="1">United Kingdom</option>
-                                                <option value="2">United States of America</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="control-label sr-only"></label>
-                                            <input name="phone" type="text" class="form-control"
-                                                placeholder="Địa chỉ" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="control-label sr-only"></label>
-                                            <input name="postcode" type="text" class="form-control"
-                                                placeholder="Mã khuyến mãi" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="control-label sr-only" for="textarea"></label>
-                                            <textarea class="form-control" id="textarea" name="textarea" rows="4"
-                                                placeholder="Ghi chú"></textarea>
-                                        </div>
-                                        <button class="btn btn-primary ">Xác nhận thanh toán</button>
-                                        <div class="checkbox alignright mt20">
-                                            <label>
-                                                <input type="checkbox" value="">
-                                                <span>Đăng kí tài khoản?</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </form>
-                                <!-- /.checkout-form -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div><img src="https://laz-img-cdn.alicdn.com/tfs/TB1Iey_osKfxu4jSZPfXXb3dXXa-96-96.png"
+                                          alt="">
+                                    <span>Thẻ tín dụng/Thẻ ghi nợ</span></div>
+
+                                <input type="radio" name="payment" value="2">
+                            </div>
+                            <div class="card-footer">
+                                <div class="card-footer-left">
+                                    <p>Chọn để thêm thẻ</p>
+
+                                </div>
+                                <div class="card-footer-right">
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- product total -->
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="box mb30">
-                        <div class="box-head">
-                            <h3 class="head-title">Đơn hàng của bạn</h3>
+                    <div class="total-checkout">
+                        <div class="price-item">
+                            <span>Tiền hàng</span>
+                            <span><fmt:formatNumber
+                                    value="${total}"/> đ</span>
                         </div>
-                        <div class="box-body">
-                            <div class="table-responsive">
-                                <!-- product total -->
-
-                                <div class="pay-amount ">
-                                    <table class="table mb20">
-                                        <thead class=""
-                                            style="border-bottom: 1px solid #e8ecf0;  text-transform: uppercase;">
-                                            <tr>
-                                                <th>
-                                                    <span>Sản phẩm</span>
-                                                </th>
-                                                <th>
-                                                    <span>Giá tiền</span>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>
-                                                    <span>Google Pixle X 1</span>
-                                                </th>
-                                                <td>$2400</td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    <span>Apple iPhone 6S X 1 </span>
-                                                </th>
-                                                <td>$1300</td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    <span>Sub Total </span>
-                                                </th>
-                                                <td>$2400</td>
-                                            </tr>
-                                        </tbody>
-                                        <tbody>
-                                            <tr>
-                                                <th>
-                                                    <span>Tổng thanh toán</span>
-                                                </th>
-                                                <td>$2400</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.product total -->
-                            </div>
+                        <div class="price-item">
+                            <span>Phí giao hàng</span>
+                            <span><fmt:formatNumber
+                                    value="${deliveryCharge}"/> đ</span>
                         </div>
+                        <div class="price-item price-total">
+                            <span>Tổng thanh toán</span>
+                            <span style="color: #fb730f;font-size:24px;"><fmt:formatNumber
+                                    value="${totalBill}"/> đ</span>
+                        </div>
+                        <button class="btn btn-success btn-checkout">Đặt mua</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- footer -->
+</div>
+<!-- footer -->
 <jsp:include page="/sub-component/footer.jsp"/>
 </body>
 
-
+<script>
+    $('#form-address').submit(function () {
+        const form = $(this);
+        const url = form.attr('action');
+        const data = form.serialize();
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (data) {
+                const s = document.getElementById('wrap-address');
+                s.innerHTML = data;
+                // s.show();
+                $('#edit-address').hide();
+            }
+        });
+        return false;
+    });
+</script>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/checkout.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:41:04 GMT -->
 
 </html>

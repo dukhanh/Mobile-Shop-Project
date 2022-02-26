@@ -24,7 +24,7 @@ public class CartController extends HttpServlet {
             List<Cart> cartList = CartDAO.getInstance().getAllProductCart(userId);
             int totalProduct = CartDAO.getInstance().sumQuantityProductInCart(userId);
 
-            session.setAttribute("quantityProductInCart", CartDAO.getInstance().sumQuantityProductInCart(userId));
+            session.setAttribute("quantityProductInCart", totalProduct);
 
             request.setAttribute("quantityProduct",totalProduct);
             request.setAttribute("cartList", cartList);

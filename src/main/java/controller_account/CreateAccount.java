@@ -1,5 +1,6 @@
 package controller_account;
 
+import dao.CartDAO;
 import model.Account;
 import dao.AccountDAO;
 import mode_utility.OTP;
@@ -36,6 +37,8 @@ public class CreateAccount extends HttpServlet {
                 Account account = new Account(email, name, password);
                 AccountDAO.getInstance().addAccount(account);
                 request.setAttribute("messageSuccess", "Đăng kí tài khoản thành công");
+                int userId = AccountDAO.getInstance().getUserIdByEmail(email);
+                session.setAttribute("quantityProductInCart", CartDAO.getInstance().sumQuantityProductInCart(userId));
 
                 session.setAttribute("account", account);
                 request.getRequestDispatcher("home").forward(request, response);

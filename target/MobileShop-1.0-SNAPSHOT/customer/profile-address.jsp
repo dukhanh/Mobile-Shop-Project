@@ -19,18 +19,11 @@
     </script>
     <script>
         window.onload = function () {
-            defaultProvince("${address.province}");
-            defaultDistrict("${address.district}");
-            defaultWard("${address.ward}");
+            defaultProvince("${sessionScope.address.province}");
+            defaultDistrict("${sessionScope.address.district}");
+            defaultWard("${sessionScope.address.ward}");
         };
     </script>
-    <c:if test="${not empty message}">
-        <script>
-            window.addEventListener("load", function () {
-                alert("${message}");
-            })
-        </script>
-    </c:if>
 
 </head>
 <fmt:setLocale value="vi_VN"/>
@@ -66,7 +59,7 @@
                     </div>
                     <div class="side-bar-content">
                         <ul>
-                            <a href="${pageContext.request.contextPath}/customer/profile-account.jsp">
+                            <a href="${pageContext.request.contextPath}/profile_update">
                                 <li class="slide-bar "><i class="fa fa-edit"></i><span>Thông tin tài khoản</span></li>
                             </a>
                             <a href="${pageContext.request.contextPath}/customer/profile-receipt.jsp">
@@ -77,11 +70,11 @@
                                 <li class="slide-bar "><i class="far fa-heart"></i><span>Sản phẩm yêu thích</span>
                                 </li>
                             </a>
-                            <a href="${pageContext.request.contextPath}/address_deliver">
+                            <a href="${pageContext.request.contextPath}/update_address">
                                 <li class="slide-bar active"><i
                                         class="fas fa-map-marker"></i><span> Địa chỉ giao hàng</span></li>
                             </a>
-                            <a href="${pageContext.request.contextPath}/customer/profile-reset-password.jsp">
+                            <a href="${pageContext.request.contextPath}/reset_password">
                                 <li class="slide-bar"><i class="fas fa-lock"></i><span> Đổi mật khẩu</span></li>
                             </a>
                         </ul>
@@ -89,26 +82,7 @@
                 </div>
                 <div class="right-container">
                     <h3 class="title-content">Địa chỉ của tôi</h3>
-                    <div class="show-address" id="show-address">
-                        <div class="infor">
-                            <div class="name">Tên: <span class="black-color"> ${address.fullName}</span>
-                            </div>
-                            <div class="address">
-                                <span>Địa chỉ: </span>
-                                <span class="black-color"> ${address.detail}, ${address.ward}, ${address.district}, ${address.province}</span>
-                            </div>
-                            <div class="phone">
-                                <span>Điện thoại: </span>
-                                <span class="black-color"> ${address.phone}</span>
-                            </div>
-                        </div>
-                        <div class="action">
-                            <button onclick="editAddress()" class="text-blue">Chỉnh sửa</button>
-                        </div>
-                    </div>
-                    <div class="edit-address" id="edit-address" style="display: none;">
-                        <jsp:include page="/sub-component/address-form.jsp"/>
-                    </div>
+                    <jsp:include page="/sub-component/address.jsp"/>
                 </div>
             </div>
         </div>
@@ -119,10 +93,23 @@
 <jsp:include page="/sub-component/footer.jsp"/>
 </body>
 <script>
-    function editAddress() {
-        $('#show-address').hide();
-        $('#edit-address').show();
-    }
+    $('#form-address').submit(function () {
+        const form = $(this);
+        const url = form.attr('action');
+        const data = form.serialize();
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function (data) {
+                const s = document.getElementById('wrap-address');
+                s.innerHTML = data;
+                // s.show();
+                $('#edit-address').hide();
+            }
+        });
+        return false;
+    });
 </script>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/login-form.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:41:06 GMT -->
 

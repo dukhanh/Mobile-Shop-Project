@@ -18,12 +18,7 @@ public class AddressDeliver extends HttpServlet {
         if (account == null) {
             response.sendRedirect("/login");
         }else {
-            int userId = account.getId();
-            Address address = AddressDAO.getInstance().getAddressByUserId(userId);
-            request.setAttribute("address", address);
             request.getRequestDispatcher("/customer/profile-address.jsp").forward(request, response);
-//            request.getRequestDispatcher("/sub-component/address-form.jsp").forward(request, response);
-
         }
     }
 

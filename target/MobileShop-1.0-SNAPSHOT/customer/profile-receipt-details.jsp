@@ -41,7 +41,7 @@
                         </div>
                         <div class="side-bar-content">
                             <ul>
-                                <a href="${pageContext.request.contextPath}/customer/profile-account.jsp">
+                                <a href="${pageContext.request.contextPath}/profile_update">
                                     <li class="slide-bar "><i class="fa fa-edit"></i><span>Thông tin tài khoản</span>
                                     </li>
                                 </a>
@@ -52,11 +52,11 @@
                                 <a href="${pageContext.request.contextPath}/favorite_product">
                                     <li class="slide-bar"><i class="far fa-heart"></i><span>Sản phẩm yêu thích</span></li>
                                 </a>
-                                <a href="${pageContext.request.contextPath}/address_deliver">
+                                <a href="${pageContext.request.contextPath}/update_address">
                                     <li class="slide-bar"><i class="fas fa-map-marker"></i><span> Địa chỉ giao hàng</span></li>
                                 </a>
                                 <!-- <a href="address-deliver.html"><li class="slide-bar"><i class="fas fa-map-marker-alt"></i><span> Địa chỉ nhận hàng</span></li></a> -->
-                                <a href="${pageContext.request.contextPath}/customer/profile-reset-password.jsp">
+                                <a href="${pageContext.request.contextPath}/reset_password">
                                     <li class="slide-bar"><i class="fas fa-lock"></i><span> Đổi mật khẩu</span></li>
                                 </a>
                             </ul>

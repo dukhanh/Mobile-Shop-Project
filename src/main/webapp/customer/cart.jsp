@@ -54,7 +54,7 @@
                     <th scope="col">Đơn giá</th>
                     <th scope="col">Số lượng</th>
                     <th scope="col">
-                        <button class="delete-product" onclick="deleteProductSelected()">
+                        <button class="delete-product" type="button" onclick="deleteProductSelected()">
                             <i class="far fa-trash-alt" style="font-size:20px; cursor:pointer;"></i>
                         </button>
                     </th>
@@ -100,7 +100,7 @@
                         </td>
                         <td>
                             <div class="item-center pinside10">
-                                <button class="delete-product" onclick="deleteProductInCart(${p.id},${loop.index})"><i
+                                <button class="delete-product" type="button" onclick="deleteProductInCart(${p.id},${loop.index})"><i
                                         class="far fa-trash-alt"></i></button>
                             </div>
                         </td>
