@@ -38,7 +38,7 @@
 </div>
 <div class="edit-address" id="edit-address" style="display: none;">
     <div class="address-section">
-        <form action="${pageContext.request.contextPath}/update_address_checkout" method="post"
+        <form action="${pageContext.request.contextPath}/update_address" method="post"
               onsubmit="return checkAddressForm()" accept-charset="utf-8" id="form-address">
             <div class="address-form-bd">
                 <div class="address-form-left">

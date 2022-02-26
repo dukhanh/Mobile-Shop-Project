@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "UpdateAddress", value = "/update_address")
 public class UpdateAddress extends HttpServlet {
@@ -48,14 +49,31 @@ public class UpdateAddress extends HttpServlet {
             address.setWard(ward);
             address.setDetail(detail);
             address.setTypeAddress(typeAddress);
-            if(AddressDAO.getInstance().checkAddressByUserId(userId)) {
+            if (AddressDAO.getInstance().checkAddressByUserId(userId)) {
                 AddressDAO.getInstance().updateAddressByUserId(address);
-            }else {
+            } else {
                 AddressDAO.getInstance().insertAddress(address);
             }
             session.setAttribute("address", address);
-            request.getRequestDispatcher("/customer/profile-address.jsp").forward(request, response);
-
+            PrintWriter out = response.getWriter();
+            out.println("<div class=\"show-address\" id=\"show-address\">\n" +
+                    "<div class=\"infor\">\n" +
+                    "                                <div class=\"name\">Tên: <span\n" +
+                    "                                        class=\"black-color\"> " + name + "</span>\n" +
+                    "                                </div>\n" +
+                    "                                <div class=\"address\">\n" +
+                    "                                    <span>Địa chỉ: </span>\n" +
+                    "                                    <span class=\"black-color\"> " + detail + ", " + ward + ", " + district + ", " + province + "</span>\n" +
+                    "                                </div>\n" +
+                    "                                <div class=\"phone\">\n" +
+                    "                                    <span>Điện thoại: </span>\n" +
+                    "                                    <span class=\"black-color\"> " + phone + "</span>\n" +
+                    "                                </div>\n" +
+                    "                            </div>\n" +
+                    "                            <div class=\"action\">\n" +
+                    "                                <button onclick=\"editAddress()\" class=\"text-blue\">Chỉnh sửa</button>\n" +
+                    "                            </div>\n" +
+                    " </div>");
         }
     }
 }
