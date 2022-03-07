@@ -40,7 +40,7 @@
             <h2 class="title">Giỏ Hàng</h2>
             <%--            <p><span class="text-blue">${quantityTotal}</span> sản phẩm trong giỏ hàng của bạn</p>--%>
         </div>
-        <form action="checkout" method="GET" onsubmit="return isChecked()">
+        <form action="checkout" method="POST" onsubmit="return isChecked()">
             <table class="table" id="cart-table">
                 <thead class="thead-light">
                 <tr>

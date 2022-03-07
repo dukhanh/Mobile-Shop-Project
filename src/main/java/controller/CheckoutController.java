@@ -15,12 +15,17 @@ import java.util.List;
 public class CheckoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String[] items = request.getParameterValues("selected");
         Account account = (Account) session.getAttribute("account");
         List<Cart> listProduct = new LinkedList<>();
         int total = 0;
-        int deliveryCharge = 50000;
+        int shipFee = 50000;
         int totalBill = 0;
         if (account == null) {
             response.sendRedirect("/login");
@@ -31,17 +36,12 @@ public class CheckoutController extends HttpServlet {
                 total += CheckoutDAO.getInstance().getTotalPriceProduct(userId, Integer.parseInt(item));
                 listProduct.add(cart);
             }
-            totalBill = total + deliveryCharge;
+            totalBill = total + shipFee;
             request.setAttribute("total", total);
-            request.setAttribute("deliveryCharge", deliveryCharge);
+            request.setAttribute("shipFee", shipFee);
             request.setAttribute("totalBill", totalBill);
             request.setAttribute("listProduct", listProduct);
             request.getRequestDispatcher("/customer/checkout.jsp").forward(request, response);
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

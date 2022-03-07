@@ -96,7 +96,7 @@
                                           alt="">
                                     <span>Thẻ tín dụng/Thẻ ghi nợ</span></div>
 
-                                <input type="radio" name="payment" value="2">
+                                <input type="radio" name="payment" value="2" disabled>
                             </div>
                             <div class="card-footer">
                                 <div class="card-footer-left">
@@ -118,14 +118,19 @@
                         <div class="price-item">
                             <span>Phí giao hàng</span>
                             <span><fmt:formatNumber
-                                    value="${deliveryCharge}"/> đ</span>
+                                    value="${shipFee}"/> đ</span>
                         </div>
                         <div class="price-item price-total">
                             <span>Tổng thanh toán</span>
                             <span style="color: #fb730f;font-size:24px;"><fmt:formatNumber
                                     value="${totalBill}"/> đ</span>
                         </div>
-                        <button class="btn btn-success btn-checkout">Đặt mua</button>
+                        <form action="bill_detail" method="POST">
+                            <c:forEach items="${listProduct}" var="p">
+                                <input type="hidden" name="productId" value="${p.id}">
+                            </c:forEach>
+                            <button class="btn btn-success btn-checkout" type="submit">Đặt mua</button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -77,7 +77,7 @@
                                     <a href="${pageContext.request.contextPath}/profile_update">
                                         <li>Tài khoản của tôi</li>
                                     </a>
-                                    <a href="${pageContext.request.contextPath}/customer/profile-receipt.jsp">
+                                    <a href="${pageContext.request.contextPath}/bill_list">
                                         <li>Đơn hàng của tôi</li>
                                     </a>
                                     <a href="${pageContext.request.contextPath}/favorite_product">

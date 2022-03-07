@@ -233,7 +233,7 @@ hr {
     height: 40px;
     padding: 5px 16px;
     line-height: 1.42857143;
-    border: 1px solid #767778;
+    border: 1px solid #c5c5c5;
     background-color: #fff;
     /* text-transform: uppercase; */
     letter-spacing: 1px;
@@ -4558,7 +4558,7 @@ Class----------------
 
 /*=================profile-receipt-page--===========*/
 .receipt-infor {
-    height: 300px;
+    /*height: 300px;*/
     width: 100%;
     background: white;
     border-radius: 5px;
@@ -4592,6 +4592,16 @@ Class----------------
     color: rgb(88, 176, 229);
 }
 
+.receipt-infor .null-receipt {
+    text-align: center
+}
+
+.receipt-infor .null-receipt i{
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #1996df;
+}
+
 
 /*=========== receipt-details-page=============*/
 .receipt-infor-details {
@@ -4599,7 +4609,7 @@ Class----------------
     width: 100%;
     background: white;
     border-radius: 5px;
-    padding: 40px 20px;
+    padding: 40px;
 
 }
 
@@ -4613,7 +4623,7 @@ Class----------------
 }
 
 .receipt-infor-details .title-receipt .right-content {
-
+    width: 60%;
 }
 
 .receipt-infor-details .title-receipt .content {
@@ -4648,6 +4658,8 @@ Class----------------
 .receipt-infor-details .table .product-title {
     display: flex;
     text-align: left;
+    min-height: 100px;
+    width: 100%;
     align-items: center;
 }
 
@@ -4657,7 +4669,7 @@ Class----------------
 
 .receipt-infor-details .table .product-title p {
     margin-bottom: 5px;
-    font-weight: 600;
+    /*font-weight: 600;*/
     color: rgb(61, 61, 61);
 }
 
@@ -4667,6 +4679,8 @@ Class----------------
 
 .receipt-infor-details .table tfoot p {
     margin-bottom: 5px;
+    color: #404040;
+    font-weight: 510;
 }
 
 .receipt-infor-details .redirect-to-receipt {

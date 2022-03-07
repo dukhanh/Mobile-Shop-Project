@@ -53,7 +53,7 @@
                                 <li class="slide-bar"><i class="fa fa-edit"></i><span>Thông tin tài khoản</span>
                                 </li>
                             </a>
-                            <a href="${pageContext.request.contextPath}/customer/profile-receipt.jsp">
+                            <a href="${pageContext.request.contextPath}/bill_list">
                                 <li class="slide-bar"><i class="fas fa-money-check"></i><span>Quản lý đơn
                                             hàng</span></li>
                             </a>
