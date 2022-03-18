@@ -1,10 +1,9 @@
 <jsp:useBean id="product" scope="request" type="model.Product"/>
 <%@ page import="java.util.List" %>
-<%@ page import="service.CartService" %>
 <!DOCTYPE html>
 <html lang="en">
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/sub-component/taglib.jsp"%>
+<%@ include file="/sub-component/taglib.jsp" %>
 
 <% List<String> list = (List<String>) request.getAttribute("images");%>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
@@ -14,6 +13,8 @@
 </head>
 
 <body>
+<div class="confirm-message" id="message" style="display:none;">
+</div>
 <!-- top-header-->
 <jsp:include page="/sub-component/header-menu.jsp"/>
 <!-- page-header -->
@@ -35,6 +36,7 @@
 <!-- /.page-header-->
 <!-- product-single -->
 <div class="content">
+
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -45,14 +47,12 @@
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                                 <ul id="demo1_thumbs" class="slideshow_thumbs">
                                     <% for (String img : list) { %>
-
                                     <li>
                                         <a href="<%= img %>">
                                             <div class=" thumb-img"><img src="<%= img %>" alt=""></div>
                                         </a>
                                     </li>
                                     <% } %>
-
                                 </ul>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -61,15 +61,21 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="product-single">
                                     <h2>${product.name}</h2>
-                                    <div class="product-rating">
-                                        <span><i class="fa fa-star"></i></span>
-                                        <span><i class="fa fa-star"></i></span>
-                                        <span><i class="fa fa-star"></i></span>
-                                        <span><i class="fa fa-star"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span class="text-secondary">&nbsp;(12 đánh giá)</span>
-                                    </div>
+                                    <div style="display:flex;align-items:center;">
+                                        <div class="product-rating rate-average-small" style="margin-bottom: 3px;">
+                                            <script>$(function () {
+                                                $(".rate-average-small").rateYo({
+                                                    rating: ${rateAverage},
+                                                    starWidth: "15px",
+                                                    spacing: "5px",
+                                                    required: true,
+                                                });
 
+                                            });</script>
+
+                                        </div>
+                                        <span class="text-secondary">&nbsp;(${countAssess} đánh giá)</span>
+                                    </div>
                                     <div class="product-brand">
                                         <p>Thương hiệu: <a href="">${product.brand}</a></p>
                                     </div>
@@ -93,27 +99,35 @@
                                     <div class="product-color">
                                         <p>Màu sắc: <span>${product.color}</span></p>
                                     </div>
-
-                                    <div class="product-quantity">
-                                        <h4>Số lượng</h4>
-                                        <div class="quantity mb20">
-                                            <button class="btn-quantity decrease-quantity" type="button">-</button>
-                                            <label>
-                                                <input type="number" max="" min="1" name="quantity" value="1"
-                                                       class="quantity-input">
-                                            </label>
-                                            <button class="btn-quantity increase-quantity" type="button">+</button>
+                                    <form action="buy_now" method="POST">
+                                        <div class="product-quantity">
+                                            <h4>Số lượng</h4>
+                                            <div class="quantity mb20">
+                                                <button class="btn-quantity decrease-quantity" type="button"
+                                                        onclick="decreaseQuantity(this)">-
+                                                </button>
+                                                <input type="number" name="quantity" value="1"
+                                                       class="quantity-input" id="quantity-single">
+                                                <button class="btn-quantity increase-quantity" type="button"
+                                                        onclick="increaseQuantity(this,${product.quantity})">+
+                                                </button>
+                                            </div>
+                                            <span class="rest-quantity">${product.quantity} sản phẩm có sẵn</span>
                                         </div>
-                                        <span class="rest-quantity">${product.quantity} sản phẩm có sẵn</span>
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-default btn-buy-now">
-                                            Mua Ngay
-                                        </button>
-                                        <button type="button" class="btn btn-default" onclick="addToCart(${product.id})">
-                                            <i class="fa fa-shopping-cart"></i>&nbsp;Thêm vào giỏ hàng
-                                        </button>
-                                    </div>
+                                        <div style="display:flex">
+                                            <div style="margin-right:10px">
+                                                <input hidden name="productId" value="${product.id}">
+                                                <button class="btn btn-default btn-buy-now" type="submit">
+                                                    Mua Ngay
+                                                </button>
+                                            </div>
+
+                                            <button type="button" class="btn btn-default"
+                                                    onclick="addToCart(${product.id},${sessionScope.account!=null})">
+                                                <i class="fa fa-shopping-cart"></i>&nbsp;Thêm vào giỏ hàng
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +137,6 @@
         </div>
     </div>
     <div class="container">
-
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="description-details">
@@ -132,13 +145,13 @@
                         <table class="charactestic_table">
                             <tbody>
                             <jsp:useBean id="confi" scope="request" type="java.util.List"/>
-                            <c:forEach var="i" items = "${confi}">
+                            <c:forEach var="i" items="${confi}">
                                 <tr>
                                     <td class="title_charactestic">
-                                        ${i.name}
+                                            ${i.name}
                                     </td>
                                     <td class="content_charactestic">
-                                        ${i.value}
+                                            ${i.value}
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -174,195 +187,63 @@
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                     <div class="rating-review">
                                         <div class="">
-                                            <h1 class="score-rating">4</h1>
+                                            <h1 class="score-rating">${rateAverage}</h1>
                                         </div>
                                         <div>
-                                            <div class="product-rating">
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
+                                            <div class="product-rating rate-average">
+                                                <script>$(function () {
+                                                    $(".rate-average").rateYo({
+                                                        rating: ${rateAverage},
+                                                        starWidth: "25px",
+                                                        spacing: "5px",
+                                                        required: true,
+                                                    });
+
+                                                });</script>
                                             </div>
-                                            <p class="text-secondary">12 nhận xét</p>
+                                            <p class="text-secondary" style="padding:15px 5px;">${countAssess} nhận
+                                                xét</p>
                                         </div>
                                     </div>
-                                    <div class="rating-view-details">
-                                        <div class="rating-level">
-                                            <div class="product-rating">
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                            </div>
-                                            <span>12</span>
-                                        </div>
 
-                                        <div class="rating-level">
-                                            <div class="product-rating">
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
-                                            </div>
-                                            <span>0</span>
-                                        </div>
-                                        <div class="rating-level">
-                                            <div class="product-rating">
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
-                                            </div>
-                                            <span>0</span>
-                                        </div>
-
-                                        <div class="rating-level">
-                                            <div class="product-rating">
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
-                                            </div>
-                                            <span>0</span>
-                                        </div>
-                                        <div class="rating-level">
-                                            <div class="product-rating">
-                                                <span><i class="fa fa-star"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
-                                                <span><i class="fa fa-star-o"></i></span>
-                                            </div>
-                                            <span>0</span>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-
                             <div class="row review-box">
-                                <div class="customer-reviews">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <p class="reviews-text"><span class="text-default">Nika Nguyen</span></p>
-                                        <div class="product-rating">
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star-o"></i></span>
+                                <div class="customer-reviews" id="list-assess-ajax">
+                                    <c:forEach items="${listAssess}" var="r">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="reviews-text"><span class="text-default">${r.nameAssess}</span>
+                                            </p>
+                                            <div class="product-rating rate-star">
+                                                <c:forEach var="s" begin="1" end="${r.rate}">
+                                                    <span><i class="fa fa-star"></i></span>
+                                                </c:forEach>
+
+                                                <c:forEach var="s" begin="${r.rate+1}" end="5">
+                                                    <span><i class="fa fa-star-o"></i></span>
+                                                </c:forEach>
+                                            </div>
+                                            <p>${r.review}</p>
                                         </div>
-                                        <p>Giao hàng siêu đúng hẹn, hàng cũng được đóng gói cẩn thận.
-                                            Hiện tại mình xài được vài bữa thì không bị vấn đề gì.
-                                            Hàng của shopdunk thì không lo về chất lượng.</p>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="divider-line"></div>
-                                    </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="divider-line"></div>
+                                        </div>
+                                    </c:forEach>
                                 </div>
-                                <div class="customer-reviews">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <p class="reviews-text"><span class="text-default">Lưu Tee</span>
-                                        </p>
-                                        <div class="product-rating">
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star-o"></i></span>
-                                        </div>
-
-                                        <p>Mặc dù vận chuyển lâu do lỗi, nhưng shop vẫn hỗ trợ mình rất nhiệt tình
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="divider-line"></div>
-                                    </div>
-                                </div>
-                                <div class="customer-reviews">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <p class="reviews-text"> <span class="text-default">William
-                                                    Cassidy</span>
-                                        </p>
-                                        <div class="product-rating">
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                            <span><i class="fa fa-star-o"></i></span>
-                                        </div>
-
-                                        <p>Sản phẩm rất tốt vì là lần đầu tôi mua trên mạng đt nên thấy khá là lo
-                                            lắng nhưng khi nhận đc hàng thì tôi lại thấy tốt hơn mong đợi của mình
-                                            chúc Shop làm ăn mua may bán đắt</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-
-            <div id="review">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="box">
-                            <div class="box-head">
-                                <h3 class="head-title">Đánh giá và nhận xét của bạn</h3>
-                            </div>
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="review-form">
-
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 review-left">
-                                            <div class="review-rating">
-                                                <h4>Đánh giá của bạn về sản phẩm này</h4><br/>
-                                                <div class="star-rate" id="rateYo"></div>
-                                            </div>
-                                        </div>
-                                        <form class="review-right">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label sr-only " for="name"></label>
-                                                    <input id="name" type="text" class="form-control"
-                                                           placeholder="Họ tên" required="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label sr-only " for="email"></label>
-                                                    <input id="email" type="text" class="form-control"
-                                                           placeholder="Email" required="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label class="control-label sr-only " for="textarea"></label>
-                                                    <textarea class="form-control" id="textarea" name="textarea"
-                                                              rows="4" placeholder="Mời bạn nhập bình luận"></textarea>
-                                                </div>
-                                                <button id="submit" name="singlebutton" class="btn btn-primary">Gửi
-                                                    đánh giá
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                <div class="new-review">
+                                    <button type="button" class="bg-default"
+                                            onclick="openAsses(${sessionScope.account!=null})"><i
+                                            class="far fa-star"></i> Viết đánh giá
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- /.reviews-form -->
-
         </div>
-
-
     </div>
     <!-- /.product-description -->
     <div class="container">
@@ -404,10 +285,69 @@
     </div>
     <!-- /.product-single -->
 </div>
+
+<div id="new-review-box" class="new-review-box">
+    <div class="asses-top">
+        <h2>Đánh giá</h2>
+        <div class="btn-close" onclick="closeAsses()"><i class="fas fa-times"></i> Đóng</div>
+    </div>
+    <div class="asses-main">
+        <form action="${pageContext.request.contextPath}/add_assess" method="post" id="assess-form">
+            <div class="information-product">
+                <img src="${product.imageUrl}" alt="">
+                <p>${product.name}</p>
+            </div>
+            <div class="select-star">
+                <p>Bạn cảm thấy sản phẩm này như thế nào?</p>
+                <div class="star-rating">
+                    <input type="radio" name="rating" value="5" id="rate-1" required>
+                    <label for="rate-1"><i class="fas fa-star"></i></label>
+                    <input type="radio" name="rating" value="4" id="rate-2" required>
+                    <label for="rate-2"><i class="fas fa-star"></i></label>
+                    <input type="radio" name="rating" value="3" id="rate-3" required>
+                    <label for="rate-3"><i class="fas fa-star"></i></label>
+                    <input type="radio" name="rating" value="2" id="rate-4" required>
+                    <label for="rate-4"><i class="fas fa-star"></i></label>
+                    <input type="radio" name="rating" value="1" id="rate-5" required>
+                    <label for="rate-5"><i class="fas fa-star"></i></label>
+                </div>
+            </div>
+            <div class="review">
+
+                <textarea name="review" cols="71" rows="3" placeholder="Viết đánh giá của bạn" required></textarea>
+
+            </div>
+            <input type="hidden" name="productId" value="${product.id}">
+            <button class="btn-default" type="submit">Gửi đánh giá ngay</button>
+        </form>
+    </div>
+</div>
+<div id="overlay" style="display:none"></div>
+
 <!-- footer -->
 <jsp:include page="/sub-component/footer.jsp"/>
 <script type="text/javascript" src="<c:url value="/assets/js/product-single.js"/>"></script>
 
 </body>
+<script>
+    $('#assess-form').submit(function () {
+        const form = $(this);
+        const url = form.attr('action');
+        const data = form.serialize();
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data,
+            success: function (data) {
+                $("#new-review-box").css('display', 'none');
+                $("#overlay").css('display', 'none');
+                $("#assess-form").trigger("reset");
 
+                const listReview = document.getElementById('list-assess-ajax');
+                listReview.innerHTML = data;
+            }
+        })
+        return false;
+    });
+</script>
 </html>

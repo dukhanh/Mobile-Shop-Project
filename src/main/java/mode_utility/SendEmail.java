@@ -4,6 +4,7 @@ import javax.mail.*;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 public class SendEmail {
@@ -11,50 +12,49 @@ public class SendEmail {
         boolean test = false;
         // Mail chủ Shop
         String from = Config.OWNER_EMAIL;
-
+        String subject = "Xác thực tài khoản Mobile Shop";
+        String body = "Mã OTP của bạn là : " + OTPcode + "     Mã có hiệu lực trong " + Config.OTP_LIVE / 60 + " phút.";
         // Assuming you are sending email from through gmails smtp
-        String host = "smtp.gmail.com";
 
         // Get system properties
-        Properties properties = System.getProperties();
+        Properties properties = new Properties();
 
         // Setup mail server
 
         properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.socketFactory.port", "465");
-        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.starttls.enable", "true");
         // Get the Session object.// and pass username and password
-        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-
+        Authenticator auth = new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-
                 return new PasswordAuthentication(Config.OWNER_EMAIL, Config.MAIL_PASSWORD);
-
             }
+        };
 
-        });
+        Session session = Session.getInstance(properties, auth);
+
 
         try {
             // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(session);
 
-            // Set From: header field of the header.
-            message.setFrom(new InternetAddress(from));
+            message.addHeader("Content-type", "text/HTML; charset=UTF-8");
+            message.addHeader("format", "flowed");
+            message.addHeader("Content-Transfer-Encoding", "8bit");
+            message.setFrom(new InternetAddress(from, "NoReply-Shop"));
+            message.setReplyTo(InternetAddress.parse(from, false));
+            message.setSubject(subject, "UTF-8");
+            message.setText(body, "UTF-8");
+            message.setSentDate(new java.util.Date());
 
-            // Set To: header field of the header.
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(CustomerMail));
 
-            // Tiêu Đề
-            message.setSubject("Xác thực tài khoản Mobile Shop", "UTF-8");
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(CustomerMail, false));
 
-            // Nội dung
-            message.setText("Mã OTP của bạn là : " + OTPcode + "     Mã có hiệu lực trong " + Config.OTP_LIVE / 60 + " phút.", "UTF-8");
             // Send message
             Transport.send(message);
             test = true;
-        } catch (MessagingException mex) {
+        } catch (MessagingException | UnsupportedEncodingException mex) {
             mex.printStackTrace();
         }
         return test;

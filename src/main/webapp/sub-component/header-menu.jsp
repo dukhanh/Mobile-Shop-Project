@@ -39,7 +39,7 @@
                 <div class="search-bg">
                     <form action="productlist" method="get">
                         <input type="text" name="search" class="form-control" value="${search}"
-                               placeholder="Search Here">
+                               placeholder="Tìm kiếm sản phẩm" style="border-radius:40px;">
                         <button type="Submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>

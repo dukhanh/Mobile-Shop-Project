@@ -63,7 +63,7 @@ public class DeleteProductSelectedCart extends HttpServlet {
                     "                        </div>\n" +
                     "                    </td>\n" +
                     "                    <td>\n" +
-                    "                        <div class=\"item-center pinside10\"><button class=\"delete-product\" onclick=\"deleteProductInCart("+cartList.get(i).getId()+","+i+")\"><i class=\"far fa-trash-alt\"></i></button></div>\n" +
+                    "                        <div class=\"item-center pinside10\"><button class=\"delete-product\" type=\"button\" onclick=\"deleteProductInCart("+cartList.get(i).getId()+","+i+")\"><i class=\"far fa-trash-alt\"></i></button></div>\n" +
                     "                    </td>\n" +
                     "                </tr>");
         }

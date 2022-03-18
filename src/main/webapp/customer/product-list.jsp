@@ -24,12 +24,15 @@
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
+    <script type="text/javascript" src="<c:url value="/assets/js/js_pages/cart.js"/>"></script>
+
 </head>
 
 <body>
 <!-- top-header-->
 <jsp:include page="/sub-component/header-menu.jsp"/>
-
+<div class="confirm-message" id="message" style="display:none;">
+</div>
 <div class="page-header">
     <div class="container">
         <div class="row">
@@ -206,10 +209,10 @@
                                                     </a>
                                                 </div>
                                                 <div class="shopping-btn">
-                                                    <button onclick="addToFavorite(this,${p.id},${sessionScope.account.id})"
+                                                    <button onclick="addToFavorite(this,${p.id},${sessionScope.account!=null})"
                                                             class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
                                                         <i class="fa fa-heart"></i></button>
-                                                    <button class="product-btn btn-cart" onclick="addToCart(${p.id})">
+                                                    <button class="product-btn btn-cart" onclick="addToCart(${p.id},${sessionScope.account!=null})">
                                                         <i class="fa fa-shopping-cart"></i></button>
                                                 </div>
                                             </div>

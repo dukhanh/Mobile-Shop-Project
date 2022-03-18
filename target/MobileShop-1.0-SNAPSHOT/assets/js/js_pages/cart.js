@@ -1,15 +1,9 @@
+checkAllItem();
+
 function decreaseQuantity(btn, productId) {
     const inputQ = btn.nextElementSibling;
     let currentQuantity = parseInt(inputQ.value);
-    if (currentQuantity > 1) {
-        currentQuantity = currentQuantity - 1;
-        const amountEle = document.getElementById('cart-quantity');
-        let amount = parseInt(amountEle.innerText);
-        amountEle.innerHTML = amount - 1;
-    } else {
-        currentQuantity = 1;
-    }
-    inputQ.value = currentQuantity;
+    currentQuantity = currentQuantity - 1;
     $.ajax({
         url: '/update_quantity_product_cart',
         type: 'GET',
@@ -18,7 +12,10 @@ function decreaseQuantity(btn, productId) {
             'product': productId,
         },
         success: function (data) {
-
+            if (data === 'success') {
+                // currentQuantity = currentQuantity - 1;
+                inputQ.value = currentQuantity;
+            }
         }
     });
 
@@ -29,15 +26,7 @@ function decreaseQuantity(btn, productId) {
 function increaseQuantity(btn, productId) {
     const inputQ = btn.previousElementSibling;
     let currentQuantity = parseInt(inputQ.value);
-    if (currentQuantity < 5) {
-        currentQuantity = currentQuantity + 1;
-        const amountEle = document.getElementById('cart-quantity');
-        let amount = parseInt(amountEle.innerText);
-        amountEle.innerHTML = amount + 1;
-    } else {
-        currentQuantity = 5;
-    }
-    inputQ.value = currentQuantity;
+    currentQuantity = currentQuantity + 1;
     $.ajax({
         url: '/update_quantity_product_cart',
         type: 'GET',
@@ -46,10 +35,12 @@ function increaseQuantity(btn, productId) {
             'product': productId,
         },
         success: function (data) {
-
+            if (data === 'success') {
+                // currentQuantity = currentQuantity + 1;
+                inputQ.value = currentQuantity;
+            }
         }
     });
-
     // call function to calculate total price
     calTotalCart();
 }
@@ -57,7 +48,7 @@ function increaseQuantity(btn, productId) {
 function deleteProductInCart(productId, index) {
     const amountEle = document.getElementById('cart-quantity');
     let amount = parseInt(amountEle.innerText);
-    let quantityT = parseInt(document.getElementsByClassName('quantity-product-cart')[index].value);
+    // let quantityT = parseInt(document.getElementsByClassName('quantity-product-cart')[index].value);
     $.ajax({
         url: '/delete_product_cart',
         type: 'GET',
@@ -72,7 +63,7 @@ function deleteProductInCart(productId, index) {
             calTotalCart();
         }
     });
-    amount = amount - quantityT;
+    amount = amount - 1;
     amountEle.innerHTML = amount;
 
 
@@ -86,8 +77,8 @@ function deleteProductSelected() {
     for (let i = 0; i < productIdsEle.length; i++) {
         if (productIdsEle[i].checked) {
             let amount = parseInt(amountEle.innerText);
-            let quantityT = parseInt(document.getElementsByClassName('quantity-product-cart')[i].value);
-            amount = amount - quantityT;
+            // let quantityT = parseInt(document.getElementsByClassName('quantity-product-cart')[i].value);
+            amount = amount - 1;
             amountEle.innerHTML = amount;
             productIds.push(productIdsEle[i].value);
         }
@@ -105,33 +96,72 @@ function deleteProductSelected() {
             }
         });
     }
-
     // call function to calculate total price
     calTotalCart();
 
 }
 
-function addToCart(productId ) {
+function addToCart(productId, isLogin) {
     const amountEle = document.getElementById('cart-quantity');
-    let amount = parseInt(amountEle.innerText);
+    const quantity = 1;
+    const message = document.getElementById('message');
+    if (isLogin) {
+        $.ajax({
+            url: '/add_product_to_cart',
+            type: 'GET',
+            data: {
+                'productId': productId,
+                'quantity': quantity,
+            },
+            success: function (data) {
+                if (data === 'new') {
+                    let amount = parseInt(amountEle.innerText);
+                    amount = amount + 1;
+                    amountEle.innerHTML = amount;
+                    message.innerHTML = '' +
+                        '<div>\n' +
+                        '        <i class="far fa-check-circle"></i>\n' +
+                        '        <p>Sản phẩm đã được thêm vào giỏ hàng</p>\n' +
+                        '</div>';
+                } else {
+                    if (data === 'increase') {
+                        message.innerHTML = '' +
+                            '<div>\n' +
+                            '        <i class="far fa-check-circle"></i>\n' +
+                            '        <p>Sản phẩm đã được thêm vào giỏ hàng</p>\n' +
+                            '</div>';
+                    } else {
+                        if (data === 'fail') {
 
-    $.ajax({
-        url: '/add_product_to_cart',
-        type: 'GET',
-        data: {
-            'productId': productId,
+                            message.innerHTML = '' +
+                                '<div>\n' +
+                                '        <i class="far fa-times-circle"></i>\n' +
+                                '        <p>Số lượng sản phẩm vượt quá số lượng cho phép</p>\n' +
+                                '</div>';
+                        }
+                    }
+                }
+                message.style.display = 'block';
+                setTimeout(function () {
+                    message.style.display = 'none';
+                }, 1500);
 
-        },
-        success: function (data) {
-            if (data === 'success') {
-                amount = amount + 1;
-                amountEle.innerHTML = amount;
             }
-        }
-    });
+        });
+    } else {
+        message.innerHTML = '' +
+            '<div>\n' +
+            '        <i class="far fa-times-circle"></i>\n' +
+            '        <p>Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng</p>\n' +
+            '</div>';
+        message.style.display = 'block';
+        setTimeout(function () {
+            message.style.display = 'none';
+        }, 1500);
+    }
 
     // call function to calculate total price
-    calTotalCart();
+    // calTotalCart();
 
 }
 
@@ -149,15 +179,17 @@ $(document).on('change', '#check-all', function () {
     calTotalCart();
 })
 
-$(document).on('change', '#cart-table tbody input[type="checkbox"]', function () {
-    if ($('#cart-table tbody input[type="checkbox"]:checked').length === $('#cart-table tbody input[type="checkbox"]').length) {
-        $('#check-all').prop('checked', true);
-    } else {
-        $('#check-all').prop('checked', false);
-    }
-    // call function to calculate total price
-    calTotalCart();
-})
+function checkAllItem() {
+    $(document).on('change', '#cart-table tbody input[type="checkbox"]', function () {
+        if ($('#cart-table tbody input[type="checkbox"]:checked').length === $('#cart-table tbody input[type="checkbox"]').length) {
+            $('#check-all').prop('checked', true);
+        } else {
+            $('#check-all').prop('checked', false);
+        }
+        // call function to calculate total price
+        calTotalCart();
+    })
+}
 
 
 function calTotalCart() {
@@ -194,7 +226,7 @@ function calTotalCart() {
     }
 }
 
-function isChecked(){
+function isChecked() {
     const productIds = [];
     const productIdsEle = document.getElementsByClassName('checkbox-element-child');
     for (let i = 0; i < productIdsEle.length; i++) {
@@ -205,10 +237,11 @@ function isChecked(){
     return productIds.length > 0;
 }
 
-function checkIsSelect(){
-    if(!isChecked()){
+function checkIsSelect() {
+    if (!isChecked()) {
         alert("Vui lòng chọn ít nhất 1 sản phẩm");
     }
 }
+
 
 

@@ -1,4 +1,4 @@
-package controller;
+package ajax;
 
 import dao.AddressDAO;
 import model.Account;

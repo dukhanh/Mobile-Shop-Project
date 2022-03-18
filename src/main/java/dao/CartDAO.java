@@ -122,7 +122,7 @@ public class CartDAO {
 
     // sum quantity of product by userId in gio hang table
     public int sumQuantityProductInCart(int userId) {
-        String sql = "SELECT SUM(SL_SP) AS SL_SP FROM gio_hang WHERE ID_USER = ?";
+        String sql = "SELECT COUNT(ID_SP) AS SL_SP FROM gio_hang WHERE ID_USER = ?";
         int quantity = 0;
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);

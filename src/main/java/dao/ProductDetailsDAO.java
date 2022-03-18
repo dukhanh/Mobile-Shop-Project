@@ -39,6 +39,7 @@ public class ProductDetailsDAO {
             while (rs.next()) {
                 product.setId(rs.getInt("ID_SANPHAM"));
                 product.setName(rs.getString("TEN_SP"));
+                product.setImageUrl(rs.getString("ANH_CHINH"));
                 product.setPrice(rs.getInt("GIA_SP"));
                 product.setPriceSale(rs.getInt("GIA_KM"));
                 product.setColor(rs.getString("MAU_SAC"));

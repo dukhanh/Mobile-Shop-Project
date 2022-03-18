@@ -814,7 +814,7 @@ a img.aligncenter {
     color: rgb(88, 176, 229);
 }
 
-.text-orange{
+.text-orange {
     color: #fb730f;
 }
 
@@ -2738,6 +2738,20 @@ h3 {
     font-size: 15px;
 }
 
+.review-box .new-review {
+    padding: 15px;
+    text-align: center;
+}
+
+.review-box .new-review button {
+    border: none;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    width: 300px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
 .rating-review .score-rating {
     padding-top: 10px;
     padding-right: 10px;
@@ -2860,6 +2874,125 @@ h3 {
 .scroll-nav a.active {
     border-bottom: 1px solid #fb730f;
     color: #fb730f;
+}
+
+.new-review-box {
+    width: 700px;
+    /*padding: 20px;*/
+    background: white;
+    position: fixed;
+    z-index: 13;
+    left: 25%;
+    top: 50px;
+    display: none;
+}
+
+.new-review-box .asses-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 45px;
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.new-review-box .asses-top h2 {
+    margin: 0;
+}
+
+.new-review-box .asses-top div {
+    border: 1px solid #d1d1d1;
+    padding: 3px 10px;
+    color: #747373;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.new-review-box .asses-main {
+    padding: 15px 45px 30px 45px;
+}
+
+.new-review-box .asses-main p {
+    color: #1e1e1e;
+    margin:0;
+}
+
+.new-review-box .asses-main .information-product {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.asses-main .information-product img {
+    width: 65px;
+    margin-right: 15px;
+}
+
+.asses-main .information-product p {
+
+}
+
+.new-review-box .asses-main .select-star {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.new-review-box .asses-main .review {
+
+}
+
+.asses-main .review textarea {
+    font-size: 18px;
+    padding: 5px 10px;
+    outline: 0;
+}
+
+.asses-main button {
+    margin-top: 5px;
+    margin-left: 40%;
+    outline: 0;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 3px;
+}
+
+.select-star .star-rating {
+
+}
+
+.select-star .star-rating input {
+    display: none;
+}
+
+.select-star .star-rating label {
+    font-size: 30px;
+    color: #444;
+    padding: 10px;
+    margin: 0;
+    float: right;
+    transition: all 0.2s ease;
+}
+
+.select-star .star-rating input:not(:checked) ~ label:hover,
+.select-star .star-rating input:not(:checked) ~ label:hover ~ label {
+    color: #fd4;
+}
+
+.select-star .star-rating input:checked ~ label {
+    color: #fd4;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 12;
+    background: rgba(0, 0, 0, .75);
+    /*display: none;*/
+    margin: auto;
 }
 
 /*-------------------------
@@ -3350,6 +3483,31 @@ h3 {
     margin-top: 15px;
 }
 
+.cart-null {
+    text-align: center;
+}
+
+.cart-null i {
+    font-size: 50px;
+    margin: 10px 0;
+    color: #58b0e5;
+}
+
+.cart-null p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.cart-null a {
+    border: 1px solid orange;
+    color: orange;
+    display: block;
+    width: 200px;
+    font-size: 14px;
+    margin: 15px auto;
+    text-transform: uppercase;
+}
+
 /*--------------------------
  9.5  Checkout Form
  ----------------------------*/
@@ -3435,7 +3593,8 @@ h3 {
 .card-container .card .card-content div {
 
 }
-.card-container .card .card-content div span{
+
+.card-container .card .card-content div span {
     color: #505050;
 }
 
@@ -3446,10 +3605,11 @@ h3 {
 .card-container .card .card-footer {
     padding: 5px 10px;
     border-top: 1px solid #d7d7d7;
-    display:flex;
+    display: flex;
     justify-content: space-between;
 }
-.card-container .card .card-footer img{
+
+.card-container .card .card-footer img {
     width: 20px;
 }
 
@@ -3457,21 +3617,24 @@ h3 {
     font-size: 14px;
 
 }
-.total-checkout{
+
+.total-checkout {
     margin-top: 15px;
     background: white;
     padding: 10px;
 }
-.total-checkout .price-item{
-display: flex;
+
+.total-checkout .price-item {
+    display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
 }
-.total-checkout .price-item span{
+
+.total-checkout .price-item span {
     color: #505050;
 }
 
-.total-checkout .price-total{
+.total-checkout .price-total {
     /*font-size: 22px;*/
     /*color: #fb730f;*/
     border-top: 1px solid #d7d7d7;
@@ -3480,9 +3643,9 @@ display: flex;
 
 }
 
-.total-checkout .btn-checkout{
+.total-checkout .btn-checkout {
     width: 100%;
-    background: rgb(88,176,229);
+    background: rgb(88, 176, 229);
 }
 
 /*--------------------------
@@ -4287,7 +4450,7 @@ Class----------------
 }
 
 .list-favorites .item .thumbnail img {
-    width: 130px;
+    /*width: 130px;*/
     height: 140px;
 }
 
@@ -4596,7 +4759,7 @@ Class----------------
     text-align: center
 }
 
-.receipt-infor .null-receipt i{
+.receipt-infor .null-receipt i {
     font-size: 40px;
     margin-bottom: 20px;
     color: #1996df;
@@ -4665,7 +4828,7 @@ Class----------------
 
 .receipt-infor-details .table .product-title img {
     width: 100px;
-    margin-right:10px;
+    margin-right: 10px;
 }
 
 .receipt-infor-details .table .product-title p {
@@ -5130,4 +5293,36 @@ Class----------------
     width: 17px;
     height: 17px;
     margin: 0;
+}
+
+.confirm-message {
+    position: fixed;
+    /*width: 320px;*/
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1040;
+    top: 150px;
+    right: auto;
+    bottom: 0;
+    left: 500px;
+}
+
+.confirm-message div {
+    background: rgba(56, 56, 56, 0.85);
+    padding: 25px 20px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.confirm-message div i {
+    color: rgb(93, 192, 166);
+    font-size: 45px;
+}
+
+.confirm-message div p {
+    color: white;
+    font-size: 18px;
+    margin-top: 10px;
 }

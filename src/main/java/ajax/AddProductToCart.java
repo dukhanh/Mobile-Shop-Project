@@ -1,6 +1,7 @@
 package ajax;
 
 import dao.CartDAO;
+import dao.ProductDAO;
 import model.Account;
 
 import javax.servlet.*;
@@ -17,25 +18,35 @@ public class AddProductToCart extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         int productId = Integer.parseInt(request.getParameter("productId"));
+        int newQuantity = Integer.parseInt(request.getParameter("quantity"));
         Account account = (Account) session.getAttribute("account");
         PrintWriter out = response.getWriter();
         if (account != null) {
             int userId = account.getId();
-            int quantity = CartDAO.getInstance().checkQuantityProductInCart(userId,productId);
-            if(quantity <5){
-                if (quantity == 0) {
-                    CartDAO.getInstance().addProductToCart(userId, productId, 1);
+            int quantity = CartDAO.getInstance().checkQuantityProductInCart(userId, productId);
+            boolean isExist = CartDAO.getInstance().checkExistsProductInCart(userId, productId);
+            int quantityExist = ProductDAO.getInstance().getQuantityProduct(productId);
+            if (isExist) {
+                if (quantityExist > quantity) {
+                    if(newQuantity + quantity <= quantityExist) {
+                        CartDAO.getInstance().updateProductInCart(userId, productId, quantity + newQuantity);
+                        out.print("increase");
+                    }else{
+                        out.print("fail");
+                    }
                 } else {
-                    CartDAO.getInstance().updateProductInCart(userId, productId, quantity + 1);
+                    out.print("fail");
                 }
-                out.print("success");
-            }else{
-                out.print("fail");
+            } else {
+                CartDAO.getInstance().addProductToCart(userId, productId, newQuantity);
+                out.print("new");
             }
+            int totalProduct = CartDAO.getInstance().sumQuantityProductInCart(userId);
 
+            session.setAttribute("quantityProductInCart", totalProduct);
+        }else{
+            response.sendRedirect("/login");
         }
-
-
     }
 
     @Override

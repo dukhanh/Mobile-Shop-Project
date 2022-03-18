@@ -11,6 +11,7 @@
 <fmt:setLocale value="vi_VN"/>
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
+    <script type="text/javascript" src="<c:url value="/assets/js/js_pages/cart.js"/>"></script>
 
 </head>
 
@@ -21,7 +22,8 @@
 <!-- slider -->
 
 <%-- message success register account --%>
-
+<div class="confirm-message" id="message" style="display:none;">
+</div>
 <c:if test="${messageSuccess!=null}">
     <script>
         window.onload = function () {
@@ -177,7 +179,7 @@
                                                         class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
                                                     <i class="fa fa-heart"></i></button>
 
-                                                <button class="product-btn btn-cart" onclick="addToCart(${p.id})">
+                                                <button class="product-btn btn-cart" onclick="addToCart(${p.id},${sessionScope.account!=null})">
                                                     <i class="fa fa-shopping-cart"></i></button>
                                             </div>
                                         </div>
@@ -233,7 +235,7 @@
                                                 <button onclick="addToFavorite(this,${p.id},${sessionScope.account.id})"
                                                         class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
                                                     <i class="fa fa-heart"></i></button>
-                                                <button class="product-btn btn-cart" onclick="addToCart(${p.id})">
+                                                <button class="product-btn btn-cart" onclick="addToCart(${p.id},${sessionScope.account!=null})">
                                                     <i class="fa fa-shopping-cart"></i></button>
                                             </div>
                                         </div>
@@ -284,7 +286,7 @@
                                                 <button onclick="addToFavorite(this,${p.id},${sessionScope.account.id})"
                                                         class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
                                                     <i class="fa fa-heart"></i></button>
-                                                <button class="product-btn btn-cart" onclick="addToCart(${p.id})">
+                                                <button class="product-btn btn-cart" onclick="addToCart(${p.id},${sessionScope.account!=null})">
                                                     <i class="fa fa-shopping-cart"></i></button>
                                             </div>
                                         </div>
