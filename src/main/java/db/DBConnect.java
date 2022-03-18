@@ -14,7 +14,6 @@ public class DBConnect {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             return connection.createStatement();
-
         } else {
             return connection.createStatement();
         }

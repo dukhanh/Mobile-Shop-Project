@@ -8,12 +8,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 public class SendEmail {
-    public static boolean sendOTP(String CustomerMail, int OTPcode) {
+    public static boolean sendOTP(String CustomerMail, String subject, String body) {
         boolean test = false;
         // Mail chủ Shop
         String from = Config.OWNER_EMAIL;
-        String subject = "Xác thực tài khoản Mobile Shop";
-        String body = "Mã OTP của bạn là : " + OTPcode + "     Mã có hiệu lực trong " + Config.OTP_LIVE / 60 + " phút.";
+
         // Assuming you are sending email from through gmails smtp
 
         // Get system properties
@@ -60,7 +59,7 @@ public class SendEmail {
         return test;
     }
 
-    public static void main(String[] args) {
-        SendEmail.sendOTP("dukhanhqt@gmail.com", 10);
-    }
+//    public static void main(String[] args) {
+//        SendEmail.sendOTP("dukhanhqt@gmail.com", 10);
+//    }
 }

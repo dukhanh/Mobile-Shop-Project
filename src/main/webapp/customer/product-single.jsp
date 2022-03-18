@@ -342,7 +342,6 @@
                 $("#new-review-box").css('display', 'none');
                 $("#overlay").css('display', 'none');
                 $("#assess-form").trigger("reset");
-
                 const listReview = document.getElementById('list-assess-ajax');
                 listReview.innerHTML = data;
             }

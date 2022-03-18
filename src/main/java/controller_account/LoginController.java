@@ -22,13 +22,12 @@ public class LoginController extends HttpServlet {
             for (Cookie c : arr) {
                 if (c.getName().equals("email")) {
                     request.setAttribute("email", c.getValue());
-//                    System.out.println(c.getValue());
                 }
                 if (c.getName().equals("password")) {
                     request.setAttribute("password", c.getValue());
-//                    System.out.println(c.getValue());
                 }
             }
+
         }
         request.getRequestDispatcher("/account/login-form.jsp").forward(request, response);
 
@@ -64,9 +63,8 @@ public class LoginController extends HttpServlet {
                     session.setAttribute("address", address);
                     Cookie emailCookie = new Cookie("email", email);
                     Cookie passCookie = new Cookie("password", password);
-                    if (remember != null) {
-                        passCookie.setMaxAge(60 * 60 * 24 * 10);
-                    } else {
+                    if (remember == null) {
+                        passCookie.setMaxAge(0);
                         passCookie.setMaxAge(0);
                     }
                     emailCookie.setMaxAge(60 * 60 * 24 * 10);

@@ -1,6 +1,7 @@
 package controller_account;
 
 import dao.AccountDAO;
+import mode_utility.Config;
 import mode_utility.OTP;
 import mode_utility.SendEmail;
 
@@ -22,15 +23,17 @@ public class SendCodeRegister extends HttpServlet {
         String email = request.getParameter("email");
         String errorMessage = null;
         AccountDAO accountDAO = new AccountDAO();
-        if(accountDAO.checkAccountExists(email)!=null){
-            errorMessage="Email này đã được đăng ký";
+        if (accountDAO.checkAccountExists(email) != null) {
+            errorMessage = "Email này đã được đăng ký";
             request.setAttribute("email", email);
             request.setAttribute("errorMessage", errorMessage);
             request.getRequestDispatcher("/account/send-code-register.jsp").forward(request, response);
-        }else{
+        } else {
             OTP sysOtp = new OTP();
             int otpCode = sysOtp.randomOTP();
-            if(SendEmail.sendOTP(email, otpCode)){
+            String subject = "Xác thực tài khoản Mobile Shop";
+            String body = "Mã OTP của bạn là : " + otpCode + "     Mã có hiệu lực trong " + Config.OTP_LIVE / 60 + " phút.";
+            if (SendEmail.sendOTP(email, subject, body)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("otp", otpCode);
                 session.setAttribute("emailRegister", email);

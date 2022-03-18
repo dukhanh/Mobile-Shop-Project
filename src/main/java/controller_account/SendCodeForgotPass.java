@@ -1,6 +1,7 @@
 package controller_account;
 
 import dao.AccountDAO;
+import mode_utility.Config;
 import mode_utility.OTP;
 import mode_utility.SendEmail;
 
@@ -25,7 +26,9 @@ public class SendCodeForgotPass extends HttpServlet {
         if(accountDAO.checkAccountExists(email)!=null){
             OTP sysOtp = new OTP();
             int otpCode = sysOtp.randomOTP();
-            if(SendEmail.sendOTP(email, otpCode)){
+            String subject = "Xác thực tài khoản Mobile Shop";
+            String body = "Mã OTP của bạn là : " + otpCode + "     Mã có hiệu lực trong " + Config.OTP_LIVE / 60 + " phút.";
+            if(SendEmail.sendOTP(email, subject, body)){
                 HttpSession session = request.getSession();
                 session.setAttribute("otpForgotPass", otpCode);
                 session.setAttribute("emailRegister", email);

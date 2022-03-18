@@ -1,9 +1,11 @@
 package controller;
 
+import dao.*;
+import mode_utility.Encrypt;
+import model.Account;
+import model.Address;
 import model.Brand;
 import model.Product;
-import dao.BrandDAO;
-import dao.HomeDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -19,6 +21,10 @@ public class HomeController extends HttpServlet {
         List<Product> listProductTopSeller = HomeDAO.getInstance().getProductTopSeller(20);
         List<Product> listProductBestNew = HomeDAO.getInstance().getProductBestNew(4);
         List<Brand> listBrandLogo = BrandDAO.getInstance().getBrandLogo();
+
+        // auto login if user has cookie(remember me)
+
+
         request.setAttribute("listProductPromotions", listProductPromotions);
         request.setAttribute("listProductTopSeller", listProductTopSeller);
         request.setAttribute("listProductBestNew", listProductBestNew);
