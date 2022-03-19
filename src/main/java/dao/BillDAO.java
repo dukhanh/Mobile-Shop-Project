@@ -26,13 +26,14 @@ public class BillDAO {
 
     // save bill to don hang table
     public void saveBill(Bill bill) {
-        String sql = "INSERT INTO DON_HANG (ID_DH,ID_USER,PHI_VC,TRANG_THAI,CREATE_DATE) VALUES(?,?,?,?,now())";
+        String sql = "INSERT INTO DON_HANG (ID_DH,ID_USER,PHI_VC,DIA_CHI_GH,TRANG_THAI,CREATE_DATE) VALUES(?,?,?,?,?,now())";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setString(1, bill.getIdBill());
             psupdate.setInt(2, bill.getIdUser());
             psupdate.setInt(3, bill.getShipFee());
-            psupdate.setInt(4, BillService.statusBillCode(bill.getStatus()));
+            psupdate.setString(4, bill.getAddress());
+            psupdate.setInt(5, BillService.statusBillCode(bill.getStatus()));
             psupdate.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -124,6 +125,7 @@ public class BillDAO {
                 bill.setIdBill(rs.getString("ID_DH"));
                 bill.setIdUser(rs.getInt("ID_USER"));
                 bill.setShipFee(rs.getInt("PHI_VC"));
+                bill.setAddress(rs.getString("DIA_CHI_GH"));
                 bill.setStatus(BillService.statusBill(rs.getInt("TRANG_THAI")));
                 bill.setCreatedAt(rs.getString("CREATE_DATE"));
             }

@@ -51,8 +51,9 @@
                             </div>
                             <div class="right-content content">
                                 <h4>THÔNG TIN NHẬN HÀNG</h4>
-                                <p>${sessionScope.address.fullName} - ${sessionScope.address.phone}</p>
-                                <p class="address">${sessionScope.address.detail}, ${sessionScope.address.ward}, ${sessionScope.address.district}, ${sessionScope.address.province}</p>
+<%--                                <p>${sessionScope.address.fullName} - ${sessionScope.address.phone}</p>--%>
+<%--                                <p class="address">${sessionScope.address.detail}, ${sessionScope.address.ward}, ${sessionScope.address.district}, ${sessionScope.address.province}</p>--%>
+                                <p>${bill.address}</p>
                             </div>
                         </div>
                         <table class="table">

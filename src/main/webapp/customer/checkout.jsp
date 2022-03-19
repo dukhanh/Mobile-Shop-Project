@@ -29,6 +29,8 @@
 <body>
 <!-- top-header-->
 <jsp:include page="/sub-component/header-menu.jsp"/>
+
+<%--<div class="confirm-message" id="message" style="display:none;">--%>
 <!-- /.page-header-->
 <!-- checkout -->
 <div class="content">
@@ -65,8 +67,6 @@
                                 </td>
                             </tr>
                         </c:forEach>
-
-
                         </tbody>
                     </table>
                 </div>
@@ -80,9 +80,12 @@
                     <div class="card-container">
                         <div class="card">
                             <div class="card-content">
-                                <div><img src="https://laz-img-cdn.alicdn.com/tfs/TB1ZP8kM1T2gK0jSZFvXXXnFXXa-96-96.png"
-                                          alt="">
-                                    <span>Thanh toán khi nhận hàng</span></div>
+                                <div>
+                                    <img
+                                            src="https://laz-img-cdn.alicdn.com/tfs/TB1ZP8kM1T2gK0jSZFvXXXnFXXa-96-96.png"
+                                            alt="">
+                                    <span>Thanh toán khi nhận hàng</span>
+                                </div>
 
                                 <input type="radio" name="payment" value="1" checked>
                             </div>
@@ -92,8 +95,9 @@
                         </div>
                         <div class="card">
                             <div class="card-content">
-                                <div><img src="https://laz-img-cdn.alicdn.com/tfs/TB1Iey_osKfxu4jSZPfXXb3dXXa-96-96.png"
-                                          alt="">
+                                <div><img
+                                        src="https://laz-img-cdn.alicdn.com/tfs/TB1Iey_osKfxu4jSZPfXXb3dXXa-96-96.png"
+                                        alt="">
                                     <span>Thẻ tín dụng/Thẻ ghi nợ</span></div>
 
                                 <input type="radio" name="payment" value="2" disabled>
@@ -125,7 +129,7 @@
                             <span style="color: #fb730f;font-size:24px;"><fmt:formatNumber
                                     value="${totalBill}"/> đ</span>
                         </div>
-                        <form action="bill_detail" method="POST">
+                        <form action="bill_detail" method="POST" onsubmit="return checkAddressExist()">
                             <c:forEach items="${listProduct}" var="p">
                                 <input type="hidden" name="productId" value="${p.id}">
                             </c:forEach>
@@ -142,6 +146,16 @@
 </body>
 
 <script>
+    var existAddress = false;
+    function checkAddressExist() {
+        if (existAddress ||${sessionScope.address!=null}) {
+            return true;
+        } else {
+            alert("Bạn chưa chọn địa chỉ giao hàng");
+            return false;
+        }
+    }
+
     $('#form-address').submit(function () {
         const form = $(this);
         const url = form.attr('action');
@@ -153,6 +167,7 @@
             success: function (data) {
                 const s = document.getElementById('wrap-address');
                 s.innerHTML = data;
+                existAddress = true;
                 // s.show();
                 $('#edit-address').hide();
             }

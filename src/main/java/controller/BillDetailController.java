@@ -4,10 +4,7 @@ import dao.BillDAO;
 import dao.CartDAO;
 import dao.CheckoutDAO;
 import dao.ProductDAO;
-import model.Account;
-import model.Bill;
-import model.BillDetail;
-import model.Cart;
+import model.*;
 import service.BillService;
 
 import javax.servlet.*;
@@ -43,6 +40,7 @@ public class BillDetailController extends HttpServlet {
         String[] products = request.getParameterValues("productId");
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
+        Address address = (Address) session.getAttribute("address");
         int shipFee = 50000;
         if (account == null) {
             response.sendRedirect("/login");
@@ -53,6 +51,7 @@ public class BillDetailController extends HttpServlet {
             bill.setIdBill(billId);
             bill.setIdUser(userId);
             bill.setShipFee(shipFee);
+            bill.setAddress(address.toString());
             bill.setStatus(BillService.statusBill(0));
             BillDAO.getInstance().saveBill(bill);
             for (String item : products) {

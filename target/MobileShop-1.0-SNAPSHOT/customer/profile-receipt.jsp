@@ -68,14 +68,13 @@
                     <div class="receipt-infor">
 
                         <c:choose>
-                            <c:when test="${bills!=null}">
+                            <c:when test="${fn:length(bills)>0}">
                                 <table class="table table-hover">
                                     <thead class="thead-light">
                                     <tr>
                                         <th scope="col">Mã đơn hàng</th>
                                         <th scope="col">Tên khách hàng</th>
                                         <th scope="col">Ngày đặt hàng</th>
-
                                         <th scope="col">Tình trạng đơn hàng</th>
                                         <th scope="col">Chi tiết đơn hàng</th>
                                     </tr>

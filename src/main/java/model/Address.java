@@ -94,4 +94,29 @@ public class Address implements Serializable {
     public void setTypeAddress(String typeAddress) {
         this.typeAddress = typeAddress;
     }
+
+    // toString
+    @Override
+    public String toString() {
+        return fullName + " - " + phone + " -- " + printTypeAddress(typeAddress) + " - " + detail + ", " + ward + ", " + district + ", " + province;
+    }
+    public static String printTypeAddress(String tAddress) {
+        if(tAddress.equals("home")) {
+            return "Nhà riêng";
+        }else{
+            return "Công ty";
+        }
+    }
+
+    public static void main(String[] args) {
+        Address address = new Address();
+        address.setFullName("Nguyen Van A");
+        address.setPhone("0987654321");
+        address.setProvince("Hồ Chí Minh");
+        address.setDistrict("Quan 1");
+        address.setWard("Phường 1");
+        address.setDetail("83/3 Nguyễn Văn Cừ");
+        address.setTypeAddress("home");
+        System.out.println(address.toString());
+    }
 }

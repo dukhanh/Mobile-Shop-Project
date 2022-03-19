@@ -7,16 +7,18 @@ public class Bill implements Serializable {
     private int idUser;
     private int shipFee;
     public String status;
+    private String address;
     private String createdAt;
 
     public Bill() {
     }
 
-    public Bill(String idBill, int idUser, int shipFee, String status, String createdAt) {
+    public Bill(String idBill, int idUser, int shipFee, String status, String address, String createdAt) {
         this.idBill = idBill;
         this.idUser = idUser;
         this.shipFee = shipFee;
         this.status = status;
+        this.address = address;
         this.createdAt = createdAt;
     }
     // getter and setter all
@@ -68,4 +70,11 @@ public class Bill implements Serializable {
         return "Bill{" + "idBill=" + idBill + ", idUser=" + idUser + ", shipFee=" + shipFee + ", status=" + status + ", createdAt=" + createdAt + '}';
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

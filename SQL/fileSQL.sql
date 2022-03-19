@@ -74,6 +74,8 @@ CREATE TABLE DON_HANG(
                          UPDATE_DATE DATE
 );
 
+ALTER TABLE DON_HANG ADD COLUMN DIA_CHI_GH VARCHAR(200) AFTER PHI_VC;
+
 CREATE TABLE CHITIET_DH(
                            ID_DH VARCHAR(10) NOT NULL,
                            ID_SP INT NOT NULL,
