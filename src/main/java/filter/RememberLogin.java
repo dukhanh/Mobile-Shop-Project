@@ -38,12 +38,14 @@ public class RememberLogin implements Filter {
                 }
             }
             Account account = AccountDAO.getInstance().Login(email, Encrypt.MD5(password));
-            if (account.getStatus().equals("open")) {
-                HttpSession session = req.getSession();
-                session.setAttribute("account", account);
-                session.setAttribute("quantityProductInCart", CartDAO.getInstance().sumQuantityProductInCart(account.getId()));
-                Address address = AddressDAO.getInstance().getAddressByUserId(account.getId());
-                session.setAttribute("address", address);
+            if (account != null) {
+                if (account.getStatus().equals("open")) {
+                    HttpSession session = req.getSession();
+                    session.setAttribute("account", account);
+                    session.setAttribute("quantityProductInCart", CartDAO.getInstance().sumQuantityProductInCart(account.getId()));
+                    Address address = AddressDAO.getInstance().getAddressByUserId(account.getId());
+                    session.setAttribute("address", address);
+                }
             }
         }
         chain.doFilter(request, response);
