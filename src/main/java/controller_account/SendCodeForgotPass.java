@@ -34,9 +34,14 @@ public class SendCodeForgotPass extends HttpServlet {
                 session.setAttribute("emailRegister", email);
                 session.setMaxInactiveInterval(60);
                 request.getRequestDispatcher("/account/checkOTP.jsp").forward(request, response);
+            }else{
+                errorMessage = "Có lỗi xảy ra, vui lòng thử lại";
+                request.setAttribute("email", email);
+                request.setAttribute("errorMessage", errorMessage);
+                request.getRequestDispatcher("/account/forgot-password.jsp").forward(request, response);
             }
         }else{
-            errorMessage="Email không tồn tại trên hệ thống";
+            errorMessage="Email này chưa được đăng ký";
             request.setAttribute("email", email);
             request.setAttribute("errorMessage", errorMessage);
             request.getRequestDispatcher("/account/forgot-password.jsp").forward(request, response);

@@ -19,11 +19,11 @@ public class Encrypt {
         }
         return result;
     }
-//
-//    public static void main(String[] args) {
-//       String result = Encrypt.MD5("dukhanh09");
-//       System.out.println(result);
-//    }
+
+    public static void main(String[] args) {
+       String result = Encrypt.MD5("dukhanh09");
+       System.out.println(result);
+    }
 }
 
 

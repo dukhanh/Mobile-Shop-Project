@@ -39,8 +39,12 @@ public class SendCodeRegister extends HttpServlet {
                 session.setAttribute("emailRegister", email);
                 session.setMaxInactiveInterval(60);
                 request.getRequestDispatcher("/account/signup-form.jsp").forward(request, response);
+            }else{
+                errorMessage = "Có lỗi xảy ra, vui lòng thử lại";
+                request.setAttribute("email", email);
+                request.setAttribute("errorMessage", errorMessage);
+                request.getRequestDispatcher("/account/send-code-register.jsp").forward(request, response);
             }
-
         }
     }
 }
