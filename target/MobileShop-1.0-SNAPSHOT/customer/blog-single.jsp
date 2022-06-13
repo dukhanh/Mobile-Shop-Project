@@ -40,46 +40,17 @@
                         <div class="post-block ">
                             <!-- post block -->
                             <div class="post-content">
-                                <h2 class="post-title">E-Commerce Free Template</h2>
+                                <h2 class="post-title">${blog.title}</h2>
                                 <div class="meta">
-                                    <span class="meta-date">December 25,2020</span>
+                                    <span class="meta-date">${blog.createDate}</span>
                                     <span>| &nbsp; &nbsp;</span>
-                                    <span class="meta-admin">By <a href="#" class="meta-title">Admin</a></span>
+                                    <span class="meta-admin">By <a href="#" class="meta-title">${blog.createBy}</a></span>
                                     <span>|&nbsp; &nbsp;</span>
-                                    <span class="meta-comments">comments 04</span>
+                                    <span class="meta-comments">${fn:length(comments)}</span>
                                 </div>
-                                <div class="post-img">
-                                    <img src="../assets/images/post_big_img_1.jpg" alt="" class="img-responsive">
+                                <div class="card">
+                                    ${blog.description}
                                 </div>
-                                <p>Phasellus vehicula metus ligula, et aliquam massa eleifend nonaurisac lectus
-                                    vehicula nisl suscipit sagittis raesent sed mi convallis pulvinaex aclobortis
-                                    risuurabitur laoreet tellus et feugiat viverra magnanisi pretium nequenon
-                                    aliquamarcu dolor in nuci varius natoque penatibusete.
-                                    <br>
-                                    <br> Etiam sed lorem sapieuis pharetrasedx in frinliquam acpurus semorbi
-                                    nonmagna idipsum lacinia vehicula isnt egetut orcuspendisse malesuada tempus
-                                    liberosed tinciduntnisi pulvinar auisque finibus molestie congue one etiam
-                                    bibendum id magna nec iaculiuisque tempor purus sed elit dapibus consectetu
-                                    fermentum elementums turpis sed ornarerci varius natoque penatibuset magnis dis
-                                    parturient montes nascetue.
-                                </p>
-                                <div class="mb40">
-                                    <img src="../assets/images/right_img.jpg" alt="" class="alignright">
-                                    <p> Aliquam idnisi consectetur auctor libero sagittis, tempor elituspendisse sit
-                                        amet justo pulvinar eleifend nulla Praesent vel aliquet urnaauris loremi pum
-                                        dolsor sit molestie sollicitudin nisl non volutpatm mollis sit amet elefied
-                                        nullas. </p>
-                                    <p>Eros lacusac lorem tristique arcu facilisisquislacinia eratn lacinia Praesent
-                                        vel aliquet urnaauris molestie sollicitudin nisl non volutp risus lorem
-                                        ipusm lorem ipusm dolor sit famese gestas. </p>
-                                </div>
-                                <img src="../assets/images/left_img.jpg" alt="" class="alignleft">
-                                <p class="mb30"> Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                    labore et dolore magna aliqua.tristique arcu nisidapibus justo viverrasit amet
-                                    sodales risus lorem ipusm lorem ipusm doidapibus justo</p>
-                                <p>Viverrasit amet sodales risus lorem ipusm lorem ipusm dolor sit famese gest fugi
-                                    tempor elitusifend nulla quislac Eros lacusaccinia eratn lacinia moac lorem
-                                    tristique arcu. </p>
                                 <!-- related post block -->
                             </div>
                         </div>
@@ -93,45 +64,20 @@
                             </div>
                             <div class="related-post-block">
                                 <div class="row">
-                                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                                        <div class="related-post-content">
-                                            <!-- related post -->
-                                            <div class="related-img">
-                                                <a href="#" class="imghover"><img src="../assets/images/related_post_1.jpg"
-                                                                                  alt="" class="img-responsive"></a>
-                                            </div>
-                                            <h4 class="related-title"><a href="#" class="title">E-Commerce Free
-                                                Template</a></h4>
-                                            <div class="meta post-meta">in <a href="#" class="">"free template"</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                                        <div class="related-post-content">
-                                            <!-- related post -->
-                                            <div class="related-img">
-                                                <a href="#" class="imghover"><img src="../assets/images/related_post_2.jpg"
-                                                                                  alt="" class="img-responsive"></a>
-                                            </div>
-                                            <h4 class="related-title"><a href="#" class="title">Online Mobile
-                                                Store</a></h4>
-                                            <div class="meta post-meta">in <a href="#" class="">"eccommerce
-                                                template"</a></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                                        <div class="related-post-content">
-                                            <!-- related post -->
-                                            <div class="related-img">
-                                                <a href="#" class="imghover"><img src="../assets/images/related_post_3.jpg"
-                                                                                  alt="" class="img-responsive"></a>
-                                            </div>
-                                            <h4 class="related-title"><a href="#" class="title">E-Commerce Free
-                                                Template</a></h4>
-                                            <div class="meta post-meta">in <a href="#" class="">"free template"</a>
+                                    <c:forEach items="${blogs}" var="item">
+                                        <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+                                            <div class="related-post-content">
+                                                <!-- related post -->
+                                                <div class="related-img">
+                                                    <a href="./blog/${item.url }" class="imghover"><img src="${item.avatar }"
+                                                                                                        alt="" class="img-responsive"></a>
+                                                </div>
+                                                <h4 class="related-title"><a href="./blog/${item.url }" class="title">${item.title }</a></h4>
+                                                <div class="meta post-meta">${item.shortDescription}</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </c:forEach>
                                     <!-- /.related post -->
                                 </div>
                             </div>
@@ -143,60 +89,26 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="">
                                         <div class="comment-head">
-                                            <h3 class="comment-heading">Bình luận (03)</h3>
+                                            <h3 class="comment-heading">Bình luận (${fn:length(comments) })</h3>
                                         </div>
                                     </div>
-                                    <ul class="comment-list">
-                                        <li>
-                                            <div class="comment-author"><img src="../assets/images/user_img_1.jpg" alt=""
-                                                                             class="img-circle"></div>
-                                            <div class="comment-info">
-                                                <div class="comment-header">
-                                                    <h5 class="comment-title">Joshua Cuddy</h5>
-                                                    <span class="comment-meta-date">20 December, 2020</span>
-                                                </div>
-                                                <div class="comment-content">
-                                                    <p>Vestibulum pellentesque sitamet arcuporttitor maxi hasellus
-                                                        pellentesques.</p>
-                                                    <a href="#" class="btn-link comment-link">trả lời</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <ul class="comment-list">
-                                        <li>
-                                            <div class="comment-author"><img src="../assets/images/user_img_2.jpg" alt=""
-                                                                             class="img-circle"></div>
-                                            <div class="comment-info">
-                                                <div class="comment-header">
-                                                    <h5 class="comment-title">Murray Thomason</h5>
-                                                    <span class="comment-meta-date">20 December, 2020</span>
-                                                </div>
-                                                <div class="comment-content">
-                                                    <p>Curabitur hendrerit fringilla enim a accumsan turpis aliquam
-                                                        frinnsequat ac orci.</p>
-                                                    <a href="#" class="btn-link comment-link">trả lời</a>
-                                                </div>
-                                            </div>
-                                            <ul class="childern">
-                                                <li>
-                                                    <div class="comment-author"><img src="../assets/images/user_img_3.jpg"
-                                                                                     alt="" class="img-circle"></div>
-                                                    <div class="comment-info">
-                                                        <div class="comment-header">
-                                                            <h5 class="comment-title">Eric Phelps</h5>
-                                                            <span class="comment-meta-date">20 December, 2020</span>
-                                                        </div>
-                                                        <div class="comment-content">
-                                                            <p>Curabitur hendrerit fringilla eilla hendrerit leo
-                                                                eget suscipit consequat ac orci.</p>
-                                                            <a href="#" class="btn-link comment-link">Trả lời</a>
-                                                        </div>
+                                    <c:forEach items="${comments}" var="item">
+                                        <ul class="comment-list">
+                                            <li>
+                                                <div class="comment-author"><img src="../assets/images/user_img_1.jpg" alt=""
+                                                                                 class="img-circle"></div>
+                                                <div class="comment-info">
+                                                    <div class="comment-header">
+                                                        <h5 class="comment-title">${ item.userName}</h5>
+                                                        <span class="comment-meta-date">${ item.createDate}</span>
                                                     </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                                    <div class="comment-content">
+                                                        <p>${ item.description}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>

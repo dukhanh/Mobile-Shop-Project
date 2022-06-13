@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Bill implements Serializable {
     private String idBill;
@@ -76,5 +77,38 @@ public class Bill implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public static class Comment {
+
+
+    private String description;
+     private String userName;
+     private Date createDate;
+     public String getDescription() {
+            return description;
+        }
+        public void setDescription(String description) {
+            this.description = description;
+        }
+        public String getUserName() {
+            return userName;
+        }
+        public void setUserName(String userName) {
+            this.userName = userName;
+        }
+        public Date getCreateDate() {
+            return createDate;
+        }
+        public void setCreateDate(Date createDate) {
+            this.createDate = createDate;
+        }
+        public Comment(String description, String userName, Date createDate) {
+            super();
+            this.description = description;
+            this.userName = userName;
+            this.createDate = createDate;
+        }
+
     }
 }

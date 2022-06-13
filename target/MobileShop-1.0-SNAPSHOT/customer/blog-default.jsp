@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
-    <jsp:include page="/sub-component/header.jsp"/>
+    <jsp:include page="/sub-component/header.jsp" />
 </head>
 
 <body>
 <!-- top-header-->
-<jsp:include page="/sub-component/header-menu.jsp"/>
+<jsp:include page="/sub-component/header-menu.jsp" />
 <!-- /. header-section-->
 <!-- page-header -->
 <div class="page-header">
@@ -33,135 +33,49 @@
     <div class="container">
         <div class="row">
             <div class="isotope">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 post-masonry ">
-                    <div class="post-block">
-                        <!-- post block -->
-                        <h3 class="post-title"><a href="#" class="title">Commerce Free Template</a></h3>
-                        <div class="meta">
-                            <span class="meta-date">20 December 10, 2020</span>
-                            <span>|&nbsp; &nbsp;</span>
-                            <span class="meta-admin">By <a href="#" class="meta-title">Admin</a></span>
-                        </div>
-                        <div class="post-img">
-                            <a href="#" class="imghover">
-                                <img src="../assets/images/post_img_1.jpg" alt="" class="img-responsive"></a>
-                        </div>
-                        <div class="post-content">
-                            <p>Etiased lorem sapiuis pharetra edexin fringliam acpurus semrbi non magna id ipsmm...
-                            </p>
-                            <a href="../customer/blog-single.jsp" class="btn-link"><center>ĐỌC THÊM </center></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 post-masonry">
-                    <div class="post-block ">
-                        <!-- post block -->
-                        <h3 class="post-title"><a href="#" class="title">Online Mobile Store E-Commerce</a></h3>
-                        <div class="meta">
-                            <span class="meta-date">18 Tháng 11, 2020</span>
-                            <span>|&nbsp; &nbsp;</span>
-                            <span class="meta-admin">By <a href="#" class="meta-title">Admin</a></span>
-                        </div>
-                        <div class="post-img">
-                            <a href="#" class="imghover">
-                                <img src="../assets/images/post_img_2.jpg" alt="" class="img-responsive"></a>
-                        </div>
-                        <div class="post-content">
-                            <p>Nullam acdui utnisl interdum mattisut nonese maurisauris gravida auctor dignissim.
-                            </p>
-                            <a href="#" class="btn-link"><center>ĐỌC THÊM </center></a>
+                <c:forEach items="${blogs}" var="item">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 post-masonry ">
+                        <div class="post-block">
+                            <!-- post block -->
+                            <h3 class="post-title">
+                                <a href="#" class="title">${item.title}</a>
+                            </h3>
+                            <div class="meta">
+                                <span class="meta-date">${item.createDate}</span>
+                            </div>
+                            <div class="post-img">
+                                <a href="./blog/${item.url }" class="imghover"> <img src="${item.avatar}"
+                                                                                     alt="${item.title}" class="img-responsive"></a>
+                            </div>
+                            <div class="post-content">
+                                <p></p>${item.shortDescription}
+                                <a href="./blog/${item.url }" class="btn-link"><center>ĐỌC
+                                    THÊM</center></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  post-masonry ">
-                    <div class="post-block">
-                        <!-- post block -->
-                        <h3 class="post-title"><a href="#" class="title">E-Commerce Free Template</a></h3>
-                        <div class="meta">
-                            <span class="meta-date">18 December, 2020</span>
-                            <span>|&nbsp; &nbsp;</span>
-                            <span class="meta-admin">By <a href="#" class="meta-title">Admin</a></span>
-                        </div>
-                        <div class="post-img">
-                            <a href="#" class="imghover">
-                                <img src="../assets/images/post_img_3.jpg" alt="" class="img-responsive"></a>
-                        </div>
-                        <div class="post-content">
-                            <p>Etiased lorem sapiuis pharetra edexin fringliam acpurus semrbi non magna id ipsmm...
-                            </p>
-                            <a href="#" class="btn-link"><center>ĐỌC THÊM </center></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  post-masonry ">
-                    <div class="post-block">
-                        <!-- post block -->
-                        <h3 class="post-title"><a href="#" class="title">Online Mobile Shopping</a></h3>
-                        <div class="meta">
-                            <span class="meta-date">15 December, 2020</span>
-                            <span>|&nbsp; &nbsp;</span>
-                            <span class="meta-admin">By <a href="#" class="meta-title">Admin</a></span>
-                        </div>
-                        <div class="post-img">
-                            <a href="#" class="imghover">
-                                <img src="../assets/images/post_img_1.jpg" alt="" class="img-responsive"></a>
-                        </div>
-                        <div class="post-content">
-                            <p>Aenean fringillaest euismod exdictum viverra Interdumet malesuada famesace.
-                            </p>
-                            <a href="#" class="btn-link"><center>ĐỌC THÊM </center></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  post-masonry ">
-                    <div class="post-block">
-                        <!-- post block -->
-                        <h3 class="post-title"><a href="#" class="title">Online Mobile Store</a></h3>
-                        <div class="meta">
-                            <span class="meta-date">16 December, 2020</span>
-                            <span>|&nbsp; &nbsp;</span>
-                            <span class="meta-admin">By <a href="#" class="meta-title">Admin</a></span>
-                        </div>
-                        <div class="post-img">
-                            <a href="#" class="imghover">
-                                <img src="../assets/images/post_img_2.jpg" alt="" class="img-responsive"></a>
-                        </div>
-                        <div class="post-content">
-                            <p>Curabitur auctor lectus magnaac faucibus one mauris finibus tateget interdum erose.
-                            </p>
-                            <a href="#" class="btn-link"><center>ĐỌC THÊM </center></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 post-masonry">
-                    <div class="post-block ">
-                        <h3 class="post-title"><a href="#" class="title">Mobile Phones Online Shopping</a></h3>
-                        <div class="meta">
-                            <span class="meta-date">20 December, 2020</span>
-                            <span>|&nbsp; &nbsp;</span>
-                            <span class="meta-admin">By <a href="#" class="meta-title">Admin</a></span>
-                        </div>
-                        <div class="post-img">
-                            <a href="#" class="imghover">
-                                <img src="../assets/images/post_img_3.jpg" alt="" class="img-responsive"></a>
-                        </div>
-                        <div class="post-content">
-                            <p>Etiased lorem sapiuis pharetra edexin fringliam acpurus semrbi non magna id ipsmm...
-                            </p>
-                            <a href="#" class="btn-link"><center>ĐỌC THÊM </center></a>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </div>
         <div class="row">
             <div class="st-pagination">
                 <ul class="pagination">
-                    <li><a href="#" aria-label="previous"><span aria-hidden="true">Trang trước</span></a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#" aria-label="Next"><span aria-hidden="true">Trang sau</span></a></li>
+                    <c:if test="${page != 1}">
+                        <li><a href="./blog?page=${page-1}" aria-label="previous"><span
+                                aria-hidden="true">Trang trước</span></a></li>
+                    </c:if>
+                    <c:forEach var="i" begin="1" end="${countPage}">
+                        <c:if test="${page == i}">
+                            <li class="active"><a href="#">${i}</a></li>
+                        </c:if>
+                        <c:if test="${page != i}">
+                            <li ><a href="./blog?page=${i}">${i}</a></li>
+                        </c:if>
+                    </c:forEach>
+                    <c:if test="${page != countPage}">
+                        <li><a href="./blog?page=${page+1}" aria-label="Next"><span
+                                aria-hidden="true">Trang sau</span></a></li>
+                    </c:if>
                 </ul>
             </div>
         </div>
@@ -170,7 +84,7 @@
 <!-- blog -->
 <!-- footer -->
 
-<jsp:include page="/sub-component/footer.jsp"/>
+<jsp:include page="/sub-component/footer.jsp" />
 </body>
 
 

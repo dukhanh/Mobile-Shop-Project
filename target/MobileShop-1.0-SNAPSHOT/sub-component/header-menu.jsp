@@ -126,8 +126,8 @@
                             </li>
                             <li><a href="<c:url value="/customer/about.jsp"/>">Thông tin</a>
                             </li>
-                            <li><a href="../customer/blog-default.jsp">Bài viết</a></li>
-                            <li><a href="../customer/contact-us.jsp">Liên hệ, hỗ trợ</a>
+                            <li><a href="../blog">Bài viết</a></li>
+                            <li><a href="../report">Liên hệ, hỗ trợ</a>
                             </li>
                         </ul>
                     </div>

@@ -202,7 +202,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="head-title"><a href="productlist?&sort=top_seller">Bán chạy nhất</a></h3>
+                    <h3 class="head-title"><a href="productlist?&sort=top_seller">Bán chạy <nhất></nhất></a></h3>
                 </div>
             </div>
         </div>
