@@ -7,6 +7,7 @@
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
+    <title>Blog single</title>
 </head>
 
 <body>
@@ -44,7 +45,8 @@
                                 <div class="meta">
                                     <span class="meta-date">${blog.createDate}</span>
                                     <span>| &nbsp; &nbsp;</span>
-                                    <span class="meta-admin">By <a href="#" class="meta-title">${blog.createBy}</a></span>
+                                    <span class="meta-admin">By <a href="#"
+                                                                   class="meta-title">${blog.createBy}</a></span>
                                     <span>|&nbsp; &nbsp;</span>
                                     <span class="meta-comments">${fn:length(comments)}</span>
                                 </div>
@@ -69,10 +71,12 @@
                                             <div class="related-post-content">
                                                 <!-- related post -->
                                                 <div class="related-img">
-                                                    <a href="./blog/${item.url }" class="imghover"><img src="${item.avatar }"
-                                                                                                        alt="" class="img-responsive"></a>
+                                                    <a href="./blog/${item.url }" class="imghover"><img
+                                                            src="${item.avatar }"
+                                                            alt="" class="img-responsive"></a>
                                                 </div>
-                                                <h4 class="related-title"><a href="./blog/${item.url }" class="title">${item.title }</a></h4>
+                                                <h4 class="related-title"><a href="./blog/${item.url }"
+                                                                             class="title">${item.title }</a></h4>
                                                 <div class="meta post-meta">${item.shortDescription}</a>
                                                 </div>
                                             </div>
@@ -95,7 +99,8 @@
                                     <c:forEach items="${comments}" var="item">
                                         <ul class="comment-list">
                                             <li>
-                                                <div class="comment-author"><img src="../assets/images/user_img_1.jpg" alt=""
+                                                <div class="comment-author"><img src="../assets/images/user_img_1.jpg"
+                                                                                 alt=""
                                                                                  class="img-circle"></div>
                                                 <div class="comment-info">
                                                     <div class="comment-header">

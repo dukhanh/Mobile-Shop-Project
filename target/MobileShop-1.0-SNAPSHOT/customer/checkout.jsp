@@ -6,6 +6,7 @@
 <fmt:setLocale value="vi_VN"/>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
+    <title>Thanh toán</title>
     <jsp:include page="/sub-component/header.jsp"/>
     <link href="<c:url value="/assets/css/address-deliver.css"/>" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="<c:url value="/assets/js/validate-form.js"/>"></script>

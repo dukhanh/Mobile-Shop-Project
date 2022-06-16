@@ -12,6 +12,7 @@
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
     <script type="text/javascript" src="<c:url value="/assets/js/js_pages/cart.js"/>"></script>
+    <title>Trang chủ</title>
 
 </head>
 

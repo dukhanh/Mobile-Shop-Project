@@ -6,6 +6,7 @@
 <%@ include file="/sub-component/taglib.jsp" %>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
+    <title>Sản phâm yêu thích</title>
     <jsp:include page="/sub-component/header.jsp"/>
 </head>
 <fmt:setLocale value="vi_VN"/>

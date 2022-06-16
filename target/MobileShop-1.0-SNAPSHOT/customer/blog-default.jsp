@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
-    <jsp:include page="/sub-component/header.jsp" />
+    <jsp:include page="/sub-component/header.jsp"/>
+    <title>Blog</title>
 </head>
 
 <body>
 <!-- top-header-->
-<jsp:include page="/sub-component/header-menu.jsp" />
+<jsp:include page="/sub-component/header-menu.jsp"/>
 <!-- /. header-section-->
 <!-- page-header -->
 <div class="page-header">
@@ -45,12 +46,16 @@
                             </div>
                             <div class="post-img">
                                 <a href="./blog/${item.url }" class="imghover"> <img src="${item.avatar}"
-                                                                                     alt="${item.title}" class="img-responsive"></a>
+                                                                                     alt="${item.title}"
+                                                                                     class="img-responsive"></a>
                             </div>
                             <div class="post-content">
                                 <p></p>${item.shortDescription}
-                                <a href="./blog/${item.url }" class="btn-link"><center>ĐỌC
-                                    THÊM</center></a>
+                                <a href="./blog/${item.url }" class="btn-link">
+                                    <center>ĐỌC
+                                        THÊM
+                                    </center>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -69,7 +74,7 @@
                             <li class="active"><a href="#">${i}</a></li>
                         </c:if>
                         <c:if test="${page != i}">
-                            <li ><a href="./blog?page=${i}">${i}</a></li>
+                            <li><a href="./blog?page=${i}">${i}</a></li>
                         </c:if>
                     </c:forEach>
                     <c:if test="${page != countPage}">
@@ -84,7 +89,7 @@
 <!-- blog -->
 <!-- footer -->
 
-<jsp:include page="/sub-component/footer.jsp" />
+<jsp:include page="/sub-component/footer.jsp"/>
 </body>
 
 

@@ -7,6 +7,7 @@
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/about.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:41:02 GMT -->
 
 <head>
+    <title>Thông tin cửa hàng</title>
     <jsp:include page="../sub-component/header.jsp"/>
 </head>
 
