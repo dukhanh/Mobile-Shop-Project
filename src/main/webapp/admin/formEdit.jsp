@@ -5,19 +5,19 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <head>
-    <jsp:include page="/sub-component/header-admin.jsp"/>
+    <jsp:include page="/admin/sub-component/header-admin.jsp"/>
 </head>
 
 <body>
 <div class="d-flex" id="wrapper">
 
-    <jsp:include page="/sub-component/menu-admin.jsp"/>
+    <jsp:include page="/admin/sub-component/menu-admin.jsp"/>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-        <jsp:include page="/sub-component/top-menu-admin.jsp"/>
+        <jsp:include page="/admin/sub-component/top-menu-admin.jsp"/>
 
         <div class="container-fluid">
             <div class="container">

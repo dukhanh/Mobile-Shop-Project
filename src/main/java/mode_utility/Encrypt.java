@@ -21,7 +21,7 @@ public class Encrypt {
     }
 
     public static void main(String[] args) {
-       String result = Encrypt.MD5("dukhanh09");
+       String result = Encrypt.MD5("123456789");
        System.out.println(result);
     }
 }

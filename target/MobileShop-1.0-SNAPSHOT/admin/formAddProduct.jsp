@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <head>
-    <jsp:include page="/sub-component/header-admin.jsp"/>
+    <jsp:include page="/admin/sub-component/header-admin.jsp"/>
     <title></title>
 
 
@@ -14,13 +14,13 @@
 <body>
 <div class="d-flex" id="wrapper">
 
-    <jsp:include page="/sub-component/menu-admin.jsp"/>
+    <jsp:include page="/admin/sub-component/menu-admin.jsp"/>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-        <jsp:include page="/sub-component/top-menu-admin.jsp"/>
+        <jsp:include page="/admin/sub-component/top-menu-admin.jsp"/>
 
         <div class="container-fluid">
             <div class="container mt-4 ">
@@ -34,9 +34,8 @@
                                     <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
                                 </div>
 
-                                    <input type="text" class="form-control py-4" value=""
-                                           placeholder="Nhập tên sản phẩm">
-
+                                <input type="text" class="form-control py-4" value=""
+                                       placeholder="Nhập tên sản phẩm">
                             </div>
                         </div>
                         <div class="col-6 space-top">
@@ -45,8 +44,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="fas fa-dollar-sign"></i></div>
                                 </div>
-
-                                    <input type="text" class="form-control py-4" value="" placeholder="20.000.000">
+                                <input type="text" class="form-control py-4" value="" placeholder="20.000.000">
 
                             </div>
                         </div>
@@ -60,9 +58,8 @@
                                     <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
                                 </div>
 
-                                    <input type="text" class="form-control py-4" value=""
-                                           placeholder="Nhập tên thương hiệu">
-
+                                <input type="text" class="form-control py-4" value=""
+                                       placeholder="Nhập tên thương hiệu">
                             </div>
                         </div>
                         <div class="col-6 space-top">
@@ -72,7 +69,7 @@
                                     <div class="input-group-text"><i class="fas fa-dollar-sign"></i></div>
                                 </div>
 
-                                    <input type="text" class="form-control py-4" value="" placeholder="20.000.000">
+                                <input type="text" class="form-control py-4" value="" placeholder="20.000.000">
 
                             </div>
                         </div>
@@ -107,14 +104,14 @@
                                             <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
                                         </div>
 
-                                            <select name="" class="form-control w ">
-                                                <option value="">Đen</option>
-                                                <option value="">Trắng</option>
-                                                <option class="active" value="">Đỏ</option>
-                                                <option value="">Xanh</option>
-                                                <option value="">Hồng</option>
-                                                <option value="">Lam</option>
-                                            </select>
+                                        <select name="" class="form-control w ">
+                                            <option value="">Đen</option>
+                                            <option value="">Trắng</option>
+                                            <option class="active" value="">Đỏ</option>
+                                            <option value="">Xanh</option>
+                                            <option value="">Hồng</option>
+                                            <option value="">Lam</option>
+                                        </select>
 
                                     </div>
                                 </div>
@@ -131,9 +128,8 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-tag "></i></div>
                                         </div>
-
-                                            <input type="number" class="form-control py-4" value=""
-                                                   placeholder="Nhập số lượng">
+                                        <input type="number" class="form-control py-4" value=""
+                                               placeholder="Nhập số lượng">
 
                                     </div>
                                 </div>
@@ -194,9 +190,8 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
                                 </div>
-
-                                    <input type="text" class="form-control py-4" value=""
-                                           placeholder="Nhập thông số màn hình">
+                                <input type="text" class="form-control py-4" value=""
+                                       placeholder="Nhập thông số màn hình">
 
                             </div>
                         </div>
@@ -207,8 +202,8 @@
                                     <div class="input-group-text"><i class="fas fa-cogs"></i></div>
                                 </div>
 
-                                    <input type="text" class="form-control py-4" value=""
-                                           placeholder="Nhập tên hệ điều hành">
+                                <input type="text" class="form-control py-4" value=""
+                                       placeholder="Nhập tên hệ điều hành">
 
                             </div>
                         </div>
@@ -222,8 +217,8 @@
                                     <div class="input-group-text"><i class="fas fa-camera"></i></div>
                                 </div>
 
-                                    <input type="text" class="form-control py-4" value=""
-                                           placeholder="Nhập thông số camera sau">
+                                <input type="text" class="form-control py-4" value=""
+                                       placeholder="Nhập thông số camera sau">
 
                             </div>
                         </div>
@@ -234,8 +229,8 @@
                                     <div class="input-group-text"><i class="fas fa-camera"></i></div>
                                 </div>
 
-                                    <input type="text" class="form-control py-4" value=""
-                                           placeholder="Nhập thông số camera trước">
+                                <input type="text" class="form-control py-4" value=""
+                                       placeholder="Nhập thông số camera trước">
 
                             </div>
                         </div>
@@ -249,8 +244,8 @@
                                     <div class="input-group-text"><i class="fas fa-hdd"></i></div>
                                 </div>
 
-                                    <input type="text" class="form-control py-4" value=""
-                                           placeholder="Nhập thông số CPU">
+                                <input type="text" class="form-control py-4" value=""
+                                       placeholder="Nhập thông số CPU">
 
                             </div>
                         </div>
@@ -261,8 +256,8 @@
                                     <div class="input-group-text"><i class="fas fa-sd-card"></i></div>
                                 </div>
 
-                                    <input type="text" class="form-control py-4" value=""
-                                           placeholder="Nhập thông số bộ nhớ">
+                                <input type="text" class="form-control py-4" value=""
+                                       placeholder="Nhập thông số bộ nhớ">
 
                             </div>
                         </div>

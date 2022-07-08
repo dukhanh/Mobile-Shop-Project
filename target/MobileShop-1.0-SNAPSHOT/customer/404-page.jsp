@@ -7,6 +7,7 @@
 
 <head>
     <jsp:include page="../sub-component/header.jsp"/>
+    <title>Error page</title>
 </head>
 
 <body>
