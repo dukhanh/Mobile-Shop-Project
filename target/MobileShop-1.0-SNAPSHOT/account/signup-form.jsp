@@ -118,7 +118,7 @@
                                         <p>Bạn đã có tài khoản?<a
                                                 href="${pageContext.request.contextPath}/login"
                                                 class="text-blue"> Đăng Nhập</a></p>
-                                        <a href="${pageContext.request.contextPath}/send_code_forgot_pass"
+                                        <a href="account/send-code-register.jsp"
                                            class="text-blue">Gửi lại mã</a>
                                     </div>
                                 </div>
