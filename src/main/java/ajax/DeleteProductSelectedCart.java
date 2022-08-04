@@ -52,12 +52,12 @@ public class DeleteProductSelectedCart extends HttpServlet {
                     "                        <div class=\"item-center\">\n" +
                     "                            <div class=\"quantity\">\n" +
                     "                                <button class=\"btn-quantity decrease-quantity\"\n" +
-                    "                                        onclick=\"decreaseQuantity(this,"+cartList.get(i).getId()+")\" type=\"button\">-\n" +
+                    "                                        onclick=\"decreaseQuantityInCart(this,"+cartList.get(i).getId()+")\" type=\"button\">-\n" +
                     "                                </button>\n" +
                     "                                <input type=\"number\" name=\"quantity\" value=\""+cartList.get(i).getQuantity()+"\"\n" +
                     "                                       class=\"quantity-input quantity-product-cart\" readonly>\n" +
                     "                                <button class=\"btn-quantity increase-quantity\"\n" +
-                    "                                        onclick=\"increaseQuantity(this,"+cartList.get(i).getId()+")\" type=\"button\">+\n" +
+                    "                                        onclick=\"increaseQuantityInCart(this,"+cartList.get(i).getId()+")\" type=\"button\">+\n" +
                     "                                </button>\n" +
                     "                            </div>\n" +
                     "                        </div>\n" +

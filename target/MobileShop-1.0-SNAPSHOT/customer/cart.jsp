@@ -98,12 +98,12 @@
                                     <div class="item-center">
                                         <div class="quantity">
                                             <button class="btn-quantity decrease-quantity"
-                                                    onclick="decreaseQuantity(this,${p.id})" type="button">-
+                                                    onclick="decreaseQuantityInCart(this,${p.id})" type="button">-
                                             </button>
                                             <input type="number" value="${p.quantity}"
                                                    class="quantity-input quantity-product-cart" readonly>
                                             <button class="btn-quantity increase-quantity"
-                                                    onclick="increaseQuantity(this,${p.id})" type="button">+
+                                                    onclick="increaseQuantityInCart(this,${p.id})" type="button">+
                                             </button>
                                         </div>
                                     </div>

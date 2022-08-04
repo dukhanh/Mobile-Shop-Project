@@ -1,6 +1,6 @@
 checkAllItem();
 
-function decreaseQuantity(btn, productId) {
+function decreaseQuantityInCart(btn, productId) {
     const inputQ = btn.nextElementSibling;
     let currentQuantity = parseInt(inputQ.value);
     currentQuantity = currentQuantity - 1;
@@ -15,15 +15,15 @@ function decreaseQuantity(btn, productId) {
             if (data === 'success') {
                 // currentQuantity = currentQuantity - 1;
                 inputQ.value = currentQuantity;
+                calTotalCart();
             }
         }
     });
 
     // call function to calculate total price
-    calTotalCart();
 }
 
-function increaseQuantity(btn, productId) {
+function increaseQuantityInCart(btn, productId) {
     const inputQ = btn.previousElementSibling;
     let currentQuantity = parseInt(inputQ.value);
     currentQuantity = currentQuantity + 1;
@@ -38,11 +38,11 @@ function increaseQuantity(btn, productId) {
             if (data === 'success') {
                 // currentQuantity = currentQuantity + 1;
                 inputQ.value = currentQuantity;
+                calTotalCart();
             }
         }
     });
     // call function to calculate total price
-    calTotalCart();
 }
 
 function deleteProductInCart(productId, index) {

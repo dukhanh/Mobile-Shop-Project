@@ -150,7 +150,12 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="head-title"><a href="productlist?&sort=best_new">Sản phẩm mới nhất</a></h3>
+                    <h3 class="head-title">
+                        <a href="productlist?&sort=best_new">
+                            <span style="margin-right: 4px;">Sản phẩm mới nhất</span>
+                            <i class="fas fa-angle-double-right"></i>
+                        </a>
+                    </h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
@@ -180,7 +185,8 @@
                                                         class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
                                                     <i class="fa fa-heart"></i></button>
 
-                                                <button class="product-btn btn-cart" onclick="addToCart(${p.id},${sessionScope.account!=null})">
+                                                <button class="product-btn btn-cart"
+                                                        onclick="addToCart(${p.id},${sessionScope.account!=null})">
                                                     <i class="fa fa-shopping-cart"></i></button>
                                             </div>
                                         </div>
@@ -203,7 +209,13 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="head-title"><a href="productlist?&sort=top_seller">Bán chạy <nhất></nhất></a></h3>
+                    <h3 class="head-title">
+                        <a href="productlist?&sort=top_seller">
+                            <span style="margin-right: 4px;">Bán chạy nhất</span>
+                            <i class="fas fa-angle-double-right"></i>
+
+                        </a>
+                    </h3>
                 </div>
             </div>
         </div>
@@ -236,7 +248,8 @@
                                                 <button onclick="addToFavorite(this,${p.id},${sessionScope.account.id})"
                                                         class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
                                                     <i class="fa fa-heart"></i></button>
-                                                <button class="product-btn btn-cart" onclick="addToCart(${p.id},${sessionScope.account!=null})">
+                                                <button class="product-btn btn-cart"
+                                                        onclick="addToCart(${p.id},${sessionScope.account!=null})">
                                                     <i class="fa fa-shopping-cart"></i></button>
                                             </div>
                                         </div>
@@ -260,7 +273,12 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="head-title"><a href="productlist?&sort=promotion">Đang khuyến mãi</a></h3>
+                    <h3 class="head-title">
+                        <a href="productlist?&sort=promotion">
+                            <span style="margin-right: 4px;">Đang khuyến mãi</span>
+                            <i class="fas fa-angle-double-right"></i>
+                        </a>
+                    </h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
@@ -287,7 +305,8 @@
                                                 <button onclick="addToFavorite(this,${p.id},${sessionScope.account.id})"
                                                         class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
                                                     <i class="fa fa-heart"></i></button>
-                                                <button class="product-btn btn-cart" onclick="addToCart(${p.id},${sessionScope.account!=null})">
+                                                <button class="product-btn btn-cart"
+                                                        onclick="addToCart(${p.id},${sessionScope.account!=null})">
                                                     <i class="fa fa-shopping-cart"></i></button>
                                             </div>
                                         </div>
