@@ -37,7 +37,7 @@ public class SendCodeRegister extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("otp", otpCode);
                 session.setAttribute("emailRegister", email);
-                session.setMaxInactiveInterval(60);
+                session.setMaxInactiveInterval(Config.OTP_LIVE);
                 request.getRequestDispatcher("/account/signup-form.jsp").forward(request, response);
             }else{
                 errorMessage = "Có lỗi xảy ra, vui lòng thử lại";

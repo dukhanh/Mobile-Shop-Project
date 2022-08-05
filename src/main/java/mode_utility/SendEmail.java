@@ -60,6 +60,6 @@ public class SendEmail {
     }
 
     public static void main(String[] args) {
-        SendEmail.sendOTP("dukhanhqt@gmail.com", "Xác thực tài khoản Mobile Shop", "Mã OTP của bạn là : 123456     Mã có hiệu lực trong 1 phút.");
+        SendEmail.sendOTP("dukhanhqt@gmail.com", "Xác thực tài khoản Mobile Shop", "Mã OTP của bạn là : 123456     Mã có hiệu lực trong 5 phút.");
     }
 }

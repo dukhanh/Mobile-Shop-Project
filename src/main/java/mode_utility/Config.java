@@ -7,7 +7,7 @@ public class Config {
     public static final String OWNER_EMAIL = "mobilestore1022@gmail.com";
     public static final String MAIL_PASSWORD = "xpsgmkfrxldvisra";
 
-    public static final int OTP_LIVE= 60; // seconds
+    public static final int OTP_LIVE= 300; // seconds
 
     // login with google
 

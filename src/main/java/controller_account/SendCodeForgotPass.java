@@ -32,7 +32,7 @@ public class SendCodeForgotPass extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("otpForgotPass", otpCode);
                 session.setAttribute("emailRegister", email);
-                session.setMaxInactiveInterval(60);
+                session.setMaxInactiveInterval(Config.OTP_LIVE);
                 request.getRequestDispatcher("/account/checkOTP.jsp").forward(request, response);
             }else{
                 errorMessage = "Có lỗi xảy ra, vui lòng thử lại";
