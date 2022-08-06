@@ -6,6 +6,7 @@ import db.DBConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class HomeDAO {
         Product product;
         List<Product> res = new LinkedList<>();
         String sql = "SELECT * \n" +
-                "from san_pham \n" +
+                "from SAN_PHAM \n" +
                 "where (GIA_SP-GIA_KM)>0\n" +
                 "ORDER BY (GIA_SP-GIA_KM) desc\n" +
                 "limit 0,?";
@@ -56,7 +57,7 @@ public class HomeDAO {
         Product product;
         List<Product> res = new LinkedList<>();
         String sql = "select *\n" +
-                "from san_pham sp join sl_sp ss on sp.ID_SANPHAM = ss.ID_SANPHAM\n" +
+                "from SAN_PHAM sp join SL_SP ss on sp.ID_SANPHAM = ss.ID_SANPHAM \n" +
                 "ORDER BY SL_DABAN desc\n" +
                 "LIMIT 0,?";
         try {
@@ -84,7 +85,7 @@ public class HomeDAO {
         Product product;
         List<Product> res = new LinkedList<>();
         String sql = "select *\n" +
-                "from san_pham sp\n" +
+                "from SAN_PHAM sp\n" +
                 "ORDER BY NGAY_CAPNHAT desc\n" +
                 "LIMIT 0,?";
         try {
@@ -109,12 +110,12 @@ public class HomeDAO {
     }
 
 
-//
-//    public static void main(String[] args) {
-//        HomeDAO p = new HomeDAO();
-//        Iterator<Product> l = p.getProductTopSeller().iterator();
-//        while (l.hasNext()) {
-//            System.out.println(l.next().getName());
-//        }
-//    }
+
+    public static void main(String[] args) {
+        HomeDAO p = new HomeDAO();
+        Iterator<Product> l = p.getProductBestNew(6).iterator();
+        while (l.hasNext()) {
+            System.out.println(l.next().getName());
+        }
+    }
 }

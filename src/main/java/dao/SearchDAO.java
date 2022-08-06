@@ -25,7 +25,7 @@ public class SearchDAO {
 
     public List<Product> searchByNameProducts(String textSearch) {
 
-        String sql = "SELECT * FROM san_pham WHERE TEN_SP like ?";
+        String sql = "SELECT * FROM SAN_PHAM WHERE TEN_SP like ?";
         List<Product> res = new LinkedList<>();
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);

@@ -58,7 +58,7 @@ public class ProductListDAO {
 
     public List<Product> getProductsTopSeller(int page, int products, String condition) {
         List<Product> res = new LinkedList<>();
-        String sql = "select * from san_pham sp join sl_sp ss on sp.ID_SANPHAM = ss.ID_SANPHAM " + condition + " ORDER BY SL_DABAN DESC LIMIT ?,?";
+        String sql = "select * from SAN_PHAM sp join SL_SP ss on sp.ID_SANPHAM = ss.ID_SANPHAM " + condition + " ORDER BY SL_DABAN DESC LIMIT ?,?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, page);
@@ -78,7 +78,7 @@ public class ProductListDAO {
     public List<Product> getProductPromotion(int page, int products, String condition) {
         List<Product> res = new LinkedList<>();
         String sql = "SELECT * \n" +
-                "from san_pham \n" + condition + "AND ((GIA_SP-GIA_KM)>0) ORDER BY (GIA_SP-GIA_KM) desc LIMIT ?,?";
+                "from SAN_PHAM \n" + condition + "AND ((GIA_SP-GIA_KM)>0) ORDER BY (GIA_SP-GIA_KM) desc LIMIT ?,?";
 
         PreparedStatement psupdate = null;
         try {
