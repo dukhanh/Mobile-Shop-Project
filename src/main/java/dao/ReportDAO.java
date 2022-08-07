@@ -1,14 +1,18 @@
 package dao;
 
 import db.DBConnect;
+import model.Report;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReportDAO {
     private static ReportDAO instance;
 
-    private ReportDAO() {
+    public ReportDAO() {
     }
 
     public static ReportDAO getInstance() {
@@ -33,9 +37,31 @@ public class ReportDAO {
             e.printStackTrace();
         }
     }
+    public List<Report> showAllReports(){
+
+        String sql = "SELECT NAME, EMAIL, PHONE, TITLE, DESCRIPTION FROM REPORTS ";
+        Report rp;
+        List<Report> report = new ArrayList<Report>();
+        ResultSet rs;
+        PreparedStatement statement;
+        try {
+            statement = DBConnect.connect().getConnection().prepareStatement(sql);
+            rs = statement.executeQuery();
+
+            while (rs.next()) {
+                rp = new Report(rs.getString("NAME"),rs.getString("EMAIL"),rs.getString("PHONE"),rs.getString("TITLE"),rs.getString("DESCRIPTION"));
+                report.add(rp);
+            }
+
+            return report;
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
-        
+
     }
 
 }

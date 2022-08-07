@@ -65,15 +65,13 @@
                                                 </thead>
 
                                                 <tbody id="content-table">
+                                                <c:forEach items="${listReports}" var="x" >
                                                 <tr>
-
-                                                    <td>Trần Thanh Bảo</td>
-                                                    <td>baoCute@gmail.com</td>
-                                                    <td>0122333333</td>
-                                                    <td>20/1/2019</td>
-                                                    <td class="feedback">
-                                                        Dịch vụ chăm sóc khách hàng rất tốt, sản phẩm như mong đợi.
-                                                    </td>
+                                                    <td>${x.name}</td>
+                                                    <td>${x.email}</td>
+                                                    <td>${x.phone}</td>
+                                                    <td>${x.title}</td>
+                                                    <td class="feedback">${x.description}</td>
                                                     <td class="row" style="border: none;">
                                                         <div style="margin: auto;">
                                                             <button type="button" class="btn btn-primary"
@@ -91,7 +89,7 @@
 
                                                     </td>
                                                 </tr>
-
+                                                </c:forEach>
                                                 </tbody>
                                             </table>
 
