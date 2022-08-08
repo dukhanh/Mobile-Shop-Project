@@ -47,7 +47,7 @@
                     hàng bị hủy <i class="menu-icon fas fa-phone-slash"></i></a>
             </li>
             <li>
-                <a href="../admin/feedback.jsp" class="list-group-item list-group-item-action"> Phản hồi khách hàng <i
+                <a href="/adminFeedback" class="list-group-item list-group-item-action"> Phản hồi khách hàng <i
                         class="menu-icon far fa-paper-plane"></i></a>
             </li>
             <!-- <li>

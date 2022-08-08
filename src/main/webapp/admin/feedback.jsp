@@ -65,7 +65,7 @@
                                                 </thead>
 
                                                 <tbody id="content-table">
-                                                <c:forEach items="${listReports}" var="x" >
+                                                <c:forEach items="${listFeedbacks}" var="x" >
                                                 <tr>
                                                     <td>${x.name}</td>
                                                     <td>${x.email}</td>
