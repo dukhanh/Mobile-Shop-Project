@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="taglib.jsp"%>
+<%@include file="../../sub-component/taglib.jsp"%>
 <div class="side-bar bg-light border-right" id="sidebar-wrapper">
     <div class="sidebar-heading text-center"><b>Mobile Shop</b></div>
     <div class="profile">
@@ -21,33 +21,33 @@
     <div class="list-group list-group-flush">
         <ul id="navigation">
             <li >
-                <a href="../admin/admin.jsp" class="list-group-item list-group-item-action"> Trang chủ <i
+                <a href="../admin.jsp" class="list-group-item list-group-item-action"> Trang chủ <i
                         class="menu-icon fa fa-laptop"></i></a>
             </li>
             <li>
-                <a href="../admin/dataUser.jsp" class="list-group-item list-group-item-action   ">
+                <a href="../dataUser.jsp" class="list-group-item list-group-item-action   ">
                     Thông tin người dùng<i class="menu-icon fas fa-users font-list"></i></a>
             </li>
             <li>
-                <a href="../admin/dataProduct.jsp" class="list-group-item list-group-item-action  "> Thông tin sản phẩm
+                <a href="../dataProduct.jsp" class="list-group-item list-group-item-action  "> Thông tin sản phẩm
                     <i class="menu-icon fas fa-mobile-alt font-list"></i></a>
             </li>
             <li>
-                <a href="../admin/admin-manager-recipt.jsp" class="list-group-item list-group-item-action "> Quản lí đơn
+                <a href="../admin-manager-recipt.jsp" class="list-group-item list-group-item-action "> Quản lí đơn
                     hàng <i
                             class="menu-icon fas fa-shopping-cart font-list"></i></a>
             </li>
             <li>
-                <a href="../admin/admin-branch.jsp" class="list-group-item list-group-item-action "> Thông
+                <a href="../admin-branch.jsp" class="list-group-item list-group-item-action "> Thông
                     tin
                     thương hiệu <i class="menu-icon fas fa-archway"></i></a>
             </li>
             <li>
-                <a href="../admin/admin-cancel-receipt.jsp" class="list-group-item list-group-item-action"> Đơn
+                <a href="../admin-cancel-receipt.jsp" class="list-group-item list-group-item-action"> Đơn
                     hàng bị hủy <i class="menu-icon fas fa-phone-slash"></i></a>
             </li>
             <li>
-                <a href="/adminFeedback" class="list-group-item list-group-item-action"> Phản hồi khách hàng <i
+                <a href="../feedback.jsp" class="list-group-item list-group-item-action"> Phản hồi khách hàng <i
                         class="menu-icon far fa-paper-plane"></i></a>
             </li>
             <!-- <li>

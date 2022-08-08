@@ -23,6 +23,7 @@
 
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
+    <title>Sản phẩm</title>
     <jsp:include page="/sub-component/header.jsp"/>
     <script type="text/javascript" src="<c:url value="/assets/js/js_pages/cart.js"/>"></script>
 
@@ -195,7 +196,8 @@
                                 <div class="col-sm-3 m-0" style="padding: 2px;">
                                     <a href="productdetails?id=${p.id}">
                                         <div class="product-block">
-                                            <div class="product-img"><img class="img-card" src="${p.imageUrl}" alt=""></div>
+                                            <div class="product-img"><img class="img-card" src="${p.imageUrl}" alt="">
+                                            </div>
                                             <div class="product-content">
                                                 <h5 class="product-title">${p.name}</h5>
                                                 <div class="product-meta">
@@ -212,7 +214,8 @@
                                                     <button onclick="addToFavorite(this,${p.id},${sessionScope.account!=null})"
                                                             class="product-btn btn-like ${FavoriteService.isExist(sessionScope.account.id,p.id)}">
                                                         <i class="fa fa-heart"></i></button>
-                                                    <button class="product-btn btn-cart" onclick="addToCart(${p.id},${sessionScope.account!=null})">
+                                                    <button class="product-btn btn-cart"
+                                                            onclick="addToCart(${p.id},${sessionScope.account!=null})">
                                                         <i class="fa fa-shopping-cart"></i></button>
                                                 </div>
                                             </div>

@@ -40,6 +40,7 @@ public class CreateAccount extends HttpServlet {
                 int userId = AccountDAO.getInstance().getUserIdByEmail(email);
                 session.setAttribute("quantityProductInCart", CartDAO.getInstance().sumQuantityProductInCart(userId));
 
+                account.setId(userId);
                 session.setAttribute("account", account);
                 request.getRequestDispatcher("home").forward(request, response);
             } else {

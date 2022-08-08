@@ -26,7 +26,7 @@ public class FavoriteProductDAO {
 
     public List<Product> getFavoriteProducts(int userId) {
         List<Product> res = new LinkedList<>();
-        String sql = "select * from san_pham sp join ds_yeuthich dy on sp.ID_SANPHAM = dy.ID_SP where dy.ID_USER = ?";
+        String sql = "select * from SAN_PHAM sp join DS_YEUTHICH dy on sp.ID_SANPHAM = dy.ID_SP where dy.ID_USER = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, userId);
@@ -53,7 +53,7 @@ public class FavoriteProductDAO {
 
     // add userId and productId to favorite table
     public boolean addFavorite(int userId, int productId) {
-        String sql = "insert into ds_yeuthich(ID_USER, ID_SP) values(?, ?)";
+        String sql = "insert into DS_YEUTHICH(ID_USER, ID_SP) values(?, ?)";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, userId);
@@ -69,7 +69,7 @@ public class FavoriteProductDAO {
     }
     // delete element from favorite table
     public void deleteFavorite(int userId, int productId) {
-        String sql = "delete from ds_yeuthich where ID_USER = ? and ID_SP = ?";
+        String sql = "delete from DS_YEUTHICH where ID_USER = ? and ID_SP = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, userId);
@@ -83,7 +83,7 @@ public class FavoriteProductDAO {
 
     // count by userId from favorite table
     public int countByUserId(int userId) {
-        String sql = "select count(*) from ds_yeuthich where ID_USER = ?";
+        String sql = "select count(*) from DS_YEUTHICH where ID_USER = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, userId);
@@ -101,7 +101,7 @@ public class FavoriteProductDAO {
 
     // check userId and productId from favorite table
     public boolean checkExistFavorite(int userId, int productId) {
-        String sql = "select * from ds_yeuthich where ID_USER = ? and ID_SP = ?";
+        String sql = "select * from DS_YEUTHICH where ID_USER = ? and ID_SP = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, userId);

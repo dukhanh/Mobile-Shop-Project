@@ -29,7 +29,7 @@ public class ProductDetailsDAO {
     public Product getProductDetails(String idProduct){
         Product product = new Product();
         String sql = "SELECT *\n" +
-                "from  sl_sp s JOIN san_pham sp ON s.ID_SANPHAM=sp.ID_SANPHAM join thuong_hieu th on sp.ID_THUONG_HIEU = th.ID\n" +
+                "from  SL_SP s JOIN SAN_PHAM sp ON s.ID_SANPHAM=sp.ID_SANPHAM join THUONG_HIEU th on sp.ID_THUONG_HIEU = th.ID\n" +
                 "WHERE sp.ID_SANPHAM = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
@@ -60,7 +60,7 @@ public class ProductDetailsDAO {
     public List<String> getImageProduct(String idProduct){
         List<String> res = new ArrayList<>();
         String sql = "Select * \n" +
-                "from hinh_anh\n" +
+                "from HINH_ANH \n" +
                 "where ID_SANPHAM = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
@@ -82,7 +82,7 @@ public class ProductDetailsDAO {
         Configuration con;
         List<Configuration> res = new LinkedList<>();
         String sql = "Select * \n" +
-                "from cau_hinh\n" +
+                "from CAU_HINH\n" +
                 "where ID_SANPHAM = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);

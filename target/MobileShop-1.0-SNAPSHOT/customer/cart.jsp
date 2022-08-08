@@ -8,6 +8,7 @@
 <head>
     <jsp:include page="/sub-component/header.jsp"/>
     <script type="text/javascript" src="<c:url value="/assets/js/js_pages/cart.js"/>"></script>
+    <title>Giỏ hàng</title>
 </head>
 <fmt:setLocale value="vi_VN"/>
 <script>
@@ -97,12 +98,12 @@
                                     <div class="item-center">
                                         <div class="quantity">
                                             <button class="btn-quantity decrease-quantity"
-                                                    onclick="decreaseQuantity(this,${p.id})" type="button">-
+                                                    onclick="decreaseQuantityInCart(this,${p.id})" type="button">-
                                             </button>
                                             <input type="number" value="${p.quantity}"
                                                    class="quantity-input quantity-product-cart" readonly>
                                             <button class="btn-quantity increase-quantity"
-                                                    onclick="increaseQuantity(this,${p.id})" type="button">+
+                                                    onclick="increaseQuantityInCart(this,${p.id})" type="button">+
                                             </button>
                                         </div>
                                     </div>

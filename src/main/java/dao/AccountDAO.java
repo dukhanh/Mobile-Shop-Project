@@ -75,7 +75,7 @@ public class AccountDAO {
     }
 
     public void addAccount(Account account){
-        String sql = "INSERT INTO tai_khoan (EMAIL, TEN_ND, MAT_KHAU,TRANG_THAI,QUYEN_HAN,CREATE_DATE) VALUES (?,?, ?,?,?,now())";
+        String sql = "INSERT INTO TAI_KHOAN (EMAIL, TEN_ND, MAT_KHAU,TRANG_THAI,QUYEN_HAN,CREATE_DATE) VALUES (?,?, ?,?,?,now())";
         try {
             PreparedStatement prepareStatement = DBConnect.connect().getConnection().prepareStatement(sql);
             prepareStatement.setString(1,account.getEmail());
@@ -92,7 +92,7 @@ public class AccountDAO {
 
     }
     public void updateAccount(String email, String name, String phone, String birthDay,String gender){
-        String sql = "UPDATE tai_khoan SET TEN_ND = ?, SDT = ?, NGAY_SINH=?,GIOI_TINH=? WHERE EMAIL = ?";
+        String sql = "UPDATE TAI_KHOAN SET TEN_ND = ?, SDT = ?, NGAY_SINH=?,GIOI_TINH=? WHERE EMAIL = ?";
         try {
             PreparedStatement prepareStatement = DBConnect.connect().getConnection().prepareStatement(sql);
             prepareStatement.setString(1,name);
@@ -109,7 +109,7 @@ public class AccountDAO {
     }
 
     public void resetPassword(String email, String newPassword){
-        String sql = "UPDATE tai_khoan SET MAT_KHAU = ? WHERE EMAIL = ?";
+        String sql = "UPDATE TAI_KHOAN SET MAT_KHAU = ? WHERE EMAIL = ?";
         try {
             PreparedStatement prepareStatement = DBConnect.connect().getConnection().prepareStatement(sql);
             prepareStatement.setString(1,newPassword);
@@ -124,7 +124,7 @@ public class AccountDAO {
     
     public String getCurrentPassword(String email){
         String result = null;
-        String sql = "Select MAT_KHAU from tai_khoan where EMAIL = ?";
+        String sql = "Select MAT_KHAU from TAI_KHOAN where EMAIL = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setString(1, email);
@@ -142,7 +142,7 @@ public class AccountDAO {
 
     // check email exists in tai khoan table
     public boolean checkEmailExists(String email){
-        String sql = "SELECT EMAIL FROM tai_khoan WHERE EMAIL = ?";
+        String sql = "SELECT EMAIL FROM TAI_KHOAN WHERE EMAIL = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setString(1, email);
@@ -161,7 +161,7 @@ public class AccountDAO {
     // get userId by email in tai khoan table
     public int getUserIdByEmail(String email){
         int result = 0;
-        String sql = "Select ID_USER from tai_khoan where EMAIL = ?";
+        String sql = "Select ID_USER from TAI_KHOAN where EMAIL = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setString(1, email);

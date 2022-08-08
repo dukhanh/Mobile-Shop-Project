@@ -6,6 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
+    <title>Đăng ký</title>
     <jsp:include page="/sub-component/header.jsp"/>
     <script type="text/javascript" src="<c:url value="/assets/js/validate-form.js"/>"></script>
 </head>
@@ -117,7 +118,7 @@
                                         <p>Bạn đã có tài khoản?<a
                                                 href="${pageContext.request.contextPath}/login"
                                                 class="text-blue"> Đăng Nhập</a></p>
-                                        <a href="${pageContext.request.contextPath}/send_code_forgot_pass"
+                                        <a href="account/send-code-register.jsp"
                                            class="text-blue">Gửi lại mã</a>
                                     </div>
                                 </div>

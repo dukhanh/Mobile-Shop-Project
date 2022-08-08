@@ -13,6 +13,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
 <head>
+    <title>Đăng ký</title>
     <jsp:include page="/sub-component/header.jsp"/>
     <script type="text/javascript" src="<c:url value="/assets/js/validate-form.js"/>"></script>
 </head>
@@ -68,7 +69,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                    <input class="btn btn-primary btn-block mb20 mt10" type="submit" value="Lấy mã xác nhận">
+                                    <button class="btn btn-primary btn-block mb20 mt10" type="submit">Lấy mã xác nhận</button>
                                     <div>
                                         <p>Bạn đã có tài khoản?<a href="../account/login-form.jsp"> Đăng Nhập</a></p>
                                     </div>

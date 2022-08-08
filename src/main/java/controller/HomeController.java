@@ -1,6 +1,7 @@
 package controller;
 
 import dao.*;
+import mode_utility.Config;
 import mode_utility.Encrypt;
 import model.Account;
 import model.Address;
@@ -17,9 +18,9 @@ import java.util.List;
 public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> listProductPromotions = HomeDAO.getInstance().getProductPromotion(4);
-        List<Product> listProductTopSeller = HomeDAO.getInstance().getProductTopSeller(20);
-        List<Product> listProductBestNew = HomeDAO.getInstance().getProductBestNew(4);
+        List<Product> listProductPromotions = HomeDAO.getInstance().getProductPromotion(Config.PROMOTION_PRODUCT_NUMBER);
+        List<Product> listProductTopSeller = HomeDAO.getInstance().getProductTopSeller(Config.PRODUCT_TOP_SELLER_NUMBER);
+        List<Product> listProductBestNew = HomeDAO.getInstance().getProductBestNew(Config.PRODUCT_BEST_NEW_NUMBER);
         List<Brand> listBrandLogo = BrandDAO.getInstance().getBrandLogo();
 
         // auto login if user has cookie(remember me)

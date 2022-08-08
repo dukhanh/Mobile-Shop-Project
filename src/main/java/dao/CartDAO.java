@@ -26,7 +26,7 @@ public class CartDAO {
     }
     // get all from gio hang and san pham table by userId
     public List<Cart> getAllProductCart(int userId) {
-        String sql = "SELECT * FROM gio_hang g JOIN san_pham s ON g.ID_SP = s.ID_SANPHAM WHERE g.ID_USER = ?";
+        String sql = "SELECT * FROM GIO_HANG g JOIN SAN_PHAM s ON g.ID_SP = s.ID_SANPHAM WHERE g.ID_USER = ?";
         List<Cart> res = new LinkedList<>();
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
@@ -52,7 +52,7 @@ public class CartDAO {
     }
     // delete san pham from gio hang table by userId
     public boolean deleteProductFromCart(int userId, int productId) {
-        String sql = "DELETE FROM gio_hang WHERE ID_USER = ? AND ID_SP = ?";
+        String sql = "DELETE FROM GIO_HANG WHERE ID_USER = ? AND ID_SP = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, userId);
@@ -68,7 +68,7 @@ public class CartDAO {
     }
     // insert san pham to gio hang table by userId
     public boolean addProductToCart(int userId, int productId, int quantity) {
-        String sql = "INSERT INTO gio_hang (ID_USER, ID_SP, SL_SP) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO GIO_HANG (ID_USER, ID_SP, SL_SP) VALUES (?, ?, ?)";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, userId);
@@ -85,7 +85,7 @@ public class CartDAO {
     }
     // update sl sp in gio hang table by userId
     public boolean updateProductInCart(int userId, int productId, int quantity) {
-        String sql = "UPDATE gio_hang SET SL_SP = ? WHERE ID_USER = ? AND ID_SP = ?";
+        String sql = "UPDATE GIO_HANG SET SL_SP = ? WHERE ID_USER = ? AND ID_SP = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, quantity);
@@ -103,7 +103,7 @@ public class CartDAO {
 
     // check exists product in gio hang table
     public boolean checkExistsProductInCart(int userId, int productId) {
-        String sql = "SELECT * FROM gio_hang WHERE ID_USER = ? AND ID_SP = ?";
+        String sql = "SELECT * FROM GIO_HANG WHERE ID_USER = ? AND ID_SP = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, userId);
@@ -122,7 +122,7 @@ public class CartDAO {
 
     // sum quantity of product by userId in gio hang table
     public int sumQuantityProductInCart(int userId) {
-        String sql = "SELECT COUNT(ID_SP) AS SL_SP FROM gio_hang WHERE ID_USER = ?";
+        String sql = "SELECT COUNT(ID_SP) AS SL_SP FROM GIO_HANG WHERE ID_USER = ?";
         int quantity = 0;
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
@@ -140,7 +140,7 @@ public class CartDAO {
     }
     // check quantity a product in gio hang table
     public int checkQuantityProductInCart(int userId, int productId) {
-        String sql = "SELECT SL_SP FROM gio_hang WHERE ID_USER = ? AND ID_SP = ?";
+        String sql = "SELECT SL_SP FROM GIO_HANG WHERE ID_USER = ? AND ID_SP = ?";
         int quantity = 0;
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
@@ -160,7 +160,7 @@ public class CartDAO {
 
     // count price * quantity  product by userId in gio hang table
         public int sumPriceProductInCart(int userId, int productId) {
-        String sql = "SELECT (g.SL_SP * s.GIA_KM) AS GIA_SP FROM gio_hang g join san_pham s on g.ID_SP = s.ID_SANPHAM WHERE ID_USER = ? AND ID_SP = ?";
+        String sql = "SELECT (g.SL_SP * s.GIA_KM) AS GIA_SP FROM GIO_HANG g join SAN_PHAM s on g.ID_SP = s.ID_SANPHAM WHERE ID_USER = ? AND ID_SP = ?";
         int price = 0;
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);

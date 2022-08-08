@@ -27,7 +27,7 @@ public class BrandDAO {
         Brand brand;
         List<Brand> res = new LinkedList<>();
         String query = "SELECT ID_THUONG_HIEU,TENTH,  count(ID_SANPHAM) as c \n" +
-                "FROM san_pham sp join thuong_hieu th on sp.ID_THUONG_HIEU=th.ID\n" +
+                "FROM SAN_PHAM sp join THUONG_HIEU th on sp.ID_THUONG_HIEU=th.ID\n" +
                 "GROUP BY ID_THUONG_HIEU\n" +
                 "ORDER BY c DESC";
         try {
@@ -55,7 +55,7 @@ public class BrandDAO {
         int quantityBrand = 8;
         List<Brand> res = new LinkedList<>();
         String query = "SELECT ID_THUONG_HIEU,TENTH, LOGO,  count(ID_SANPHAM) as c\n" +
-                "                FROM san_pham sp join thuong_hieu th on sp.ID_THUONG_HIEU=th.ID\n" +
+                "                FROM SAN_PHAM sp join THUONG_HIEU th on sp.ID_THUONG_HIEU=th.ID\n" +
                 "\t\t\t\t\t\t\t\tWHERE LOGO <> \"\"\n" +
                 "                GROUP BY ID_THUONG_HIEU\n" +
                 "                ORDER BY c DESC\n" +

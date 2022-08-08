@@ -25,7 +25,7 @@ public class AssessDAO {
     }
 
     public boolean insertAssess(Assess assess) {
-        String sql = "insert into danh_gia_sp(ID_SP, ID_USER,MUC_DANHGIA,NOIDUNG_DG,NGAY_DG) values(?, ?, ?, ?, now())";
+        String sql = "insert into DANH_GIA_SP(ID_SP, ID_USER,MUC_DANHGIA,NOIDUNG_DG,NGAY_DG) values(?, ?, ?, ?, now())";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
             psupdate.setInt(1, assess.getIdProduct());
@@ -44,7 +44,7 @@ public class AssessDAO {
 
     public List<Assess> getListAssess(int idProduct) {
         List<Assess> list = new LinkedList<>();
-        String sql = "select * from danh_gia_sp d join tai_khoan t on d.id_user=t.id_user where ID_SP = ?";
+        String sql = "select * from DANH_GIA_SP d join TAI_KHOAN t on d.ID_USER=t.ID_USER where ID_SP = ?";
         try {
             PreparedStatement ps = DBConnect.connect().getConnection().prepareStatement(sql);
             ps.setInt(1, idProduct);
@@ -67,7 +67,7 @@ public class AssessDAO {
 
     public double getRateProduct(int idProduct) {
         double rate = 0;
-        String sql = "select avg(MUC_DANHGIA) as rate from danh_gia_sp where ID_SP = ?";
+        String sql = "select avg(MUC_DANHGIA) as rate from DANH_GIA_SP where ID_SP = ?";
         try {
             PreparedStatement ps = DBConnect.connect().getConnection().prepareStatement(sql);
             ps.setInt(1, idProduct);
@@ -84,7 +84,7 @@ public class AssessDAO {
     // count number of review
     public int getNumberReview(int idProduct) {
         int number = 0;
-        String sql = "select count(*) as number from danh_gia_sp where ID_SP = ?";
+        String sql = "select count(*) as number from DANH_GIA_SP where ID_SP = ?";
         try {
             PreparedStatement ps = DBConnect.connect().getConnection().prepareStatement(sql);
             ps.setInt(1, idProduct);
@@ -100,7 +100,7 @@ public class AssessDAO {
 
     public static void main(String[] args) {
         AssessDAO assessDAO = AssessDAO.getInstance();
-            System.out.println(assessDAO.getNumberReview(123547404));
+        System.out.println(assessDAO.getNumberReview(123547404));
 
     }
 }
