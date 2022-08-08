@@ -82,7 +82,8 @@
                                                             <button class="btn btn-danger sizeTh1" data-toggle="modal"
                                                                     data-target="#delete"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Xóa">
+                                                                    title="Xóa"
+                                                                    href="#">
                                                                 <i class="txt-center menu-icon fas fa-trash-alt"></i>
                                                             </button>
                                                         </div>

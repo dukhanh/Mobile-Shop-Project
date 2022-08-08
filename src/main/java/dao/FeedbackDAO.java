@@ -45,6 +45,21 @@ public class FeedbackDAO {
         return null;
     }
 
+    public boolean deleteFeedback(String NGAY_DG) {
+        String sql = "DELETE FROM danh_gia_sp WHERE danh_gia_sp.NGAY_DG = ? ";
+        try {
+            PreparedStatement fbUpdate = DBConnect.connect().getConnection().prepareStatement(sql);
+            fbUpdate.setString(1, NGAY_DG);
+            fbUpdate.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
 
     }
