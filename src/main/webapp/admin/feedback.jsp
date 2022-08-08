@@ -67,11 +67,11 @@
                                                 <tbody id="content-table">
                                                 <c:forEach items="${listFeedbacks}" var="x" >
                                                 <tr>
-                                                    <td>${x.name}</td>
+                                                    <td>${x.ten_nd}</td>
                                                     <td>${x.email}</td>
-                                                    <td>${x.phone}</td>
-                                                    <td>${x.title}</td>
-                                                    <td class="feedback">${x.description}</td>
+                                                    <td>${x.sdt}</td>
+                                                    <td>${x.ngay_dg}</td>
+                                                    <td class="feedback">${x.noidung_dg}</td>
                                                     <td class="row" style="border: none;">
                                                         <div style="margin: auto;">
                                                             <button type="button" class="btn btn-primary"

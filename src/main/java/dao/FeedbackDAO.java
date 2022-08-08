@@ -24,7 +24,7 @@ public class FeedbackDAO {
 
     public List<Feedback> showAllFeedbacks(){
 
-        String sql = "SELECT NAME, EMAIL, PHONE, TITLE, DESCRIPTION FROM REPORTS ";
+        String sql = "SELECT tk.TEN_ND, tk.EMAIL, tk.SDT, dgsp.NGAY_DG, dgsp.NOIDUNG_DG FROM danh_gia_sp dgsp JOIN tai_khoan tk ON dgsp.ID_USER = tk.ID_USER";
         Feedback fb;
         List<Feedback> feedback = new ArrayList<Feedback>();
         ResultSet rs;
@@ -34,7 +34,7 @@ public class FeedbackDAO {
             rs = statement.executeQuery();
 
             while (rs.next()) {
-                fb = new Feedback(rs.getString("NAME"),rs.getString("EMAIL"),rs.getString("PHONE"),rs.getString("TITLE"),rs.getString("DESCRIPTION"));
+                fb = new Feedback(rs.getString("TEN_ND"),rs.getString("EMAIL"),rs.getString("SDT"),rs.getString("NGAY_DG"),rs.getString("NOIDUNG_DG"));
                 feedback.add(fb);
             }
 
