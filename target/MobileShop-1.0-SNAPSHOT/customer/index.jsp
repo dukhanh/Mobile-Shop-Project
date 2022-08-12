@@ -153,7 +153,7 @@
                     <h3 class="head-title">
                         <a href="productlist?&sort=best_new">
                             <span style="margin-right: 4px;">Sản phẩm mới nhất</span>
-                            <i class="fas fa-angle-double-right"></i>
+                            <i style="font-size: 16px;" class="fas fa-angle-double-right"></i>
                         </a>
                     </h3>
                 </div>
@@ -212,8 +212,7 @@
                     <h3 class="head-title">
                         <a href="productlist?&sort=top_seller">
                             <span style="margin-right: 4px;">Bán chạy nhất</span>
-                            <i class="fas fa-angle-double-right"></i>
-
+                            <i style="font-size: 16px;" class="fas fa-angle-double-right"></i>
                         </a>
                     </h3>
                 </div>
@@ -276,7 +275,7 @@
                     <h3 class="head-title">
                         <a href="productlist?&sort=promotion">
                             <span style="margin-right: 4px;">Đang khuyến mãi</span>
-                            <i class="fas fa-angle-double-right"></i>
+                            <i style="font-size: 16px;" class="fas fa-angle-double-right"></i>
                         </a>
                     </h3>
                 </div>
