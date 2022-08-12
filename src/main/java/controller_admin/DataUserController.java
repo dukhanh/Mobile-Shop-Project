@@ -1,6 +1,7 @@
 package controller_admin;
 
 import dao.DataUserDAO;
+import model.Account;
 import model.DataUser;
 
 import javax.servlet.*;
@@ -15,7 +16,7 @@ public class DataUserController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //get data from dao
         DataUserDAO dao = new DataUserDAO();
-        List<DataUser> list = dao.showAllDataUSer();
+        List<Account> list = dao.listUsers();
 //set data to jsp
         request.setAttribute("listDataUser",list);
         request.getRequestDispatcher("/admin/dataUser.jsp").forward(request,response);

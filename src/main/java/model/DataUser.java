@@ -122,4 +122,22 @@ public class DataUser {
     public void setTinh(String tinh) {
         this.tinh = tinh;
     }
+
+    @Override
+    public String toString() {
+        return "DataUser{" +
+                "id_user=" + id_user +
+                ", user_name='" + user_name + '\'' +
+                ", email='" + email + '\'' +
+                ", ten_nd='" + ten_nd + '\'' +
+                ", mat_khau='" + mat_khau + '\'' +
+                ", trang_thai='" + trang_thai + '\'' +
+                ", quyen_han='" + quyen_han + '\'' +
+                ", sdt='" + sdt + '\'' +
+                ", gioi_tinh='" + gioi_tinh + '\'' +
+                ", ngay_sinh='" + ngay_sinh + '\'' +
+                ", create_date='" + create_date + '\'' +
+                ", tinh='" + tinh + '\'' +
+                '}';
+    }
 }

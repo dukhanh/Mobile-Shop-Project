@@ -74,24 +74,24 @@
                                                               title="Mã khách hàng">Mã KH</span>
                                                     </th>
                                                     <th>Họ tên</th>
-                                                    <th>Số điện thoại</th>
-                                                    <th>Địa chỉ mặc định</th>
-                                                    <th>Trạng thái</th>
                                                     <th>Email</th>
+                                                    <th>Số điện thoại</th>
+                                                    <th>Quyền hạn</th>
+                                                    <th>Trạng thái</th>
+
                                                     <th></th>
                                                 </tr>
                                                 </thead>
 
                                                 <tbody id="content-table">
-                                                <c:forEach items="${listDataUser}" var="x" >
+                                                <c:forEach items="${listDataUser}" var="x">
                                                 <tr>
-                                                    <td>${x.id_user}</td>
-                                                    <td>${x.ten_nd}</td>
-                                                    <td>${x.sdt}</td>
-                                                    <td>${x.tinh}</td>
-                                                    <td>${x.trang_thai}</td>
+                                                    <td>${x.id}</td>
+                                                    <td>${x.fullName}</td>
                                                     <td>${x.email}</td>
-
+                                                    <td>${x.phoneNumber}</td>
+                                                    <td>${x.role}</td>
+                                                    <td>${x.status}</td>
                                                     <td class="row" style="border: none;">
                                                         <div style="margin: auto;">
                                                             <button class="btn btn-success sizeTh1" value="true"

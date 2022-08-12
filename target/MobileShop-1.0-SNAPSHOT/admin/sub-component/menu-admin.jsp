@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../../sub-component/taglib.jsp"%>
+<%@include file="../../sub-component/taglib.jsp" %>
 <div class="side-bar bg-light border-right" id="sidebar-wrapper">
     <div class="sidebar-heading text-center"><b>Mobile Shop</b></div>
     <div class="profile">
@@ -20,17 +20,14 @@
     </div>
     <div class="list-group list-group-flush">
         <ul id="navigation">
-            <li >
+            <li>
                 <a href="../admin/admin.jsp" class="list-group-item list-group-item-action"> Trang chủ <i
                         class="menu-icon fa fa-laptop"></i></a>
             </li>
             <li>
-<<<<<<< Updated upstream
-                <a href="/admin/dataUser" class="list-group-item list-group-item-action   ">
-=======
-                <a href="../admin/dataUser.jsp" class="list-group-item list-group-item-action   ">
->>>>>>> Stashed changes
-                    Thông tin người dùng<i class="menu-icon fas fa-users font-list"></i></a>
+                <a href="${pageContext.request.contextPath}/admin/dataUser" class="list-group-item list-group-item-action">
+                    Thông tin người dùng<i class="menu-icon fas fa-users font-list"></i>
+                </a>
             </li>
             <li>
                 <a href="../admin/dataProduct.jsp" class="list-group-item list-group-item-action  "> Thông tin sản phẩm
@@ -51,12 +48,9 @@
                     hàng bị hủy <i class="menu-icon fas fa-phone-slash"></i></a>
             </li>
             <li>
-<<<<<<< Updated upstream
-                <a href="/admin/feedback" class="list-group-item list-group-item-action"> Phản hồi khách hàng <i
-=======
-                <a href="../admin/feedback.jsp" class="list-group-item list-group-item-action"> Phản hồi khách hàng <i
->>>>>>> Stashed changes
-                        class="menu-icon far fa-paper-plane"></i></a>
+                <a href="${pageContext.request.contextPath}/admin/feedback" class="list-group-item list-group-item-action"> Phản hồi khách hàng
+                    <i class="menu-icon far fa-paper-plane"></i>
+                </a>
             </li>
             <!-- <li>
               <a href="admin-filter.html" class="list-group-item list-group-item-action "> Dữ liệu lọc <i
