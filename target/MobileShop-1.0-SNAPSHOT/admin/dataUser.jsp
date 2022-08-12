@@ -93,44 +93,48 @@
                                                     <td>${x.role}</td>
                                                     <td>${x.status}</td>
                                                     <td class="row" style="border: none;">
-                                                        <div style="margin: auto;">
-                                                            <button class="btn btn-success sizeTh1" value="true"
-                                                                    id='block' data-placement="top"
-                                                                    title="Block" data-target="#block-user"
-                                                                    data-toggle="modal"><i
-                                                                    class="txt-center fas fa-lock"></i></button>
+                                                        <c:if test="${(x.role).equals('customer')}">
+                                                            <div style="margin: auto;">
+                                                                <button class="btn btn-success sizeTh1" value="true"
+                                                                        id='block' data-placement="top"
+                                                                        title="Block" data-target="#block-user"
+                                                                        data-toggle="modal">
+                                                                    <i class="txt-center fas fa-lock"></i>
+                                                                </button>
+                                                            </div>
 
-                                                        </div>
-
-
-                                                        <div class="modal fade" id='block-user' tabindex="-1"
-                                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">
-                                                                            Xác nhận chặn</h5>
-                                                                        <button type="button" class="close"
-                                                                                data-dismiss="modal" aria-label="Close">
-                                                                            <i aria-hidden="true">&times;</i>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        Bạn có muốn xác nhận chặn user này không?
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                                data-dismiss="modal">Hủy
-                                                                        </button>
-                                                                        <button type="button" class="btn btn-primary"
-                                                                                onclick="check_block('block') "
-                                                                                data-dismiss="modal">Xác
-                                                                            nhận
-                                                                        </button>
+                                                            <div class="modal fade" id='block-user' tabindex="-1"
+                                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title"
+                                                                                id="exampleModalLabel">
+                                                                                Xác nhận chặn</h5>
+                                                                            <button type="button" class="close"
+                                                                                    data-dismiss="modal"
+                                                                                    aria-label="Close">
+                                                                                <i aria-hidden="true">&times;</i>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Bạn có muốn xác nhận chặn user này không?
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                    class="btn btn-secondary"
+                                                                                    data-dismiss="modal">Hủy
+                                                                            </button>
+                                                                            <button type="button"
+                                                                                    class="btn btn-primary"
+                                                                                    onclick="check_block('block')"
+                                                                                    data-dismiss="modal">Xác nhận
+                                                                            </button>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </c:if>
 
                                                     </td>
                                                 </tr>
