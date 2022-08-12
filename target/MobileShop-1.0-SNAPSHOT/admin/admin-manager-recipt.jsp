@@ -55,16 +55,15 @@
                     </tr>
                     </thead>
                     <tbody id="content-table">
+                    <c:forEach items="${listBill}" var="x">
                     <tr>
-                        <td>DH01</td>
-                        <td>KH01</td>
+                        <td>${x.idBill}</td>
+                        <td>${x.idUser}</td>
 
                         <td>
                             20,200,000
                         </td>
-                        <td>
-                            20/11/2020
-                        </td>
+                        <td>${x.createdAt}</td>
 
                         <td class="detail"><a data-toggle="modal" data-target="#exampleModal" href='#'> Chi tiết <i
                                 class="fa fa-external-link-alt"></i></a>
@@ -153,7 +152,7 @@
 
                         </td>
                     </tr>
-
+                    </c:forEach>
                     </tbody>
 
 

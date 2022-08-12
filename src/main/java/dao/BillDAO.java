@@ -3,18 +3,20 @@ package dao;
 import db.DBConnect;
 import model.Bill;
 import model.BillDetail;
+import model.Feedback;
 import service.BillService;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class BillDAO {
     private static BillDAO instance;
 
-    private BillDAO() {
+    public BillDAO() {
     }
 
     public static BillDAO getInstance() {
@@ -172,6 +174,29 @@ public class BillDAO {
             e.printStackTrace();
         }
         return 0;
+    }
+// show on admin view, need to update
+    public List<Bill> showAllBill(){
+
+        String sql = "select ID_DH, ID_USER, CREATE_DATE from don_hang";
+        Bill b;
+        List<Bill> bill = new ArrayList<Bill>();
+        ResultSet rs;
+        PreparedStatement statement;
+        try {
+            statement = DBConnect.connect().getConnection().prepareStatement(sql);
+            rs = statement.executeQuery();
+
+            while (rs.next()) {
+                b = new Bill(rs.getString("ID_DH"),rs.getInt("ID_USER"),rs.getString("CREATE_DATE"));
+                bill.add(b);
+            }
+
+            return bill;
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     // test getBillById method

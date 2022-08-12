@@ -34,7 +34,7 @@
                     <i class="menu-icon fas fa-mobile-alt font-list"></i></a>
             </li>
             <li>
-                <a href="../admin/admin-manager-recipt.jsp" class="list-group-item list-group-item-action "> Quản lí đơn
+                <a href="${pageContext.request.contextPath}/admin/billManagerRecipt" class="list-group-item list-group-item-action "> Quản lí đơn
                     hàng <i
                             class="menu-icon fas fa-shopping-cart font-list"></i></a>
             </li>

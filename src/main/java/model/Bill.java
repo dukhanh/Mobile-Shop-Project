@@ -13,6 +13,12 @@ public class Bill implements Serializable {
 
     public Bill() {
     }
+//cons for admin, need to update
+    public Bill(String idBill, int idUser, String createdAt) {
+        this.idBill = idBill;
+        this.idUser = idUser;
+        this.createdAt = createdAt;
+    }
 
     public Bill(String idBill, int idUser, int shipFee, String status, String address, String createdAt) {
         this.idBill = idBill;
