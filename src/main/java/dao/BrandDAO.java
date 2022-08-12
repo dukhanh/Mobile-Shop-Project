@@ -6,6 +6,7 @@ import db.DBConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -78,6 +79,29 @@ public class BrandDAO {
             return null;
         }
         return res;
+    }
+    public List<Brand> showAllBrand(){
+
+        String sql = "SELECT DISTINCT TH.ID, TH.TENTH, SL.SO_LUONG FROM thuong_hieu TH JOIN san_pham SP ON TH.ID = SP.ID_THUONG_HIEU \n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tJOIN sl_sp SL ON SP.ID_SANPHAM = SL.ID_SANPHAM";
+        Brand br;
+        List<Brand> brand = new ArrayList<Brand>();
+        ResultSet rs;
+        PreparedStatement statement;
+        try {
+            statement = DBConnect.connect().getConnection().prepareStatement(sql);
+            rs = statement.executeQuery();
+
+            while (rs.next()) {
+                br = new Brand(rs.getInt("ID"),rs.getString("TENTH"), rs.getInt("SO_LUONG"));
+                brand.add(br);
+            }
+
+            return brand;
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 //    public static void main(String[] args) {

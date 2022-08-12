@@ -59,13 +59,11 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody id="content-table">
+                                                    <c:forEach items="${listBrand}" var="x">
                                                         <tr>
-                                                            <td>TH01</td>
-                                                            <td>Apple</td>
-
-
-                                                            <td>10</td>
-
+                                                            <td>${x.ID}</td>
+                                                            <td>${x.TENTH}</td>
+                                                            <td>${x.SO_LUONG}</td>
                                                             <td class="row" style="border: none;">
                                                                 <button class="edit3 btn btn-danger" data-toggle="modal"
                                                                     data-target="#del" style="margin: auto;"
@@ -73,94 +71,8 @@
                                                                         class="txt-center menu-icon fas fa-trash-alt"></i></button>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>TH02</td>
-                                                            <td>Samsung</td>
-
-
-                                                            <td>10</td>
-
-                                                            <td class="row" style="border: none;">
-                                                                <button class="edit3 btn btn-danger" data-toggle="modal"
-                                                                    data-target="#del" style="margin: auto;"
-                                                                    title='Xóa thương hiệu'><i
-                                                                        class="txt-center menu-icon fas fa-trash-alt"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>TH03</td>
-                                                            <td>Huawei</td>
-
-
-                                                            <td>10</td>
-
-                                                            <td class="row" style="border: none;">
-                                                                <button class="edit3 btn btn-danger" data-toggle="modal"
-                                                                    data-target="#del" style="margin: auto;"
-                                                                    title='Xóa thương hiệu'><i
-                                                                        class="txt-center menu-icon fas fa-trash-alt"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>TH04</td>
-                                                            <td>Vivo</td>
-
-
-                                                            <td>10</td>
-
-                                                            <td class="row" style="border: none;">
-                                                                <button class="edit3 btn btn-danger" data-toggle="modal"
-                                                                    data-target="#del" style="margin: auto;"
-                                                                    title='Xóa thương hiệu'><i
-                                                                        class="txt-center menu-icon fas fa-trash-alt"></i></button>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>TH05</td>
-                                                            <td>OPPO</td>
-
-
-                                                            <td>10</td>
-
-                                                            <td class="row" style="border: none;">
-                                                                <button class="edit3 btn btn-danger" data-toggle="modal"
-                                                                    data-target="#del" style="margin: auto;"
-                                                                    title='Xóa thương hiệu'><i
-                                                                        class="txt-center menu-icon fas fa-trash-alt"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>TH06</td>
-                                                            <td>Xiaomi</td>
-
-
-                                                            <td>10</td>
-
-                                                            <td class="row" style="border: none;">
-                                                                <button class="edit3 btn btn-danger" data-toggle="modal"
-                                                                    data-target="#del" style="margin: auto;"
-                                                                    title='Xóa thương hiệu'><i
-                                                                        class="txt-center menu-icon fas fa-trash-alt"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>TH07</td>
-                                                            <td>Realmi</td>
-
-
-                                                            <td>10</td>
-
-                                                            <td class="row" style="border: none;">
-                                                                <button class="edit3 btn btn-danger" data-toggle="modal"
-                                                                    data-target="#del" style="margin: auto;"
-                                                                    title='Xóa thương hiệu'><i
-                                                                        class="txt-center menu-icon fas fa-trash-alt"></i></button>
-                                                            </td>
-                                                        </tr>
-
-
-
+                                                    </c:forEach>
+                                                    </tbody>
                                                 </table>
 
                                                 <div class="page-navigation">

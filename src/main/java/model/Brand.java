@@ -6,8 +6,18 @@ public class Brand implements Serializable {
     private int id;
     private String name;
     private String logo;
+    private int ID;
+    private String TENTH;
+    private int SO_LUONG;
+
     public Brand(){
 
+    }
+
+    public Brand(int ID, String TENTH, int SO_LUONG) {
+        this.ID = ID;
+        this.TENTH = TENTH;
+        this.SO_LUONG= SO_LUONG;
     }
 
     public Brand(int id, String name, String logo){
@@ -39,4 +49,21 @@ public class Brand implements Serializable {
     public void setLogo(String logo) {
         this.logo = logo;
     }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getTENTH() {
+        return TENTH;
+    }
+
+    public void setTENTH(String TENTH) {
+        this.TENTH = TENTH;
+    }
+
 }

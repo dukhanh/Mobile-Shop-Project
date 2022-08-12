@@ -39,7 +39,7 @@
                             class="menu-icon fas fa-shopping-cart font-list"></i></a>
             </li>
             <li>
-                <a href="../admin/admin-branch.jsp" class="list-group-item list-group-item-action "> Thông
+                <a href="${pageContext.request.contextPath}/admin/brand" class="list-group-item list-group-item-action "> Thông
                     tin
                     thương hiệu <i class="menu-icon fas fa-archway"></i></a>
             </li>
