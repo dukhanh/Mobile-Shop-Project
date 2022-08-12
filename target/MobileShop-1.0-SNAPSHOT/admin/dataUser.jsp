@@ -81,14 +81,16 @@
                                                     <th></th>
                                                 </tr>
                                                 </thead>
+
                                                 <tbody id="content-table">
+                                                <c:forEach items="${listDataUser}" var="x" >
                                                 <tr>
-                                                    <td>KH01</td>
-                                                    <td>Tiger</td>
-                                                    <td>0123456779</td>
-                                                    <td>Linh Xuân, Thủ Đức</td>
-                                                    <td>Mở</td>
-                                                    <td>tiger@gmail.com</td>
+                                                    <td>${x.id_user}</td>
+                                                    <td>${x.ten_nd}</td>
+                                                    <td>${x.sdt}</td>
+                                                    <td>${x.tinh}</td>
+                                                    <td>${x.trang_thai}</td>
+                                                    <td>${x.email}</td>
 
                                                     <td class="row" style="border: none;">
                                                         <div style="margin: auto;">
@@ -132,6 +134,7 @@
 
                                                     </td>
                                                 </tr>
+                                                </c:forEach>
 
                                             </table>
 

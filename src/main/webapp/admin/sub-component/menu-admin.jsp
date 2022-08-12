@@ -25,7 +25,7 @@
                         class="menu-icon fa fa-laptop"></i></a>
             </li>
             <li>
-                <a href="../dataUser.jsp" class="list-group-item list-group-item-action   ">
+                <a href="/admin/dataUser" class="list-group-item list-group-item-action   ">
                     Thông tin người dùng<i class="menu-icon fas fa-users font-list"></i></a>
             </li>
             <li>
