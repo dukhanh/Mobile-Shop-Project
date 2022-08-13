@@ -44,7 +44,7 @@
                     thương hiệu <i class="menu-icon fas fa-archway"></i></a>
             </li>
             <li>
-                <a href="../admin/admin-cancel-receipt.jsp" class="list-group-item list-group-item-action"> Đơn
+                <a href="${pageContext.request.contextPath}/admin/billCancelRecipt" class="list-group-item list-group-item-action"> Đơn
                     hàng bị hủy <i class="menu-icon fas fa-phone-slash"></i></a>
             </li>
             <li>

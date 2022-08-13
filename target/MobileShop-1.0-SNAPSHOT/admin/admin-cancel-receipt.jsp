@@ -64,10 +64,12 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody id="content-table">
+
+                                                <c:forEach items="${listBill}" var="x">
                                                 <tr>
-                                                    <td>TH01</td>
-                                                    <td>KH01</td>
-                                                    <td>10/10/2020</td>
+                                                    <td>${x.idBill}</td>
+                                                    <td>${x.idUser}</td>
+                                                    <td>${x.createdAt}</td>
                                                     <td class="detail"><a data-toggle="modal"
                                                                           data-target="#exampleModal" href='#'> Chi tiết
                                                         <i
@@ -148,6 +150,7 @@
                                                     </td>
 
                                                 </tr>
+                                                </c:forEach>
 
 <%--                                                <tr>--%>
 <%--                                                    <td>TH02</td>--%>
