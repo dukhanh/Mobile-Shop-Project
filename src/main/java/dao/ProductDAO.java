@@ -1,16 +1,19 @@
 package dao;
 
 import db.DBConnect;
+import model.Bill;
 import model.Product;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDAO {
     private static ProductDAO instance;
 
-    private ProductDAO() {
+    public ProductDAO() {
     }
 
     public static ProductDAO getInstance() {
@@ -80,6 +83,39 @@ public class ProductDAO {
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    // show on admin view, need to update
+    public List<Product> showAllProduct(){
+
+        String sql = "SELECT san_pham.ANH_CHINH, san_pham.ID_SANPHAM, san_pham.TEN_SP, thuong_hieu.TENTH, san_pham.NGAY_CAPNHAT,sl_sp.SO_LUONG ,sl_sp.SL_DABAN,san_pham.GIA_SP \n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tFROM san_pham JOIN thuong_hieu ON san_pham.ID_THUONG_HIEU = thuong_hieu.ID\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tJOIN sl_sp       ON sl_sp.ID_SANPHAM        = san_pham.ID_SANPHAM";
+        Product p;
+        List<Product> product = new ArrayList<Product>();
+        ResultSet rs;
+        PreparedStatement statement;
+        try {
+            statement = DBConnect.connect().getConnection().prepareStatement(sql);
+            rs = statement.executeQuery();
+
+            while (rs.next()) {
+                p = new Product(rs.getString("ANH_CHINH")
+                        ,rs.getInt("ID_SANPHAM")
+                        ,rs.getString("TEN_SP")
+                        ,rs.getString("TENTH")
+                        ,rs.getString("NGAY_CAPNHAT")
+                        ,rs.getInt("SO_LUONG")
+                        ,rs.getInt("SL_DABAN")
+                        ,rs.getInt("GIA_SP"));
+                product.add(p);
+            }
+
+            return product;
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static void main(String[] args) {

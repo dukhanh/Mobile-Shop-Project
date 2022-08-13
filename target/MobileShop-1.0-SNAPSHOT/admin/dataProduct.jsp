@@ -100,19 +100,18 @@
                                                 </thead>
 
                                                 <tbody id="content-table">
+                                                <c:forEach items="${listProduct}" var="x">
                                                 <tr>
                                                     <td style="max-width: 140px;"><img
-                                                            src="/assets/images/Product/i12black.png" width="100px"
+                                                            src="${x.ANH_CHINH}" width="100px"
                                                             height="100px" alt=""></td>
-                                                    <td>iphone12S</td>
-                                                    <td>Iphone 12</td>
-                                                    <td>Apple</td>
-                                                    <td>09/09/2020</td>
-                                                    <td>200</td>
-
-
-                                                    <td>190</td>
-                                                    <td class="color-price">30.000.000 VND</td>
+                                                    <td>${x.ID_SANPHAM}</td>
+                                                    <td>${x.TEN_SP}</td>
+                                                    <td>${x.TENTH}</td>
+                                                    <td>${x.NGAY_CAPNHAT}</td>
+                                                    <td>${x.SO_LUONG}</td>
+                                                    <td>${x.SL_DABAN}</td>
+                                                    <td class="color-price">${x.GIA_SP}VND</td>
                                                     <td class="row">
                                                         <div class="container-button">
                                                             <a href="../admin/formEdit.jsp">
@@ -133,7 +132,7 @@
 
                                                     </td>
                                                 </tr>
-
+                                                </c:forEach>
                                                 </tbody>
                                             </table>
 

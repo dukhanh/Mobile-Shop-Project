@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li>
-                <a href="../admin/dataProduct.jsp" class="list-group-item list-group-item-action  "> Thông tin sản phẩm
+                <a href="${pageContext.request.contextPath}/admin/dataProduct" class="list-group-item list-group-item-action  "> Thông tin sản phẩm
                     <i class="menu-icon fas fa-mobile-alt font-list"></i></a>
             </li>
             <li>
