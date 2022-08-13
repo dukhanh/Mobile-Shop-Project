@@ -15,10 +15,14 @@ import java.util.List;
 public class BillManagerReciptController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String billId = request.getParameter("billId");
 //get data from dao
         BillDAO dao = new BillDAO();
         List<Bill> list = dao.showAllBill();
+        int totalBill = BillDAO.getInstance().totalBill(billId);
 //set data to jsp
+
+        request.setAttribute("totalBill", totalBill);
         request.setAttribute("listBill",list);
         request.getRequestDispatcher("/admin/admin-manager-recipt.jsp").forward(request,response);
     }

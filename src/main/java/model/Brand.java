@@ -66,4 +66,11 @@ public class Brand implements Serializable {
         this.TENTH = TENTH;
     }
 
+    public int getSO_LUONG() {
+        return SO_LUONG;
+    }
+
+    public void setSO_LUONG(int SO_LUONG) {
+        this.SO_LUONG = SO_LUONG;
+    }
 }

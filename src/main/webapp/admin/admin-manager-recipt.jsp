@@ -3,7 +3,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<fmt:setLocale value="vi_VN"/>
 <head>
     <jsp:include page="/admin/sub-component/header-admin.jsp"/>
 </head>
@@ -59,10 +61,7 @@
                     <tr>
                         <td>${x.idBill}</td>
                         <td>${x.idUser}</td>
-
-                        <td>
-                            20,200,000
-                        </td>
+                        <td><fmt:formatNumber value="${totalBill}"/></td>
                         <td>${x.createdAt}</td>
 
                         <td class="detail"><a data-toggle="modal" data-target="#exampleModal" href='#'> Chi tiết <i
