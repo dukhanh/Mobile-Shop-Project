@@ -10,10 +10,12 @@ public class Bill implements Serializable {
     public String status;
     private String address;
     private String createdAt;
+    private long total;
 
     public Bill() {
     }
-//cons for admin, need to update
+
+    //cons for admin, need to update
     public Bill(String idBill, int idUser, String createdAt) {
         this.idBill = idBill;
         this.idUser = idUser;
@@ -63,6 +65,14 @@ public class Bill implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public long getTotal() {
+        return total;
+    }
+
+    public void setTotal(long total) {
+        this.total = total;
+    }
+
     public int getShipFee() {
         return shipFee;
     }
@@ -72,9 +82,19 @@ public class Bill implements Serializable {
     }
 
     // toString
+
+
     @Override
     public String toString() {
-        return "Bill{" + "idBill=" + idBill + ", idUser=" + idUser + ", shipFee=" + shipFee + ", status=" + status + ", createdAt=" + createdAt + '}';
+        return "Bill{" +
+                "idBill='" + idBill + '\'' +
+                ", idUser=" + idUser +
+                ", shipFee=" + shipFee +
+                ", status='" + status + '\'' +
+                ", address='" + address + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", total=" + total +
+                '}';
     }
 
     public String getAddress() {
@@ -88,27 +108,34 @@ public class Bill implements Serializable {
     public static class Comment {
 
 
-    private String description;
-     private String userName;
-     private Date createDate;
-     public String getDescription() {
+        private String description;
+        private String userName;
+        private Date createDate;
+
+        public String getDescription() {
             return description;
         }
+
         public void setDescription(String description) {
             this.description = description;
         }
+
         public String getUserName() {
             return userName;
         }
+
         public void setUserName(String userName) {
             this.userName = userName;
         }
+
         public Date getCreateDate() {
             return createDate;
         }
+
         public void setCreateDate(Date createDate) {
             this.createDate = createDate;
         }
+
         public Comment(String description, String userName, Date createDate) {
             super();
             this.description = description;

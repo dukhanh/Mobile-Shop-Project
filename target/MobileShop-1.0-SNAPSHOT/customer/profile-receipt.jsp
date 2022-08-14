@@ -88,9 +88,10 @@
                                             <td>${bill.createdAt}</td>
                                             <td>${bill.status}</td>
                                             <td>
-                                                <a href="${pageContext.request.contextPath}/bill_detail?billId=${bill.idBill}">Xem
-                                                    chi tiết</a></td>
-
+                                                <a href="${pageContext.request.contextPath}/bill_detail?billId=${bill.idBill}">
+                                                    Xem chi tiết
+                                                </a>
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>

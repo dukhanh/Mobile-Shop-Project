@@ -173,9 +173,10 @@
                                             </c:if>
                                         </c:forEach>
                                     </c:url>
-                                    <p class="item">${b.getName()}<a
-                                            href="<c:out value='${displayURL}' /><%=SetURL.setUrlSearch(search)%><%=SetURL.setUrlCa(cat)%><%=SetURL.setUrlFPrice(price)%>">
-                                        <img src="https://salt.tikicdn.com/ts/upload/09/59/a4/a99bbc2a604f745281eca1aab8c87345.png"></a>
+                                    <p class="item">${b.getName()}
+                                        <a href="<c:out value='${displayURL}' /><%=SetURL.setUrlSearch(search)%><%=SetURL.setUrlCa(cat)%><%=SetURL.setUrlFPrice(price)%>">
+                                            <img src="https://salt.tikicdn.com/ts/upload/09/59/a4/a99bbc2a604f745281eca1aab8c87345.png">
+                                        </a>
                                     </p>
                                 </c:if>
                             </c:forEach>
@@ -311,22 +312,7 @@
 <!-- /.product-list -->
 <!-- footer -->
 <jsp:include page="/sub-component/footer.jsp"/>
-<%--<script>--%>
-<%--    function searchByName(param) {--%>
-<%--        var texSearch = param.value;--%>
-<%--        $.ajax({--%>
-<%--            url: "/searchAjax",--%>
-<%--            type: "get",--%>
-<%--            data: {--%>
-<%--                search: texSearch--%>
-<%--            },--%>
-<%--            success: function (data) {--%>
-<%--                var row = document.getElementById("content");--%>
-<%--                row.innerHTML = data;--%>
-<%--            }--%>
-<%--        });--%>
-<%--    }--%>
-<%--</script>--%>
+
 <script>
     $(document).ready(function () {
         if ($('.ty-compact-list').length > 10) {

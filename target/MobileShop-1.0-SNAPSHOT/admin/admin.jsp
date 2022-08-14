@@ -76,69 +76,26 @@
                     <thead class="thead-light">
                     <tr>
                         <th scope="col">Thời gian</th>
+                        <th scope="col" data-toggle="tooltip" data-placement="top"
+                            title="Số lượng sản phẩm được thêm"><span title="Số lượng sản phẩm"> SLSP bán được</span>
+                        </th>
+                        <th scope="col">Số đơn hàng</th>
                         <th scope="col">Doanh thu</th>
-                        <th scope="col" data-toggle="tooltip" data-placement="top"
-                            title="Số lượng sản phẩm được thêm"><span
-                                title="Số lượng sản phẩm"> SLSP</span> bán được
-                        </th>
-                        <th scope="col" data-toggle="tooltip" data-placement="top"
-                            title="Số lượng sản phẩm tồn kho"><span
-                                title="Số lượng sản phẩm"> SLSP</span> được thêm
-                        </th>
-                        <th scope="col">Số lượng tồn kho</th>
                         <th scope="col">Số lượng truy cập</th>
                     </tr>
                     </thead>
                     <tbody id="content-table">
-                    <tr>
-                        <th scope="row">9/2020</th>
-                        <td>30,000,00</td>
-                        <td>4</td>
-                        <td>2</td>
-                        <td>42</td>
-                        <td>400</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">8/2020</th>
-                        <td>24,000,00</td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>46</td>
-                        <td>200</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7/2020</th>
-                        <td>12,000,00</td>
-                        <td>2</td>
-                        <td>5</td>
-                        <td>49</td>
-                        <td>502</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6/2020</th>
-                        <td>22,000,00</td>
-                        <td>7</td>
-                        <td>2</td>
-                        <td>51</td>
-                        <td>420</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5/2020</th>
-                        <td>30,000,00</td>
-                        <td>5</td>
-                        <td>8</td>
-                        <td>58</td>
-                        <td>492</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4/2020</th>
-                        <td>25,000,00</td>
-                        <td>2</td>
-                        <td>4</td>
-                        <td>63</td>
-                        <td>100</td>
-                    </tr>
-
+                    <c:forEach items="${listTurnover}" var="l">
+                        <tr>
+                            <th scope="row">${l.month}/${l.year}</th>
+                            <td>${l.soldProduct}</td>
+                            <td>${l.countOrder}</td>
+                            <td>
+                                <fmt:formatNumber value="${l.totalIncome}"/> vnđ
+                            </td>
+                            <td>0</td>
+                        </tr>
+                    </c:forEach>
 
                     </tbody>
                 </table>

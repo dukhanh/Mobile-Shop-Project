@@ -71,7 +71,11 @@ public class LoginController extends HttpServlet {
                     response.addCookie(emailCookie);
                     response.addCookie(passCookie);
 
-                    response.sendRedirect("home");
+                    if (account.getRole().equals("admin")) {
+                        response.sendRedirect("/admin");
+                    } else {
+                        response.sendRedirect("home");
+                    }
                 } else {
                     errorMessage = "Tài khoản của đã bị khóa. Vui lòng liên hệ để được hỗ trợ.";
                     request.setAttribute("errorMessage", errorMessage);

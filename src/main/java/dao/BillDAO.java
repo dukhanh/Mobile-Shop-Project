@@ -41,6 +41,7 @@ public class BillDAO {
             e.printStackTrace();
         }
     }
+
     // save bill detail to chi tiet don hang table
     public void saveBillDetail(BillDetail billDetail) {
         String sql = "INSERT INTO CHITIET_DH (ID_DH,ID_SP,SL_SP,GIA_SP) VALUES(?,?,?,?)";
@@ -61,7 +62,7 @@ public class BillDAO {
         String sql = "UPDATE DON_HANG SET TRANG_THAI = ? WHERE ID_DH = ?";
         try {
             PreparedStatement psupdate = DBConnect.connect().getConnection().prepareStatement(sql);
-            psupdate.setInt(1,status);
+            psupdate.setInt(1, status);
             psupdate.setString(2, billId);
             psupdate.executeUpdate();
             return true;
@@ -112,7 +113,6 @@ public class BillDAO {
         }
         return list;
     }
-
 
 
     // get bill by id
@@ -167,7 +167,7 @@ public class BillDAO {
             PreparedStatement ps = DBConnect.connect().getConnection().prepareStatement(sql);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 return rs.getInt(1);
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -175,10 +175,11 @@ public class BillDAO {
         }
         return 0;
     }
-// show on admin view, need to update
-    public List<Bill> showAllBill(){
 
-        String sql = "select ID_DH, ID_USER, CREATE_DATE from don_hang";
+    // show on admin view, need to update
+    public List<Bill> showAllBill() {
+
+        String sql = "select ID_DH, ID_USER, CREATE_DATE from DON_HANG";
         Bill b;
         List<Bill> bill = new ArrayList<Bill>();
         ResultSet rs;
@@ -188,7 +189,7 @@ public class BillDAO {
             rs = statement.executeQuery();
 
             while (rs.next()) {
-                b = new Bill(rs.getString("ID_DH"),rs.getInt("ID_USER"),rs.getString("CREATE_DATE"));
+                b = new Bill(rs.getString("ID_DH"), rs.getInt("ID_USER"), rs.getString("CREATE_DATE"));
                 bill.add(b);
             }
 
@@ -200,7 +201,7 @@ public class BillDAO {
     }
 
     // show on admin view, need to update
-    public List<Bill> showAllBillHasBeenCancel(){
+    public List<Bill> showAllBillHasBeenCancel() {
 
         String sql = "select ID_DH, ID_USER, CREATE_DATE from don_hang WHERE TRANG_THAI = 3";
         Bill b;
@@ -212,7 +213,7 @@ public class BillDAO {
             rs = statement.executeQuery();
 
             while (rs.next()) {
-                b = new Bill(rs.getString("ID_DH"),rs.getInt("ID_USER"),rs.getString("CREATE_DATE"));
+                b = new Bill(rs.getString("ID_DH"), rs.getInt("ID_USER"), rs.getString("CREATE_DATE"));
                 bill.add(b);
             }
 
@@ -223,9 +224,32 @@ public class BillDAO {
         return null;
     }
 
+    public List<Bill> getAllBills() {
+        String sql = "select dh.ID_DH, ID_USER, SUM(GIA_SP*SL_SP) as total, CREATE_DATE, TRANG_THAI\n" +
+                "from DON_HANG dh join CHITIET_DH ch on dh.ID_DH = ch.ID_DH\n" +
+                "group by dh.ID_DH\n";
+        List<Bill> billList = new LinkedList<>();
+        try {
+            PreparedStatement ps = DBConnect.connect().getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+               Bill bill = new Bill();
+               bill.setIdBill(rs.getString("ID_DH"));
+               bill.setIdUser(rs.getInt("ID_USER"));
+               bill.setTotal(rs.getLong("total"));
+               bill.setCreatedAt(rs.getString("CREATE_DATE"));
+               bill.setStatus(BillService.statusBill(rs.getInt("TRANG_THAI")));
+               billList.add(bill);
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return billList;
+    }
+
     // test getBillById method
     public static void main(String[] args) {
-        for(BillDetail bill : new BillDAO().getProductBillById("DH001")) {
+        for (Bill bill : new BillDAO().getAllBills()) {
             System.out.println(bill.toString());
 
         }

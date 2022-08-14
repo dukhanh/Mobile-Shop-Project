@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../../sub-component/taglib.jsp"%>
+<%@include file="../../sub-component/taglib.jsp" %>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
     <button class="btn btn-primary" id="menu-toggle">
@@ -23,9 +23,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#log-out">Đăng xuất <span
-                        class="log-out"><i
-                        class="fas fa-arrow-right"></i></span></a>
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#log-out">Đăng xuất
+                    <span class="log-out"><i class="fas fa-arrow-right"></i></span>
+                </a>
             </li>
 
         </ul>
