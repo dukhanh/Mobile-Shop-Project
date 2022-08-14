@@ -17,14 +17,14 @@ public class BrandDAO {
 
     }
 
-    public static  BrandDAO getInstance() {
+    public static BrandDAO getInstance() {
         if (brandDao == null) {
             brandDao = new BrandDAO();
         }
         return brandDao;
     }
 
-    public List<Brand> getTopBrand(){
+    public List<Brand> getTopBrand() {
         Brand brand;
         List<Brand> res = new LinkedList<>();
         String query = "SELECT ID_THUONG_HIEU,TENTH,  count(ID_SANPHAM) as c \n" +
@@ -51,7 +51,7 @@ public class BrandDAO {
     }
 
 
-    public List<Brand> getBrandLogo(){
+    public List<Brand> getBrandLogo() {
         Brand brand;
         int quantityBrand = 8;
         List<Brand> res = new LinkedList<>();
@@ -80,20 +80,21 @@ public class BrandDAO {
         }
         return res;
     }
-    public List<Brand> showAllBrand(){
 
-        String sql = "SELECT DISTINCT TH.ID, TH.TENTH, SL.SO_LUONG FROM thuong_hieu TH JOIN san_pham SP ON TH.ID = SP.ID_THUONG_HIEU \n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tJOIN sl_sp SL ON SP.ID_SANPHAM = SL.ID_SANPHAM";
-        Brand br;
+    public List<Brand> showAllBrand() {
+
+        String sql = "SELECT sp.ID_THUONG_HIEU, th.TENTH, SUM(SO_LUONG) as SL\n" +
+                "FROM SAN_PHAM sp JOIN SL_SP ss on sp.ID_SANPHAM = ss.ID_SANPHAM\n" +
+                "JOIN THUONG_HIEU th ON th.ID = sp.ID_THUONG_HIEU\n" +
+                "GROUP BY sp.ID_THUONG_HIEU";
+
         List<Brand> brand = new ArrayList<Brand>();
-        ResultSet rs;
-        PreparedStatement statement;
         try {
-            statement = DBConnect.connect().getConnection().prepareStatement(sql);
-            rs = statement.executeQuery();
+            PreparedStatement statement = DBConnect.connect().getConnection().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
-                br = new Brand(rs.getInt("ID"),rs.getString("TENTH"), rs.getInt("SO_LUONG"));
+                Brand br = new Brand(rs.getInt("ID_THUONG_HIEU"), rs.getString("TENTH"), rs.getInt("SL"));
                 brand.add(br);
             }
 

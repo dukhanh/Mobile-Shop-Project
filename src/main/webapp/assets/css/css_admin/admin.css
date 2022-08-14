@@ -275,7 +275,7 @@ input::-webkit-inner-spin-button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0px 0px 15px 1px rgba(71, 190, 245, 0.993);
+  box-shadow: 0px 0px 15px 1px rgba(189, 233, 153, 0.993);
 }
 
 .container-fluid .center-column td{

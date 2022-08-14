@@ -35,7 +35,7 @@
                                             <div class="row">
                                                 <div class="show-page mb-3 ml-3">
                                                     <span> Hiển thị</span>
-                                                    <select id="show" onclick="select_page()">
+                                                    <select id="show-row" onclick="select_page()">
                                                         <option value="10">
                                                             10 dòng
                                                         </option>

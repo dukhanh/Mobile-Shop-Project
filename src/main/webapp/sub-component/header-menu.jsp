@@ -84,7 +84,7 @@
                                         <li>Sản phẩm yêu thích</li>
                                     </a>
                                     <c:if test="${(sessionScope.account.role).equals('admin')}">
-                                        <a href="../admin/admin.jsp">
+                                        <a href="${pageContext.request.contextPath}/admin">
                                             <li>Trang admin</li>
                                         </a>
                                     </c:if>

@@ -3,7 +3,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="vi_VN"/>
 <head>
     <jsp:include page="/admin/sub-component/header-admin.jsp"/>
     <title></title>
@@ -36,14 +37,14 @@
                                                     <span> Hiển thị </span>
                                                     <label for="show-row"></label>
                                                     <select id="show-row" onclick="select_page()">
-                                                        <option value="10">
-                                                            10 dòng
+                                                        <option value="30">
+                                                            30 dòng
                                                         </option>
-                                                        <option value="20">
-                                                            20 dòng
+                                                        <option value="60">
+                                                            60 dòng
                                                         </option>
-                                                        <option value="50">
-                                                            50 dòng
+                                                        <option value="80">
+                                                            80 dòng
                                                         </option>
                                                     </select>
                                                 </div>
@@ -52,7 +53,7 @@
 
                                                     <span> Sắp xếp </span>
                                                     <label for="show"></label>
-                                                    <select id="show" onclick="select_page()">
+                                                    <select id="show">
                                                         <option value="10">
                                                             A-Z
                                                         </option>
@@ -64,7 +65,7 @@
                                                 <div class="show-page arrange">
                                                     <label for="myInput"></label>
                                                     <input id="myInput" type="text" class="input-form"
-                                                                                        placeholder="Tìm kiếm">
+                                                           placeholder="Tìm kiếm">
                                                 </div>
 
                                                 <a href="../admin/formAddProduct.jsp" style="display: block;">
@@ -86,12 +87,12 @@
                                                     <th data-toggle="tooltip" data-placement="top"
                                                         title="Hãng sản xuất">Hãng SX
                                                     </th>
-                                                    <th>Ngày ra mắt</th>
+<%--                                                    <th>Ngày ra mắt</th>--%>
                                                     <th data-toggle="tooltip" data-placement="top"
                                                         title="Số lượng còn lại">SL còn lại
                                                     </th>
                                                     <th data-toggle="tooltip" data-placement="top"
-                                                        title="Số lượng đã bán">SL đã bán
+                                                        title="Số lượng đã bán">Đã bán
                                                     </th>
                                                     <th>Giá bán</th>
                                                     <th></th>
@@ -101,37 +102,41 @@
 
                                                 <tbody id="content-table">
                                                 <c:forEach items="${listProduct}" var="x">
-                                                <tr>
-                                                    <td style="max-width: 140px;"><img
-                                                            src="${x.ANH_CHINH}" width="100px"
-                                                            height="100px" alt=""></td>
-                                                    <td>${x.ID_SANPHAM}</td>
-                                                    <td>${x.TEN_SP}</td>
-                                                    <td>${x.TENTH}</td>
-                                                    <td>${x.NGAY_CAPNHAT}</td>
-                                                    <td>${x.SO_LUONG}</td>
-                                                    <td>${x.SL_DABAN}</td>
-                                                    <td class="color-price">${x.GIA_SP}VND</td>
-                                                    <td class="row">
-                                                        <div class="container-button">
-                                                            <a href="../admin/formEdit.jsp">
-                                                                <button class="m-wTD btn btn-primary"
-                                                                        data-toggle="tooltip"
-                                                                        data-placement="top" title="Chỉnh sửa"
+                                                    <tr>
+                                                        <td style="max-width: 140px;">
+                                                            <img src="${x.ANH_CHINH}" width="100px" height="100px"
+                                                                 alt="">
+                                                        </td>
+                                                        <td>${x.ID_SANPHAM}</td>
+                                                        <td>${x.TEN_SP}</td>
+                                                        <td>${x.TENTH}</td>
+<%--                                                        <td>${x.NGAY_CAPNHAT}</td>--%>
+                                                        <td>${x.SO_LUONG}</td>
+                                                        <td>${x.SL_DABAN}</td>
+                                                        <td class="color-price">
+                                                            <fmt:formatNumber value="${x.GIA_SP}"/> vnđ
+                                                        </td>
+                                                        <td class="row">
+                                                            <div class="container-button">
+                                                                <a href="../admin/formEdit.jsp">
+                                                                    <button class="m-wTD btn btn-primary"
+                                                                            data-toggle="tooltip"
+                                                                            data-placement="top" title="Chỉnh sửa"
+                                                                            data-toggle="modal"
+                                                                            data-target="#editUser"><i
+                                                                            class="txt-center fas fa-edit"></i></button>
+                                                                </a>
+                                                                <button class="btn btn-danger sizeTh1"
                                                                         data-toggle="modal"
-                                                                        data-target="#editUser"><i
-                                                                        class="txt-center fas fa-edit"></i></button>
-                                                            </a>
-                                                            <button class="btn btn-danger sizeTh1" data-toggle="modal"
-                                                                    data-target="#delete"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Xóa"><i
-                                                                    class="txt-center menu-icon fas fa-trash-alt"></i>
-                                                            </button>
-                                                        </div>
+                                                                        data-target="#delete"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="Xóa"><i
+                                                                        class="txt-center menu-icon fas fa-trash-alt"></i>
+                                                                </button>
+                                                            </div>
 
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
                                                 </c:forEach>
                                                 </tbody>
                                             </table>

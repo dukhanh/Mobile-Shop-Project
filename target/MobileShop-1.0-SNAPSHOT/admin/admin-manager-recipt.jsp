@@ -26,7 +26,7 @@
                 <h4 class="text-center mt-3 mb-4">Quản lí đơn hàng</h4>
                 <div class="row">
                     <div class="show-page mb-3 ml-3">
-                        Hiển thị <span> <select id="show" onclick="select_page()">
+                        Hiển thị <span> <select id="show-row" onclick="select_page()">
                   <option value="10">
                     10 dòng
                   </option>

@@ -90,7 +90,8 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="item-center text-red"><p id="price-product"><fmt:formatNumber
+                                    <div class="item-center text-red"><p id="price-product">
+                                        <fmt:formatNumber
                                             value="${p.priceSale}"/></p> vnđ
                                     </div>
                                 </td>

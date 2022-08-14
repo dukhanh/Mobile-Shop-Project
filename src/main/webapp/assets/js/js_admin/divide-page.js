@@ -1,7 +1,7 @@
 var move = 1;
 
 function next_page() {
-    var lineNo = parseInt(document.getElementById("show").value);
+    var lineNo = parseInt(document.getElementById("show-row").value);
     var length = parseInt(
         document.getElementById("content-table").getElementsByTagName("tr").length
     );
@@ -22,7 +22,7 @@ function previous_page() {
 }
 
 function select_page() {
-    var lineNo = parseInt(document.getElementById("show").value);
+    var lineNo = parseInt(document.getElementById("show-row").value);
     var length = parseInt(
         document.getElementById("content-table").getElementsByTagName("tr").length
     );
@@ -44,7 +44,7 @@ select_page();
 //     }
 //   }
 function click_page(tag) {
-    var lineNo = parseInt(document.getElementById("show").value);
+    var lineNo = parseInt(document.getElementById("show-row").value);
     var arr = [];
     move = tag;
     console.log(move);

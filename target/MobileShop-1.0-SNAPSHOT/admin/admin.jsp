@@ -3,6 +3,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="vi_VN"/>
 
 <head>
     <jsp:include page="/admin/sub-component/header-admin.jsp"/>
@@ -26,23 +28,25 @@
                 <div class="summary-content">
                     <div class="summary-item">
                         <span class="name-description">Tổng doanh thu</span>
-                        <h3 class="value">50.000.000</h3>
+                        <h3 class="value">
+                            <fmt:formatNumber value="${totalIncome}"/>
+                        </h3>
                     </div>
                     <div class="summary-item">
                         <span class="name-description">Số đơn hàng</span>
-                        <h3 class="value">120</h3>
+                        <h3 class="value">${totalOrder}</h3>
                     </div>
                     <div class="summary-item">
                         <span class="name-description">Sản phẩm đã bán</span>
-                        <h3 class="value">135</h3>
+                        <h3 class="value">${soldProduct}</h3>
                     </div>
                     <div class="summary-item">
                         <span class="name-description">Sản phẩm tồn kho</span>
-                        <h3 class="value">500</h3>
+                        <h3 class="value">${restProduct}</h3>
                     </div>
                     <div class="summary-item">
                         <span class="name-description">Lượt truy cập</span>
-                        <h3 class="value">1200</h3>
+                        <h3 class="value">0</h3>
                     </div>
                 </div>
 
@@ -52,7 +56,7 @@
                 <div class="row">
                     <div class="show-page mb-3 ml-3">
                         Hiển thị
-                        <select id="show" onclick="select_page()">
+                        <select id="show-row" onclick="select_page()">
                             <option value="10">
                                 10 dòng
                             </option>
@@ -174,8 +178,8 @@
         });
     });
 
-    $(document).ready(function() {
-        $('.list-group-item').click(function (){
+    $(document).ready(function () {
+        $('.list-group-item').click(function () {
             $('.list-group-item').removeClass('active');
             $(this).addClass('active');
         });
