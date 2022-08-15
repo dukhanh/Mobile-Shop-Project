@@ -6,6 +6,30 @@
 
 <head>
     <jsp:include page="/admin/sub-component/header-admin.jsp"/>
+    <style>
+        .modal_user {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            overflow-y: auto;
+        }
+
+        .modal__overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal__body {
+            width: 500px;
+            margin: 50px auto;
+            position: relative;
+        }
+    </style>
 </head>
 
 <body>
@@ -48,7 +72,6 @@
                                                 </div>
 
                                                 <div class="show-page  arrange">
-
                                                     <span> Sắp xếp</span>
                                                     <label for="show"></label>
                                                     <select id="show" onclick="select_page()">
@@ -84,56 +107,77 @@
                                                 </thead>
 
                                                 <tbody id="content-table">
-                                                <c:forEach items="${listDataUser}" var="x">
+                                                <c:forEach items="${listDataUser}" var="x" varStatus="loop">
                                                 <tr>
                                                     <td>${x.id}</td>
                                                     <td>${x.fullName}</td>
                                                     <td>${x.email}</td>
                                                     <td>${x.phoneNumber}</td>
                                                     <td>${x.role}</td>
-                                                    <td>${x.status}</td>
+                                                    <td class="status__item">${x.status}</td>
                                                     <td class="row" style="border: none;">
                                                         <c:if test="${(x.role).equals('customer')}">
                                                             <div style="margin: auto;">
-                                                                <button class="btn btn-success sizeTh1" value="true"
-                                                                        id='block' data-placement="top"
-                                                                        title="Block" data-target="#block-user"
-                                                                        data-toggle="modal">
+                                                                <button
+                                                                        class="btn btn-success sizeTh1 btn__status"
+                                                                        onclick="openDialogConfirm(${loop.index})"
+                                                                        style="background-color:${(x.status).equals('open')?'#28a745':'#bd2130'}"
+                                                                >
                                                                     <i class="txt-center fas fa-lock"></i>
                                                                 </button>
                                                             </div>
 
-                                                            <div class="modal fade" id='block-user' tabindex="-1"
-                                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title"
-                                                                                id="exampleModalLabel">
-                                                                                Xác nhận chặn</h5>
-                                                                            <button type="button" class="close"
-                                                                                    data-dismiss="modal"
-                                                                                    aria-label="Close">
-                                                                                <i aria-hidden="true">&times;</i>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            Bạn có muốn xác nhận chặn user này không?
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button"
-                                                                                    class="btn btn-secondary"
-                                                                                    data-dismiss="modal">Hủy
-                                                                            </button>
-                                                                            <button type="button"
-                                                                                    class="btn btn-primary"
-                                                                                    onclick="check_block('block')"
-                                                                                    data-dismiss="modal">Xác nhận
-                                                                            </button>
+                                                            <div class="modal_user" style="display: none">
+                                                                <div class="modal__overlay">
+                                                                </div>
+
+                                                                <div class="modal__body">
+                                                                    <div class="modal__inner">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title">
+                                                                                    <c:if test="${(x.status).equals('open')}">
+                                                                                        Xác nhận khóa tài khoản
+                                                                                    </c:if>
+                                                                                    <c:if test="${(x.status).equals('close')}">
+                                                                                        Xác nhận mở tài khoản
+                                                                                    </c:if>
+                                                                                </h5>
+                                                                                <button type="button" class="close"
+                                                                                        onclick="closeDialog(${loop.index})"
+                                                                                >
+                                                                                    <i aria-hidden="true">&times;</i>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <c:if test="${(x.status).equals('open')}">
+                                                                                    Bạn có muốn xác nhận khóa user này không?
+                                                                                </c:if>
+                                                                                <c:if test="${(x.status).equals('close')}">
+                                                                                    Bạn có muốn xác nhận mở user này không?
+                                                                                </c:if>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button"
+                                                                                        class="btn btn-secondary"
+                                                                                        onclick="closeDialog(${loop.index})"
+                                                                                >Hủy
+                                                                                </button>
+                                                                                <form action="${pageContext.request.contextPath}/admin/dataUser" method="post">
+                                                                                    <input type="hidden" name="status" value="${x.status}">
+                                                                                    <input type="hidden" name="userId" value="${x.id}">
+                                                                                    <button type="submit"
+                                                                                            class="btn btn-primary"
+                                                                                    >Xác nhận
+                                                                                    </button>
+                                                                                </form>
+
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+
                                                         </c:if>
 
                                                     </td>
@@ -141,6 +185,7 @@
                                                 </c:forEach>
 
                                             </table>
+
 
                                             <div class="page-navigation">
                                                 <div class="beta">
@@ -162,9 +207,21 @@
         <!-- /#page-content-wrapper -->
     </div>
 
+
     <script src="<c:url value="/assets/js/js_admin/divide-page.js"/>"></script>
     <script src="<c:url value="/assets/js/js_admin/user-confirmed.js"/>"></script>
 
+
+    <script>
+        function openDialogConfirm(indexModal) {
+            $('.modal_user').eq(indexModal).css("display", "block");
+        }
+
+        function closeDialog(indexModal) {
+            $('.modal_user').eq(indexModal).css("display", "none");
+        }
+
+    </script>
     <!-- Menu Toggle Script -->
     <script>
         $("#menu-toggle").click(function (e) {

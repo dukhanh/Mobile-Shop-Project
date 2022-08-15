@@ -177,6 +177,18 @@ public class AccountDAO {
         return result;
     }
 
+    public void changeStatusUser(int userId, String status){
+        String sql = "UPDATE TAI_KHOAN SET TRANG_THAI = ? WHERE ID_USER = ?";
+        try {
+            PreparedStatement prepareStatement = DBConnect.connect().getConnection().prepareStatement(sql);
+            prepareStatement.setString(1,status);
+            prepareStatement.setInt(2,userId);
+            prepareStatement.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
 
         System.out.println(AccountDAO.getInstance().getCurrentPassword("dukhanhqt@gmail.com"));

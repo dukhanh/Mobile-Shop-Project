@@ -83,6 +83,7 @@
                         <th scope="col">Ngày lập</th>
 
                         <th scope="col">Chi tiết đơn hàng</th>
+                        <th scope="col">Trạng thái</th>
                         <th scope="col">Xác nhận đơn hàng</th>
 
                     </tr>
@@ -106,6 +107,7 @@
                                 </button>
                                 <!-- Modal -->
                             </td>
+                            <td> ${x.status} </td>
                             <td class="confirm">
                   <span>
                     <input class="confirm-check" type="checkbox" value="confirm-check" name="confirm-check">
@@ -133,56 +135,6 @@
                     </div>
                   </span>
 
-                                <span>
-                    <input class="confirm-check" type="checkbox" value="confirm-delivered" name="confirm-deliverd">
-                    <label title="Xác nhận vận chuyển thành công" class="label-delivered disable"><i
-                            class="fas fa-truck"></i></label>
-                    <div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Xác nhận vận chuyển</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <i aria-hidden="true">&times;</i>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            Bạn có muốn xác nhận vận chuyển thành công?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Xác
-                              nhận</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </span>
-                                <span>
-                    <input class="confirm-check" type="checkbox" value="confirm-cancel" name="confirm-cancel">
-                    <label title="Hủy đơn hàng" data-toggle="modal" class="label-cancel warning"><i
-                            class="fas fa-trash"></i></label>
-                    <div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Xác nhận hủy đơn</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <i aria-hidden="true">&times;</i>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            Bạn có muốn xác nhận hủy đơn hàng này không?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Xác
-                              nhận</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </span>
 
                             </td>
                         </tr>

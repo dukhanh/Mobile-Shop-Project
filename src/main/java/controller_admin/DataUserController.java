@@ -1,5 +1,6 @@
 package controller_admin;
 
+import dao.AccountDAO;
 import dao.DataUserDAO;
 import model.Account;
 import model.DataUser;
@@ -24,6 +25,16 @@ public class DataUserController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String status = request.getParameter("status");
+        int userId = Integer.parseInt(request.getParameter("userId"));
 
+        String newStatus = "";
+        if (status.equals("open")) {
+            newStatus = "close";
+        } else {
+            newStatus = "open";
+        }
+        AccountDAO.getInstance().changeStatusUser(userId, newStatus);
+        response.sendRedirect("/admin/dataUser");
     }
 }

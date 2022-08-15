@@ -104,11 +104,11 @@
                                                 <c:forEach items="${listProduct}" var="x">
                                                     <tr>
                                                         <td style="max-width: 140px;">
-                                                            <img src="${x.ANH_CHINH}" width="100px" height="100px"
+                                                            <img src="${x.ANH_CHINH}" height="110px"
                                                                  alt="">
                                                         </td>
                                                         <td>${x.ID_SANPHAM}</td>
-                                                        <td>${x.TEN_SP}</td>
+                                                        <td style="max-width: 340px;">${x.TEN_SP}</td>
                                                         <td>${x.TENTH}</td>
 <%--                                                        <td>${x.NGAY_CAPNHAT}</td>--%>
                                                         <td>${x.SO_LUONG}</td>
