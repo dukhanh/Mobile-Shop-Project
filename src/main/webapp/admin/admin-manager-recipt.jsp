@@ -8,6 +8,37 @@
 <fmt:setLocale value="vi_VN"/>
 <head>
     <jsp:include page="/admin/sub-component/header-admin.jsp"/>
+    <style>
+        .modal_receipt {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            overflow-y: auto;
+            /* height: 100%; */
+        }
+
+        .modal__overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            /* z-index: 3; */
+        }
+
+        .modal__body {
+            width: 90%;
+            /* height: 382px; */
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .product__row td {
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body>
@@ -67,11 +98,13 @@
                             <td>${x.createdAt}</td>
 
                             <td class="detail">
-                                <a data-toggle="modal" data-target="#exampleModal" href='#'> Chi tiết
-                                    <i class="fa fa-external-link-alt"></i>
-                                </a>
+                                <button
+                                        class="text-primary bg-transparent border-0"
+                                        onclick="showDetailReceipt('${x.idBill}')"
+                                >
+                                    Chi tiết <i class="fa fa-external-link-alt"></i>
+                                </button>
                                 <!-- Modal -->
-
                             </td>
                             <td class="confirm">
                   <span>
@@ -155,83 +188,48 @@
                         </tr>
                     </c:forEach>
                     </tbody>
-
-
                 </table>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog  detail-modal">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Chi tiết đơn hàng</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div>
-                                    <h5>Đơn hàng: DH01</h5>
-                                    <table width="100%" class="text-center  table content-detail  table-hover">
-                                        <thead class="thead-light">
-                                        <tr>
-                                            <th>Mã khách hàng</th>
-                                            <th>Tên khách hàng</th>
-                                            <th><span title="Số điện thoại"> Số điện thoại</span></th>
-                                            <th>Hình thức thanh toán</th>
-                                            <th style="min-width: 300px;"> Địa chỉ</th>
-                                        </tr>
-                                        </thead>
-                                        <tr>
-                                            <td>KH01</td>
-                                            <td>Nguyễn Văn A</td>
-                                            <td><span title="Số điện thoại"> 09128374822</span></td>
-                                            <td>Thanh toán khi nhận hàng</td>
-                                            <td style="min-width: 300px;"> Khu phố 6, phường Linh Trung, quận Thủ Đức,TP
-                                                Hồ
-                                                Chí Minh
-                                            </th>
 
-                                        </tr>
-                                    </table>
-                                    <table width="100%" class="text-center  table content-detail  table-hover">
-                                        <thead class="thead-light">
-                                        <tr>
-                                            <th>Hình ảnh</th>
-                                            <th>Mã sản phẩm</th>
-                                            <th>Tên sản phẩm</th>
-                                            <th>Màu sắc</th>
-                                            <th>Số lượng</th>
-                                            <th> Giá</th>
-                                        </tr>
-                                        </thead>
-                                        <tr>
-                                            <td style="max-width: 140px;">
-                                                <img src="/assets/images/Product/i12black.png"
-                                                     width="100px"
-                                                     height="100px" alt="">
-                                            </td>
-                                            <td>SP01</td>
-                                            <td>IPhone X 64GB</td>
-                                            <td> Đen</td>
-                                            <td style="min-width: 300px;">1</td>
-                                            <td style="min-width: 300px;">17.000.000</td>
-                                        </tr>
-                                    </table>
+                <div class="modal_receipt" id="modal_receipt" style="display: none">
+                    <div class="modal__overlay">
+                    </div>
+
+                    <div class="modal__body">
+                        <div class="modal__inner" id="modal__inner">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Chi tiết đơn hàng</h5>
+                                    <button type="button"
+                                            class="close"
+                                            onclick="closeDetailReceipt()"
+                                    >
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                <div class="modal-body" id="modal__body">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button"
+                                            class="btn btn-secondary"
+                                            onclick="closeDetailReceipt()"
+                                    >
+                                        Đóng
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
+
+
             <div class="page-navigation">
                 <div class="beta">
                     <button onclick="previous_page()"> Trước</button>
-                    <span id="page-number">
-
-            </span>
+                    <span id="page-number"></span>
                     <button onclick="next_page()"> Sau</button>
                 </div>
             </div>
@@ -245,6 +243,29 @@
 
 <!-- Bootstrap core JavaScript -->
 <!-- Menu Toggle Script -->
+<script>
+    function showDetailReceipt(id) {
+        $("#modal_receipt").css("display", "block");
+        $.ajax({
+            url: '/admin/show_receipt',
+            type: 'GET',
+            data: {
+                'receiptId': id,
+            },
+            success: function (data) {
+                const body = $("#modal__body");
+                body.empty();
+                body.append(data)
+            },
+
+        });
+    }
+
+    function closeDetailReceipt() {
+        $("#modal_receipt").css("display", "none");
+    }
+
+</script>
 <script>
     $("#menu-toggle").click(function (e) {
         e.preventDefault();

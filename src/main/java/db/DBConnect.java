@@ -9,7 +9,9 @@ public class DBConnect {
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
-
+//    private static final String DB_URL = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11512847?useUnicode=true&characterEncoding=UTF-8";
+//    private static final String USER = "sql11512847";
+//    private static final String PASSWORD = "76HvHGRlVC";
 
 
     public static Statement connect() throws SQLException, ClassNotFoundException {

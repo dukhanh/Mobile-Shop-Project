@@ -9,9 +9,7 @@ import service.BillService;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class BillDAO {
     private static BillDAO instance;
@@ -203,7 +201,7 @@ public class BillDAO {
     // show on admin view, need to update
     public List<Bill> showAllBillHasBeenCancel() {
 
-        String sql = "select ID_DH, ID_USER, CREATE_DATE from don_hang WHERE TRANG_THAI = 3";
+        String sql = "select ID_DH, ID_USER, CREATE_DATE from don_hang WHERE TRANG_THAI = 4";
         Bill b;
         List<Bill> bill = new ArrayList<Bill>();
         ResultSet rs;
@@ -247,12 +245,31 @@ public class BillDAO {
         return billList;
     }
 
+    public Map<String, String> showInforReceipt(String receiptId){
+        String sql = "select * \n" +
+                "from DON_HANG dh join TAI_KHOAN tk on dh.ID_USER = tk.ID_USER\n" +
+                "where ID_DH = ?";
+        Map<String, String> result =new LinkedHashMap<>();
+        try {
+            PreparedStatement ps = DBConnect.connect().getConnection().prepareStatement(sql);
+            ps.setString(1, receiptId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                result.put("ID_DH", rs.getString("ID_DH"));
+                result.put("TEN_ND", rs.getString("TEN_ND"));
+                result.put("SDT", rs.getString("SDT"));
+                result.put("DIA_CHI", rs.getString("DIA_CHI_GH"));
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     // test getBillById method
     public static void main(String[] args) {
-        for (Bill bill : new BillDAO().getAllBills()) {
-            System.out.println(bill.toString());
-
-        }
+         Map<String, String> test = BillDAO.getInstance().showInforReceipt("DH001");
+         System.out.println(test);
     }
 
 }
