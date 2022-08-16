@@ -1,6 +1,7 @@
 package dao;
 
 import db.DBConnect;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -17,8 +18,8 @@ public class ReportDAO {
         return instance;
     }
 
-    public static  void insertReport(String name, String phone, String email,String title,String description) {
-        String sql = "INSERT INTO `reports`(`name`, `phone`, `email`, `title`, `description`) VALUES (?,?,?,?,?)";
+    public void insertReport(String name, String phone, String email, String title, String description) {
+        String sql = "INSERT INTO reports (name, phone, email, title, description) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement statement = DBConnect.connect().getConnection().prepareStatement(sql);
             statement.setString(1, name);
@@ -26,14 +27,14 @@ public class ReportDAO {
             statement.setString(3, email);
             statement.setString(4, title);
             statement.setString(5, description);
-            
             statement.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        ReportDAO.getInstance().insertReport("Du Khánh", "0364413771", "dukhanhqt@gmail.com", "Tài khoản", "Làm sao để mở lại tài khoản đã bị khóa?");
     }
 
 }

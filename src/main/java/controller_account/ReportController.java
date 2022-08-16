@@ -23,6 +23,8 @@ public class ReportController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
        HttpSession session = request.getSession(true);
        Account account = (Account) session.getAttribute("account");
        String name = request.getParameter("name") == null ? account.getFullName() :request.getParameter("name"); 
@@ -30,7 +32,8 @@ public class ReportController extends HttpServlet {
        String email = request.getParameter("email") == null ? account.getEmail() :request.getParameter("email"); 
        String title = request.getParameter("title");
        String description = request.getParameter("description");
-       ReportDAO.insertReport(name, phone, email, title, description);
-       request.getRequestDispatcher("/home").forward(request, response);
+
+       ReportDAO.getInstance().insertReport(name, phone, email, title, description);
+        response.sendRedirect("/report");
     }
 }

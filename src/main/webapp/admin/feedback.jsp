@@ -131,7 +131,7 @@
                     <form>
                         <div class="form-group">
                             <%--@declare id="recipient-name"--%><label for="recipient-name" class="col-form-label">Gửi
-                            tới: <b>baoCute@gmail.com</b></label>
+                            tới: <b></b></label>
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Phản hồi:</label>
