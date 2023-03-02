@@ -8,7 +8,7 @@
 <meta name="description"
       content="create ecommerce website template for your online store, responsive mobile templates">
 <meta name="keywords" content="ecommerce website templates, online store,">
-<title>Nhom 21 LT WEB</title>
+<title>Shop</title>
 <!-- Bootstrapppppp -->
 <link href="<c:url value="/assets/css/bootstrap.min.css"/>" rel="stylesheet">
 <!-- Style CSS -->

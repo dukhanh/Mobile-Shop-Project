@@ -5,13 +5,13 @@ import java.sql.*;
 public class DBConnect {
     private static DBConnect dbConnect;
     private static Connection connection;
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/databaseshop?useUnicode=true&characterEncoding=UTF-8";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
+//    private static final String DB_URL = "jdbc:mysql://localhost:3306/databaseshop?useUnicode=true&characterEncoding=UTF-8";
+//    private static final String USER = "root";
+//    private static final String PASSWORD = "";
 
-//    private static final String DB_URL = "jdbc:mysql://remotemysql.com:3306/8oY1dXmabC?useUnicode=true&characterEncoding=UTF-8";
-//    private static final String USER = "8oY1dXmabC";
-//    private static final String PASSWORD = "7wKG0VKWt3";
+    private static final String DB_URL = "jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10601906?useUnicode=true&characterEncoding=UTF-8";
+    private static final String USER = "sql10601906";
+    private static final String PASSWORD = "EtT7RyWHRn";
 
 
     public static Statement connect() throws SQLException, ClassNotFoundException {
